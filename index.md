@@ -1,10 +1,10 @@
 ---
-title: Fraser Lab
+title: HKUST SMART Lab
 layout: home
 group: home
 ---
 
-# Welcome to the Fraser Lab!
+# Welcome to HKUST SMART Lab!
 {: .display-4}
 <br>
 We are part of the [Department of Bioengineering and Therapeutic Sciences](http://bts.ucsf.edu/), the [Macromolecular Structure Group](http://msg.ucsf.edu/), and the [California Institute of Quantitative Biosciences (QB3)](http://qb3.org/).
