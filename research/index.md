@@ -17,9 +17,8 @@ The long-term goals of our research are to research and develop cutting-edge tec
 
 ### AI for Computational Pathology
 
-<div class="align-self-center">
-<img class="img-research" src="/static/img/research/computational_pathology.png" alt="qFit">
-
+<div class="img-research">
+<img class="img-fluid" src="/static/img/research/computational_pathology.png" alt="qFit">
 </div>
 
 Pathological examination is regarded as the gold standard in cancer diagnosis. The digitalization of pathological slides marked a turning point in the history of pathology diagnosis. Computational pathology aims to develop advanced artificial intelligence and medical image computing technologies to analyze large-scale whole-slide images (WSI), thus facilitating pathologists in clinical diagnosis. The quantitative analysis with label-efficient computational pathology is of great significance for structural profiling, novel biomarker discovery, personalized treatment response, survival analysis, etc.
