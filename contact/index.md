@@ -21,13 +21,13 @@ group: contact
 
 <div class="col-md-4">
 
-  <h4>James Fraser, Ph.D.</h4>
+  <h4>James SMART, Ph.D.</h4>
   Professor<br>
   [Department of Bioengineering and Therapeutic Sciences](http://bts.ucsf.edu)<br>
   [California Institute of Quantitative Biosciences (QB3)](https://qb3.org)<br>
   600 16th Street, Genentech Hall Room S472E<br>
   San Francisco, CA 94143<br>
-  email: jfraser (at) fraserlab.com <br>
+  email: jSMART (at) SMARTlab.com <br>
   tel: 415 502 1863
 
 </div>
@@ -35,7 +35,7 @@ group: contact
 <div class="col-md-4">
 
   <h4> Rebecca Niznak</h4>
-  Executive Business Adminstrator for James Fraser and<br>
+  Executive Business Adminstrator for James SMART and<br>
   [Department of Bioengineering and Therapeutic Sciences](http://bts.ucsf.edu)<br>
   email: rebecca.niznak2 (at) ucsf.edu<br>
   tel: <br>
@@ -44,11 +44,7 @@ group: contact
 
 </div>
 
-## Land Acknowledgement Statement
-
-The Fraser lab recognizes that [the University of California San Francisco sits on the unceded land of the Ramaytush Ohlone (pronounced Rah-mah-tush O-lone-ee) peoples, the original inhabitants of the San Francisco Peninsula](https://diversity.ucsf.edu/ucsf-land-acknowledgment). As settlers on this land, we want to recognize the historic, and ongoing, discrimination and violence inflicted upon Indigenous people in North America. Please read our [full statement](/land_ack).
-
-# Directions to the Fraser Lab
+# Directions to the SMART Lab
 ### The Mission Bay Campus can be reached:  
 * #### Public Transportation:
   * **Option 1**: Exit BART at the 16th St Station and wait for the free [UCSF Red shuttle](https://campuslifeservices.ucsf.edu/upload/transportation/files/Red.pdf) (weekdays only) that stops directly outside [what was once a Burger King and now has lovely graffiti](https://www.google.com/maps/@37.765092,-122.419164,3a,75y,5.38h,82.64t/data=!3m4!1e1!3m2!1sH_jzIrhuF8wnnEp0duvIEQ!2e0).
@@ -62,10 +58,10 @@ The Fraser lab recognizes that [the University of California San Francisco sits 
 
 ### Once on campus, proceed to Genentech Hall:
 1. You will have to enter through Genentech Hall from the Koret Quad side (Red arrow on the map below).
-2. Sign in at security for a meeting with Dr. James Fraser (Office - Genentech Hall S472E).
+2. Sign in at security for a meeting with Dr. James SMART (Office - Genentech Hall S472E).
 3. Take the elevator or staircase to the 4th floor.
 4. Walk west down the hall. The large windows facing the courtyard will be on your right. If the floor color changes to grey, you have gone the wrong way and are now in Byers Hall. Turn around and walk back towards Genentech Hall.
 5. You will encounter an intersection. Make a left (south) and head towards the S401-484 area.
-6. You should find a break room. James's office is through the clear doors straight ahead. The Fraser lab is on the right.
+6. You should find a break room. James's office is through the clear doors straight ahead. The SMART lab is on the right.
 
-<img class="img-fluid" src="/static/img/map_to_mission_bay.png" alt="Map of Mission Bay">
+<img class="img-fluid" src="/static/img/map_to_hkust.png" alt="Map of HKUST">
