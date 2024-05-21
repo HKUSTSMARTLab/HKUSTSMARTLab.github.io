@@ -35,4 +35,4 @@ email: jhc (at) ust.hk <br>
 5. You will encounter an intersection. Make a left (south) and head towards the S401-484 area.
 6. You should find a break room. James's office is through the clear doors straight ahead. The SMART lab is on the right.
 
-<img class="img-fluid" src="/static/img/map_to_hkust.png" alt="Map of HKUST">
+<iframe width=100% height=auto src="https://www.openstreetmap.org/export/embed.html?bbox=114.24485206604005%2C22.32276344452134%2C114.28502082824708%2C22.34816863199631&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=15/22.3355/114.2649">View Larger Map</a></small>
