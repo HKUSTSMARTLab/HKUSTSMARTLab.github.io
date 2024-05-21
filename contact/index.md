@@ -42,6 +42,8 @@ group: contact
   - Parking
     - Non-HKUST community members (for example, JULAC card holders) must use the public car park near the Southern Entrance. Contact the campus security at 2358-6483 for rates and any parking-related questions. HKUST alumni should also check the [information for alumni](https://alum.ust.hk/services-and-benefits/on-campus).
 
+<hr>
+
 <div class="osm-container">
 <iframe class="responsive-iframe" src="https://www.openstreetmap.org/export/embed.html?bbox=114.24485206604005%2C22.32276344452134%2C114.28502082824708%2C22.34816863199631&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=16/22.3355/114.2649">View Larger Map</a></small>
 </div>
