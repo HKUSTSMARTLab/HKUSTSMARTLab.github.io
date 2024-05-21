@@ -4,36 +4,39 @@ layout: default
 group: contact
 ---
 
+<script src="https://kit.fontawesome.com/7731796368.js" crossorigin="anonymous"></script>
+
 # Contact the SMART Lab
 
-<h4>Hao Chen, Ph.D.</h4>
-Assistant Professor<br>
-Department of Computer Science and Engineering (Home) <br>
-Department of Chemical and Biological Engineering <br>
-Division of Life Science <br>
-The Hong Kong University of Science and Technology <br>
-Clear Water Bay, Kowloon, Hong Kong <br>
-email: jhc (at) ust.hk <br>
+<i class="fa-solid fa-location-crosshairs"></i> Room 3524 (via lifts 25-26), The Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong <br>
+<i class="fa-solid fa-envelope"></i> jhc (at) ust.hk <br>
 
 # Directions to the SMART Lab
-### The Mission Bay Campus can be reached:  
+### The Clear Water Bay Campus of HKUST can be reached by:  
 * #### Public Transportation:
-  * **Option 1**: Exit BART at the 16th St Station and wait for the free [UCSF Red shuttle](https://campuslifeservices.ucsf.edu/upload/transportation/files/Red.pdf) (weekdays only) that stops directly outside [what was once a Burger King and now has lovely graffiti](https://www.google.com/maps/@37.765092,-122.419164,3a,75y,5.38h,82.64t/data=!3m4!1e1!3m2!1sH_jzIrhuF8wnnEp0duvIEQ!2e0).
-  * **Option 2**: [Exit BART at the 16th St Station and take the 22 Muni Bus towards Mission Bay. Exit at 16th and 4th.](https://goo.gl/maps/gaD7sNsL947S4KcS9)
-  * **Option 3**: [Exit BART at the Embarcadero Station and then take the MUNI T-line inbound to Sunnydale. Exit at the UCSF/Chase Center stop on 3rd Street.](https://goo.gl/maps/Ma3P6aYojhY74YAu7)
-  * **Option 4**: Exit Caltrain and then walk along [4th St](https://goo.gl/maps/tpJHnJ2NgTyaCqXE9) for about 15 minutes until arriving at UCSF Mission Bay.
-  * **Option 5**: There are many different [UCSF Shuttle routes](http://www.campuslifeservices.ucsf.edu/transportation/services/shuttles) (weekdays only).
+  * **Option 1**: By Taking the MTR. The best MTR stations for transport to HKUST are: Choi Hung, Hang Hau, and Po Lam. If you are travelling from the Hong Kong International Airport by [Airport Express](http://www.hongkongairport.com/eng/transport/to-from-airport/airport-express.html), go to Kowloon Station and take the MTR to either of the above stations. From either of them, you can then board a bus, minibus, or taxi that lets you off at the main entrance of HKUST. This [MTR route map](http://25a.ust.hk/eng/location_map.pdf) helps you locate the stations.
+  * **Option 2**: By Bus/Minibus: Most of buses to HKUST leave from different MTR stations and bus terminals:
+  - Buses let you off at main entrance
+    - From [Choi Hung MTR station](http://www.mtr.com.hk/archive/en/services/maps/chh.pdf): 91 or 91M bus (use Exit C2); 11 minibus (use Exit C1).
+    - From [Hang Hau MTR station](http://www.mtr.com.hk/archive/ch/services/maps/hah.pdf): 11M minibus (use Exit B1).
+    - From [Tiu Keng Leng MTR station](http://www.mtr.com.hk/archive/en/services/maps/tik.pdf): 792M bus (use Exit A1).
+    - From [Sai Kung bus terminus](http://www.kmb.hk/chi/map.php?file=SA01-T-1000-0): 792M bus; 12 minibus.
+  - Buses let you off at southern entrance
+    - From [Hang Hau MTR station](http://www.mtr.com.hk/archive/ch/services/maps/hah.pdf): 91M bus (use Exit B2); 11 minibus (use Exit B1).
+    - From [Po Lam MTR station](http://www.mtr.com.hk/archive/en/services/maps/poa.pdf): 91M bus (use Exit A2); 12 minibus (use Exit B1).
+    - From [Ngau Tau Kok MTR station](http://www.mtr.com.hk/archive/en/services/maps/ntk.pdf): 104 minibus (use Exit A).
+  * **Option 3**: By Taxi. Taxis are easily available at any MTR station, from hotels and most areas of Hong Kong. They can let you off at the Entrance Piazza.
+    - From the Hong Kong International Airport, it costs approximately HK$ 400 (about US$ 50) to get to HKUST.
+    - From the [Hang Hau MTR station](http://www.mtr.com.hk/archive/ch/services/maps/hah.pdf), taxi fare is approximately HK$ 40; from the Choi Hung MTR, approximately HK$ 75.
 * #### Car:
-  * We are at 600 16th Street, between Owens St. and 4th St. There are three [UCSF parking garages](https://campuslifeservices.ucsf.edu/transportation/services/parking/public_parking) - [UCSF Medical Center](https://www.google.com/maps/dir//1835+Owens+Street,+San+Francisco,+CA/@37.766028,-122.3965034,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x808f7fc8cdb8207f:0x127c6a3dfd479d27!2m2!1d-122.3921259!2d37.7659687), [UCSF Community Center](https://www.google.com/maps/dir//1625+Owens+Street,+San+Francisco,+CA/@37.7683246,-122.3960538,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x808f7fce59453269:0x84e5cd7b11e40956!2m2!1d-122.3938649!2d37.7682654), and [UCSF Third Street](https://www.google.com/maps/dir//1650+3rd+Street,+San+Francisco,+CA/@37.7681787,-122.3917134,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x808f7fc5f2d2fc19:0xf5e85a2024424948!2m2!1d-122.3895247!2d37.7681745). Please park in one of the garages and not in the surface lots.
-  * If you are being dropped off (by a rideshare service), use 1675 Owens St, San Francisco, CA 94158 as the destination address. There is convenient parking circle (red star on map below) for drop-off.
-
-### Once on campus, proceed to Genentech Hall:
-1. You will have to enter through Genentech Hall from the Koret Quad side (Red arrow on the map below).
-2. Sign in at security for a meeting with Dr. James SMART (Office - Genentech Hall S472E).
-3. Take the elevator or staircase to the 4th floor.
-4. Walk west down the hall. The large windows facing the courtyard will be on your right. If the floor color changes to grey, you have gone the wrong way and are now in Byers Hall. Turn around and walk back towards Genentech Hall.
-5. You will encounter an intersection. Make a left (south) and head towards the S401-484 area.
-6. You should find a break room. James's office is through the clear doors straight ahead. The SMART lab is on the right.
+  - From Hong Kong Island
+    - Take the Eastern Harbour Crossing towards Lam Tin. Continue straight after the roundabout, and get in the right lane towards the Tseung Kwan O Tunnel. After crossing the tunnel, follow signs for Hang Hau and Sai Kung. You will see signs pointing to University after passing Hang Hau. Then follow Ying Yip Road, Clearwater Bay Road; at the gas station, turn right, go straight. You will be at the Southern entrance to HKUST.
+  - From Kowloon
+    - Head to Choi Hung Interchange via Prince Edward Road, Kwun Tong Road or Lung Cheung Road. At Choi Hung, follow signs to Clearwater Bay Road. You will see signs to University after about 5 minutes drive on Clearwater Bay Road.
+  - From Shatin and the New Territories
+    - Take the Tate’s Cairn or Lion Rock Tunnel towards Kowloon, staying left onto Lung Cheung Road and head towards Choi Hung Interchange. Follow signs to Sai Kung. Take Clearwater Bay road, and follow signs to University.
+  - Parking
+    - Non-HKUST community members (for example, JULAC card holders) must use the public car park near the Southern Entrance. Contact the campus security at 2358-6483 for rates and any parking-related questions. HKUST alumni should also check the [information for alumni](https://alum.ust.hk/services-and-benefits/on-campus).
 
 <div class="osm-container">
 <iframe class="responsive-iframe" src="https://www.openstreetmap.org/export/embed.html?bbox=114.24485206604005%2C22.32276344452134%2C114.28502082824708%2C22.34816863199631&amp;layer=mapnik" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/#map=16/22.3355/114.2649">View Larger Map</a></small>
