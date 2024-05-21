@@ -14,7 +14,6 @@ group: contact
 <i class="fa-solid fa-envelope"></i>  &#20;&#20; jhc (at) ust.hk <br>
 </div>
 
-<br>
 <hr>
 
 ### Directions to HKUST
