@@ -1,4 +1,11 @@
-<h2>Contact Us</h2>
+<h2> Lab News </h2>
+<ul>
+  {% for post in site.posts limit: 5 %}
+    <li><a href="{{ post.url }}"><b>{{ post.title }}</b></a></li>
+  {% endfor %}
+</ul>
+
+<h3>Contact Us</h3>
 <p>
 Hao Chen, Ph.D. <br>
 Assistant Professor <br>
@@ -14,17 +21,9 @@ Clear Water Bay, Kowloon, Hong Kong <br>
 </p>
 
 <p>
- <h3> Interested in joining the SMART lab at HKUST? </h3>
+ <h3> Recruitment </h3>
  We are always looking for motivated and talented people. <b>Open positions are listed on our <a href="{{ site.url }}/recruitment">Recruitment</a> page.</b><br>
  <br>
  We welcome applicants from <b>all</b> backgrounds.<br>
 
 </p>
-
-
-<h3> Lab News </h3>
-<ul>
-  {% for post in site.posts limit: 5 %}
-    <li><a href="{{ post.url }}"><b>{{ post.title }}</b></a></li>
-  {% endfor %}
-</ul>
