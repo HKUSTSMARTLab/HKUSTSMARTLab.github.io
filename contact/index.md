@@ -1,5 +1,5 @@
 ---
-title: Contact the SMART Lab
+title: Contact
 layout: default
 group: contact
 ---
