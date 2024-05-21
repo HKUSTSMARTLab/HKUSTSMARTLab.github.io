@@ -2,7 +2,7 @@
 name: Hao Chen, Ph.D.
 startdate: [2021-08-01]
 enddate: []
-image: /static/img/members/Fraser.jpg
+image: /static/img/members/jhc.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: Principal Investigator
 #current:
