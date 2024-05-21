@@ -1,7 +1,7 @@
 Required fields:
 Name, start date, image, altimage, position, email, ORCID, Google Scholar ID, description
 Optional fields:
-timeline_name, pronouns, scholar, website, UCSF, twitter, linkedin, github
+timeline_name, pronouns, scholar, website, HKUST, twitter, linkedin, github
 ---
 #REQUIRED
 name: FirstName LastName #Include "Ph.D."" if applicable
@@ -28,7 +28,7 @@ description: "
 #OPTIONAL
 pronouns: #example: they/them/theirs, he/him/his, she/her/hers, etc
 website: #https://website.com/ #Enter your personal/professional website
-UCSF: #XXXXXXXX #UCSF Employees Profile ID only
+HKUST: #XXXXXXXX #HKUST Employees Profile ID only
 twitter: #username
 linkedin: #username
 github: #username

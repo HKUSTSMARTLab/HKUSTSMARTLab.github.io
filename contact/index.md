@@ -15,7 +15,6 @@ The Hong Kong University of Science and Technology <br>
 Clear Water Bay, Kowloon, Hong Kong <br>
 email: jhc (at) ust.hk <br>
 
-
 # Directions to the SMART Lab
 ### The Mission Bay Campus can be reached:  
 * #### Public Transportation:
