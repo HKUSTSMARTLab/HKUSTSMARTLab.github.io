@@ -6,16 +6,16 @@ group: contact
 
 # Contact the SMART Lab
 
-<div class="row">
-  <h4>Hao Chen, Ph.D.</h4>
-  Assistant Professor<br>
-  Department of Computer Science and Engineering (Home) <br>
-  Department of Chemical and Biological Engineering <br>
-  Division of Life Science <br>
-  The Hong Kong University of Science and Technology <br>
-  Clear Water Bay, Kowloon, Hong Kong <br>
-  email: jhc (at) ust.hk <br>
-</div>
+
+<h4>Hao Chen, Ph.D.</h4>
+Assistant Professor<br>
+Department of Computer Science and Engineering (Home) <br>
+Department of Chemical and Biological Engineering <br>
+Division of Life Science <br>
+The Hong Kong University of Science and Technology <br>
+Clear Water Bay, Kowloon, Hong Kong <br>
+email: jhc (at) ust.hk <br>
+
 
 # Directions to the SMART Lab
 ### The Mission Bay Campus can be reached:  
