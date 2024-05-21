@@ -7,10 +7,10 @@ group: contact
 <script src="https://kit.fontawesome.com/7731796368.js" crossorigin="anonymous"></script>
 
 # Contact the SMART Lab
-
+<h3>
 <i class="fa-solid fa-location-crosshairs"></i> Room 3524 (via lifts 25-26), The Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong <br>
 <i class="fa-solid fa-envelope"></i> jhc (at) ust.hk <br>
-
+</h3>
 # Directions to the SMART Lab
 ### The Clear Water Bay Campus of HKUST can be reached by:  
 * #### Public Transportation:
