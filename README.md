@@ -1,4 +1,15 @@
-# fraser-lab.github.io
+# HKUST SMART lab webpage - alpha version (alpha means still a lot is still under construction, but everything is very promising!)
+
+First written on 21/05/2024 by Cheng Jin
+
+Last modified on 21/05/2024 by Cheng Jin
+
+If there's any suggestion about our website / any inquiry about further info, don't hesitate to shoot an email to cjinag@connect.ust.hk ! I am still trying to learn website construction, and I am looking forward to hearing from you :)
+
+====================
+
+This website was built using the Fraser Lab website as a template. James Fraser's website is open-source and available on GitHub.
+
 ====================
 
 Technologies this website uses:  
