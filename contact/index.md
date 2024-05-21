@@ -6,7 +6,6 @@ group: contact
 
 # Contact the SMART Lab
 
-
 <h4>Hao Chen, Ph.D.</h4>
 Assistant Professor<br>
 Department of Computer Science and Engineering (Home) <br>

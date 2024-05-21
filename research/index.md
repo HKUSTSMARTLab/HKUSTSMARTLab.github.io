@@ -18,7 +18,7 @@ The long-term goals of our research are to research and develop cutting-edge tec
 ### AI for Computational Pathology
 
 <div class="align-self-center">
-<img class="img-fluid" src="/static/img/research/computational_pathology.png" alt="qFit">
+<img class="img-research" src="/static/img/research/computational_pathology.png" alt="qFit">
 
 </div>
 
