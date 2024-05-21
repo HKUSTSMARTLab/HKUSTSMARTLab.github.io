@@ -2,6 +2,10 @@
   link: "/"
   group: home
 
+- name: News
+  link: "/news"
+  group: news
+
 - name: Research
   link: "/research"
   group: research
@@ -13,10 +17,6 @@
 - name: Members
   link: "/members"
   group: members
-
-- name: News
-  link: "/news"
-  group: news
 
 - name: Recruitment
   link: "/recruitment"
