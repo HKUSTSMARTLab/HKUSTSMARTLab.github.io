@@ -5,33 +5,28 @@ group: join
 ---
 
 # Join the SMART Lab
-Our lab welcomes applicants from any race, ethnicity, religion, national origin, gender identity, gender expression, caregiver and family commitments, political affiliation, sexual orientation, and eligible age or disability status. Furthermore, we are committed to maintaining a supportive and collaborative lab environment.
-We are always in the market for motivated and talented people, even if we do not have an open position currently advertised. We are interested in engaging with you in a conversation about your scientific background and goals for your future career (in academia, industry, or other ventures). We strive to provide excellent training across a wide range of computational and experimental techniques. If interested please send your CV/Resume to [Dr. James SMART](/contact).
+The Smart Lab led by Dr. Hao Chen from The Hong Kong University of Science and Technology is recruiting PhD students, postdoctoral fellows, research assistants, interns, visiting scholars and other research positions. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the research group members.
 
-<!-- Currently we have **open positions** for people with the following skills:
-[Specialist](https://aprecruit.ucsf.edu/JPF03325) who will engage in research projects and also manage daily wet lab operations. -->
 <br/>
 
-## Graduate Students
+## Who We Are
 
-At UCSF, students can apply to a single [graduate program](https://graduate.ucsf.edu/programs) and do not apply directly to labs. The landscape of life science PhD programs and their admissions processes can be incredibly opaque, so Hersh Bhargava and I wrote a [guide on Applying to Quantitative Biology PhD Programs](https://hershbhargava.com/writing/applying-to-phd-programs/). 
+The [Hong Kong University of Science and Technology (HKUST)](https://www.hkust.edu.hk) is a top and internationally renowned research university (ranked 34th in the world in the 2022 QS World University Rankings). HKUST is located on the Clear Water Bay in Hong Kong. It is built on the mountain facing the sea and has an ideal research environment. The Department of Computer Science and Engineering of HKUST ranks among the best in the world ranking of computer science and engineering.
 
-##### The SMART Lab participates in the following UCSF graduate programs:
-  * **[Biophysics](http://biophysics.ucsf.edu/)**: The Biophysics Graduate Program (BP) at the University of California, San Francisco (UCSF) prepares scientists to leverage new and emerging research tools—from nanotechnology to nuclear magnetic resonance spectroscopy—to quantify biological processes in living biological systems using physics and chemistry.
-  * **[Chemistry and Chemical Biology](http://ccb.ucsf.edu/)**: The Chemistry and Chemical Biology Graduate Program (CCB) at the University of California, San Francisco (UCSF) prepares scientists to address problems at the intersection of chemistry and biology by providing a chemical foundation for understanding complex biological processes at an atomic level.
-  * **[Pharmaceutical Sciences and Pharmacogenomics](http://pspg.ucsf.edu/)**: The Pharmaceutical Sciences and Pharmacogenomics (PSPG) Graduate Program at the University of California, San Francisco (UCSF) focuses on how to develop effective drug therapies for patients that have a minimum of adverse effects.
-  * **[Tetrad](http://tetrad.ucsf.edu/)**: The Tetrad graduate program offers diverse training in Biochemistry & Molecular Biology, Cell Biology, Developmental Biology, & Genetics.
+Dr. Hao Chen is an Assistant Professor at the Department of Computer Science and Engineering and Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology. He leads the Smart Lab focusing on developing trustworthy AI for healthcare. He received the Ph.D. degree from The Chinese University of Hong Kong (CUHK) in 2017. He was a postdoctoral research fellow in CUHK and a visiting scholar in Utrecht University Medical Center previously. He has 100+ publications (Google Scholar Citations 25000+, h-index 63) in MICCAI, IEEE-TMI, MIA, CVPR, AAAI, Radiology, Lancet Digital Health, Nature Machine Intelligence, JAMA, etc. He also has rich industrial research experience (e.g., Siemens and startup), and holds a dozen of patents in AI and medical image analysis. He received several premium awards such as MICCAI Young Scientist Impact Award in 2019, Forbes China 30 under 30 and three best paper awards. He serves as the Associate Editor of journals including Frontiers in Artificial Intelligence, Medical Physics, etc. He serves as the program committee of multiple international conferences including Area Chair of MICCAI 2021-2024, ISBI 2024, MIDL 2024 and SPC of AAAI 2024, etc. He also led the team winning 15+ medical grand challenges.
 
-Once students are admitted to UCSF, during the first year of a Ph.D. program, students rotate through ~3 labs prior to deciding on a thesis lab. Our lab is usually open for rotation students every quarter and will generally have room for 1-2 new graduate students (regardless of program affiliation) per year.
+## Recruitment Details
 
-As the 3rd rotation period comes to a close, we will talk with the year's rotation students (at least those who remain interested!) about joining the lab.  During this period, we encourage students to keep talking to the PI and lab members about what kind of project they might want to shape. We consider project fit, scientific chemistry, and alignment with lab values. Because we are a member of multiple graduate programs with different policies and timings for final lab decision making, we cannot make any final commitments until the end of the Spring Quarter to ensure all rotations students are given consideration.
+**PhD students** are mainly for admission in the spring or fall of 2024, and a full scholarship (about HKD 18,500 per month) will be provided, and those who are particularly outstanding are recommended to apply for the Hong Kong PhD Fellowship Scheme (HKPFS). The amount of the HKPFS is around HKD 26,600 per month, plus a travel allowance of HKD 13,300 each year. In addition, HKUST gives each awardee a one-time reward of HKD 40,000. For more details, please refer to postgraduate admission page: https://cse.hkust.edu.hk/pg/admissions/
 
-## Postdoctoral Fellows
+**Postdoctoral fellows** holding a doctorate in medical image analysis, artificial intelligence or computer vision are welcome. The requirements are as follows:
 
-Inquiries about Postdoctoral positions should be emailed directly to [Dr. James SMART](/contact). We set our postdoctoral fellow compensation to the [Stanford rates](https://postdocs.stanford.edu/funding-levels-and-guidelines) **and** encourage candidates to explore applying for extramural fellowships to support their research.
+- Strong programming in deep learning frameworks, e.g., Pytorch, Tensorflow, etc.
+Experience in medical image analysis or machine learning projects is preferred.
+- Publications in top-tier AI or medical image analysis conferences/journals such as MICCAI, CVPR, TMI, MIA, AAAI, IJCAI, etc, are preferred.
+- Strong self-motivation and curiosity are preferred.
+- For undergraduate and master students, research positions such as intern and research assistant are also available. A minimum of 3 months is required (remote mode is also acceptable).
 
-## Other Visitors
+## How to Apply
 
-In the past, our lab has enjoyed having foreign exchange students, interns, sabbatical visitors from academia and industry, and post-bac research specialists in the lab.  We are open to other arrangements as well. As we expect people to be fairly compensated for their work by their home institution or by us, we do not have volunteer positions available. 
-
-**We take high school students exclusively through UCSF affiliated programs, e.g. [SEP](http://sep.ucsf.edu/), [BAYS](https://pharm.ucsf.edu/bays).** We cannot accomodate high school students outside of these programs and do not have volunteer positions for high school students.
+Interested candidates are welcome to send their resumes, transcripts and other relevant materials to Prof. Chen’s email: jhc(at)ust.hk. Please indicate the application position in the subject of email.
