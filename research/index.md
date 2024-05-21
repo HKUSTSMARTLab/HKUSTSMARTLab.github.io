@@ -13,8 +13,6 @@ The long-term goals of our research are to research and develop cutting-edge tec
 
 </div>
 
-<div class="row">
-
 ### AI for Computational Pathology
 
 <div class="img-research">
@@ -25,7 +23,6 @@ Pathological examination is regarded as the gold standard in cancer diagnosis. T
 
 </div>
 
-<div class="row">
 
 ### Using multi-temperature X-ray data collection methods in mechanistic studies and ligand discovery campaigns
 
