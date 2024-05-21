@@ -7,16 +7,17 @@ group: contact
 <script src="https://kit.fontawesome.com/7731796368.js" crossorigin="anonymous"></script>
 
 # Contact the SMART Lab
-<div style="text-align: center; font-size: 1.5em;">
-<i class="fa-solid fa-location-crosshairs"></i> Room 3524 (via lifts 25-26), The Hong Kong University of Science and Technology, Clear Water Bay, Kowloon, Hong Kong <br>
-<i class="fa-solid fa-envelope"></i> jhc (at) ust.hk <br>
+<div style="font-size: 1.5em;">
+<i class="fa-solid fa-location-crosshairs"></i>  &#20;&#20; Room 3524 (via lifts 25-26), <br>
+&#20;&#20; The Hong Kong University of Science and Technology, <br> 
+&#20;&#20; Clear Water Bay, Kowloon, Hong Kong <br>
+<i class="fa-solid fa-envelope"></i>  &#20;&#20; jhc (at) ust.hk <br>
 </div>
 
 <br>
 <hr>
 
-# Directions to the SMART Lab
-### The Clear Water Bay Campus of HKUST can be reached by:  
+### Directions to HKUST
 * #### Public Transportation:
   * **Option 1**: By Taking the MTR. The best MTR stations for transport to HKUST are: Choi Hung, Hang Hau, and Po Lam. If you are travelling from the Hong Kong International Airport by [Airport Express](http://www.hongkongairport.com/eng/transport/to-from-airport/airport-express.html), go to Kowloon Station and take the MTR to either of the above stations. From either of them, you can then board a bus, minibus, or taxi that lets you off at the main entrance of HKUST. This [MTR route map](http://25a.ust.hk/eng/location_map.pdf) helps you locate the stations.
   * **Option 2**: By Bus/Minibus: Most of buses to HKUST leave from different MTR stations and bus terminals:
