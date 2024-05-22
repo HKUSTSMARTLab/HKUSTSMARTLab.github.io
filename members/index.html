@@ -16,13 +16,7 @@ group: members
 {% continue %}
 {% endif %}
 
-<h2> Principal Investigator </h2>
-{% for member in site.members %}
-{% if member.position contains "Principal Investigator" %}
-{% include member.html %}
-{% endif %}
-{% endfor %}
-
+<hr>
         <!-- The paddingtop and margin-top edits allow anchors to link properly. -->
         <div id = "{{member.name}}" class="row" style="padding-top: 60px; margin-top: -60px;">
             <div class="col-sm-4">
