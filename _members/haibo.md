@@ -1,6 +1,6 @@
 ---
 name: Hai-bo Jin
-startdate: [2022-09-01]
+startdate: [2021-09-01]
 enddate: []
 image: /static/img/members/haibo.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
