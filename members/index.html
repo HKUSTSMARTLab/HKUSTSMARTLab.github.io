@@ -122,7 +122,7 @@ group: members
 			{% assign color = "gold" %}
 		{% elsif position contains "mphil student" %}
 			{% assign color = "green" %}
-		{% elsif position contains "srtp" or position contains "intern" or position contains "summer" %}
+		{% elsif position contains "srtp" or position contains "research assistant" %}
             {% unless position contains "affiliate" %}
                 {% assign color = "blue" %}
             {% endunless %}
@@ -157,8 +157,7 @@ group: members
 {% assign yposition = yposition | plus: legendboxspacing %}
 <rect x="{{ xposition }}" y="{{ yposition }}" width="{{ legendboxsize }}" height="{{ legendboxsize }}" fill="turquoise" />
 {% assign yposition = yposition | plus: legendboxspacing %}
-<rect x="{{ xposition }}" y="{{ yposition }}" width="{{ legendboxsize }}" height="{{ legendboxsize }}" fill="blue" />
-<text x="{{ fontsize | times: 0.25 | plus: legendboxsize | plus: xposition }}" y="{{ fontsize | times: 0.75 | plus: legendboxsize | times: 0.5 | plus: yposition }}" font-family="sans-serif" font-size="{{ fontsize }}" stroke="black">Summer student</text>
+<text x="{{ fontsize | times: 0.25 | plus: legendboxsize | plus: xposition }}" y="{{ fontsize | times: 0.75 | plus: legendboxsize | times: 0.5 | plus: yposition }}" font-family="sans-serif" font-size="{{ fontsize }}" stroke="black">Research Assistant</text>
 {% assign yposition = yposition | plus: legendboxspacing %}
 <rect x="{{ xposition }}" y="{{ yposition }}" width="{{ legendboxsize }}" height="{{ legendboxsize }}" fill="purple" />
 <text x="{{ fontsize | times: 0.25 | plus: legendboxsize | plus: xposition }}" y="{{ fontsize | times: 0.75 | plus: legendboxsize | times: 0.5 | plus: yposition }}" font-family="sans-serif" font-size="{{ fontsize }}" stroke="black">Visitor</text>
