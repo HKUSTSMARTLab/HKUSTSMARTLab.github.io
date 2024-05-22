@@ -6,7 +6,6 @@ group: members
 
 <h1>SMART Lab Members</h1>
 
-
 {% for member in site.members %}
 
 {% unless member.enddate == empty or member.startdate.size != member.enddate.size %}
@@ -17,7 +16,13 @@ group: members
 {% continue %}
 {% endif %}
 
-        <hr>
+<h2> Principal Investigator </h2>
+{% for member in site.members %}
+{% if member.position contains "Principal Investigator" %}
+{% include member.html %}
+{% endif %}
+{% endfor %}
+
         <!-- The paddingtop and margin-top edits allow anchors to link properly. -->
         <div id = "{{member.name}}" class="row" style="padding-top: 60px; margin-top: -60px;">
             <div class="col-sm-4">
@@ -123,8 +128,6 @@ group: members
 			{% assign color = "gold" %}
 		{% elsif position contains "MPhil student" %}
 			{% assign color = "green" %}
-		{% elsif position contains "specialist" or position contains "technician" or position contains "propel"%}
-			{% assign color = "turquoise" %}
 		{% elsif position contains "srtp" or position contains "intern" or position contains "summer" %}
             {% unless position contains "affiliate" %}
                 {% assign color = "blue" %}
