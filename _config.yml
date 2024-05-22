@@ -31,17 +31,7 @@ collections:
                 output: true
         publications:
                 output: true
-        reviews:
-                output: true
-        alumni:
-                output: true
-        sep:
-                output: true
         visitors:
                 output: true
         undergrads:
-                output: true
-        pets:
-                output: true
-        tags:
                 output: true
