@@ -1,3 +1,4 @@
+// script.js
 let currentSlide = 0;
 
 function showSlide(index) {
@@ -26,4 +27,6 @@ function prevSlide() {
 }
 
 // 初始化显示第一张图片
-showSlide(currentSlide);
+document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentSlide);
+});
