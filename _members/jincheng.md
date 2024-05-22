@@ -6,7 +6,6 @@ image: /static/img/members/jincheng.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
 #current:
-pronouns: he/him/his
 email: cjinag (at) connect.ust.hk
 scholar: DFMxV_oAAAAJ
 website: https://academic.peterkam.top/

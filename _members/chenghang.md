@@ -6,6 +6,5 @@ image: /static/img/members/chenghang.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: MPhil Student
 #current:
-pronouns: he/him/his
 github: zero19970
 ---
