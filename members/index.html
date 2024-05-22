@@ -123,9 +123,7 @@ group: members
 		{% elsif position contains "mphil student" %}
 			{% assign color = "green" %}
 		{% elsif position contains "srtp" or position contains "research assistant" %}
-            {% unless position contains "affiliate" %}
-                {% assign color = "blue" %}
-            {% endunless %}
+      {% assign color = "turquoise" %}
 		{% else %}
 			{% assign color = "purple" %}
 		{% endif %}
