@@ -8,7 +8,6 @@ group: contact
 
 # Contact the SMART Lab
 <div class="contact-container">
-        <div class="contact-info">
             <div class="contact-item">
                 <span class="icon"><i class="fa-solid fa-location-crosshairs"></i></span>
                 <span>Room 3524 (via lifts 25-26),<br>
@@ -19,7 +18,6 @@ group: contact
                 <span class="icon"><i class="fa-solid fa-envelope"></i> </span>
                 <span>jhc (at) ust.hk</span>
             </div>
-        </div>
     </div>
 
 <hr>
