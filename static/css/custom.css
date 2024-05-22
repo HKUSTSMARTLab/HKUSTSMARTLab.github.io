@@ -81,19 +81,43 @@
   height: 100%;
 }
 
-.contact-container {
-  text-align: left;
-  padding: 1.5rem;
-  font-size: 1.5em;
+.carousel {
+  position: relative;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
 }
 
-.contact-item {
+.carousel-images {
   display: flex;
-  align-items: top;
-  margin-bottom: 2%;
+  transition: transform 0.5s ease-in-out;
 }
 
-.contact-item .icon {
-  font-size: 1.5em;
-  margin-right: 2%;
+.carousel-images img {
+  width: 100%;
+  display: none;
+}
+
+.carousel-images img.active {
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
 }
