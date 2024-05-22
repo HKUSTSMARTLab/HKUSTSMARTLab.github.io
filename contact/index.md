@@ -7,18 +7,12 @@ group: contact
 <script src="https://kit.fontawesome.com/7731796368.js" crossorigin="anonymous"></script>
 
 # Contact the SMART Lab
-<div class="contact-container">
-            <div class="contact-item">
-                <span class="icon"><i class="fa-solid fa-location-crosshairs"></i></span>
-                <span>Room 3524 (via lifts 25-26),<br>
-                The Hong Kong University of Science and Technology,<br>
-                Clear Water Bay, Kowloon, Hong Kong</span>
-            </div>
-            <div class="contact-item">
-                <span class="icon"><i class="fa-solid fa-envelope"></i> </span>
-                <span>jhc (at) ust.hk</span>
-            </div>
-    </div>
+<div style="font-size: 1.5em;">
+<i class="fa-solid fa-location-crosshairs"></i>  &#20;&#20; Room 3524 (via lifts 25-26), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The Hong Kong University of Science and Technology, <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Clear Water Bay, Kowloon, Hong Kong <br>
+<i class="fa-solid fa-envelope"></i>  &#20;&#20; jhc (at) ust.hk <br>
+</div>
 
 <hr>
 
