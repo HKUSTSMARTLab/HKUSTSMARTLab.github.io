@@ -118,9 +118,9 @@ group: members
 			{% assign color = "red" %}
 		{% elsif position contains "postdoctoral" %}
 			{% assign color = "darkorange" %}
-		{% elsif position contains "PhD student" %}
+		{% elsif position contains "phd student" %}
 			{% assign color = "gold" %}
-		{% elsif position contains "MPhil student" %}
+		{% elsif position contains "mphil student" %}
 			{% assign color = "green" %}
 		{% elsif position contains "srtp" or position contains "intern" or position contains "summer" %}
             {% unless position contains "affiliate" %}
@@ -132,7 +132,7 @@ group: members
 
 		<rect x="{{ start | times: stretch }}" y="{{ i | times: yspacing }}" width="{{ duration | times: stretch }}" height="{{ yheight }}" fill="{{ color }}" />
 		{% if tenure == 0 %}
-		    <text text-anchor="end" x="{{ fontsize | divided_by: -4.0 | divided_by: stretch | plus: start | times: stretch }}" y="{{ i | times: yspacing | plus: fontsize }}" font-family="sans-serif" font-size="{{ fontsize }}" stroke="black">{% if member.timeline_name %}{{ member.timeline_name }}{% else %}{{ member.name | split: " " | first }}{% endif %}</text>
+		    <text text-anchor="end" x="{{ fontsize | divided_by: -4.0 | divided_by: stretch | plus: start | times: stretch }}" y="{{ i | times: yspacing | plus: fontsize }}" font-family="sans-serif" font-size="{{ fontsize }}" stroke="black">{% if member.timeline_name %}{{ member.timeline_name }}{% else %}{{ member.name }}{% endif %}</text>
 		{% endif %}
 	{% endfor %}
 {% assign i = i | plus: 1 %}
