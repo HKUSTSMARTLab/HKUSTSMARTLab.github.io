@@ -83,19 +83,22 @@
 
 .contact-container {
   text-align: left;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
   font-size: 1.5em;
+}
+
+.contact-info {
+  font-size: 1.5em;
+  line-height: 1.5;
 }
 
 .contact-item {
   display: flex;
   align-items: top;
-  margin-bottom: 10px;
+  margin-bottom: 2%;
 }
 
 .contact-item .icon {
-  font-size: 20px;
-  margin-right: 10px;
+  font-size: 1.5em;
+  margin-right: 2%;
 }
