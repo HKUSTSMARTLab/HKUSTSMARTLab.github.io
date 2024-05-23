@@ -11,6 +11,6 @@ scholar: DFMxV_oAAAAJ
 website: https://academic.peterkam.top/
 twitter: VR2XSP
 github: ChengJin-git
-linkedin: cheng-jin-16b1361b6
+linkedin: cjinag
 orcid: 0000-0002-3522-3592
 ---
