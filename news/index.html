@@ -11,15 +11,6 @@ group: news
 <p class="author">
   <span class="author"><a href="/members#{{post.author}}">{{post.author}}</a></span><br>
   <span class="date"><em>{{ post.date | date_to_long_string }}</em></span>
-  {% if post.tags.size > 0 %}
-  <br>tags:
-  {% for tag in post.tags %}
-  {% assign tag_slug = tag | slugify: "raw" %}
-  <a class="tag-link" href={{ site.baseurl | append: "/tags/" | append: tag_slug | append: "/" }} rel="category tag">
-    #{{ tag }}
-  </a>
-  {% endfor %}
-  {% endif %}
 </p>
 <div class="content">
   {{ post.content }}
