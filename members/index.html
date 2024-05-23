@@ -6,15 +6,65 @@ group: members
 
 <h1>SMART Lab Members</h1>
 
+{% for member in site.members %}
+
+{% unless member.position == "Principal Investigator" %}
+{% continue %}
+{% endunless %}
+
+<div class="row" id="{{member.name}}">
+  <div class="col-md-4">
+    <img class="img-fluid" src="{{member.image}}" alt="{{member.name}}'s Photo">
+    <strong>{{member.name}}</strong>
+
+  </div>
+  <div class="col-md-8">
+    {% if member.email %}
+    <em>{{member.email}}</em> <br>
+    {% endif %}
+    {% if member.website %}
+    <a style="overflow-wrap: break-word;" href="{{member.website}}">{{member.website}}</a> <br>
+    {% endif %}
+    {% if member.orcid %}
+    <i class="fa-brands fa-orcid"></i>
+    <a href="http://orcid.org/{{member.orcid}}"> {{member.orcid}}</a> <br>
+    {% endif %}
+    {% if member.linkedin %}
+    <i class="fa-brands fa-linkedin"></i>
+    <a href="http://www.linkedin.com/in/{{member.linkedin}}"> {{member.linkedin}} </a> <br>
+    {% endif %}
+    {% if member.HKUST %}
+    <a href="http://www.hkust.edu.hk"><img class="inline-block mem-icon" src="/static/img/logo/hkust_logo.png"></a>
+    <a href="https://facultyprofiles.hkust.edu.hk/profiles.php?profile={{member.HKUST}}"> Profile </a> <br>
+    {% endif %}
+    {% if member.scholar %}
+    <i class="fa-brands fa-google-scholar"></i>
+    <a href="http://scholar.google.com/citations?user={{member.scholar}}"> 
+    {% endif %}
+    {% if member.twitter %}
+    <i class="fa-brands fa-twitter"></i>
+    <a href="http://twitter.com/{{member.twitter}}"> @{{member.twitter}} </a> <br>
+    {% endif %}
+    {% if member.github %}
+    <i class="fa-brands fa-github"></i>
+    <a href="http://github.com/{{member.github}}"> {{member.github}} </a> <br>
+    {% endif %}
+  </div>
+</div>
+
+
+{% endfor %}
+
 {% assign delimiter = "," %}
-{% assign position_str = "Postdoctoral Fellow,PhD Student,MPhil Student,Undergraduate Student,Research Assistant,Alumni" %}
+{% assign position_str = "Postdoctoral Fellow,PhD Student,MPhil Student,Undergraduate Student,Research Assistant,Alumni"
+%}
 {% assign positions = position_str | split: delimiter %}
 
 {% for position in positions%}
 {% for member in site.members %}
 
 {% unless member.position == position %}
-  {% continue %}
+{% continue %}
 {% endunless %}
 
 <hr>
@@ -22,11 +72,10 @@ group: members
 <div id="{{member.name}}" class="row" style="padding-top: 60px; margin-top: -60px;">
   <div class="col-sm-4">
     <img class="img-fluid" src="{{member.image}}" {% if member.altimage %} onmouseover="this.src='{{member.altimage}}';"
-      onmouseout="this.src='{{member.image}}';" {% endif %} alt="{{member.name}}" ; width="365" ; height="365"><br>
+      onmouseout="this.src='{{member.image}}';" {% endif %} alt="{{member.name}}" ; width="365" ; height="365">
+    <br>
     <strong>{{member.name}}</strong> <br>
-    {% if member.pronouns %}
-    <em>{{member.pronouns}}</em> <br>
-    {% endif %}
+
     {{member.position | markdownify | remove: '<p>' | remove: '</p>' }} <br>
     <em>{{member.email}}</em> <br>
     {% if member.website %}
