@@ -4,8 +4,6 @@ layout: default
 group: contact
 ---
 
-<script src="https://kit.fontawesome.com/7731796368.js" crossorigin="anonymous"></script>
-
 # Contact the SMART Lab
 <div style="font-size: 1.5em;">
 <i class="fa-solid fa-location-crosshairs"></i>  &#20;&#20; Room 3524 (via lifts 25-26), <br>
