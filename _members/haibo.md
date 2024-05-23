@@ -5,7 +5,7 @@ enddate: []
 image: /static/img/members/haibo.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-#current:
+email: hjinag@connect.ust.hk
 scholar: sptbC3EAAAAJ
 website: http://jhb86253817.github.io/
 ---

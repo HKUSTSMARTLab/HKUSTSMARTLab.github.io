@@ -1,10 +1,10 @@
 ---
-name: Jia-bo Ma
+name: Hao-xuan Che
 startdate: [2022-09-01]
 enddate: []
-image: /static/img/members/jiabo.jpg
+image: /static/img/members/haoxuan.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-email: jmabq@connect.ust.hk
-github: birkhoffkiki
+linkedin: chehx
+email: hche@connect.ust.hk
 ---
