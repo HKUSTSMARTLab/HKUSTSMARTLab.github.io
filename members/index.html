@@ -26,11 +26,11 @@ group: members
     <a style="overflow-wrap: break-word;" href="{{member.website}}">{{member.website}}</a> <br>
     {% endif %}
     {% if member.orcid %}
-    <i class="fa-brands fa-orcid"></i>
+    <a href="http://orcid.org"><img class="inline-block mem-icon" src="/static/img/logo/orcid_logo.svg"></a>
     <a href="http://orcid.org/{{member.orcid}}"> {{member.orcid}}</a> <br>
     {% endif %}
     {% if member.linkedin %}
-    <i class="fa-brands fa-linkedin"></i>
+    <a href="http://www.linkedin.com"><img class="inline-block mem-icon" src="/static/img/logo/linkedin_logo.svg"></a>
     <a href="http://www.linkedin.com/in/{{member.linkedin}}"> {{member.linkedin}} </a> <br>
     {% endif %}
     {% if member.HKUST %}
@@ -39,15 +39,18 @@ group: members
     {% endif %}
     {% if member.scholar %}
     <i class="fa-brands fa-google-scholar"></i>
-    <a href="http://scholar.google.com/citations?user={{member.scholar}}"> 
+    <a href="http://scholar.google.com/citations?user={{member.scholar}}"> Google Scholar </a> <br>
     {% endif %}
     {% if member.twitter %}
-    <i class="fa-brands fa-twitter"></i>
+    <a href="http://twitter.com"><img class="inline-block mem-icon" src="/static/img/logo/twitter_logo.svg"></a>
     <a href="http://twitter.com/{{member.twitter}}"> @{{member.twitter}} </a> <br>
     {% endif %}
     {% if member.github %}
-    <i class="fa-brands fa-github"></i>
+    <a href="http://github.com"><img class="inline-bloc mem-icon" src="/static/img/logo/github_logo.svg"></a>
     <a href="http://github.com/{{member.github}}"> {{member.github}} </a> <br>
+    {% endif %}
+    {% if member.description %}
+    {{member.description}} <br>
     {% endif %}
   </div>
 </div>
@@ -95,8 +98,7 @@ group: members
     {% endif %}
     {% if member.scholar %}
     <a href="http://scholar.google.com"><img class="inline-block mem-icon" src="/static/img/logo/gscholar_logo.svg"></a>
-    <a href="http://scholar.google.com/citations?user={{member.scholar}}"> {% if member.timeline_name %}{{
-      member.timeline_name }}{% else %}{{ member.name | split: " " | first }}{% endif %}'s Citations </a> <br>
+    <a href="http://scholar.google.com/citations?user={{member.scholar}}"> Google Scholar </a> <br>
     {% endif %}
     {% if member.twitter %}
     <a href="http://twitter.com"><img class="inline-block mem-icon" src="/static/img/logo/twitter_logo.svg"></a>
