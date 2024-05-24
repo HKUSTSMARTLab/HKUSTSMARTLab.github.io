@@ -3,7 +3,6 @@ name: Cheng Jin
 startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/jincheng.jpg
-# altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
 #current:
 email: cjinag (at) connect.ust.hk

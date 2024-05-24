@@ -1,5 +1,5 @@
 ---
-name: Zhengjie ZHU
+name: Zhengjie Zhu
 startdate: []
 enddate: []
 image: /static/img/members/zhuzhengjie.jpg
