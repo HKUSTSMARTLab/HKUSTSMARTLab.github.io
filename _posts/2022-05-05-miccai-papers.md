@@ -1,16 +1,16 @@
 ---
-title: Six papers were accepted in MICCAI 2022 (five are early accept).
-subtitle: ""
-date: 2022-05-05T03:18:17.780Z
-lastmod: 2022-05-05T03:18:17.780Z
-summary: Good News! We have six papers accepted in MICCAI 2022.
-draft: false
-featured: false
-image:
-  filename: miccai-2022.png
-  focal_point: Smart
-  preview_only: false
+published: True
+title: "Six papers were accepted in MICCAI 2022 (five are early accept)"
+author: Cheng Jin
+layout: post
+group: news
+cover: /static/img/news/2022_miccai.png
+oneline_description: "Good News! We have six papers accepted in MICCAI 2022."
+last_updated: 2022/05/05
 ---
+
+<img src="/static/img/news/2022_miccai.png" alt="2022 miccai" style="width: 100%;"/>
+
 Good News! We have six papers accepted in MICCAI 2022, shown as follow:
 
 <!--StartFragment-->
@@ -21,5 +21,3 @@ Good News! We have six papers accepted in MICCAI 2022, shown as follow:
 4. Chai Z, Lin H, Luo L, et al. ORF-Net: Deep Omni-Supervised Rib Fracture Detection from Chest CT Scans\[C]//International Conference on Medical Image Computing and Computer-Assisted Intervention. Springer, Cham, 2022: 238-248.
 5. Lin Y, Wang Z, Cheng K T, et al. InsMix: Towards Realistic Generative Data Augmentation for Nuclei Instance Segmentation\[C]//International Conference on Medical Image Computing and Computer-Assisted Intervention. Springer, Cham, 2022: 140-149.
 6. Zhang W, Yang D, Cheung C Y, et al. Frequency-Aware Inverse-Consistent Deep Learning for OCT-Angiogram Super-Resolution\[C]//International Conference on Medical Image Computing and Computer-Assisted Intervention. Springer, Cham, 2022: 645-655.
-
-<!--EndFragment-->
