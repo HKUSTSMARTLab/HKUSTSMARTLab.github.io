@@ -80,7 +80,9 @@ group: members
     <strong>{{member.name}}</strong> <br>
 
     {{member.position | markdownify | remove: '<p>' | remove: '</p>' }} <br>
+    {% if member.email %}
     <em>{{member.email}}</em> <br>
+    {% endif %}
     {% if member.website %}
     <a style="overflow-wrap: break-word;" href="{{member.website}}">{{member.website}}</a> <br>
     {% endif %}
