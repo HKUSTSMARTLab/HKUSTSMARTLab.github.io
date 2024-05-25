@@ -6,7 +6,6 @@ image: /static/img/members/yuyanr.jpg
 position: PhD Student
 linkedin: yuyan-ruan-62b111185
 scholar: PlfuI2AAAAAJ
-website: https://wang-lab.hkust.edu.hk/people/cv_html/yuyan_cv.html
 github: RYY0722
 email: yruanaf (at) connect.ust.hk
 ---
