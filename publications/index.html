@@ -82,7 +82,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<!-- Journal Link -->
 		{% if publication.journal %}
 			{% for record in publication.journal %}
-			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">Journal Publisher Link: {{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
+			<li>Journal Publisher Link: <a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">{{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
 		{% endfor %}
 		</li>
 		{% endif %}
