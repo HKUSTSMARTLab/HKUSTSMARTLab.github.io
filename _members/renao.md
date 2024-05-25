@@ -1,5 +1,5 @@
 ---
-name: Renao Yan
+name: Ren-ao Yan
 startdate: []
 enddate: []
 image: /static/img/members/renao.jpg
