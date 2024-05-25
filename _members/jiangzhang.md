@@ -1,5 +1,5 @@
 ---
-name: Jiang-Zhang Gan
+name: Jiang-zhang Gan
 startdate: []
 enddate: []
 image: /static/img/members/jiangzhang.jpg
