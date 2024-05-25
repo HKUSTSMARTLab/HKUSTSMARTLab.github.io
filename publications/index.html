@@ -20,6 +20,11 @@ For full list of publications, please visit this <a href="https://scholar.google
 		{% if publication.journal %}
 			<i>{{ publication.journal }},</i>
 			{{publication.pub_date | split: "-" | first }}
+		{% elsif publication.conf %}
+			{% for record in publication.conf %}
+			<i>{{record.name}},</i>
+			{{publication.pub_date | split: "-" | first }}
+			{% endfor %}
 		{% else %}
 			{% if publication.arxiv %}
 			<i>arXiv Preprint,</i>
@@ -80,7 +85,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<!-- Conf Link -->
 		{% if publication.conf %}
 			{% for record in publication.conf %}
-			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">{{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
+			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">Conference Publisher Link: {{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
 		{% endfor %}
 		</li>
 		{% endif %}
