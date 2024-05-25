@@ -4,7 +4,8 @@ layout: home
 group: home
 ---
 
-## Welcome to Smart Lab!
+Welcome to Smart Lab!
+{: .display-4}
 
 We are part of the [Department of Computer Science and Engineering](https://cse.hkust.edu.hk/), [the Hong Kong University of Science and Technology](https://hkust.edu.hk/).
 {: .welcomefont}
