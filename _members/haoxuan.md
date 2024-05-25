@@ -6,5 +6,5 @@ image: /static/img/members/haoxuan.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
 linkedin: chehx
-email: hche@connect.ust.hk
+email: hche (at) connect.ust.hk
 ---

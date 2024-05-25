@@ -5,7 +5,7 @@ enddate: []
 image: /static/img/members/yingxue.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-email: yxueb@connect.ust.hk
+email: yxueb (at) connect.ust.hk
 scholar: XY6NCLMAAAAJ
 github: innse
 website: https://innse.github.io/

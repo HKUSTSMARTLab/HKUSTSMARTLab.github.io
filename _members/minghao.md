@@ -4,7 +4,7 @@ startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/minghao.jpg
 position: PhD Student
-email: 	mwangcx@connect.ust.hk
+email: 	mwangcx (at) connect.ust.hk
 linkedin: wmh1203
 scholar: 7MeFEVwAAAAJ
 website: https://wmh1203.github.io

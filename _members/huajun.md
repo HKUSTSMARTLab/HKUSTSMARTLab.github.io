@@ -6,6 +6,6 @@ image: /static/img/members/huajun.jpg
 position: Postdoctoral Fellow
 scholar: 3flTFBQAAAAJ
 github: moothes
-email: zhouhuajun123@126.com
+email: zhouhuajun123 (at) 126.com
 orcid: 0000-0002-1419-5422
 ---

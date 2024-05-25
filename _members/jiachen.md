@@ -1,5 +1,5 @@
 ---
-name: Renao Yan
+name: Jia-chen Zhao
 startdate: []
 enddate: []
 image: /static/img/members/jiachen.jpg

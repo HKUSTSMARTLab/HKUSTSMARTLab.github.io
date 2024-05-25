@@ -5,6 +5,6 @@ enddate: []
 image: /static/img/members/jiabo.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-email: jmabq@connect.ust.hk
+email: jmabq (at) connect.ust.hk
 github: birkhoffkiki
 ---
