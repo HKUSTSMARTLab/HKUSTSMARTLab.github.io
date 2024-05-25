@@ -1,5 +1,5 @@
 ---
-name: Jun-Lin Hou
+name: Jun-lin Hou
 startdate: []
 enddate: []
 image: /static/img/members/junlin.jpg
