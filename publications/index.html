@@ -20,11 +20,6 @@ For full list of publications, please visit this <a href="https://scholar.google
 		{% if publication.journal %}
 			<i>{{ publication.journal }},</i>
 			{{publication.pub_date | split: "-" | first }}
-		{% elsif publication.conf %}
-			{% for record in publication.conf %}
-			<i>{{record.name}},</i>
-			{% unless forloop.last %}, {% endunless %}
-			{% endfor %} {{publication.pub_date | split: "-" | first }}
 		{% else %}
 			{% if publication.arxiv %}
 			<i>arXiv Preprint,</i>
