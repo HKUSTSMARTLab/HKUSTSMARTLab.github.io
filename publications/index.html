@@ -32,18 +32,6 @@ For full list of publications, please visit this <a href="https://scholar.google
 				{{publication.pub_date | split: "-" | first }}
 			{% endif %}
 		{% endif %}
-		{% else %}
-			{% if publication.arxiv %}
-			<i>arXiv Preprint,</i>
-				{{publication.arxiv}}
-			{% elsif publication.arxiv_version %}
-			<i>arXiv,</i>
-				{{publication.arxiv_version}}
-			{% else %}
-			<i>Preprint,</i>
-				{{publication.pub_date | split: "-" | first }}
-			{% endif %}
-		{% endif %}
 	</div>
 </div>
 
@@ -89,7 +77,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<li><a href="{{publication.pdf}}" title = "PDF for {{publication.title}} (opens in new tab)" target="_blank"> Full Text</a></li>
 		{% endif %}
 
-		<!-- PDF -->
+		<!-- Conf Link -->
 		{% if publication.conf %}
 			{% for record in publication.conf %}
 			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">{{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
