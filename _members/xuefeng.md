@@ -1,5 +1,5 @@
 ---
-name: Xue-Feng Ni
+name: Xue-feng Ni
 startdate: []
 enddate: []
 image: /static/img/members/xuefeng.jpg
