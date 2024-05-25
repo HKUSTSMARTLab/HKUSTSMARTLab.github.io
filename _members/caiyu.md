@@ -1,5 +1,5 @@
 ---
-name: Yu CAI
+name: Yu Cai
 startdate: []
 enddate: []
 image: /static/img/members/caiyu.jpg

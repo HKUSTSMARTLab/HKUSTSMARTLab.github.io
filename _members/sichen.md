@@ -1,5 +1,5 @@
 ---
-name: Si-Cen Liu
+name: Si-cen Liu
 startdate: []
 enddate: []
 image: /static/img/members/sichen.jpg
