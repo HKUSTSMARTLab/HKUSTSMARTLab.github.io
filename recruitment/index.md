@@ -1,11 +1,11 @@
 ---
-title: Join the SMART Lab
+title: Join the Smart Lab
 layout: default
 group: join
 ---
 
-# Join the SMART Lab
-The [HKUST SMART (Scalable Medical Analysis, Reasoning and Treatment) Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is recruiting PhD students, postdoctoral fellows, research assistants, interns, visiting scholars and other research positions. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the research group members.
+# Join the Smart Lab
+The [HKUST Smart (Scalable Medical Analysis, Reasoning and Treatment) Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is recruiting PhD students, postdoctoral fellows, research assistants, interns, visiting scholars and other research positions. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the research group members.
 
 <br/>
 
@@ -13,7 +13,7 @@ The [HKUST SMART (Scalable Medical Analysis, Reasoning and Treatment) Lab](/cont
 
 The [Hong Kong University of Science and Technology (HKUST)](https://www.hkust.edu.hk) is a top and internationally renowned research university (ranked 34th in the world in the 2022 QS World University Rankings). HKUST is located on the Clear Water Bay in Hong Kong. It is built on the mountain facing the sea and has an ideal research environment. The Department of Computer Science and Engineering of HKUST ranks among the best in the world ranking of computer science and engineering.
 
-[Dr. Hao Chen](https://cse.hkust.edu.hk/~jhc/) is an Assistant Professor at the Department of Computer Science and Engineering and Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology. He leads the SMART Lab focusing on developing trustworthy AI for healthcare. He received the Ph.D. degree from The Chinese University of Hong Kong (CUHK) in 2017. He was a postdoctoral research fellow in CUHK and a visiting scholar in Utrecht University Medical Center previously. He has 100+ publications ([Google Scholar](https://scholar.google.com/citations?user=Z_t5DjwAAAAJ) Citations 25000+, h-index 63) in MICCAI, IEEE-TMI, MIA, CVPR, AAAI, Radiology, Lancet Digital Health, Nature Machine Intelligence, JAMA, etc. He also has rich industrial research experience (e.g., Siemens and startup), and holds a dozen of patents in AI and medical image analysis. He received several premium awards such as MICCAI Young Scientist Impact Award in 2019, Forbes China 30 under 30 and three best paper awards. He serves as the Associate Editor of journals including Frontiers in Artificial Intelligence, Medical Physics, etc. He serves as the program committee of multiple international conferences including Area Chair of MICCAI 2021-2024, ISBI 2024, MIDL 2024 and SPC of AAAI 2024, etc. He also led the team winning 15+ medical grand challenges.
+[Dr. Hao Chen](https://cse.hkust.edu.hk/~jhc/) is an Assistant Professor at the Department of Computer Science and Engineering and Department of Chemical and Biological Engineering, The Hong Kong University of Science and Technology. He leads the Smart Lab focusing on developing trustworthy AI for healthcare. He received the Ph.D. degree from The Chinese University of Hong Kong (CUHK) in 2017. He was a postdoctoral research fellow in CUHK and a visiting scholar in Utrecht University Medical Center previously. He has 100+ publications ([Google Scholar](https://scholar.google.com/citations?user=Z_t5DjwAAAAJ) Citations 25000+, h-index 63) in MICCAI, IEEE-TMI, MIA, CVPR, AAAI, Radiology, Lancet Digital Health, Nature Machine Intelligence, JAMA, etc. He also has rich industrial research experience (e.g., Siemens and startup), and holds a dozen of patents in AI and medical image analysis. He received several premium awards such as MICCAI Young Scientist Impact Award in 2019, Forbes China 30 under 30 and three best paper awards. He serves as the Associate Editor of journals including Frontiers in Artificial Intelligence, Medical Physics, etc. He serves as the program committee of multiple international conferences including Area Chair of MICCAI 2021-2024, ISBI 2024, MIDL 2024 and SPC of AAAI 2024, etc. He also led the team winning 15+ medical grand challenges.
 
 ## Recruitment Details
 
