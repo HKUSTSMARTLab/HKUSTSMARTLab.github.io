@@ -5,7 +5,6 @@ enddate: []
 image: /static/img/members/andong.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-#current:
 email: atanac (at) connect.ust.hk
 scholar: zt49vSoAAAAJ
 linkedin: andong-tan-785661122
