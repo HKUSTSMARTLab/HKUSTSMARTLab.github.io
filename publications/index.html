@@ -18,7 +18,9 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<h5>{{ publication.title | markdownify  | remove: '<p>' | remove: '</p>'}}</h5>
 		<h6>{{ publication.authors | markdownify | remove: '<p>' | remove: '</p>' }}</h6>
 		{% if publication.journal %}
-			<i>{{ publication.journal }},</i>
+			{for record in publication.journal %}
+			<i>{{record.name}},</i>
+			{% endfor %}
 			{{publication.pub_date | split: "-" | first }}
 		{% elsif publication.conf %}
 			{% for record in publication.conf %}
@@ -77,9 +79,12 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<li>ChemRxiv Preprint: <a href="https://doi.org/10.26434/chemrxiv-{{publication.chemrxiv}}" title = "ChemRxiv Preprint: {{publication.chemrxiv}} (opens in new tab)" target="_blank"> {{publication.chemrxiv}}</a></li>
 		{% endif %}
 
-		<!-- PDF -->
+		<!-- Journal Link -->
 		{% if publication.journal %}
-		<li><a href="{{publication.pdf}}" title = "PDF for {{publication.title}} (opens in new tab)" target="_blank"> Full Text</a></li>
+			{% for record in publication.journal %}
+			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">Journal Publisher Link: {{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
+		{% endfor %}
+		</li>
 		{% endif %}
 
 		<!-- Conf Link -->
