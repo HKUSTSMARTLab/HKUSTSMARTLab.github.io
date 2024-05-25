@@ -1,5 +1,5 @@
 ---
-name: Moo Hyun, SON
+name: Moo Hyun Son
 startdate: []
 enddate: []
 image: /static/img/members/Moo Hyun Son.jpg
