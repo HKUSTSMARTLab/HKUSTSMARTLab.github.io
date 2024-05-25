@@ -1,0 +1,10 @@
+---
+title: "Automatic Fetal Ultrasound Standard Plane Detection Using Knowledge Transferred Recurrent Neural Networks, <font color=red>MICCAI Young Scientist Publication Impact Award</font>"
+authors: "**Hao Chen**, Qi Dou, Dong Ni, Jie-Zhi Cheng, Jing Qin, Shengli Li, Pheng-Ann Heng" 
+pub_date: "2015-11-18"
+image: "/static/img/pub/2015_trnn.png" 
+doi: "10.1007/978-3-319-24553-9_62"
+conf:
+  - name: "MICCAI"
+    url: "https://link.springer.com/chapter/10.1007/978-3-319-24553-9_62"
+---
