@@ -1,5 +1,5 @@
 ---
-name: Yi Lin
+name: Yi Lin (Co-supervision)
 startdate: [2021-09-01]
 enddate: []
 image: /static/img/members/linyi.jpg
