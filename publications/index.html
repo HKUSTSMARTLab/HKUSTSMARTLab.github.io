@@ -97,7 +97,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<!-- PDF -->
 		{% if publication.conf %}
 			{% for record in publication.conf %}
-			<a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">{{record.name}}</a>{% unless forloop.last %}, {% endunless %}
+			<li><a href="{{record.url}}" alt="Published on: {{record.name}} (opens in new tab)" target="_blank">{{record.name}}</a>{% unless forloop.last %}, {% endunless %}</li>
 		{% endfor %}
 		</li>
 		{% endif %}
