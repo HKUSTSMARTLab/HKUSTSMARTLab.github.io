@@ -18,7 +18,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 		<h5>{{ publication.title | markdownify  | remove: '<p>' | remove: '</p>'}}</h5>
 		<h6>{{ publication.authors | markdownify | remove: '<p>' | remove: '</p>' }}</h6>
 		{% if publication.journal %}
-			{for record in publication.journal %}
+			{% for record in publication.journal %}
 			<i>{{record.name}},</i>
 			{% endfor %}
 			{{publication.pub_date | split: "-" | first }}
