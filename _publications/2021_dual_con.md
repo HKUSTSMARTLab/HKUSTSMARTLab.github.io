@@ -1,5 +1,5 @@
 ---
-title: "Dual-path Network with Synergistic Grouping Loss and Evidence Driven Risk Stratification for Whole Slide Cervical Image Analysis <font color=red>One of largest cervical screening WSI datasets</font>"
+title: "Dual-Consistency Semi-supervised Learning with Uncertainty Quantification for COVID-19 Lesion Segmentation from CT Images"
 authors: "Yanwen Li&#42;, **Luyang Luo&#42;**, Huangjing Lin, **Hao Chen**, Pheng-Ann Heng"
 pub_date: "2021-09-21" #Date of publication. Change from Biorxiv date to Journal date once accepted
 doi: "10.1007/978-3-030-87196-3_19"
