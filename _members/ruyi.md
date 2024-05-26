@@ -4,6 +4,7 @@ startdate: []
 enddate: []
 image: /static/img/members/Ruyi DAI.jpeg
 position: PhD Student
-linkedin: rachel-dai-66b6bb127?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app
+linkedin: rachel-dai-66b6bb127
+email: rdai (at) connect.ust.hk
 ---
 						
