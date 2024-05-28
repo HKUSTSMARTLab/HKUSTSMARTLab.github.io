@@ -21,10 +21,9 @@ group: members
           src="{{member.image}}"
           alt="{{member.name}}'s Photo">
         <br>
-        <strong>{{ member.name }}</strong>
-
       </div>
       <div class="col-md-8">
+        <strong>Dr. {{ member.name }}</strong> <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
           <br>
@@ -70,15 +69,11 @@ group: members
             {{ member.github }}
           </a>
         {% endif %}
+        {% if member.description %}
+        {{ member.description }} <br>
+        {% endif %}
       </div>
     </div>
-
-    <div>
-      {% if member.description %}
-        {{ member.description }} <br>
-      {% endif %}
-    </div>
-
   {% endfor %}
 
 </div>
@@ -138,7 +133,7 @@ group: members
               {% if member.linkedin %}
                 <i class="fa-brands fa-linkedin"></i>
                 <a href="http://www.linkedin.com/in/{{member.linkedin}}">
-                  {{ member.linkedin }}
+                  LinkedIn
                 </a>
                 <br>
               {% endif %}
