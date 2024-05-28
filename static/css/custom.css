@@ -10,6 +10,14 @@
     padding-top: 30px; height: 0; overflow: hidden;
 }
 
+.jumbotron {
+    padding: 1rem 1rem;
+}
+
+.display-4 {
+    font-size: 2.5rem;
+}
+
 .video-container iframe,
 .video-container object,
 .video-container embed {
@@ -43,7 +51,7 @@
 }
 
 .welcomefont {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
