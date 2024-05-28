@@ -1,5 +1,5 @@
 ---
 name: Zhan-lan Chen
-position: Postdoctoral Fellow
+position: Alumni
 image: /static/img/members/zhanlan.jpg
 ---
