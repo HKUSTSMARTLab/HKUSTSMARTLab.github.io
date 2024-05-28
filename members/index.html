@@ -85,9 +85,10 @@ group: members
 
 {% for position in positions %}
 
+  <hr>
   <div class="mb-3">
 
-    <h1 class="mb-3">{{ position }}</h1>
+    <h2 class="mb-3">{{ position }}</h2>
 
     {% assign rowLimit = 2 %}
     {% assign memberId = 0 %}
@@ -113,8 +114,13 @@ group: members
             </div>
             <div class="col-sm-8">
 
+            {% if member.position == "Postdoctoral Fellow" %}
+              <strong>Dr. {{ member.name }}</strong>
+              <br>
+            {% else %}
               <strong>{{ member.name }}</strong>
               <br>
+            {% endif %}
 
               {% if member.email %}
                 <em>{{ member.email }}</em>
