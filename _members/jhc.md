@@ -7,7 +7,7 @@ image: /static/img/members/jhc.jpg
 position: Principal Investigator
 #current:
 email: jhc (at) ust.hk
-scholar: j3iaoR8AAAAJ
+scholar: Z_t5DjwAAAAJ
 website: https://cse.hkust.edu.hk/~jhc/
 HKUST: hao-chen-jhc
 twitter: HaoChen_HKUST
