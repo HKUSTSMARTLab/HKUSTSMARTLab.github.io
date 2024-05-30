@@ -17,7 +17,7 @@ For full list of publications, please visit this <a href="https://scholar.google
 {% for publication in sorted %}
 
 <hr>
-<div class="row" style="padding-top: 60px; margin-top: -60px;" id="{{publication.pmid}}">
+<div class="row" style="padding-top: 60px; margin-top: -60px;">
 	<div>
 		<h5>{{ publication.title | markdownify  | remove: '<p>' | remove: '</p>'}}</h5>
 		<h6>{{ publication.authors | markdownify | remove: '<p>' | remove: '</p>' }}</h6>

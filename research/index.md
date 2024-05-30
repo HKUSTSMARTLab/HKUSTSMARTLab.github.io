@@ -9,6 +9,13 @@ The long-term goals of our research are to research and develop cutting-edge tec
 
 <br>
 
+### AI for Precision Oncology
+
+<img class="rounded mx-auto d-block" src="/static/img/research/breast_cancer.png" alt="ai4bc" style="width: 75%; height: auto;">
+
+
+Breast cancer has become the most diagnosed malignancy worldwide and the primary cause of cancer mortality in women, with an estimated 2.3 million new cases and 685,000 deaths in 2020. Early screening and diagnosis of breast cancer can effectively improve the five-year survival rate of patients. Meanwhile, personalized neoadjuvant chemotherapy (NAC) response prediction can reduce unnecessary suffering from toxic therapy and economic cost for patients who have poor responses. In this project, we aim to establish a deep learning-assisted system for breast cancer screening, diagnosis, and treatment response prediction from multimodal data, so as to improve the diagnostic efficiency and accuracy of doctors while increasing the life quality of patients significantly via personalized treatment.
+
 ### AI for Computational Pathology
 
 <img class="rounded mx-auto d-block" src="/static/img/research/computational_pathology.png" alt="ai4cpath" style="width: 75%; height: auto;">
@@ -26,10 +33,3 @@ Computational cytology enables efficient and accurate cancer screening and early
 <img class="rounded mx-auto d-block" src="/static/img/research/ophthalmology.png" alt="ai4o" style="width: 75%; height: auto;">
 
 Deep learning-based imaging analysis is capable of providing more efficient and accurate diagnosis of ophthalmic diseases, thereby assisting ophthalmologists and filling the gap between increasing clinical demands and limited resources. This project focuses on developing advanced image enhancement techniques and multi-task disease diagnosis & analysis models by analyzing multiple ophthalmic imaging modalities, such as fundus photo, optical coherence tomography (OCT), and OCTA angiography (OCTA). We aim to develop a full-stack system for enabling intelligent analysis in ophthalmology.
-
-### AI for Breast Cancer
-
-<img class="rounded mx-auto d-block" src="/static/img/research/breast_cancer.png" alt="ai4bc" style="width: 75%; height: auto;">
-
-
-Breast cancer has become the most diagnosed malignancy worldwide and the primary cause of cancer mortality in women, with an estimated 2.3 million new cases and 685,000 deaths in 2020. Early screening and diagnosis of breast cancer can effectively improve the five-year survival rate of patients. Meanwhile, personalized neoadjuvant chemotherapy (NAC) response prediction can reduce unnecessary suffering from toxic therapy and economic cost for patients who have poor responses. In this project, we aim to establish a deep learning-assisted system for breast cancer screening, diagnosis, and treatment response prediction from multimodal data, so as to improve the diagnostic efficiency and accuracy of doctors while increasing the life quality of patients significantly via personalized treatment.

@@ -16,6 +16,8 @@ group: members
       {% continue %}
     {% endunless %}
 
+    <h3>{{ member.position }}</h3>
+
     <div class="row" id="{{member.name}}">
       <div class="col-md-4">
         <img
@@ -25,7 +27,7 @@ group: members
         <br>
       </div>
       <div class="col-md-8">
-        <strong>Dr. {{ member.name }}</strong>
+        <strong>Prof. {{ member.name }}</strong>
         <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
@@ -91,7 +93,7 @@ group: members
   <hr>
   <div class="mb-3">
 
-    <h2 class="mb-3">{{ position }}</h2>
+    <h3 class="mb-3">{{ position }}</h3>
 
     {% assign rowLimit = 2 %}
     {% assign memberId = 0 %}
