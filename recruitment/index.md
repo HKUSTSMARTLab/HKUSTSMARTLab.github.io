@@ -27,6 +27,8 @@ Experience in medical image analysis or machine learning projects is preferred.
 - Strong self-motivation and curiosity are preferred.
 - For undergraduate and master students, research positions such as intern and research assistant are also available. A minimum of 3 months is required (remote mode is also acceptable).
 
+More details can be found in this [link](https://cse.hkust.edu.hk/~jhc/2023e.pdf).
+
 ## How to Apply
 
-Interested candidates are welcome to send their resumes, transcripts and other relevant materials to Prof. Chen’s email: jhc(at)ust.hk. *Please indicate the application position in the subject of email*.
+Interested candidates are welcome to send their resumes, transcripts, published papers and other relevant materials to Prof. Chen’s email: jhc(at)ust.hk. *Please indicate the application position in the subject of email*.
