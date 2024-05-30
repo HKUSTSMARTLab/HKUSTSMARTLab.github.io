@@ -5,7 +5,7 @@ group: join
 ---
 
 # Join the Smart Lab
-The [HKUST Smart (Scalable Medical Analysis, Reasoning and Treatment) Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is recruiting PhD students, postdoctoral fellows, research assistants, interns, visiting scholars and other research positions. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the research group members.
+The [HKUST Smart Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is recruiting PhD students, postdoctoral fellows, research assistants, interns, visiting scholars and other research positions. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the research group members.
 
 <br/>
 
