@@ -25,6 +25,7 @@
 
 .jumbotron {
     padding: 1rem 1rem;
+    background-color: #edf3fc;
 }
 
 .display-4 {
@@ -72,6 +73,7 @@
   font-size: 1.5rem;
   display: block;
   padding: 0.5rem 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand {
@@ -82,6 +84,7 @@
   font-size: 1.75rem;
   line-height: inherit;
   white-space: nowrap;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .osm-container {
