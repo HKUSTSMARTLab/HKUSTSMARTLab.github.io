@@ -6,9 +6,11 @@ group: members
 
 <h1>Smart Lab Members</h1>
 
+{% assign membersList = site.members | sort_natural: "name" %}
+
 <div class="mb-3">
 
-  {% for member in site.members %}
+  {% for member in membersList %}
 
     {% unless member.position == "Principal Investigator" %}
       {% continue %}
@@ -23,7 +25,8 @@ group: members
         <br>
       </div>
       <div class="col-md-8">
-        <strong>Dr. {{ member.name }}</strong> <br>
+        <strong>Dr. {{ member.name }}</strong>
+        <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
           <br>
@@ -70,7 +73,7 @@ group: members
           </a>
         {% endif %}
         {% if member.description %}
-        {{ member.description }} <br>
+          {{ member.description }} <br>
         {% endif %}
       </div>
     </div>
@@ -95,7 +98,7 @@ group: members
 
     <div class="row">
 
-      {% for member in site.members %}
+      {% for member in membersList %}
 
         {% unless member.position == position %}
           {% continue %}
@@ -114,13 +117,13 @@ group: members
             </div>
             <div class="col-sm-8">
 
-            {% if member.position == "Postdoctoral Fellow" %}
-              <strong>Dr. {{ member.name }}</strong>
-              <br>
-            {% else %}
-              <strong>{{ member.name }}</strong>
-              <br>
-            {% endif %}
+              {% if member.position == "Postdoctoral Fellow" %}
+                <strong>Dr. {{ member.name }}</strong>
+                <br>
+              {% else %}
+                <strong>{{ member.name }}</strong>
+                <br>
+              {% endif %}
 
               {% if member.email %}
                 <em>{{ member.email }}</em>

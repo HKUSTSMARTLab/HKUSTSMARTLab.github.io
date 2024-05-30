@@ -6,33 +6,64 @@ group: news
 
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
-<hr>
-<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-<p class="author">
-  <span class="author"><a href="/members#{{post.author}}">{{post.author}}</a></span><br>
-  <span class="date"><em>{{ post.date | date_to_long_string }}</em></span>
-</p>
-<div class="content">
-  {{ post.content }}
-</div>
+  <div class="card mb-3">
+    <div class="row no-gutters">
+      <div class="col-md-4 d-flex flex-column justify-content-center">
+        <img
+          class="img-fluid"
+          src="{{ post.cover }}"
+          style="object-fit: cover;">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{{ post.url }}">
+              <b>{{ post.title }}</b>
+            </a>
+          </h5>
+          <p class="card-text">{{ post.oneline_description }}</p>
+          <p class="card-text">
+            <small class="text-muted">Last updated on {{ post.last_updated }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endfor %}
+
 <hr>
 
-<!-- This makes links to other paginator pages -->
 {% if paginator.total_pages > 1 %}
-<ul class="pagination">
-  <li> {% if paginator.previous_page %} <a href="{{ paginator.previous_page_path }}"> {% endif %} Prev</a>&nbsp;</li>
 
-  {% for page in (1..paginator.total_pages) %}
-  {% if page == paginator.page %}
-  <li class="active">{{ page }}&nbsp;</li>
-  {% elsif page == 1 %}
-  <li><a href="/news/">{{ page }}</a>&nbsp;</li>
-  {% else %}
-  <li><a href="/news/page{{ page }}">{{ page }}</a>&nbsp;</li>
-  {% endif %}
-  {% endfor %}
+  <nav aria-label="Page Navigation">
+    <ul class="pagination pagination-sm justify-content-center">
 
-  <li> {% if paginator.next_page %} <a href="{{ paginator.next_page_path }}"> {% endif %} Next</a></li>
-</ul>
+      {% if paginator.previous_page %}
+        <li class="page-item">
+          <a class="page-link" href="{{ paginator.previous_page_path }}">&lt;</a>
+        </li>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+
+        <li class="page-item{% if page == paginator.page %} active" aria-current="page{% endif %}">
+
+          {% if page == 1 %}
+            <a class="page-link" href="{{ "/news/" | relative_url  }}">{{ page }}</a>
+          {% else %}
+            <a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        </li>
+
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <li class="page-item">
+          <a class="page-link" href="{{ paginator.next_page_path }}">&gt;</a>
+        </li>
+      {% endif %}
+
+    </ul>
+  </nav>
+
 {% endif %}

@@ -1,28 +1,43 @@
-<h2>Recent Lab News </h2>
-{% for post in site.posts limit: 5 %}
-  <div class="card mb-3" style="max-width: 100%; max-width: 100%">
+<h2>Recent Lab News</h2>
+
+{% assign postsList = site.posts | sort: "last_updated" | reverse %}
+
+{% for post in postsList limit: 5 %}
+  <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="{{ post.cover }}" style="width: 100%;">
+        <img src="{{ post.cover }}" class="w-100">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h5>
+          <h5 class="card-title">
+            <a href="{{ post.url }}">
+              <b>{{ post.title }}</b>
+            </a>
+          </h5>
           <p class="card-text">{{ post.oneline_description }}</p>
-          <p class="card-text"><small class="text-muted">Last updated on {{ post.last_updated }}</small></p>
+          <p class="card-text">
+            <small class="text-muted">Last updated on {{ post.last_updated }}</small>
+          </p>
         </div>
       </div>
     </div>
   </div>
 {% endfor %}
-  <br>
-  <h4><a href="{{ site.url }}/news">See all posts ></a></h4>
-
+<h4>
+  <a href="/news">See all posts ></a>
+</h4>
 <hr>
 <p>
- <h3> Recruitment </h3>
- We are always looking for motivated and talented people. <b>Open positions are listed on our <a href="{{ site.url }}/recruitment">Recruitment</a> page.</b><br>
- <br>
- We welcome applicants from <b>all</b> backgrounds.<br>
-
+  <h3>
+    Recruitment
+  </h3>
+  We are always looking for motivated and talented people.
+  <b>Open positions are listed on our
+    <a href="/recruitment">Recruitment</a>
+    page.</b>
+  <br>
+  We welcome applicants from
+  <b>all</b>
+  backgrounds.<br>
 </p>
