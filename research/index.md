@@ -4,15 +4,15 @@ layout: default
 group: research
 ---
 
-# Our research
+# Our Research
 <div style="font-size: 1.25em;">
-At HKUST Smart Lab, we are dedicated to pioneering AI technologies in medicine to enhance diagnostic accuracy, treatment efficacy, and patient outcomes. Our interdisciplinary team seamlessly integrates computation and experimentation, constantly innovating to address critical healthcare challenges.
+At Smart Lab, we are dedicated to pioneering AI technologies in medicine to enhance diagnostic accuracy, treatment efficacy, and patient outcomes. With a dynamic and interdisciplinary team, we strive to shape the future of healthcare, making it more precise, personalized, and impactful than ever before.
 </div>
 
-### Large-scale Models for Advancing Healthcare
+### Large Models for Advancing Healthcare
 <img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
 
-Our lab harnesses the power of large-scale AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
+Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
 
 ### AI for Precision Oncology
 
