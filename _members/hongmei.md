@@ -1,5 +1,5 @@
 ---
-name: Hongmei Wang
+name: Hong-mei Wang
 startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/Hongmei Wang.jpg
