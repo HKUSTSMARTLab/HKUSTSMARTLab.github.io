@@ -17,11 +17,12 @@ group: members
     <h2>{{ member.position }}</h2>
 
     <div class="row" id="{{member.name}}">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <img
           class="img-fluid"
           src="{{member.image}}"
-          alt="{{member.name}}'s Photo">
+          alt="{{member.name}}'s Photo"
+          style="max-width: 80%;">
         <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
