@@ -5,11 +5,11 @@ group: publications
 ---
 <h1>Selected Publications</h1>
 
-For full list of publications, please visit the <a href="https://scholar.google.com.hk/citations?user=Z_t5DjwAAAAJ" title="Google Scholar Profile (opens in new tab)" target="_blank">Google Scholar</a> page.
+For a full list of publications, please visit the <a href="https://scholar.google.com.hk/citations?user=Z_t5DjwAAAAJ" title="Google Scholar Profile (opens in new tab)" target="_blank">Google Scholar</a> page.
 
 <br>
 
-<i>Note: &#42; = equal contribution, # = equal correspondence</i>
+<i>Note: &#42; = equal contribution, # = correspondence</i>
 
 <div class="container-fluid">
 
@@ -40,15 +40,15 @@ For full list of publications, please visit the <a href="https://scholar.google.
 				<h6>{{ publication.authors | markdownify | remove: '<p>' | remove: '</p>' }}</h6>
 				{% if publication.journal %}
 					{% for record in publication.journal %}
-					<div style="font-size: 1.2rem;"><i>{{record.name}}, </i>{{publication.pub_date | split: "-" | first }}</div>
+					<div style="font-size: 1.2rem;"><strong><i>{{record.name}}, </i></strong>{{publication.pub_date | split: "-" | first }}</div>
 					{% endfor %}
 				{% elsif publication.conf %}
 					{% for record in publication.conf %}
-					<div style="font-size: 1.2rem;"><i>{{record.name}}, </i>{{publication.pub_date | split: "-" | first }}</div>
+					<div style="font-size: 1.2rem;"><strong><i>{{record.name}}, </i></strong>{{publication.pub_date | split: "-" | first }}</div>
 					{% endfor %}
 				{% else %}
 					{% if publication.arxiv %}
-					<div style="font-size: 1.2rem;"><i>arXiv Preprint,</i> {{publication.arxiv}} </div>
+					<div style="font-size: 1.2rem;"><strong><i>arXiv Preprint,</i></strong> {{publication.arxiv}} </div>
 					{% elsif publication.arxiv_version %}
 					<i>arXiv,</i>
 						{{publication.arxiv_version}}
