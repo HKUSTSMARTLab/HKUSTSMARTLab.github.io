@@ -7,7 +7,7 @@ group: join
 # Join the Smart Lab
 The [HKUST Smart Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is actively recruiting **PhD/Mphil students, postdoctoral fellows, research assistants** and **visiting interns**. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the group members.
 
-## Who We Are
+## Who Are We
 
 The [Hong Kong University of Science and Technology (HKUST)](https://www.hkust.edu.hk) is a top and internationally renowned research university (ranked 34th in the world in the 2022 QS World University Rankings, ranked the 10th in the world under the subject of Data Science and AI). HKUST is located on the Clear Water Bay in Hong Kong. It is built on the mountain facing the sea and has an ideal research environment. The Department of Computer Science and Engineering of HKUST ranks among the best in the world ranking of computer science and engineering.
 
@@ -25,7 +25,7 @@ Experience in medical image analysis or machine learning projects is preferred.
 - Strong self-motivation and curiosity are preferred.
 - For undergraduate and master students, research positions such as visiting intern and research assistant are also available. A minimum of 3 months is required (remote mode is also acceptable).
 
-More details can be found in this [link](https://cse.hkust.edu.hk/~jhc/2023e.pdf).
+More details can be found in this [link](/static/pdf/20240531Recruitment_english.pdf).
 
 ## How to Apply
 

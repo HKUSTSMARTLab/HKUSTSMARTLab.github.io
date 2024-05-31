@@ -92,7 +92,11 @@ group: members
   <hr>
   <div class="mb-3">
 
-    <h2 class="mb-3">{{ position }}</h2>
+    {% if position == "Alumni" %}
+      <h2 class="mb-3">{{ position }} </h2>
+    {% else }
+      <h2 class="mb-3">{{ position }} </h2>
+    {% endif %}
 
     {% assign rowLimit = 2 %}
     {% assign memberId = 0 %}
