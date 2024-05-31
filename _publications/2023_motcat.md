@@ -1,6 +1,6 @@
 ---
 title: "Multimodal Optimal Transport-based Co-Attention Transformer with Global Structure Consistency for Survival Prediction"
-authors: "Yingxue Xu, Hao Chen"
+authors: "Yingxue Xu, Hao Chen#"
 pub_date: "2023-10-02" #Date of publication. Change from Biorxiv date to Journal date once accepted
 image: "/static/img/pub/2023_motcat.png" 
 conf: 
