@@ -7,4 +7,5 @@ position: Postdoctoral Fellow
 scholar: WYzBMTUAAAAJ
 website: https://yutinghe-list.github.io/
 github: YutingHe-list
+email: csyutingh (at) ust.hk
 ---

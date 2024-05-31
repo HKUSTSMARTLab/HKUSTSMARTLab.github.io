@@ -7,5 +7,5 @@ conf:
   - name: "MICCAI"
     url: "https://arxiv.org/abs/2403.06800"
 github:
-  - url: "isyangshuai/MambaMIL"
+  - url: "isyangshu/MambaMIL"
 ---

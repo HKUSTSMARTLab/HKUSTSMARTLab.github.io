@@ -2,6 +2,7 @@
 name: Jun-lin Hou
 startdate: []
 enddate: []
+email: csejlhou (at) ust.hk
 image: /static/img/members/junlin.jpg
 position: Postdoctoral Fellow
 scholar: 2bHYfQcAAAAJ
