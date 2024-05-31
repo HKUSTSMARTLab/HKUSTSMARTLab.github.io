@@ -1,6 +1,6 @@
 ---
 name: Xiao-yu Zheng
-startdate: []
+startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/xiaoyu.jpg
 position: PhD Student

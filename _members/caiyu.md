@@ -1,6 +1,6 @@
 ---
 name: Yu Cai
-startdate: []
+startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/caiyu.jpg
 position: PhD Student

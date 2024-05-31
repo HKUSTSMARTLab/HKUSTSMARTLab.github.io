@@ -1,6 +1,6 @@
 ---
 name: Yi-hui Wang
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/yuhui.jpg
 position: PhD Student

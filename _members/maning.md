@@ -1,6 +1,6 @@
 ---
 name: Ning Ma
-startdate: [2022-09-01]
+startdate: [2023-12-01]
 enddate: []
 image: /static/img/members/Ning Ma.jpeg
 position: Postdoctoral Fellow

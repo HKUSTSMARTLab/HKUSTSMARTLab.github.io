@@ -4,8 +4,6 @@ layout: members
 group: members
 ---
 
-<h1>Smart Lab Members</h1>
-
 {% assign membersList = site.members | sort_natural: "name" %}
 
 <div class="mb-3">
@@ -16,18 +14,15 @@ group: members
       {% continue %}
     {% endunless %}
 
-    <h3>{{ member.position }}</h3>
+    <h2>{{ member.position }}</h2>
 
     <div class="row" id="{{member.name}}">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <img
           class="img-fluid"
           src="{{member.image}}"
-          alt="{{member.name}}'s Photo">
-        <br>
-      </div>
-      <div class="col-md-8">
-        <strong>Prof. {{ member.name }}</strong>
+          alt="{{member.name}}'s Photo"
+          style="max-width: 80%;">
         <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
@@ -74,6 +69,10 @@ group: members
             {{ member.github }}
           </a>
         {% endif %}
+      </div>
+      <div class="col-md-8">
+        <strong>Prof. {{ member.name }}</strong>
+        <br>
         {% if member.description %}
           {{ member.description }} <br>
         {% endif %}
@@ -93,7 +92,7 @@ group: members
   <hr>
   <div class="mb-3">
 
-    <h3 class="mb-3">{{ position }}</h3>
+    <h2 class="mb-3">{{ position }}</h2>
 
     {% assign rowLimit = 2 %}
     {% assign memberId = 0 %}

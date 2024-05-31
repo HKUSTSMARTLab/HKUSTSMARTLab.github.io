@@ -1,6 +1,6 @@
 ---
 name: Wen-qiang Li
-startdate: []
+startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/wenqiang.jpg
 position: PhD Student

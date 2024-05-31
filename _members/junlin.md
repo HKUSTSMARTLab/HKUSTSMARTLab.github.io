@@ -1,6 +1,6 @@
 ---
 name: Jun-lin Hou
-startdate: []
+startdate: [2023-08-01]
 enddate: []
 email: csejlhou (at) ust.hk
 image: /static/img/members/junlin.jpg
