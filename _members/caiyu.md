@@ -1,5 +1,5 @@
 ---
-name: Yu Cai
+name: Yu Cai (Co-supervision)
 startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/caiyu.jpg
