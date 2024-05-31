@@ -1,6 +1,6 @@
 ---
 name: Yu-yan Ruan (Co-supervision)
-startdate: []
+startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/yuyanr.jpg
 position: PhD Student
