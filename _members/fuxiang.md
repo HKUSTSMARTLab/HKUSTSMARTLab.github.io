@@ -1,6 +1,6 @@
 ---
 name: Fu-xiang Huang
-startdate: []
+startdate: [2024-03-01]
 enddate: []
 image: /static/img/members/Fuxiang Huang.jpeg
 position: Postdoctoral Fellow
