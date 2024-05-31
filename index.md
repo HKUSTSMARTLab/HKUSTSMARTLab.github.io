@@ -7,6 +7,5 @@ group: home
 Welcome to Smart Lab!
 {: .display-4}
 
-We are a research group led by Dr. Hao Chen at the Hong Kong University of Science and Technology (HKUST).
-Research in the lab is focused on discovering trustworthy AI for healthcare. We are interested in developing cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine and applying them to real-world problems. We have rich academic as well as industrial experience and provide sufficient resources for the research group members. 
+Led by Dr. Hao Chen, our lab is dedicated to developing cutting-edge AI technologies for healthcare. With a focus on **trustworthy AI, foundational models in medical image analysis, AI for science, and bioinformatics**, we aim to revolutionize medical practices and scientific discoveries. Join us and be part of a globally recognized team pushing the boundaries of AI and medicine!
 {: .welcomefont}
