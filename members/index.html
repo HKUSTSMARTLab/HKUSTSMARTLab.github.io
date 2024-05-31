@@ -17,15 +17,12 @@ group: members
     <h2>{{ member.position }}</h2>
 
     <div class="row" id="{{member.name}}">
-      <div class="col-md-4">
+      <div class="col-md-2">
         <img
-          class="img-fluid w-80"
+          class="img-fluid"
           src="{{member.image}}"
-          alt="{{member.name}}'s Photo">
-        <br>
-      </div>
-      <div class="col-md-8">
-        <strong>Prof. {{ member.name }}</strong>
+          alt="{{member.name}}'s Photo"
+          style="max-width: 80%;">
         <br>
         {% if member.email %}
           <em>{{ member.email }}</em>
@@ -72,6 +69,10 @@ group: members
             {{ member.github }}
           </a>
         {% endif %}
+      </div>
+      <div class="col-md-10">
+        <strong>Prof. {{ member.name }}</strong>
+        <br>
         {% if member.description %}
           {{ member.description }} <br>
         {% endif %}
