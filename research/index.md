@@ -12,7 +12,9 @@ At Smart Lab, we are dedicated to pioneering AI technologies in medicine to enha
 ### Large Models for Advancing Healthcare
 <img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
 
+<div style="font-size: 1.25em;">
 Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
+</div>
 
 ### AI for Precision Oncology
 
