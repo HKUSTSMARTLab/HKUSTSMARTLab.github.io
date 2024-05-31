@@ -4,7 +4,7 @@ startdate: []
 enddate: []
 image: /static/img/members/Moo Hyun Son.jpg
 position: MPhil Student
-linkedin: mhsonkyle
+# linkedin: mhsonkyle
 github: mhson-kyle
 email: mhson (at) connect.ust.hk
 ---

@@ -6,5 +6,5 @@ enddate: []
 image: /static/img/members/zhixuan.jpg
 email: zchenhi (at) connect.ust.hk
 scholar: 7AMNEKAAAAAJ
-github: zhi-xuan-chen
+# github: zhi-xuan-chen
 ---

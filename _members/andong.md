@@ -7,5 +7,5 @@ image: /static/img/members/andong.jpg
 position: PhD Student
 email: atanac (at) connect.ust.hk
 scholar: zt49vSoAAAAJ
-linkedin: andong-tan-785661122
+# linkedin: andong-tan-785661122
 ---

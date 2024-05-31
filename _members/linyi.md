@@ -5,7 +5,7 @@ enddate: []
 image: /static/img/members/linyi.jpg
 position: PhD Student
 email: yi.lin (at) connect.ust.hk
-linkedin: ianyilin
+# linkedin: ianyilin
 scholar: JaSNrNEAAAAJ
 website: https://ianyilin.github.io/
 github: hust-linyi

@@ -9,6 +9,6 @@ email: cjinag (at) connect.ust.hk
 scholar: DFMxV_oAAAAJ
 website: https://academic.peterkam.top/
 github: ChengJin-git
-linkedin: cjinag
+# linkedin: cjinag
 orcid: 0000-0002-3522-3592
 ---

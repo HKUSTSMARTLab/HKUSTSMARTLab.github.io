@@ -5,7 +5,7 @@ enddate: []
 image: /static/img/members/luyang.jpg
 position: Postdoctoral Fellow
 email: cseluyang (at) ust.hk
-linkedin: luyang-luo
+# linkedin: luyang-luo
 scholar: eD1O_vAAAAAJ
 website: https://llyxc.github.io/
 github: LLYXC

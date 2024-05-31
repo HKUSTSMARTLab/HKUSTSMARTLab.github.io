@@ -5,6 +5,6 @@ enddate: []
 image: /static/img/members/haoxuan.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: PhD Student
-linkedin: chehx
+# linkedin: chehx
 email: hche (at) connect.ust.hk
 ---
