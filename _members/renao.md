@@ -9,5 +9,5 @@ scholar: YU72pyQAAAAJ
 github: RenaoYan
 website: https://renaoyan.github.io/
 orcid: 0000-0002-2399-199X
-destiniation: PhD Student at Department of Mechanical Engineering, University of Washington
+destiniation: PhD Student at University of Washington
 ---

@@ -9,5 +9,5 @@ website: https://andotalao24.github.io/
 scholar: 9dFt9JAAAAAJ
 github: andotalao24
 twitter: jcz12856876
-destination: PhD Student at Department of Computer Science, Northeastern University
+destination: PhD Student at Northeastern University
 ---
