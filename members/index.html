@@ -174,8 +174,12 @@ group: members
                 <a href="http://github.com/{{member.github}}">
                   {{ member.github }}
                 </a>
+                <br>
               {% endif %}
-
+              {% if member.destination %}
+                <b>Subsequent Role:</b> {{ member.destination }}
+                <br>
+              {% endif %}
               {{ member.description | markdownify }}
             </div>
           </div>
