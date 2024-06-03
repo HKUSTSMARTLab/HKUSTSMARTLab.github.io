@@ -4,7 +4,16 @@ layout: members
 group: members
 ---
 
-{% assign membersList = site.members | sort_natural: "name" %}
+{% assign membersGrouped = site.members | group_by: "startdate" | sort: "name" %}
+
+{% for grp in membersGrouped %}
+  {% assign sorted = grp.items | sort_natural: "name" %}
+  {% if forloop.first %}
+    {% assign membersList = sorted %}
+  {% else %}
+    {% assign membersList = membersList | concat: sorted %}
+  {% endif %}
+{% endfor %}
 
 <div class="mb-3">
 
@@ -93,9 +102,9 @@ group: members
   <div class="mb-3">
 
     {% if position == "Alumni" %}
-      <h2 class="mb-3">{{ position }} </h2>
+      <h2 class="mb-3">{{ position }}</h2>
     {% else %}
-      <h2 class="mb-3">{{ position }}s </h2>
+      <h2 class="mb-3">{{ position }}s</h2>
     {% endif %}
 
     {% assign rowLimit = 2 %}
@@ -112,12 +121,12 @@ group: members
         <div id="{{member.name}}" class="col-md-6 mb-2">
           <div class="row">
             <div class="col-sm-4">
-              <div class="d-flex flex-column justify-content-center" style="height: 12em;">
+              <div class="d-flex flex-column justify-content-center">
                 <img
                   class="img-fluid"
                   src="{{member.image}}"
                   alt="{{member.name}}'s Photo"
-                  style="max-height:12em; object-fit: cover;">
+                  style="object-fit: cover;">
               </div>
             </div>
             <div class="col-sm-8">
@@ -177,7 +186,8 @@ group: members
                 <br>
               {% endif %}
               {% if member.destination %}
-                <b>Subsequent Role:</b> {{ member.destination }}
+                <b>Subsequent Role:</b>
+                {{ member.destination }}
                 <br>
               {% endif %}
               {{ member.description | markdownify }}
