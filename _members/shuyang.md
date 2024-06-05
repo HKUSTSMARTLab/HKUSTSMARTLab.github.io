@@ -1,6 +1,6 @@
 ---
 name: Shu Yang 
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/shuyang.jpg
 position: PhD Student

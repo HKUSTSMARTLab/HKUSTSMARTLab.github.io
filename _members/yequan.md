@@ -1,6 +1,6 @@
 ---
 name: Ye-quan Bie
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/yequan.jpg
 position: PhD Student

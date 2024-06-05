@@ -1,6 +1,6 @@
 ---
 name: Ru-yi Dai
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/Ruyi DAI.jpeg
 position: PhD Student

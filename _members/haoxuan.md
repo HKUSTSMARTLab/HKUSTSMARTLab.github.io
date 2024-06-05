@@ -1,6 +1,6 @@
 ---
 name: Hao-xuan Che
-startdate: [2022-09-01]
+startdate: [2021-09-01]
 enddate: []
 image: /static/img/members/haoxuan.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
