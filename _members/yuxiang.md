@@ -1,6 +1,6 @@
 ---
 name: Yu-xiang Nie
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/yuxiang.jpg
 position: PhD Student

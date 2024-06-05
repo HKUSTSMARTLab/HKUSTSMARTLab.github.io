@@ -1,6 +1,6 @@
 ---
 name: Wei-wen Zhang
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/zhangweiwen.jpeg
 position: PhD Student

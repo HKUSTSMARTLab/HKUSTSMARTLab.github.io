@@ -1,6 +1,6 @@
 ---
 name: Su-nan He 
-startdate: []
+startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/sunan.jpg
 position: PhD Student
