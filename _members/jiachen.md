@@ -1,9 +1,9 @@
 ---
 name: Jia-chen Zhao
-startdate: []
+startdate: [2021-09-01]
 enddate: []
 image: /static/img/members/jiachen.jpg
-position: Alumni
+position: Undergraduate Student
 website: https://andotalao24.github.io/
 # linkedin: jiachen-zhao24
 scholar: 9dFt9JAAAAAJ
