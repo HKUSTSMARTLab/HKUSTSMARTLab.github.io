@@ -7,4 +7,5 @@ image: /static/img/members/sichen.jpg
 position: Alumni
 scholar: FymIz00AAAAJ
 github: sherry6247
+destination: Faculty Member at Shenzhen MSU-BIT University
 ---
