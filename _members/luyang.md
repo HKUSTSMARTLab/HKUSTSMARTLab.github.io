@@ -1,6 +1,6 @@
 ---
 name: Lu-yang Luo
-startdate: [2022-09-01]
+startdate: [2022-08-31]
 enddate: []
 image: /static/img/members/luyang.jpg
 position: Postdoctoral Fellow
