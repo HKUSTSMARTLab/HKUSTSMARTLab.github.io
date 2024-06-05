@@ -1,5 +1,5 @@
 ---
-name: Yu-xuan Zhang
+name: Yu-xuan Zhang (Co-supervision)
 startdate: []
 enddate: []
 image: /static/img/members/yuxuan.jpg
