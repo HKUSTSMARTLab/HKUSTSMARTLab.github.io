@@ -1,7 +1,7 @@
 ---
 name: Ren-ao Yan
-startdate: []
-enddate: []
+startdate: [2023-06-01]
+enddate: [2024-03-01]
 image: /static/img/members/renao.jpg
 position: Alumni
 email: yanrenao3355 (at) 163.com
