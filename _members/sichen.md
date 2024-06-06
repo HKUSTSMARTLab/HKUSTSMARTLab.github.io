@@ -1,7 +1,7 @@
 ---
 name: Si-cen Liu
 startdate: [2023-08-01]
-enddate: []
+enddate: [2024-05-01]
 email: csesicen (at) ust.hk
 image: /static/img/members/sichen.jpg
 position: Alumni
