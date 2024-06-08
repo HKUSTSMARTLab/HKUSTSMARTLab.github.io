@@ -7,4 +7,6 @@ image: /static/img/members/hao jiang.jpg
 position: PhD Student
 website: https://hjiangaz.github.io/
 email: hjiangaz (at) connect.ust.hk
+scholar: iOGmuTcAAAAJ
+orcid: 0000-0002-8901-0760
 ---
