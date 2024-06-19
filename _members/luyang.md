@@ -3,7 +3,7 @@ name: Lu-yang Luo
 startdate: [2022-08-31]
 enddate: []
 image: /static/img/members/luyang.jpg
-position: Postdoctoral Fellow
+position: Alumni
 email: cseluyang (at) ust.hk
 # linkedin: luyang-luo
 scholar: eD1O_vAAAAAJ
