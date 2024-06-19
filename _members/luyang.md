@@ -1,7 +1,7 @@
 ---
 name: Lu-yang Luo
 startdate: [2022-08-31]
-enddate: []
+enddate: [2024-06-25]
 image: /static/img/members/luyang.jpg
 position: Alumni
 email: cseluyang (at) ust.hk
