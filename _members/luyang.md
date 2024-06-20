@@ -10,5 +10,5 @@ scholar: eD1O_vAAAAAJ
 website: https://llyxc.github.io/
 github: LLYXC
 orcid: 0000-0002-7485-4151
-destination: Faculty Member at Harvard Medical School
+destination: Post-doctoral Fellow at Harvard Medical School
 ---
