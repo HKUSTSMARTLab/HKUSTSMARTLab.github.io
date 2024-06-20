@@ -96,7 +96,7 @@ If you have completed these steps correctly, you will be granted access to the c
 <img src="/static/img/news/2024_cxr_miccai_committee.png" alt="2024 cxr miccai committee" style="width: 100%;"/>
 
 ## Organizers
-<img src="/static/img/news/2024_cxr_miccai_organizers.png" alt="2024 cxr miccai organizers" style="width: 100%;"/>
+<img src="/static/img/news/2024_cxr_miccai_organizer.png" alt="2024 cxr miccai organizers" style="width: 100%;"/>
 
 For more information, please visit the [official challenge website](https://bionlplab.github.io/2024_MICCAI_CXRLT/).
 
