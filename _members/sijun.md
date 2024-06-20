@@ -1,5 +1,5 @@
 ---
-name: Si-jun Meng
+name: Dr. Si-jun Meng
 startdate: [2023-01-01]
 enddate: [2024-03-01]
 image: /static/img/members/sijun.jpg

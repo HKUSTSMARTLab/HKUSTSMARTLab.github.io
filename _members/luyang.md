@@ -1,5 +1,5 @@
 ---
-name: Lu-yang Luo
+name: Dr. Lu-yang Luo
 startdate: [2022-08-31]
 enddate: [2024-06-25]
 image: /static/img/members/luyang.jpg
