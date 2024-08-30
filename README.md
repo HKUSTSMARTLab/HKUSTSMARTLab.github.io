@@ -1,4 +1,4 @@
-# HKUST SMART lab webpage - alpha version
+# HKUST SMART lab webpage
 
 First written on 21/05/2024 by Cheng Jin
 
