@@ -4,7 +4,7 @@ title: "Tse Cheuk Ng Tai Scholarship 2024"
 author: Cheng Jin
 layout: post
 group: news
-cover: /static/img/news/2024_scholarship_fig2.png
+cover: /static/img/news/2024_scholarship_cover.png
 oneline_description: "HKUST CSE UG student Mr. Runsheng LIU was selected as 2023-2024's Tse Cheuk Ng Tai Scholarship recipient with his UROP study titled 'Deep learning for medical image analysis'. Congratulations!"
 last_updated: 2024/09/19
 ---
