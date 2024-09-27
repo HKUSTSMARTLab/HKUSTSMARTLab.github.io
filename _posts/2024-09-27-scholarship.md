@@ -1,6 +1,6 @@
 ---
 published: True
-title: "Tse Cheuk Ng Tai Scholarship 2024"
+title: "UG Students at HKUST SMART Lab Won Tse Cheuk Ng Tai Scholarship 2024"
 author: Cheng Jin
 layout: post
 group: news
