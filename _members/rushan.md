@@ -6,6 +6,6 @@ image: /static/img/members/rushan.jpg
 position: Alumni
 website: https://rzhangbq.github.io/
 github: rzhangbq
-email: rzhangbq (at) ust.hk
+email: rzhangbq (at) gatech.edu
 destination: PhD Student at Georgia Institute of Technology
 ---
