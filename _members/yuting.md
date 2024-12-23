@@ -1,5 +1,5 @@
 ---
-name: Yu-ting He
+name: Dr. Yu-ting He
 startdate: [2022-01-01]
 enddate: [2024-08-01]
 image: /static/img/members/Yuting He.jpg
