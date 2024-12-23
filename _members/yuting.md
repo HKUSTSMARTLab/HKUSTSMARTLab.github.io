@@ -1,11 +1,12 @@
 ---
 name: Yu-ting He
 startdate: [2022-01-01]
-enddate: []
+enddate: [2024-08-01]
 image: /static/img/members/Yuting He.jpg
-position: Postdoctoral Fellow
+position: Alumni
 scholar: WYzBMTUAAAAJ
 website: https://yutinghe-list.github.io/
 github: YutingHe-list
-email: csyutingh (at) ust.hk
+email: yuting.he4 (at) case.edu
+destination: Research Associate at Case Western Reserve University
 ---
