@@ -6,6 +6,7 @@ image: /static/img/members/jiachen.jpg
 position: Alumni
 website: https://andotalao24.github.io/
 # linkedin: jiachen-zhao24
+email: jiachenzhao (at) umass.edu
 scholar: 9dFt9JAAAAAJ
 github: andotalao24
 twitter: jcz12856876
