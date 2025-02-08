@@ -1,5 +1,5 @@
 ---
-name: Ning Ma
+name: Dr. Ning Ma
 startdate: [2023-12-01]
 enddate: [2025-02-08]
 image: /static/img/members/Ning Ma.jpeg
