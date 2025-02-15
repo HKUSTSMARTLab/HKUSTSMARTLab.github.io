@@ -4,6 +4,18 @@ layout: default
 group: leaderboard
 ---
 
+<script>
+    function isMobileDevice() {
+        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    window.onload = function() {
+        if (isMobileDevice()) {
+            alert("This website is not optimized for mobile devices. Please use a desktop browser for the best experience.");
+        }
+    };
+</script>
+
 <h1>Pathology AI Leaderboard</h1>
 
 The Pathology AI Leaderboard is a platform for benchmarking foundation models in pathology. We host various tasks for
