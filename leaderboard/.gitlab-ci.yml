@@ -1,0 +1,217 @@
+# yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
+---
+include:
+  - project: nci-gdc/gitlab-templates
+    ref: 0.7.8
+    file:
+      - templates/global/full.yaml
+  - project: nci-gdc/gitlab-templates
+    ref: master
+    file:
+      - templates/deployments/salt-service.yaml
+
+pre-commit:
+  except:
+    - tags
+
+stages:
+  - .pre
+  - test
+  - unit
+  - release
+  - "tag image"
+  - build_ui_tests_image
+  - deploy
+  - .trigger_ui_tests
+
+image: docker.osdc.io/ncigdc/nodejs20:3.0.6
+
+variables:
+  DEPLOY_SERVICE_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
+  NODE_VER: v20.15.1
+  npm_config_https_proxy: http://cloud-proxy:3128
+  npm_config_proxy: http://cloud-proxy:3128
+  npm_config_registry: https://nexus.osdc.io/repository/npm-all/
+
+.default_rules: &default_rules
+  rules:
+    - if: '($CI_PIPELINE_SOURCE != "schedule" || $RUN_UI_TESTS_ONLY != "true") && $CI_COMMIT_TAG == null'
+
+Linting:
+  stage: test
+  variables:
+    NODE_ENV: test
+    npm_config_tarball: /tmp/node-headers.tgz
+  before_script:
+    - curl -sSL https://nexus.osdc.io/repository/misc/nodejs/node-${NODE_VER}-headers.tar.gz -o /tmp/node-headers.tgz
+    - dnf install gcc-c++ make -y
+    - npm ci
+  script:
+    - npm run lint
+  <<: *default_rules
+
+Prettier Checks:
+  stage: test
+  variables:
+    NODE_ENV: test
+    npm_config_tarball: /tmp/node-headers.tgz
+  before_script:
+    - curl -sSL https://nexus.osdc.io/repository/misc/nodejs/node-${NODE_VER}-headers.tar.gz -o /tmp/node-headers.tgz
+    - dnf install gcc-c++ make -y
+    - npm ci
+  script:
+    - npm run format:check
+  <<: *default_rules
+
+Build and test core and portal:
+  stage: test
+  variables:
+    NODE_ENV: test
+    npm_config_tarball: /tmp/node-headers.tgz
+  before_script:
+    - curl -sSL https://nexus.osdc.io/repository/misc/nodejs/node-${NODE_VER}-headers.tar.gz -o /tmp/node-headers.tgz
+    - dnf install gcc-c++ make -y
+    - npm ci
+  script:
+    - cd ${CI_PROJECT_DIR}/packages/core
+    - npm run build:clean
+    - cd ${CI_PROJECT_DIR}/packages/portal-components
+    - npm run build:clean
+    - cd ${CI_PROJECT_DIR}/packages/sapien
+    - npm run build:clean
+    - cd ${CI_PROJECT_DIR}/packages/enclave-portal
+    - npm run compile
+    - cd ${CI_PROJECT_DIR}/packages/portal-proto
+    - npm run compile
+    - cd ${CI_PROJECT_DIR}
+    - npm run test:all
+  <<: *default_rules
+
+Build and push image:
+  stage: release
+  services:
+    - docker:${DOCKER_VERSION}-dind
+  tags:
+    - dind
+  image: docker:${DOCKER_VERSION}-dind
+  before_script:
+    - apk add bash
+  script:
+    - |
+      docker build \
+      --build-arg "NPM_REGISTRY=https://nexus.osdc.io/repository/npm-all/" \
+      --build-arg "BUILD_SHORT_SHA=$CI_COMMIT_SHORT_SHA" \
+      --build-arg BASE_CONTAINER_VERSION \
+      --build-arg BASE_CONTAINER_REGISTRY \
+      --label org.opencontainers.image.created="$(date -Iseconds)" \
+      --label org.opencontainers.image.revision="${CI_COMMIT_SHA}" \
+      --label org.opencontainers.image.ref.name="${CI_PROJECT_NAME}:${CI_COMMIT_REF_NAME/\//_}" \
+      -t $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:$CI_COMMIT_REF_SLUG-${CI_COMMIT_SHORT_SHA} \
+      -t $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:$CI_COMMIT_SHA \
+      --progress=plain .
+    - docker push -a $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME
+  <<: *default_rules
+
+Push latest image:
+  stage: "tag image"
+  variables:
+    GIT_STRATEGY: none
+  services:
+    - docker:${DOCKER_VERSION}-dind
+  tags:
+    - dind
+  image: docker:${DOCKER_VERSION}-dind
+  only:
+    - master
+  before_script:
+    - apk add bash
+  script:
+    - docker pull $BASE_CONTAINER_REGISTRY/$CI_PROJECT_NAME:$CI_COMMIT_SHA
+    - docker tag $BASE_CONTAINER_REGISTRY/$CI_PROJECT_NAME:$CI_COMMIT_SHA $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:latest
+    - docker push $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:latest
+  except:
+    - schedules
+
+Push tagged image:
+  stage: "tag image"
+  variables:
+    GIT_STRATEGY: none
+  services:
+    - docker:${DOCKER_VERSION}-dind
+  tags:
+    - dind
+  image: docker:${DOCKER_VERSION}-dind
+  only:
+    - tags
+  before_script:
+    - apk add bash
+  script:
+    - docker pull $BASE_CONTAINER_REGISTRY/$CI_PROJECT_NAME:$CI_COMMIT_SHA
+    - docker tag $BASE_CONTAINER_REGISTRY/$CI_PROJECT_NAME:$CI_COMMIT_SHA $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:${CI_COMMIT_TAG}
+    - docker push $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME:${CI_COMMIT_TAG}
+
+Build UI tests Docker image:
+  stage: build_ui_tests_image
+  services:
+    - docker:${DOCKER_VERSION}-dind
+  tags:
+    - dind
+  image: docker:${DOCKER_VERSION}-dind
+  script:
+    - docker build -t $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME-holmes-py:$CI_COMMIT_REF_SLUG-${CI_COMMIT_SHORT_SHA} -f ./holmes-py/Dockerfile ./holmes-py
+    - docker push $DOCKER_RELEASE_REGISTRY/ncigdc/$CI_PROJECT_NAME-holmes-py:$CI_COMMIT_REF_SLUG-${CI_COMMIT_SHORT_SHA}
+
+.trigger_ui_tests:
+  stage: .trigger_ui_tests
+  trigger:
+    include:
+      - local: 'holmes-py/.gitlab-ci-holmes-py.yml'
+    strategy: depend
+  parallel:
+    matrix:
+      - BROWSER: ["headless chrome", "headless firefox", "headless safari"]
+
+trigger_ui_tests_yellow:
+  extends: .trigger_ui_tests
+  stage: .trigger_ui_tests
+  variables:
+    APP_ENVIRONMENT: QA_YELLOW
+  needs:
+    - job: deploy_qa/uat
+      artifacts: true
+  rules:
+    - if: '$DEPLOY_JOB_NAME == "deploy_qa/uat" && $CI_PIPELINE_SOURCE != "schedule"'
+      allow_failure: true
+
+trigger_ui_tests_uat:
+  extends: .trigger_ui_tests
+  stage: .trigger_ui_tests
+  variables:
+    APP_ENVIRONMENT: QA_UAT
+  needs:
+    - job: deploy_qa/uat
+      artifacts: true
+  rules:
+    - if: '$DEPLOY_JOB_NAME == "deploy_qa/uat" && $CI_PIPELINE_SOURCE != "schedule"'
+      allow_failure: true
+
+trigger_ui_tests_scheduled:
+  extends: .trigger_ui_tests
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "schedule" && $RUN_UI_TESTS_ONLY == "true"'
+      when: always
+  parallel:
+    matrix:
+      - APP_ENVIRONMENT: ["QA_YELLOW", "QA_UAT"]
+
+.deploy-service-with-salt:
+  before_script:
+    - export DEPLOY_SERVICE_TAG=${CI_COMMIT_TAG:-$DEPLOY_SERVICE_TAG}
+
+.services:
+  allow_failure: true
+  stage: deploy
+  when: manual
+  parallel:
+    matrix:
+      - DEPLOY_SERVICE_LIST: [ portal2 ]

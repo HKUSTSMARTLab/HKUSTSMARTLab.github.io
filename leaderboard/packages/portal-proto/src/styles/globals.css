@@ -1,0 +1,114 @@
+/* montserrat Regular, Regular Italic, Medium, Medium Italic, Bold, Bold Italic */
+@import "~@fontsource/montserrat/400.css";
+@import "~@fontsource/montserrat/400-italic.css";
+@import "~@fontsource/montserrat/500.css";
+@import "~@fontsource/montserrat/500-italic.css";
+@import "~@fontsource/montserrat/700.css";
+@import "~@fontsource/montserrat/700-italic.css";
+
+/* noto-sans Regular, Regular Italic, Bold, Bold Italic */
+@import "~@fontsource/noto-sans/400.css";
+@import "~@fontsource/noto-sans/400-italic.css";
+@import "~@fontsource/noto-sans/700.css";
+@import "~@fontsource/noto-sans/700-italic.css";
+
+@tailwind base;
+@tailwind components;
+
+input[type="search"] {
+  font-family: Noto Sans, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+}
+
+.tooltip {
+  @apply invisible;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply visible z-50;
+}
+
+.flip-card {
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.mantine-Tabs-tabsList::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 8px;
+}
+
+.mantine-Tabs-tabsList::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #5c5c5c;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.mantine-Tabs-panel::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+.mantine-Tabs-panel::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #5c5c5c;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.flip-card-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+}
+
+.number {
+  display: block;
+  text-align: right;
+  overflow: auto;
+}
+
+.decimal {
+  width: 100px;
+  float: right;
+  text-align: left;
+}
+
+.VictoryContainer [role="graphics-symbol"]:focus {
+  outline-color: black;
+  outline-style: dotted;
+}
+
+.Offscreen {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(100%);
+  margin-top: -1px;
+}
+
+@tailwind utilities;
+@tailwind variants;

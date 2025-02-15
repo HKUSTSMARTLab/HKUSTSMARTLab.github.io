@@ -1,0 +1,40 @@
+{
+  "name": "@nci-gdc/sapien",
+  "version": "2.15.5",
+  "description": "Organ Map of Human Body",
+  "browser": true,
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.umd.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "compile": "tsc",
+    "build": "rollup --config rollup.config.mjs",
+    "build:clean": "npm run clean && npm run compile && rollup --config rollup.config.mjs",
+    "pack": "npm pack",
+    "build:watch": "npm run compile && npm run build -- --watch",
+    "dev": "npm run build:watch",
+    "test": "echo No tests yet",
+    "test:all": "echo No tests yet"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.24.1",
+    "d3": "^7.4.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/plugin-transform-runtime": "^7.24.3",
+    "@babel/preset-flow": "^7.24.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/d3": "^7.4.3",
+    "@types/node": "^22.9.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.27.3",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "typescript": "^5.6.3"
+  }
+}

@@ -1,0 +1,9 @@
+dist
+*.css
+setupTests.ts
+holmes-py/**/*
+Dockerfile
+README.md
+NOTICE.txt
+docs
+next.config.js
