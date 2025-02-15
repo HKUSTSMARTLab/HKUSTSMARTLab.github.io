@@ -1,27 +1,27 @@
 - name: Home
-  link: "/"
+  link: '/'
   group: home
 
 - name: News
-  link: "/news"
+  link: '/news'
   group: news
 
 - name: Research
-  link: "/research"
+  link: '/research'
   group: research
 
 - name: Publications
-  link: "/publications"
+  link: '/publications'
   group: publications
 
 - name: Members
-  link: "/members"
+  link: '/members'
   group: members
 
 - name: Recruitment
-  link: "/recruitment"
+  link: '/recruitment'
   group: recruitment
 
 - name: Contact
-  link: "/contact"
+  link: '/contact'
   group: contact

@@ -1,6 +1,6 @@
 ---
 published: True
-title: "One paper was accepted in Radiology AI"
+title: 'One paper was accepted in Radiology AI'
 author: Cheng Jin
 layout: post
 group: news

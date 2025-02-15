@@ -1,5 +1,5 @@
 ---
-name: Shu Yang 
+name: Shu Yang
 startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/shuyang.jpg

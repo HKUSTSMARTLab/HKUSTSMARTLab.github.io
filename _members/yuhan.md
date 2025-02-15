@@ -1,5 +1,5 @@
 ---
-name: Yu-han Chen 
+name: Yu-han Chen
 startdate: []
 enddate: []
 image: /static/img/members/yuhan.jpg

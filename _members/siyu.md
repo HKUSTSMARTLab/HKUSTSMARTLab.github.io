@@ -6,5 +6,5 @@ image: /static/img/members/siyu.jpg
 position: Alumni
 email: schenfo (at) connect.ust.hk
 scholar: C0_fLggAAAAJ
-destination: PhD Student at HKUST 
+destination: PhD Student at HKUST
 ---

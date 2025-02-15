@@ -5,11 +5,13 @@ group: research
 ---
 
 # Our Research
+
 <div style="font-size: 1.25em;">
 At Smart Lab, we are dedicated to pioneering AI technologies in medicine to enhance diagnostic accuracy, treatment efficacy, and patient outcomes. With a dynamic and interdisciplinary team, we strive to shape the future of healthcare, making it more precise, personalized, and impactful than ever before.
 </div>
 
 ### Large Models for Advancing Healthcare
+
 <img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">

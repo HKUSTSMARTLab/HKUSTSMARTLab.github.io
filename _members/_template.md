@@ -2,7 +2,9 @@ Required fields:
 Name, start date, image, altimage, position, email, ORCID, Google Scholar ID, description
 Optional fields:
 scholar, website, HKUST, twitter, linkedin, github
+
 ---
+
 #REQUIRED
 name: FirstName LastName #Include "Ph.D."" if applicable
 timeline_name: #If you would like your name to appear differently on the Lab timeline, fill out this line.
@@ -18,9 +20,7 @@ scholar: #XXXXXXXXXXXX #Google Scholar User ID, create if you don't have one
 description: "
 1-2 sentences about your prior education and research experience(s).
 
-
 1-2 sentences about your research project in the SMART lab.
-
 
 1-2 sentences about your life outside lab (hobbies, pets, etc.)
 "
@@ -31,4 +31,5 @@ HKUST: #XXXXXXXX #HKUST Employees Profile ID only
 twitter: #username
 linkedin: #username
 github: #username
+
 ---

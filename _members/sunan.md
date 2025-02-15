@@ -1,5 +1,5 @@
 ---
-name: Su-nan He 
+name: Su-nan He
 startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/sunan.jpg

@@ -4,7 +4,7 @@ author: Cheng Jin
 layout: post
 group: news
 cover: /static/img/news/2022_stanford.png
-oneline_description: "Prof. Hao Chen is listed in the top 2% of the most-cited scientists in various disciplines on the Stanford list."
+oneline_description: 'Prof. Hao Chen is listed in the top 2% of the most-cited scientists in various disciplines on the Stanford list.'
 last_updated: 2022/10/10
 ---
 
