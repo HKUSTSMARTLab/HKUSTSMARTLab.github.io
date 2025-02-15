@@ -9,9 +9,11 @@ group: leaderboard
         return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
 
-    window.onload = function() {
+    window.onload = function () {
         if (isMobileDevice()) {
-            alert("This website is not optimized for mobile devices. Please use a desktop browser for the best experience.");
+            alert(
+                'This website is not optimized for mobile devices. Please use a desktop browser for the best experience.',
+            );
         }
     };
 </script>
@@ -36,8 +38,9 @@ models.
             <h6 style="font-family: Arial, Helvetica, sans-serif; margin-bottom: 26px">
                 <br /><br />
                 Our pathology dataset provide a comprehensive, standardized repository of cancer-related data,
-                integrating clinical, genomic, and therapeutic information from multiple sources around the globe. This platform is designed to support researchers in exploring disease mechanisms,
-                identifying biomarkers, and developing personalized treatment strategies.
+                integrating clinical, genomic, and therapeutic information from multiple sources around the globe. This
+                platform is designed to support researchers in exploring disease mechanisms, identifying biomarkers, and
+                developing personalized treatment strategies.
                 <br /><br />
                 By offering curated datasets with consistent formats and annotations, we facilitate cross-study
                 comparisons and enhance reproducibility in cancer research. Researchers can leverage this resource to
@@ -4034,3 +4037,36 @@ models.
         </tbody>
     </table>
 </div>
+
+<hr style="margin-top: 20px; margin-bottom: 20px" />
+
+<footer>
+    <p>
+        <small>
+            If you find this project helpful, please consider referencing it in your research papers in the following
+            format:
+            <br />
+            <!-- in bibtext code format -->
+            <code>
+                @misc{hkustsmartlab,
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;title = {Benchmarking Health Foundation Models for Computational Pathology},
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;author = {HKUST Smart Lab},
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;howpublished = {\\url{https://hkustsmartlab.github.io/leaderboard}},
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;year = {2025}
+                <br />
+                }
+            </code>
+        </small>
+    </p>
+    <p class="my-5 text-center">
+        <small>
+            <i> Last Update: {{'now' | date: "%h %d, %Y"}} </i>
+            <br />
+            &copy; 2025 <a href="https://hkustsmartlab.github.io/" target="_blank">HKUST Smart Lab</a>
+        </small>
+    </p>
+</footer>
