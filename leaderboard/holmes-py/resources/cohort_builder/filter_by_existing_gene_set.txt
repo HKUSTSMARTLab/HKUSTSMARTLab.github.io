@@ -1,5 +1,0 @@
-tp53
-muc16
-csmd3
-lrp1b
-kras

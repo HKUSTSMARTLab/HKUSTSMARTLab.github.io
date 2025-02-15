@@ -1,5 +1,0 @@
-muc16
-ARID1A
-DCC
-FLNA
-STAG2
