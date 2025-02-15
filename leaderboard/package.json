@@ -39,6 +39,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/NCI-GDC/gdc-frontend-framework#readme",
   "dependencies": {
+    "@gff/core": "^2.15.5",
     "@reactour/tour": "^2.9.0",
     "dom-to-svg": "^0.12.2",
     "echarts": "^5.5.1",
