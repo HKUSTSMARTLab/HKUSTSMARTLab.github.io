@@ -7,4 +7,5 @@ position: MPhil Student
 # linkedin: mhsonkyle
 github: mhson-kyle
 email: mhson (at) connect.ust.hk
+scholar: B65vNQkAAAAJ
 ---
