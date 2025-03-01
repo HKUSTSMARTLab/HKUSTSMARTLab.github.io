@@ -16,6 +16,135 @@ Welcome to the Computational Cytology project page! This project aims to underst
 3. **Applications in Early Cancer Detection**: We apply deep learning models to early cancer detection tasks, such as cervical cancer screening, to reduce cytologists' workload and improve diagnostic accuracy.
 4. **Integrated Systems for Imaging and Human-Machine Collaboration**: We build integrated systems that combine imaging devices, deep learning models, and human-machine collaboration for cytological image analysis.
 
+We have also collected current research datasets in the field of computational cytology below:
+
+<div class="container-fluid p-4">
+        <h2 class="mb-4">Private Datasets</h2>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Dataset</th>
+                    <th>Number</th>
+                    <th>Task</th>
+                    <th>Organ</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CCS-123K</td>
+                    <td>123,549 (48 Centers)</td>
+                    <td>Whole Slide Image Classification</td>
+                    <td>Cervical</td>
+                    <td>Whole Slide Image</td>
+                </tr>
+                <tr>
+                    <td>CCS-Cell</td>
+                    <td>104,979 (13 Centers)</td>
+                    <td>Cell Detection</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>CPS</td>
+                    <td>137 Images, 9,255 Masks</td>
+                    <td>Cell Segmentation</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>Urine</td>
+                    <td>1,030 Whole Slide Images</td>
+                    <td>Whole Slide Image Classification</td>
+                    <td>Urine</td>
+                    <td>Whole Slide Image</td>
+                </tr>
+                <tr>
+                    <td>PWH</td>
+                    <td>2,616 Whole Slide Images</td>
+                    <td>Whole Slide Image Classification</td>
+                    <td>Mixed</td>
+                    <td>Whole Slide Image</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="my-4">Public Datasets</h2>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Dataset</th>
+                    <th>Number</th>
+                    <th>Task</th>
+                    <th>Organ</th>
+                    <th>Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ISBI2014</td>
+                    <td>945 Images</td>
+                    <td>Instance Segmentation</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>CNSeg</td>
+                    <td>3,010 Images</td>
+                    <td>Segmentation</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>SegPC</td>
+                    <td>775 Images</td>
+                    <td>Instance Segmentation</td>
+                    <td>Plasma Bone</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>HiCervix</td>
+                    <td>40,229 Images</td>
+                    <td>Classification</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <tr>
+                    <td>Sipakmed</td>
+                    <td>4,049 Images</td>
+                    <td>Image Classification</td>
+                    <td>Cervical</td>
+                    <td>Cell-level</td>
+                </tr>
+                <!-- More rows can be added similarly -->
+            </tbody>
+        </table>
+
+        <h2 class="my-4">Exploratory Tasks</h2>
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Task</th>
+                    <th>Extra Information</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Survival Prognosis</td>
+                    <td>Paired Report & Histology</td>
+                </tr>
+                <tr>
+                    <td>Cancer Origin Prediction</td>
+                    <td>Dataset Request Sent</td>
+                </tr>
+                <tr>
+                    <td>Single-Cell Correlation Discovery</td>
+                    <td>Paired Image</td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
 
