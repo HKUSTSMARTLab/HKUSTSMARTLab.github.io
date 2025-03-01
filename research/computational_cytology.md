@@ -18,8 +18,13 @@ group: computational_cytology
     };
 </script>
 
-<h1 class="text-center">Computational Cytology</h1>
-Welcome to the Computational Cytology project page! This project aims to understand the underlying mechanisms of compu
+<h1>Computational Cytology</h1>
+Welcome to the Computational Cytology project page! This project aims to understand the underlying mechanisms of cytological images and develop deep learning models for automated cytological image analysis. We focus on the following research directions:
+
+1. **Data Standardization**: We develop data standardization techniques to preprocess cytological images and ensure the quality of the training data.
+2. **Advanced Algorithms for Cell-Level and WSI-level Analysis**: We design deep learning models for cell detection, segmentation, classification, and quantification in cytological images.
+3. **Applications in Early Cancer Detection**: We apply deep learning models to early cancer detection tasks, such as cervical cancer screening, to reduce cytologists' workload and improve diagnostic accuracy.
+4. **Integrated Systems for Imaging and Human-Machine Collaboration**: We build integrated systems that combine imaging devices, deep learning models, and human-machine collaboration for cytological image analysis.
 
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
