@@ -18,139 +18,179 @@ Welcome to the Computational Cytology project page! This project aims to underst
 
 We have also collected current research datasets in the field of computational cytology below:
 
-{% raw %}
-<div class="container-fluid p-3">
-    <h2 class="mb-4">Private Datasets</h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">Dataset</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Organ</th>
-                    <th scope="col">Level</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <tr>
-                    <td>CCS-123K</td>
-                    <td>123,549 (48 Centers)</td>
-                    <td>Whole Slide Image Classification</td>
-                    <td>Cervical</td>
-                    <td>Whole Slide Image</td>
-                </tr>
-                <tr>
-                    <td>CCS-Cell</td>
-                    <td>104,979 (13 Centers)</td>
-                    <td>Cell Detection</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>CPS</td>
-                    <td>137 Images, 9,255 Masks</td>
-                    <td>Cell Segmentation</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>Urine</td>
-                    <td>1,030 Whole Slide Images</td>
-                    <td>Whole Slide Image Classification</td>
-                    <td>Urine</td>
-                    <td>Whole Slide Image</td>
-                </tr>
-                <tr>
-                    <td>PWH</td>
-                    <td>2,616 Whole Slide Images</td>
-                    <td>Whole Slide Image Classification</td>
-                    <td>Mixed</td>
-                    <td>Whole Slide Image</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<h3 style="margin-top: 20px">Private Datasets</h3>
 
-    <h2 class="my-4">Public Datasets</h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">Dataset</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Organ</th>
-                    <th scope="col">Level</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <tr>
-                    <td>ISBI2014</td>
-                    <td>945 Images</td>
-                    <td>Instance Segmentation</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>CNSeg</td>
-                    <td>3,010 Images</td>
-                    <td>Segmentation</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>SegPC</td>
-                    <td>775 Images</td>
-                    <td>Instance Segmentation</td>
-                    <td>Plasma Bone</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>HiCervix</td>
-                    <td>40,229 Images</td>
-                    <td>Classification</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-                <tr>
-                    <td>Sipakmed</td>
-                    <td>4,049 Images</td>
-                    <td>Image Classification</td>
-                    <td>Cervical</td>
-                    <td>Cell-level</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="row mb-3" style="margin-top: 20px">
+    <div class="col-md-12 d-flex justify-content-between align-items-center">
+        <select id="filterType" class="form-select" style="width: 200px; height: 38px" onchange="filterTable()">
+            <option value="task">Filter by Task</option>
+            <option value="organ">Filter by Organ</option>
+        </select>
 
-    <h2 class="my-4">Exploratory Tasks</h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered table-hover">
-            <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">Task</th>
-                    <th scope="col">Extra Information</th>
-                </tr>
-            </thead>
-            <tbody class="align-middle">
-                <tr>
-                    <td>Survival Prognosis</td>
-                    <td class="text-wrap">Paired Report & Histology</td>
-                </tr>
-                <tr>
-                    <td>Cancer Origin Prediction</td>
-                    <td class="text-wrap">Dataset Request Sent</td>
-                </tr>
-                <tr>
-                    <td>Single-Cell Correlation Discovery</td>
-                    <td class="text-wrap">Paired Image</td>
-                </tr>
-            </tbody>
-        </table>
+        <input
+            type="text"
+            id="filterValue"
+            class="form-control"
+            style="width: 300px; height: 38px"
+            placeholder="Enter filter keyword..."
+            onkeyup="filterTable()"
+        />
     </div>
 </div>
-{% endraw %}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" id="datasetTable">
+        <thead class="table-dark">
+            <tr>
+                <th>Dataset</th>
+                <th>Number</th>
+                <th>Task</th>
+                <th>Organ</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-task="Whole Slide Image Classification" data-organ="Cervical">
+                <td>CCS-123K</td>
+                <td>123,549 (48 Centers)</td>
+                <td>Whole Slide Image Classification</td>
+                <td>Cervical</td>
+                <td>Whole Slide Image</td>
+            </tr>
+            <tr data-task="Cell Detection" data-organ="Cervical">
+                <td>CCS-Cell</td>
+                <td>104,979 (13 Centers)</td>
+                <td>Cell Detection</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Cell Segmentation" data-organ="Cervical">
+                <td>CPS</td>
+                <td>137 Images, 9,255 Masks</td>
+                <td>Cell Segmentation</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Whole Slide Image Classification" data-organ="Urine">
+                <td>Urine</td>
+                <td>1,030 Whole Slide Images</td>
+                <td>Whole Slide Image Classification</td>
+                <td>Urine</td>
+                <td>Whole Slide Image</td>
+            </tr>
+            <tr data-task="Whole Slide Image Classification" data-organ="Mixed">
+                <td>PWH</td>
+                <td>2,616 Whole Slide Images</td>
+                <td>Whole Slide Image Classification</td>
+                <td>Mixed</td>
+                <td>Whole Slide Image</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 style="margin-top: 40px">Public Datasets</h3>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Dataset</th>
+                <th>Number</th>
+                <th>Task</th>
+                <th>Organ</th>
+                <th>Level</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-task="Instance Segmentation" data-organ="Cervical">
+                <td>ISBI2014</td>
+                <td>945 Images</td>
+                <td>Instance Segmentation</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Segmentation" data-organ="Cervical">
+                <td>CNSeg</td>
+                <td>3,010 Images</td>
+                <td>Segmentation</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Instance Segmentation" data-organ="Plasma Bone">
+                <td>SegPC</td>
+                <td>775 Images</td>
+                <td>Instance Segmentation</td>
+                <td>Plasma Bone</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Classification" data-organ="Cervical">
+                <td>HiCervix</td>
+                <td>40,229 Images</td>
+                <td>Classification</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+            <tr data-task="Image Classification" data-organ="Cervical">
+                <td>Sipakmed</td>
+                <td>4,049 Images</td>
+                <td>Image Classification</td>
+                <td>Cervical</td>
+                <td>Cell-level</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3 style="margin-top: 40px">Exploratory Tasks</h3>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Task</th>
+                <th>Extra Information</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Survival Prognosis</td>
+                <td class="text-wrap">Paired Report & Histology</td>
+            </tr>
+            <tr>
+                <td>Cancer Origin Prediction</td>
+                <td class="text-wrap">Dataset Request Sent</td>
+            </tr>
+            <tr>
+                <td>Single-Cell Correlation Discovery</td>
+                <td class="text-wrap">Paired Image</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+function filterTable() {
+    var filterType = document.getElementById("filterType").value;
+    var filterValue = document.getElementById("filterValue").value.toLowerCase();
+    
+    var table = document.getElementById("datasetTable");
+    var rows = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < rows.length; i++) {
+        var task = rows[i].getAttribute("data-task").toLowerCase();
+        var organ = rows[i].getAttribute("data-organ").toLowerCase();
+        
+        if (filterType === "task" && task.includes(filterValue)) {
+            rows[i].style.display = "";
+        } else if (filterType === "organ" && organ.includes(filterValue)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+</script>
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
 
