@@ -18,6 +18,7 @@ Welcome to the Computational Cytology project page! This project aims to underst
 
 We have also collected current research datasets in the field of computational cytology below:
 
+{% raw %}
 <div class="container-fluid p-3">
     <h2 class="mb-4">Private Datasets</h2>
     <div class="table-responsive">
@@ -149,8 +150,7 @@ We have also collected current research datasets in the field of computational c
         </table>
     </div>
 </div>
-
-
+{% endraw %}
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
 
