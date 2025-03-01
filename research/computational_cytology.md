@@ -5,6 +5,7 @@ group: computational_cytology
 ---
 
 <h1>Computational Cytology</h1>
+Invovled research personnel: [Hao Jiang](https://hjiangaz.github.io/), [Cheng Jin](https://academic.peterkam.top/) 
 
 <img class="rounded mx-auto d-block" src="/static/img/research/computational_cytology.png" alt="ai4ccyto" style="width: 75%; height: auto;">
 
