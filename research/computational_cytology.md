@@ -29,7 +29,6 @@ Welcome to the Computational Cytology project page! This project aims to underst
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
 
-<footer>
     <p>
         <small>
             If you find this project helpful, please consider referencing it in your research papers in the following format:
@@ -78,4 +77,3 @@ Welcome to the Computational Cytology project page! This project aims to underst
             &copy; 2025 <a href="https://hkustsmartlab.github.io/" target="_blank">HKUST Smart Lab</a>
         </small>
     </p>
-</footer>
