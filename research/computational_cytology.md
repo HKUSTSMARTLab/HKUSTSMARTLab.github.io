@@ -18,19 +18,20 @@ Welcome to the Computational Cytology project page! This project aims to underst
 
 We have also collected current research datasets in the field of computational cytology below:
 
-<div class="container-fluid p-4">
+<div class="container-fluid p-3">
     <h2 class="mb-4">Private Datasets</h2>
+    <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+            <thead class="bg-dark text-white">
                 <tr>
-                    <th>Dataset</th>
-                    <th>Number</th>
-                    <th>Task</th>
-                    <th>Organ</th>
-                    <th>Level</th>
+                    <th scope="col">Dataset</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Organ</th>
+                    <th scope="col">Level</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle">
                 <tr>
                     <td>CCS-123K</td>
                     <td>123,549 (48 Centers)</td>
@@ -67,20 +68,22 @@ We have also collected current research datasets in the field of computational c
                     <td>Whole Slide Image</td>
                 </tr>
             </tbody>
-</table>
+        </table>
+    </div>
 
-<h2 class="my-4">Public Datasets</h2>
+    <h2 class="my-4">Public Datasets</h2>
+    <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+            <thead class="bg-dark text-white">
                 <tr>
-                    <th>Dataset</th>
-                    <th>Number</th>
-                    <th>Task</th>
-                    <th>Organ</th>
-                    <th>Level</th>
+                    <th scope="col">Dataset</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Organ</th>
+                    <th scope="col">Level</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle">
                 <tr>
                     <td>ISBI2014</td>
                     <td>945 Images</td>
@@ -116,34 +119,37 @@ We have also collected current research datasets in the field of computational c
                     <td>Cervical</td>
                     <td>Cell-level</td>
                 </tr>
-                <!-- More rows can be added similarly -->
             </tbody>
-</table>
+        </table>
+    </div>
 
-<h2 class="my-4">Exploratory Tasks</h2>
-    <table class="table table-striped table-bordered table-hover">
-            <thead class="table-dark">
+    <h2 class="my-4">Exploratory Tasks</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="bg-dark text-white">
                 <tr>
-                    <th>Task</th>
-                    <th>Extra Information</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Extra Information</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="align-middle">
                 <tr>
                     <td>Survival Prognosis</td>
-                    <td>Paired Report & Histology</td>
+                    <td class="text-wrap">Paired Report & Histology</td>
                 </tr>
                 <tr>
                     <td>Cancer Origin Prediction</td>
-                    <td>Dataset Request Sent</td>
+                    <td class="text-wrap">Dataset Request Sent</td>
                 </tr>
                 <tr>
                     <td>Single-Cell Correlation Discovery</td>
-                    <td>Paired Image</td>
+                    <td class="text-wrap">Paired Image</td>
                 </tr>
             </tbody>
         </table>
+    </div>
 </div>
+
 
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
