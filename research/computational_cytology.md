@@ -4,21 +4,10 @@ layout: default
 group: computational_cytology
 ---
 
-<script>
-    function isMobileDevice() {
-        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    }
-
-    window.onload = function () {
-        if (isMobileDevice()) {
-            alert(
-                'This website is not optimized for mobile devices. Please use a desktop browser for the best experience.',
-            );
-        }
-    };
-</script>
-
 <h1>Computational Cytology</h1>
+
+<img class="rounded mx-auto d-block" src="/static/img/research/computational_cytology.png" alt="ai4ccyto" style="width: 75%; height: auto;">
+
 Welcome to the Computational Cytology project page! This project aims to understand the underlying mechanisms of cytological images and develop deep learning models for automated cytological image analysis. We focus on the following research directions:
 
 1. **Data Standardization**: We develop data standardization techniques to preprocess cytological images and ensure the quality of the training data.
