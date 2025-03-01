@@ -18,6 +18,29 @@ Welcome to the Computational Cytology project page! This project aims to underst
 
 We have also collected current research datasets in the field of computational cytology below:
 
+<script>
+function filterTable() {
+    var filterType = document.getElementById("filterType").value;
+    var filterValue = document.getElementById("filterValue").value.toLowerCase();
+    
+    var table = document.getElementById("datasetTable");
+    var rows = table.getElementsByTagName("tr");
+
+    for (var i = 1; i < rows.length; i++) {
+        var task = rows[i].getAttribute("data-task").toLowerCase();
+        var organ = rows[i].getAttribute("data-organ").toLowerCase();
+        
+        if (filterType === "task" && task.includes(filterValue)) {
+            rows[i].style.display = "";
+        } else if (filterType === "organ" && organ.includes(filterValue)) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+</script>
+
 <h3 style="margin-top: 20px">Private Datasets</h3>
 
 <div class="row mb-3" style="margin-top: 20px">
@@ -168,29 +191,6 @@ We have also collected current research datasets in the field of computational c
         </tbody>
     </table>
 </div>
-
-<script>
-function filterTable() {
-    var filterType = document.getElementById("filterType").value;
-    var filterValue = document.getElementById("filterValue").value.toLowerCase();
-    
-    var table = document.getElementById("datasetTable");
-    var rows = table.getElementsByTagName("tr");
-
-    for (var i = 1; i < rows.length; i++) {
-        var task = rows[i].getAttribute("data-task").toLowerCase();
-        var organ = rows[i].getAttribute("data-organ").toLowerCase();
-        
-        if (filterType === "task" && task.includes(filterValue)) {
-            rows[i].style.display = "";
-        } else if (filterType === "organ" && organ.includes(filterValue)) {
-            rows[i].style.display = "";
-        } else {
-            rows[i].style.display = "none";
-        }
-    }
-}
-</script>
 
 <hr style="margin-top: 20px; margin-bottom: 20px" />
 
