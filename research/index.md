@@ -34,6 +34,8 @@ Breast cancer, the most diagnosed malignancy globally, demands early detection a
 Computational pathology revolutionizes cancer diagnosis by analyzing large-scale whole-slide images (WSI) with advanced AI. Our work facilitates pathologists in clinical diagnosis, structural profiling, biomarker discovery, and personalized treatment, significantly improving diagnostic precision.
 </div>
 
+<!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/showcase/computational_pathology) page. -->
+
 ### AI for Computational Cytology
 
 <img class="rounded mx-auto d-block" src="/static/img/research/computational_cytology.png" alt="ai4ccyto" style="width: 75%; height: auto;">
@@ -42,7 +44,7 @@ Computational pathology revolutionizes cancer diagnosis by analyzing large-scale
 Our deep learning-assisted cytology system aids in early cancer detection, such as cervical cancer screening, by reducing cytologists' workload. We focus on data standardization, advanced algorithms for cell-level analysis, and integrated systems for imaging and human-machine collaboration.
 </div>
 
-<!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/research/computational_cytology) page. -->
+<!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/showcase/computational_cytology) page. -->
 
 ### AI for Ophthalmology
 
