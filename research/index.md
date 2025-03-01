@@ -18,6 +18,8 @@ At Smart Lab, we are dedicated to pioneering AI technologies in medicine to enha
 Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
 </div>
 
+<!-- You can learn more about our research in computational cytology by visiting the [Large Model](/showcase/large_model) page. -->
+
 ### AI for Precision Oncology
 
 <img class="rounded mx-auto d-block" src="/static/img/research/breast_cancer.png" alt="ai4bc" style="width: 75%; height: auto;">
