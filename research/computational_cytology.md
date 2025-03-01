@@ -19,7 +19,7 @@ Welcome to the Computational Cytology project page! This project aims to underst
 We have also collected current research datasets in the field of computational cytology below:
 
 <div class="container-fluid p-4">
-        <h2 class="mb-4">Private Datasets</h2>
+    <h2 class="mb-4">Private Datasets</h2>
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -67,9 +67,9 @@ We have also collected current research datasets in the field of computational c
                     <td>Whole Slide Image</td>
                 </tr>
             </tbody>
-        </table>
+</table>
 
-        <h2 class="my-4">Public Datasets</h2>
+<h2 class="my-4">Public Datasets</h2>
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
@@ -118,10 +118,10 @@ We have also collected current research datasets in the field of computational c
                 </tr>
                 <!-- More rows can be added similarly -->
             </tbody>
-        </table>
+</table>
 
-        <h2 class="my-4">Exploratory Tasks</h2>
-        <table class="table table-striped table-bordered table-hover">
+<h2 class="my-4">Exploratory Tasks</h2>
+    <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>Task</th>
