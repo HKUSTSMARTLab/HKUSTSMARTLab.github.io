@@ -292,9 +292,10 @@
     margin: 50px auto;
     max-width: 1000px;
     overflow: visible;
-  }
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
   
-  .largemodel-banner::before {
+.largemodel-banner::before {
     content: "";
     position: absolute;
     top: -20px;
@@ -302,15 +303,15 @@
     right: -50px;
     bottom: -20px;
     background: radial-gradient(circle, 
-      rgba(173, 216, 230, 0.85) 0%, 
-      rgba(147, 112, 219, 0.7) 40%, 
-      rgba(189, 224, 254, 0.5) 80%, 
-      rgba(255, 255, 255, 0) 100%);
+        rgba(173, 216, 230, 0.85) 0%, 
+        rgba(147, 112, 219, 0.7) 40%, 
+        rgba(189, 224, 254, 0.5) 80%, 
+        rgba(255, 255, 255, 0) 100%);
     z-index: -1;
     filter: blur(25px);
-  }
+}
   
-  .largemodel-banner::after {
+.largemodel-banner::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -318,9 +319,9 @@
     opacity: 0.2;
     z-index: -1;
     pointer-events: none;
-  }
+}
   
-  .largemodel-banner h1 {
+.largemodel-banner h1 {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -334,31 +335,73 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     letter-spacing: 0.5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    width: 100%; /* Ensure h1 can shrink to fit container */
+    max-width: calc(100% - 20px); /* Prevent overflow on very narrow screens */
+    word-wrap: break-word; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Modern browsers */
+    hyphens: auto; /* Add hyphens for very long words */
+}
   
-  .largemodel-banner h1:hover {
+.largemodel-banner h1:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
-  }
+}
   
-  @media (max-width: 768px) {
+/* Medium screens */
+@media (max-width: 768px) {
     .largemodel-banner {
-      padding: 30px 15px;
-      margin: 30px auto;
+        padding: 30px 15px;
+        margin: 30px auto;
     }
     
     .largemodel-banner::before {
-      top: -30px;
-      left: -30px;
-      right: -30px;
-      bottom: -30px;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
     }
     
     .largemodel-banner h1 {
-      font-size: 1.8rem;
-      padding: 15px 25px;
+        font-size: 1.8rem;
+        padding: 15px 25px;
     }
-  }
+}
+
+/* Small mobile screens */
+@media (max-width: 480px) {
+    .largemodel-banner {
+        padding: 20px 10px;
+        margin: 20px auto;
+    }
+    
+    .largemodel-banner::before {
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        filter: blur(15px); /* Reduce blur effect on small screens */
+    }
+    
+    .largemodel-banner h1 {
+        font-size: 1.4rem;
+        padding: 12px 18px;
+        max-width: calc(100% - 10px);
+    }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 320px) {
+    .largemodel-banner {
+        padding: 15px 5px;
+        margin: 15px auto;
+    }
+    
+    .largemodel-banner h1 {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        letter-spacing: 0;
+    }
+}
 
 @media screen and (max-device-width: 31.25em) {
     body {
