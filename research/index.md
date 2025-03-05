@@ -47,11 +47,3 @@ Our deep learning-assisted cytology system aids in early cancer detection, such 
 </div>
 
 <!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/showcase/computational_cytology) page. -->
-
-### AI for Ophthalmology
-
-<img class="rounded mx-auto d-block" src="/static/img/research/ophthalmology.png" alt="ai4o" style="width: 75%; height: auto;">
-
-<div style="font-size: 1.25em;">
-We develop advanced imaging analysis techniques for ophthalmic diseases, enhancing diagnosis accuracy and efficiency. By leveraging multiple imaging modalities like fundus photos and OCT, our full-stack system supports intelligent analysis and assists ophthalmologists in meeting clinical demands.
-</div>

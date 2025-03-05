@@ -1,9 +1,10 @@
 ---
-name: Xue-feng Ni
+name: Dr. Xue-feng Ni
 startdate: [2023-08-01]
-enddate: []
+enddate: [2025-07-31]
 image: /static/img/members/xuefeng.jpg
-position: Postdoctoral Fellow
+position: Alumni
 github: Xuefeng-Ni
 email: csexuefeng (at) ust.hk
+destination: Faculty Member at Hunan University
 ---

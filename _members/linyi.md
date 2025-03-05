@@ -1,12 +1,13 @@
 ---
-name: Yi Lin (Co-supervision)
+name: Dr .Yi Lin
 startdate: [2021-09-01]
-enddate: []
+enddate: [2025-08-31]
 image: /static/img/members/linyi.jpg
-position: PhD Student
+position: Alumni
 email: yi.lin (at) connect.ust.hk
 # linkedin: ianyilin
 scholar: JaSNrNEAAAAJ
 website: https://ianyilin.github.io/
 github: hust-linyi
+destination: Postdoctoral Fellow at Cornell University
 ---
