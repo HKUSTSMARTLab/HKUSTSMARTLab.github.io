@@ -1,5 +1,5 @@
 ---
-name: Dr .Yi Lin
+name: Dr. Yi Lin
 startdate: [2021-09-01]
 enddate: [2025-08-31]
 image: /static/img/members/linyi.jpg
