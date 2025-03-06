@@ -91,7 +91,7 @@ assign sorted = grp.items | sort_natural: "name" %} {% if forloop.first %} {% as
                     <strong>Dr. {{ member.name }}</strong>
                     <br />
                     {% elsif member.position == "Research Assistant Professor" %}
-                    <strong>Prof. {{ member.name }}</strong>
+                    <strong>Dr. {{ member.name }}</strong>
                     <br />
                     {% else %}
                     <strong>{{ member.name }}</strong>
