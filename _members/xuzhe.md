@@ -1,5 +1,5 @@
 ---
-name: Xu Zhe
+name: Zhe Xu
 startdate: [2025-02-01]
 enddate: []
 image: /static/img/members/xuzhe.jpg
