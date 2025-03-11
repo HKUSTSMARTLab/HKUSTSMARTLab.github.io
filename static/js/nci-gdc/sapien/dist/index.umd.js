@@ -1482,7 +1482,7 @@ rkJggg==
       svgContainer
           .append("div")
           .attr("id", "title")
-          .attr("style", `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}; top: 20px`)
+          .attr("style", `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}; top: 10px`)
           .text(title);
       // The Bar Chart
       const svg = svgContainer
