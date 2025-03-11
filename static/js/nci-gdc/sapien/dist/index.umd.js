@@ -1482,7 +1482,7 @@ rkJggg==
       svgContainer
           .append("div")
           .attr("id", "title")
-          .attr("style", `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}`)
+          .attr("style", `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}; top: 20px`)
           .text(title);
       // The Bar Chart
       const svg = svgContainer
@@ -1555,7 +1555,7 @@ rkJggg==
           .append("text")
           .attr("data-testid", (d) => `Label-${toClassName(d[primarySiteKey])}`)
           .attr("class", (d) => `primary-site-label-${toClassName(d[primarySiteKey])}`)
-          .attr("y", (_, i) => (plotHeight / data.length) * i + 14)
+          .attr("y", (_, i) => (plotHeight / data.length) * i + 24)
           .attr("x", barStartOffset - 10)
           .attr("fill", "rgb(10, 10, 10)")
           .attr("font-size", labelSize)
