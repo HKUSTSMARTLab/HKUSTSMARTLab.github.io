@@ -26,7 +26,7 @@ The [Hong Kong University of Science and Technology (HKUST)](https://www.hkust.e
 - Strong self-motivation and curiosity are preferred.
 - For undergraduate and master students, research positions such as visiting intern and research assistant are also available. A minimum of 3 months is required (remote mode is also acceptable).
 
-More details can be found in this [link](/static/pdf/20240531Recruitment_english.pdf).
+More details can be found in this [link](/static/media/20240531Recruitment_english.pdf).
 
 ## How to Apply
 
