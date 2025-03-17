@@ -75,7 +75,6 @@ The Pathology AI Leaderboard is a platform for benchmarking foundation models in
 
     processedData = 
     [
-        {key:"Bone",fileCount:1.145,caseCount:5.141},
         {key:"Bladder",fileCount:.653,caseCount:1.056},
         {key:"Brain",fileCount:.653,caseCount:3.283},
         {key:"Breast",fileCount:1.145,caseCount:7.721},
@@ -103,7 +102,7 @@ The Pathology AI Leaderboard is a platform for benchmarking foundation models in
     const container = document.getElementById("human-body-root");
 
     document.addEventListener('DOMContentLoaded', function() {
-        const baseRowHeight = 30; // 设定基础行高，可以根据需要调整
+        const baseRowHeight = 30; // basic row height
         const dynamicPlotHeight = baseRowHeight * processedData.length;
         const dynamicHeight = dynamicPlotHeight + 20; 
         const containerWidth = container.offsetWidth; // Get width here, after layout
