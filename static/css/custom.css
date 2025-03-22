@@ -282,18 +282,109 @@
 }
 
 /* banner */
-.largemodel-banner {
+.medical-ai-banner {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 40px 20px;
-    margin: 50px auto;
-    max-width: 1000px;
-    overflow: visible;
-    box-sizing: border-box; /* Ensure padding is included in width calculation */
-}
+    margin: 30px auto;
+    max-width: 1100px;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: linear-gradient(120deg, #1a2980 0%, #26d0ce 100%);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(38, 208, 206, 0.3);
+    color: white;
+  }
+  
+  .banner-content {
+    text-align: center;
+    z-index: 2;
+    padding: 0 20px;
+  }
+  
+  .banner-content h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+  }
+  
+  .banner-content p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .pulse-line {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.15);
+    z-index: 1;
+    overflow: hidden;
+  }
+  
+  .pulse-fill {
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    left: 0;
+    background: linear-gradient(90deg, 
+      rgba(255,255,255,0.8) 0%,
+      rgba(255,255,255,1) 50%, 
+      rgba(255,255,255,0.8) 100%
+    );
+    filter: blur(0.5px);
+    box-shadow: 0 0 8px rgba(255,255,255,0.7);
+    animation: fillLine 3s forwards;
+  }
+  
+  .dna-helix {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 120px;
+    height: 80%;
+    opacity: 0.2;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="240" viewBox="0 0 120 240"><path fill="white" d="M60,0 C90,40 30,80 60,120 C90,160 30,200 60,240" stroke="white" stroke-width="2" fill="none"/><path fill="white" d="M60,0 C30,40 90,80 60,120 C30,160 90,200 60,240" stroke="white" stroke-width="2" fill="none"/></svg>') no-repeat;
+  }
+  
+  @keyframes fillLine {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .banner-content h1 {
+      font-size: 2rem;
+    }
+    
+    .banner-content p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .banner-content h1 {
+      font-size: 1.8rem;
+    }
+    
+    .dna-helix {
+      width: 60px;
+      right: 10px;
+    }
+  }
   
 .largemodel-banner::before {
     content: "";
