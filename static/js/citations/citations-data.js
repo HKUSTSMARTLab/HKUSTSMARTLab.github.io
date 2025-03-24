@@ -35,7 +35,7 @@ const citationsData = [
     },
     {
       id: 'xu2024mstar',
-      title: 'Xu, Wang et al. (2024) - mSTAR: Multimodal Knowledge-enhanced WSI Model',
+      title: 'Xu, Wang et al. (2024) - mSTAR: Multimodal Knowledge-enhanced Foundation Model',
       bibtex: `@article{xu2024mstar,
     title = {A Multimodal Knowledge-enhanced Whole-slide Pathology Foundation Model},
     author = {Xu, Yingxue and Wang, Yihui and Zhou, Fengtao and Ma, Jiabo and Jin, Cheng and Yang, Shu and Li, Jinbang and Zhang, Zhengyu and Zhao, Chenglong and Zhou, Huajun and Li, Zhenhui and Lin, Huangjing and Wang, Xin and Wang, Jiguang and Han, Anjia and Chan, Ronald Cheong Kin and Liang, Li and Zhang, Xiuming and Chen, Hao},
