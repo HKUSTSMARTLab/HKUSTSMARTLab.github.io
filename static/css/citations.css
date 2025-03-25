@@ -7,17 +7,17 @@
     word-break: break-all;
     display: flex;
     flex-direction: column;
-  }
-  
-  .citation-content {
+}
+
+.citation-content {
     padding: 1rem;
     margin: 0;
     max-height: 300px;
     overflow-y: auto;
     border-bottom: 1px solid #dee2e6;
-  }
-  
-  .copy-btn {
+}
+
+.copy-btn {
     width: 100%;
     padding: 0.25rem;
     font-size: 0.85rem;
@@ -28,14 +28,14 @@
     color: #495057;
     transition: all 0.15s ease-in-out;
     line-height: 1;
-  }
-  
-  .copy-btn:hover {
+}
+
+.copy-btn:hover {
     background-color: #e9ecef;
     color: #212529;
-  }
-  
-  .citation-title {
+}
+
+.citation-title {
     font-weight: 500;
     margin-bottom: 0;
     display: flex;
@@ -43,40 +43,40 @@
     align-items: center;
     width: 100%;
     text-align: left;
-  }
-  
-  .citation-title:hover {
+}
+
+.citation-title:hover {
     color: #007bff;
     text-decoration: none;
-  }
-  
-  .citation-title:focus {
+}
+
+.citation-title:focus {
     box-shadow: none;
-  }
-  
-  pre {
+}
+
+pre {
     margin-bottom: 0;
-  }
-  
-  .citation-card {
+}
+
+.citation-card {
     margin-bottom: 0.75rem;
-    border: 1px solid rgba(0,0,0,0.125);
-  }
-  
-  .citation-header {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.citation-header {
     padding: 0.5rem 1rem;
     background-color: #fff;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 576px) {
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
     .citation-content {
-      padding: 0.75rem;
-      font-size: 0.9rem;
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
-    
+
     .copy-btn {
-      padding: 0.4rem;
-      font-size: 0.8rem;
+        padding: 0.4rem;
+        font-size: 0.8rem;
     }
-  }
+}

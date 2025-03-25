@@ -61,7 +61,9 @@ assign sorted = grp.items | sort_natural: "name" %} {% if forloop.first %} {% as
     {% endfor %}
 </div>
 
-{% assign delimiter = "," %} {% assign position_str = "Research Assistant Professor,Postdoctoral Fellow,PhD Student,MPhil Student,Undergraduate Student,Research Assistant,Alumni" %} {% assign positions = position_str | split: delimiter %} {% for position in positions %}
+{% assign delimiter = "," %} {% assign position_str = "Research Assistant Professor,Postdoctoral Fellow,PhD
+Student,MPhil Student,Undergraduate Student,Research Assistant,Alumni" %} {% assign positions = position_str | split:
+delimiter %} {% for position in positions %}
 
 <hr />
 <div class="mb-3">

@@ -1395,80 +1395,93 @@ rkJggg==
 `;
 
 var colorCodes = {
-    "Adrenal Gland": "rgb(190, 48, 44)",
-    "Bile Duct": "rgb(213, 141, 0)",
-    Bladder: "rgb(105, 161, 236)",
-    Blood: "rgb(246, 40, 12)",
-    Bone: "rgb(156, 156, 156)",
-    "Bone Marrow and Blood": "rgb(240, 238, 55)",
-    Brain: "rgb(23, 153, 227)",
-    Breast: "rgb(223, 46, 189)",
-    Cervix: "rgb(215, 33, 93)",
-    Colorectal: "rgb(240, 119, 59)",
-    Esophagus: "rgb(52, 133, 34)",
-    Eye: "rgb(233, 110, 31)",
-    "Head and Neck": "rgb(240, 142, 26)",
-    Kidney: "rgb(38, 193, 86)",
-    Liver: "rgb(67, 221, 207)",
-    Lung: "rgb(158, 9, 219)",
-    "Lymph Nodes": "rgb(222, 61, 211)",
-    "Nervous System": "rgb(27, 114, 246)",
-    Ovary: "rgb(68, 213, 45)",
-    Pancreas: "rgb(199, 54, 207)",
-    Pleura: "rgb(215, 188, 88)",
-    Prostate: "rgb(60, 166, 205)",
-    Skin: "rgb(245, 42, 182)",
-    "Soft Tissue": "rgb(228, 222, 62)",
-    Stomach: "rgb(222, 175, 53)",
-    Testis: "rgb(218, 125, 58)",
-    Thymus: "rgb(61, 223, 204)",
-    Thyroid: "rgb(224, 75, 123)",
-    Uterus: "rgb(245, 97, 154)",
+    'Adrenal Gland': 'rgb(190, 48, 44)',
+    'Bile Duct': 'rgb(213, 141, 0)',
+    Bladder: 'rgb(105, 161, 236)',
+    Blood: 'rgb(246, 40, 12)',
+    Bone: 'rgb(156, 156, 156)',
+    'Bone Marrow and Blood': 'rgb(240, 238, 55)',
+    Brain: 'rgb(23, 153, 227)',
+    Breast: 'rgb(223, 46, 189)',
+    Cervix: 'rgb(215, 33, 93)',
+    Colorectal: 'rgb(240, 119, 59)',
+    Esophagus: 'rgb(52, 133, 34)',
+    Eye: 'rgb(233, 110, 31)',
+    'Head and Neck': 'rgb(240, 142, 26)',
+    Kidney: 'rgb(38, 193, 86)',
+    Liver: 'rgb(67, 221, 207)',
+    Lung: 'rgb(158, 9, 219)',
+    'Lymph Nodes': 'rgb(222, 61, 211)',
+    'Nervous System': 'rgb(27, 114, 246)',
+    Ovary: 'rgb(68, 213, 45)',
+    Pancreas: 'rgb(199, 54, 207)',
+    Pleura: 'rgb(215, 188, 88)',
+    Prostate: 'rgb(60, 166, 205)',
+    Skin: 'rgb(245, 42, 182)',
+    'Soft Tissue': 'rgb(228, 222, 62)',
+    Stomach: 'rgb(222, 175, 53)',
+    Testis: 'rgb(218, 125, 58)',
+    Thymus: 'rgb(61, 223, 204)',
+    Thyroid: 'rgb(224, 75, 123)',
+    Uterus: 'rgb(245, 97, 154)',
 };
 
-const toClassName = (key) => key.split(" ").join("-");
+const toClassName = (key) => key.split(' ').join('-');
 const halfPixel = 0.5;
-const createHumanBody = ({ clickHandler = () => null, mouseOverHandler, mouseOutHandler, keyDownHandler, keyUpHandler, ariaLabel, skipLinkId, data, selector, height, width, labelSize, tickInterval = 1000, title = "Cases by Primary Site", xAxisLabel = "1000s of Cases", offsetLeft = 0, offsetTop = 0, primarySiteKey = "key", caseCountKey = "count", fileCountKey = "fileCount", }) => {
+const createHumanBody = ({
+    clickHandler = () => null,
+    mouseOverHandler,
+    mouseOutHandler,
+    keyDownHandler,
+    keyUpHandler,
+    ariaLabel,
+    skipLinkId,
+    data,
+    selector,
+    height,
+    width,
+    labelSize,
+    tickInterval = 1000,
+    title = 'Cases by Primary Site',
+    xAxisLabel = '1000s of Cases',
+    offsetLeft = 0,
+    offsetTop = 0,
+    primarySiteKey = 'key',
+    caseCountKey = 'count',
+    fileCountKey = 'fileCount',
+}) => {
     // Similar to a React target element
-    const DEFAULT_ZINDEX = "400";
+    const DEFAULT_ZINDEX = '400';
     const root = selector;
-    if (!root)
-        throw new Error("Must select an existing element!");
+    if (!root) throw new Error('Must select an existing element!');
     root.innerHTML = RawSvg();
     width = width || 400;
     height = height || 520;
-    labelSize = labelSize || "12px";
+    labelSize = labelSize || '12px';
     const plotHeight = height - 20;
     const barStartOffset = 150;
     const barWidth = width - barStartOffset;
     const maxCases = Math.max(...data.map((d) => d[caseCountKey]));
     const numberOfVerticalAxis = Math.floor(maxCases / tickInterval) + 1;
     // Bar chart container
-    const svgContainer = d3
-        .select(selector)
-        .append("div")
-        .attr("id", "svgContainer");
+    const svgContainer = d3.select(selector).append('div').attr('id', 'svgContainer');
     if (skipLinkId) {
-        svgContainer
-            .append("a")
-            .attr("href", skipLinkId)
-            .attr("id", "body-plot-skip-nav")
-            .text("Skip Charts");
+        svgContainer.append('a').attr('href', skipLinkId).attr('id', 'body-plot-skip-nav').text('Skip Charts');
     }
     // Title
     svgContainer
-        .append("div")
-        .attr("id", "title")
-        .attr("style", `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}`)
+        .append('div')
+        .attr('id', 'title')
+        .attr('style', `left: ${barStartOffset + halfPixel}px; font-size: ${labelSize}`)
         .text(title);
     // The Bar Chart
     const svg = svgContainer
-        .append("svg")
-        .attr("class", "chart")
-        .attr("width", width)
-        .attr("height", height + 15)
-        .attr("viewBox", `0 0 ${width} ${height + 15}`)
-        .append("g");
+        .append('svg')
+        .attr('class', 'chart')
+        .attr('width', width)
+        .attr('height', height + 15)
+        .attr('viewBox', `0 0 ${width} ${height + 15}`)
+        .append('g');
     // Bar Heights
     const y = d3
         .scaleBand()
@@ -1480,301 +1493,284 @@ const createHumanBody = ({ clickHandler = () => null, mouseOverHandler, mouseOut
         .domain([0, maxCases * 1.1])
         .range([0, barWidth]);
     // Horizontal Axis
-    svg
-        .append("line")
-        .attr("stroke", "rgba(11, 11, 11, 0.8)")
-        .attr("x1", barStartOffset)
-        .attr("x2", width)
-        .attr("y1", plotHeight + halfPixel)
-        .attr("y2", plotHeight + halfPixel);
-    const xAxisLabels = svg.append("g").attr("id", "xAxisLabels");
+    svg.append('line')
+        .attr('stroke', 'rgba(11, 11, 11, 0.8)')
+        .attr('x1', barStartOffset)
+        .attr('x2', width)
+        .attr('y1', plotHeight + halfPixel)
+        .attr('y2', plotHeight + halfPixel);
+    const xAxisLabels = svg.append('g').attr('id', 'xAxisLabels');
     if (xAxisLabel) {
         xAxisLabels
-            .append("text")
-            .attr("y", plotHeight + 26)
-            .attr("x", x(tickInterval * numberOfVerticalAxis) / 2 + barStartOffset)
-            .attr("fill", "rgba(40,40,40,0.7)")
-            .attr("font-size", "12px")
-            .attr("aria-hidden", true)
-            .style("text-anchor", "middle")
-            .style("font-family", "Noto Sans")
+            .append('text')
+            .attr('y', plotHeight + 26)
+            .attr('x', x(tickInterval * numberOfVerticalAxis) / 2 + barStartOffset)
+            .attr('fill', 'rgba(40,40,40,0.7)')
+            .attr('font-size', '12px')
+            .attr('aria-hidden', true)
+            .style('text-anchor', 'middle')
+            .style('font-family', 'Noto Sans')
             .text(() => xAxisLabel);
     }
     // Vertical Axis
     for (let i = 0; i < numberOfVerticalAxis; i++) {
-        svg
-            .append("line")
-            .attr("stroke", `rgba(147, 147, 147, 0.5)`)
-            .attr("x1", x(tickInterval) * i + barStartOffset)
-            .attr("x2", x(tickInterval) * i + barStartOffset)
-            .attr("y1", 0)
-            .attr("y2", plotHeight);
+        svg.append('line')
+            .attr('stroke', `rgba(147, 147, 147, 0.5)`)
+            .attr('x1', x(tickInterval) * i + barStartOffset)
+            .attr('x2', x(tickInterval) * i + barStartOffset)
+            .attr('y1', 0)
+            .attr('y2', plotHeight);
         if (i) {
             // Don't display zero
             xAxisLabels
-                .append("text")
-                .attr("y", plotHeight + 13)
-                .attr("x", x(tickInterval) * i + barStartOffset)
-                .attr("fill", "rgba(40,40,40,0.7)")
-                .attr("font-size", "12px")
-                .attr("aria-hidden", true)
-                .style("text-anchor", "middle")
+                .append('text')
+                .attr('y', plotHeight + 13)
+                .attr('x', x(tickInterval) * i + barStartOffset)
+                .attr('fill', 'rgba(40,40,40,0.7)')
+                .attr('font-size', '12px')
+                .attr('aria-hidden', true)
+                .style('text-anchor', 'middle')
                 .text(() => (tickInterval * i).toLocaleString());
         }
     }
     // Primary Site Labels
-    svg
-        .append("g")
-        .attr("id", "primarySiteLabels")
-        .selectAll("text")
+    svg.append('g')
+        .attr('id', 'primarySiteLabels')
+        .selectAll('text')
         .data(data)
         .enter()
-        .append("text")
-        .attr("data-testid", (d) => `Label-${toClassName(d[primarySiteKey])}`)
-        .attr("class", (d) => `primary-site-label-${toClassName(d[primarySiteKey])}`)
-        .attr("y", (_, i) => (plotHeight / data.length) * i + 14)
-        .attr("x", barStartOffset - 10)
-        .attr("fill", "rgb(10, 10, 10)")
-        .attr("font-size", labelSize)
-        .attr("aria-hidden", true)
-        .style("text-anchor", "end")
-        .style("font-family", "Noto Sans")
+        .append('text')
+        .attr('data-testid', (d) => `Label-${toClassName(d[primarySiteKey])}`)
+        .attr('class', (d) => `primary-site-label-${toClassName(d[primarySiteKey])}`)
+        .attr('y', (_, i) => (plotHeight / data.length) * i + 14)
+        .attr('x', barStartOffset - 10)
+        .attr('fill', 'rgb(10, 10, 10)')
+        .attr('font-size', labelSize)
+        .attr('aria-hidden', true)
+        .style('text-anchor', 'end')
+        .style('font-family', 'Noto Sans')
         .text((d) => d[primarySiteKey])
-        .on("mouseover", function (event, d) {
-        // needs `this`
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "1";
-        d3.select(this).style("cursor", "pointer");
-        d3.select(`.bar-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", (d) => {
-            const hsl = d3.hsl(d.color);
-            hsl.s = 1;
-            hsl.l = 0.7;
-            return d3.hsl(hsl).toString();
-        });
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "red");
-        if (mouseOverHandler)
-            mouseOverHandler(d);
-        else {
-            tooltip
-                .style("opacity", 1)
-                .html(`
+        .on('mouseover', function (event, d) {
+            // needs `this`
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '1';
+            d3.select(this).style('cursor', 'pointer');
+            d3.select(`.bar-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', (d) => {
+                    const hsl = d3.hsl(d.color);
+                    hsl.s = 1;
+                    hsl.l = 0.7;
+                    return d3.hsl(hsl).toString();
+                });
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'red');
+            if (mouseOverHandler) mouseOverHandler(d);
+            else {
+                tooltip
+                    .style('opacity', 1)
+                    .html(
+                        `
             <div style="color: #bb0e3d">${d.key}</div>
             <div style="font-size: 12px; color: rgb(20, 20, 20)">
               ${d[caseCountKey]} cases (${d[fileCountKey] || 100} files)
             </div>
-          `)
-                .style("left", `${event.pageX - offsetLeft}px`)
-                .style("top", `${event.pageY - offsetTop - 86}px`)
-                .style("transform", "translateX(-50%)")
-                .style("transform", "translateX(-50%)")
-                .style("z-index", DEFAULT_ZINDEX);
-        }
-    })
-        .on("mouseout", (_, d) => {
-        // needs `this`
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "0";
-        d3.select(`.bar-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", (d) => d.color);
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "rgb(20, 20, 20)");
-        if (mouseOutHandler)
-            mouseOutHandler(d);
-        else
-            tooltip.style("opacity", 0);
-    })
-        .on("click", (_, d) => clickHandler(d));
+          `,
+                    )
+                    .style('left', `${event.pageX - offsetLeft}px`)
+                    .style('top', `${event.pageY - offsetTop - 86}px`)
+                    .style('transform', 'translateX(-50%)')
+                    .style('transform', 'translateX(-50%)')
+                    .style('z-index', DEFAULT_ZINDEX);
+            }
+        })
+        .on('mouseout', (_, d) => {
+            // needs `this`
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '0';
+            d3.select(`.bar-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', (d) => d.color);
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'rgb(20, 20, 20)');
+            if (mouseOutHandler) mouseOutHandler(d);
+            else tooltip.style('opacity', 0);
+        })
+        .on('click', (_, d) => clickHandler(d));
     // Bar Chart Tooltip
     const tooltip = d3
         .select(selector)
-        .append("div")
-        .style("position", "absolute")
-        .style("opacity", "0")
-        .style("background-color", "white")
-        .style("padding", "10px")
-        .style("box-shadow", "0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)")
-        .style("border-radius", "5px")
-        .style("border", "1px solid rgba(40, 40, 40)")
-        .style("pointer-events", "none");
+        .append('div')
+        .style('position', 'absolute')
+        .style('opacity', '0')
+        .style('background-color', 'white')
+        .style('padding', '10px')
+        .style('box-shadow', '0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)')
+        .style('border-radius', '5px')
+        .style('border', '1px solid rgba(40, 40, 40)')
+        .style('pointer-events', 'none');
     // Horizontal Bars
-    svg
-        .append("g")
-        .attr("id", "barGroup")
-        .selectAll("g")
+    svg.append('g')
+        .attr('id', 'barGroup')
+        .selectAll('g')
         .data(data)
         .enter()
-        .append("g")
-        .append("rect")
-        .attr("class", (d) => `bar-group-${toClassName(d[primarySiteKey])}`)
-        .attr("y", (_d, i) => (plotHeight / data.length) * i + 6)
-        .attr("x", barStartOffset + halfPixel)
-        .attr("width", (d) => x(d[caseCountKey]))
-        .attr("height", y.bandwidth() - 6)
-        .attr("fill", (d) => {
-        d.color = colorCodes[d[primarySiteKey]];
-        return d.color;
-    })
-        .attr("data-testid", (d) => `Bar-Graph-${toClassName(d[primarySiteKey])}`)
-        .attr("class", (d) => `bar-${toClassName(d[primarySiteKey])}`)
-        .attr("aria-label", ariaLabel || "Bar")
-        .attr("tabindex", 0)
-        .on("mouseover", function (event, d) {
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "1";
-        d3.select(this)
-            .attr("cursor", "pointer")
-            .transition("300")
-            .attr("fill", (d) => {
-            const hsl = d3.hsl(d.color);
-            hsl.s = 1;
-            hsl.l = 0.7;
-            return d3.hsl(hsl).toString();
-        });
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "red");
-        if (mouseOverHandler)
-            mouseOverHandler(d);
-        else {
-            tooltip
-                .style("opacity", 1)
-                .html(`
+        .append('g')
+        .append('rect')
+        .attr('class', (d) => `bar-group-${toClassName(d[primarySiteKey])}`)
+        .attr('y', (_d, i) => (plotHeight / data.length) * i + 6)
+        .attr('x', barStartOffset + halfPixel)
+        .attr('width', (d) => x(d[caseCountKey]))
+        .attr('height', y.bandwidth() - 6)
+        .attr('fill', (d) => {
+            d.color = colorCodes[d[primarySiteKey]];
+            return d.color;
+        })
+        .attr('data-testid', (d) => `Bar-Graph-${toClassName(d[primarySiteKey])}`)
+        .attr('class', (d) => `bar-${toClassName(d[primarySiteKey])}`)
+        .attr('aria-label', ariaLabel || 'Bar')
+        .attr('tabindex', 0)
+        .on('mouseover', function (event, d) {
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '1';
+            d3.select(this)
+                .attr('cursor', 'pointer')
+                .transition('300')
+                .attr('fill', (d) => {
+                    const hsl = d3.hsl(d.color);
+                    hsl.s = 1;
+                    hsl.l = 0.7;
+                    return d3.hsl(hsl).toString();
+                });
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'red');
+            if (mouseOverHandler) mouseOverHandler(d);
+            else {
+                tooltip
+                    .style('opacity', 1)
+                    .html(
+                        `
             <div style="color: #bb0e3d">${d.key}</div>
             <div style="font-size: 12px; color: rgb(20, 20, 20)">
               ${d[caseCountKey].toLocaleString()} cases, (${d[fileCountKey].toLocaleString() || 100} files)
             </div>
-          `)
-                .style("left", `${event.pageX - offsetLeft}px`)
-                .style("top", `${event.pageY - offsetTop - 86}px`)
-                .style("transform", "translateX(-50%)")
-                .style("transform", "translateX(-50%)")
-                .style("z-index", DEFAULT_ZINDEX);
-        }
-    })
-        .on("mouseout", function (_, d) {
-        // needs `this`
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "0";
-        d3.select(this)
-            .transition("300")
-            .attr("fill", (d) => d.color);
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "rgb(20, 20, 20)");
-        if (mouseOutHandler)
-            mouseOutHandler(d);
-        else
-            tooltip.style("opacity", 0);
-    })
-        .on("click", (_, d) => clickHandler(d))
-        .on("keydown", (e, d) => {
-        if (e.key === "Enter") {
-            clickHandler(d);
-        }
-    })
-        .on("focus", function (event, d) {
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "1";
-        d3.select(this)
-            .attr("cursor", "pointer")
-            .transition("300")
-            .attr("fill", (d) => {
-            const hsl = d3.hsl(d.color);
-            hsl.s = 1;
-            hsl.l = 0.7;
-            return d3.hsl(hsl).toString();
+          `,
+                    )
+                    .style('left', `${event.pageX - offsetLeft}px`)
+                    .style('top', `${event.pageY - offsetTop - 86}px`)
+                    .style('transform', 'translateX(-50%)')
+                    .style('transform', 'translateX(-50%)')
+                    .style('z-index', DEFAULT_ZINDEX);
+            }
+        })
+        .on('mouseout', function (_, d) {
+            // needs `this`
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '0';
+            d3.select(this)
+                .transition('300')
+                .attr('fill', (d) => d.color);
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'rgb(20, 20, 20)');
+            if (mouseOutHandler) mouseOutHandler(d);
+            else tooltip.style('opacity', 0);
+        })
+        .on('click', (_, d) => clickHandler(d))
+        .on('keydown', (e, d) => {
+            if (e.key === 'Enter') {
+                clickHandler(d);
+            }
+        })
+        .on('focus', function (event, d) {
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '1';
+            d3.select(this)
+                .attr('cursor', 'pointer')
+                .transition('300')
+                .attr('fill', (d) => {
+                    const hsl = d3.hsl(d.color);
+                    hsl.s = 1;
+                    hsl.l = 0.7;
+                    return d3.hsl(hsl).toString();
+                });
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'red');
+            if (keyDownHandler) {
+                keyDownHandler({ elem: event.target, data: d });
+            }
+        })
+        .on('focusout', function (_, d) {
+            const organSelector = toClassName(d[primarySiteKey]);
+            const organ = document.getElementById(organSelector);
+            if (organ) organ.style.opacity = '0';
+            d3.select(this)
+                .transition('300')
+                .attr('fill', (d) => d.color);
+            d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
+                .transition('300')
+                .attr('fill', 'rgb(20, 20, 20)');
+            if (keyUpHandler) {
+                keyUpHandler();
+            }
         });
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "red");
-        if (keyDownHandler) {
-            keyDownHandler({ elem: event.target, data: d });
-        }
-    })
-        .on("focusout", function (_, d) {
-        const organSelector = toClassName(d[primarySiteKey]);
-        const organ = document.getElementById(organSelector);
-        if (organ)
-            organ.style.opacity = "0";
-        d3.select(this)
-            .transition("300")
-            .attr("fill", (d) => d.color);
-        d3.select(`.primary-site-label-${toClassName(d[primarySiteKey])}`)
-            .transition("300")
-            .attr("fill", "rgb(20, 20, 20)");
-        if (keyUpHandler) {
-            keyUpHandler();
-        }
-    });
-    const svgs = document.querySelectorAll("#human-body-highlights svg");
+    const svgs = document.querySelectorAll('#human-body-highlights svg');
     [].forEach.call(svgs, (svg) => {
-        svg.addEventListener("click", function () {
+        svg.addEventListener('click', function () {
             clickHandler({ key: this.id });
         });
-        svg.addEventListener("mouseover", function (event) {
+        svg.addEventListener('mouseover', function (event) {
             // needs `this`
-            this.style.opacity = "1";
-            d3.select(`.primary-site-label-${this.id}`)
-                .transition("300")
-                .attr("fill", "red");
+            this.style.opacity = '1';
+            d3.select(`.primary-site-label-${this.id}`).transition('300').attr('fill', 'red');
             d3.select(`.bar-${this.id}`)
-                .attr("cursor", "pointer")
-                .transition("300")
-                .attr("fill", (d) => {
-                // hacks
-                if (mouseOverHandler)
-                    mouseOverHandler(d);
-                else {
-                    tooltip
-                        .style("opacity", 1)
-                        .html(`
+                .attr('cursor', 'pointer')
+                .transition('300')
+                .attr('fill', (d) => {
+                    // hacks
+                    if (mouseOverHandler) mouseOverHandler(d);
+                    else {
+                        tooltip
+                            .style('opacity', 1)
+                            .html(
+                                `
                 <div style="color: #bb0e3d">${d[primarySiteKey]}</div>
                 <div style="font-size: 12px; color: rgb(20, 20, 20)">
                   ${d[caseCountKey].toLocaleString()} cases (${d[fileCountKey].toLocaleString() || 100} files)
                 </div>
-              `)
-                        .style("left", `${event.clientX - offsetLeft}px`)
-                        .style("top", `${event.clientY - offsetTop - 86}px`)
-                        .style("transform", "translateX(-50%)")
-                        .style("z-index", DEFAULT_ZINDEX);
-                }
-                const hsl = d3.hsl(d.color);
-                hsl.s = 1;
-                hsl.l = 0.7;
-                return d3.hsl(hsl);
-            });
+              `,
+                            )
+                            .style('left', `${event.clientX - offsetLeft}px`)
+                            .style('top', `${event.clientY - offsetTop - 86}px`)
+                            .style('transform', 'translateX(-50%)')
+                            .style('z-index', DEFAULT_ZINDEX);
+                    }
+                    const hsl = d3.hsl(d.color);
+                    hsl.s = 1;
+                    hsl.l = 0.7;
+                    return d3.hsl(hsl);
+                });
         });
-        svg.addEventListener("mouseout", function () {
+        svg.addEventListener('mouseout', function () {
             // needs `this`
-            this.style.opacity = "0";
-            d3.select(`.primary-site-label-${this.id}`)
-                .transition("300")
-                .attr("fill", "rgb(20, 20, 20)");
+            this.style.opacity = '0';
+            d3.select(`.primary-site-label-${this.id}`).transition('300').attr('fill', 'rgb(20, 20, 20)');
             d3.select(`.bar-${this.id}`)
-                .transition("300")
-                .attr("fill", (d) => {
-                if (mouseOutHandler)
-                    mouseOutHandler(d);
-                else
-                    tooltip.style("opacity", 0);
-                return d.color;
-            });
+                .transition('300')
+                .attr('fill', (d) => {
+                    if (mouseOutHandler) mouseOutHandler(d);
+                    else tooltip.style('opacity', 0);
+                    return d.color;
+                });
         });
     });
 };

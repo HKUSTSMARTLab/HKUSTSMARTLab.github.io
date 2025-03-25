@@ -44,8 +44,8 @@
 }
 
 .member-photo {
-    width: 150px; 
-    height: 200px; 
+    width: 150px;
+    height: 200px;
     object-fit: cover;
 }
 
@@ -114,14 +114,14 @@
 }
 
 .table-card {
-    border: none; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    border-radius: 0.25rem; 
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
 }
 .table-card td {
-    border: none; 
-    text-align: center; 
-    vertical-align: middle; 
+    border: none;
+    text-align: center;
+    vertical-align: middle;
 }
 
 /* Terms of Service & Consent Form Styles */
@@ -133,7 +133,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     overflow: auto;
     padding: 20px;
 }
@@ -271,11 +271,11 @@
     .term-content {
         padding: 20px 15px;
     }
-    
+
     .term-header h2 {
         font-size: 1.5rem;
     }
-    
+
     .section-title {
         font-size: 1.2rem;
     }
@@ -297,113 +297,117 @@
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(38, 208, 206, 0.3);
     color: white;
-  }
-  
-  .banner-content {
+}
+
+.banner-content {
     text-align: center;
     z-index: 2;
     padding: 0 20px;
-  }
-  
-  .banner-content h1 {
+}
+
+.banner-content h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 10px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     letter-spacing: 1px;
-  }
-  
-  .banner-content p {
+}
+
+.banner-content p {
     font-size: 1.2rem;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
-  }
-  
-  .pulse-line {
+}
+
+.pulse-line {
     position: absolute;
     bottom: 20px;
     left: 0;
     width: 100%;
     height: 4px;
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
     z-index: 1;
     overflow: hidden;
-  }
-  
-  .pulse-fill {
+}
+
+.pulse-fill {
     position: absolute;
     height: 100%;
     width: 0%;
     left: 0;
-    background: linear-gradient(90deg, 
-      rgba(255,255,255,0.8) 0%,
-      rgba(255,255,255,1) 50%, 
-      rgba(255,255,255,0.8) 100%
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0.8) 100%
     );
     filter: blur(0.5px);
-    box-shadow: 0 0 8px rgba(255,255,255,0.7);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
     animation: fillLine 3s forwards;
-  }
-  
-  .dna-helix {
+}
+
+.dna-helix {
     position: absolute;
     top: 10px;
     right: 30px;
     width: 120px;
     height: 80%;
     opacity: 0.2;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="240" viewBox="0 0 120 240"><path fill="white" d="M60,0 C90,40 30,80 60,120 C90,160 30,200 60,240" stroke="white" stroke-width="2" fill="none"/><path fill="white" d="M60,0 C30,40 90,80 60,120 C30,160 90,200 60,240" stroke="white" stroke-width="2" fill="none"/></svg>') no-repeat;
-  }
-  
-  @keyframes fillLine {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="240" viewBox="0 0 120 240"><path fill="white" d="M60,0 C90,40 30,80 60,120 C90,160 30,200 60,240" stroke="white" stroke-width="2" fill="none"/><path fill="white" d="M60,0 C30,40 90,80 60,120 C30,160 90,200 60,240" stroke="white" stroke-width="2" fill="none"/></svg>')
+        no-repeat;
+}
+
+@keyframes fillLine {
     0% {
-      width: 0%;
+        width: 0%;
     }
     100% {
-      width: 100%;
+        width: 100%;
     }
-  }
-  
-  @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
     .banner-content h1 {
-      font-size: 2rem;
+        font-size: 2rem;
     }
-    
+
     .banner-content p {
-      font-size: 1rem;
+        font-size: 1rem;
     }
-  }
-  
-  @media (max-width: 480px) {
+}
+
+@media (max-width: 480px) {
     .banner-content h1 {
-      font-size: 1.8rem;
+        font-size: 1.8rem;
     }
-    
+
     .dna-helix {
-      width: 60px;
-      right: 10px;
+        width: 60px;
+        right: 10px;
     }
-  }
-  
+}
+
 .largemodel-banner::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -20px;
     left: -50px;
     right: -50px;
     bottom: -20px;
-    background: radial-gradient(circle, 
-        rgba(173, 216, 230, 0.85) 0%, 
-        rgba(147, 112, 219, 0.7) 40%, 
-        rgba(189, 224, 254, 0.5) 80%, 
-        rgba(255, 255, 255, 0) 100%);
+    background: radial-gradient(
+        circle,
+        rgba(173, 216, 230, 0.85) 0%,
+        rgba(147, 112, 219, 0.7) 40%,
+        rgba(189, 224, 254, 0.5) 80%,
+        rgba(255, 255, 255, 0) 100%
+    );
     z-index: -1;
     filter: blur(25px);
 }
-  
+
 .largemodel-banner::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
@@ -411,7 +415,7 @@
     z-index: -1;
     pointer-events: none;
 }
-  
+
 .largemodel-banner h1 {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(8px);
@@ -425,33 +429,35 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.3);
     letter-spacing: 0.5px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     width: 100%; /* Ensure h1 can shrink to fit container */
     max-width: calc(100% - 20px); /* Prevent overflow on very narrow screens */
     word-wrap: break-word; /* Allow text to wrap */
     overflow-wrap: break-word; /* Modern browsers */
     hyphens: auto; /* Add hyphens for very long words */
 }
-  
+
 .largemodel-banner h1:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
 }
-  
+
 /* Medium screens */
 @media (max-width: 768px) {
     .largemodel-banner {
         padding: 30px 15px;
         margin: 30px auto;
     }
-    
+
     .largemodel-banner::before {
         top: -20px;
         left: -20px;
         right: -20px;
         bottom: -20px;
     }
-    
+
     .largemodel-banner h1 {
         font-size: 1.8rem;
         padding: 15px 25px;
@@ -464,7 +470,7 @@
         padding: 20px 10px;
         margin: 20px auto;
     }
-    
+
     .largemodel-banner::before {
         top: -10px;
         left: -10px;
@@ -472,7 +478,7 @@
         bottom: -10px;
         filter: blur(15px); /* Reduce blur effect on small screens */
     }
-    
+
     .largemodel-banner h1 {
         font-size: 1.4rem;
         padding: 12px 18px;
@@ -486,7 +492,7 @@
         padding: 15px 5px;
         margin: 15px auto;
     }
-    
+
     .largemodel-banner h1 {
         font-size: 1.2rem;
         padding: 10px 15px;
