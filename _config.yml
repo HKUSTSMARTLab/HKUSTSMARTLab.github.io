@@ -12,6 +12,11 @@ markdown: kramdown
 kramdown:
     parse_block_html: true
 
+include:
+  - "_next"
+  - "showcase/PathBench/_next"
+  - "showcase/PathBench/_next/**/*"
+
 exclude:
     - .sass-cache/
     - .jekyll-cache/
