@@ -5,6 +5,5 @@ enddate: []
 image: /static/img/members/yuhancheng.jpg
 position: MPhil Student
 email: ychengbj (at) connect.hkust-gz.edu.cn
-scholar: 2OuBXfQAAAAJ
-github: PiggyJerry
+github: Chelsea-abab
 ---
