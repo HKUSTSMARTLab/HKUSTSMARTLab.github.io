@@ -6,19 +6,34 @@ group: showcase
 
 <script>
     function showTerm() {
-        document.getElementById("term").style.display = "block";
+        const termDiv = document.getElementById("term");
+        const warningDiv = document.getElementById('network-restriction-warning');
+        const smartPathUrl = 'http://jhcpu6.cse.ust.hk:9000/'; // Define the specific URL
+
+        // Check if the clicked demo is SmartPath
+        if (currentDemoUrl === smartPathUrl) {
+            warningDiv.style.display = 'block'; // Show the warning
+        } else {
+            warningDiv.style.display = 'none';  // Ensure warning is hidden for other demos
+        }
+
+        termDiv.style.display = "block"; // Show the modal
     }
-    
+
     function closeTerm() {
-        document.getElementById("term").style.display = "none";
+        const termDiv = document.getElementById("term");
+        const warningDiv = document.getElementById('network-restriction-warning');
+
+        warningDiv.style.display = 'none'; // Always hide warning on close
+        termDiv.style.display = "none";    // Hide the modal
     }
-    
+
     function handleConfirm() {
         const checkbox = document.getElementById("agreeCheckbox");
         if (checkbox.checked) {
-            closeTerm();
+            closeTerm(); // closeTerm now also hides the warning
             // Redirect to the demo page
-            window.location.href = currentDemoUrl; // currentDemoUrl is a variable defined in the template
+            window.location.href = currentDemoUrl;
         } else {
             alert("Please agree to the terms and conditions to proceed.");
         }
@@ -268,6 +283,12 @@ Explore our cutting-edge AI demos and witness how we are revolutionizing healthc
             <span class="close" onclick="closeTerm()">&times;</span>
         </div>
         
+        <!-- Internal Network Warning -->
+
+        <div id="network-restriction-warning" class="alert alert-warning" role="alert" style="display: none; margin: 10px 10px 10px 10px">
+          <strong>Note:</strong> This demo is accessible only within the HKUST internal network.
+        </div>
+
         <div class="term-body">
             <div class="section">
                 <h3 class="section-title">Terms of Service</h3>
