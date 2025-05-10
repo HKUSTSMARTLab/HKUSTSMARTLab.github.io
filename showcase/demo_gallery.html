@@ -8,10 +8,13 @@ group: showcase
     function showTerm() {
         const termDiv = document.getElementById("term");
         const warningDiv = document.getElementById('network-restriction-warning');
-        const smartPathUrl = 'http://jhcpu6.cse.ust.hk:9000/'; // Define the specific URL
+        const warningUrls = [
+            'http://jhcpu6.cse.ust.hk:9000/',
+            'http://143.89.76.99:2025'
+        ];
 
-        // Check if the clicked demo is SmartPath
-        if (currentDemoUrl === smartPathUrl) {
+        // Check if the clicked demo is in warningUrls
+        if (warningUrls.includes(currentDemoUrl)) {
             warningDiv.style.display = 'block'; // Show the warning
         } else {
             warningDiv.style.display = 'none';  // Ensure warning is hidden for other demos
