@@ -4,16 +4,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Lora:wght@400;500;600;700&display=swap');
 
 /* General Styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
     background-color: #f8f9fa;
     letter-spacing: 0.01em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     max-width: 1200px;
+}
+
+.main-content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styles */
@@ -67,7 +81,7 @@ section {
     background-color: #fff;
     border-radius: 0.25rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 2.5rem;
+    margin-bottom: 0 !important;
     border-top: 3px solid #3498db;
 }
 
@@ -150,23 +164,23 @@ section {
 
 /* Footer Styles */
 footer {
-    background: #1a3c5a;
-    color: #ecf0f1;
-    padding: 1.5rem 0;
-    margin-top: 3rem;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    margin-top: 0 !important;
+    background-color: #1a3c5a;
+    color: white;
+    width: 100%;
 }
 
 footer p {
-    margin-bottom: 0;
-    font-weight: 300;
-    letter-spacing: 0.01em;
+    color: white;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .section-title {
         text-align: center;
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
     }
 
     .section-title::after {
@@ -175,15 +189,66 @@ footer p {
     }
 
     header {
-        padding: 2rem 0;
+        padding: 1.5rem 0;
     }
 
     header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    header p.lead {
+        font-size: 1rem;
+        padding: 0 10px;
     }
 
     section {
-        padding: 1.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    /* Improve accordion display on mobile */
+    .accordion-button {
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .accordion-body {
+        padding: 1rem;
+    }
+
+    /* Improve image display on mobile */
+    .col-md-3 img {
+        max-height: 150px !important;
+        margin: 0 auto 1rem auto;
+        display: block;
+    }
+
+    /* Better button spacing on mobile */
+    .btn {
+        margin-bottom: 0.5rem;
+        padding: 0.4rem 1rem;
+    }
+
+    /* Adjust spacing for better mobile reading */
+    p, ul {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Make sure lists are properly indented on mobile */
+    ul {
+        padding-left: 1.25rem;
     }
 }
 
@@ -263,70 +328,337 @@ blockquote {
 }
 
 /* Twitter specific styles */
-.twitter-card {
-    border-left: 4px solid #1DA1F2;
-    transition: all 0.3s ease;
+/* Twitter embed container */
+.twitter-embed-container {
+    margin-bottom: 1.5rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important; /* Changed to flex for better centering */
+    justify-content: center !important; /* Center the tweet horizontally */
+}
+
+/* Make embedded tweets responsive */
+.twitter-tweet {
+    margin: 0 !important; /* Reset margin */
+    width: 550px !important; /* Fixed width for consistency */
+}
+
+/* Twitter follow button container */
+.twitter-follow-button-container {
+    min-width: 75px;
+    max-width: 75px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: 8px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Twitter timeline container */
+.twitter-timeline-container {
+    max-width: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 0.25rem;
+    min-height: 600px;
+}
+
+/* Twitter fallback message */
+.twitter-fallback {
+    margin-top: 1rem;
     margin-bottom: 1rem;
-    max-height: 200px; /* Limit the height of Twitter cards */
-    overflow-y: auto; /* Add scrolling for long cards */
 }
 
-.twitter-card:hover {
-    box-shadow: 0 8px 15px rgba(29, 161, 242, 0.1);
-}
-
+/* Twitter handle styling */
 .twitter-handle {
     color: #1DA1F2;
     font-weight: 500;
     letter-spacing: 0.02em;
-    font-size: 0.9rem;
-}
-
-.twitter-date {
-    color: #78909c;
     font-size: 0.85rem;
-}
-
-.twitter-content {
-    margin-bottom: 0.5rem;
-    max-height: 100px; /* Limit the height of tweet content */
-    overflow-y: auto; /* Add scrolling for long tweets */
-    font-size: 0.9rem;
-}
-
-.twitter-content p {
-    margin-bottom: 0.5rem;
-}
-
-.twitter-content a {
-    color: #1DA1F2;
-    text-decoration: none;
-}
-
-.twitter-actions {
-    display: flex;
-    gap: 1rem;
-    color: #78909c;
-    font-size: 0.8rem;
-    padding-top: 0.25rem;
-    border-top: 1px solid #f0f0f0;
 }
 
 /* Twitter accounts container */
 .twitter-accounts-container {
-    max-height: 400px;
+    max-height: 380px;
     overflow-y: auto;
     padding-right: 5px;
 }
 
 .twitter-account {
     transition: all 0.3s ease;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    margin-bottom: 0.2rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .twitter-account:hover {
     background-color: #f8f9fa;
+}
+
+/* Twitter avatar styling */
+.twitter-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Twitter account info container */
+.twitter-account-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0; /* Prevents flex items from overflowing */
+    max-width: calc(100% - 100px); /* Leave space for the follow button */
+    margin-right: 8px; /* Add space between text and follow button */
+}
+
+/* Twitter account text container */
+.twitter-account-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Adjust Twitter account name and handle */
+.twitter-account-text h6 {
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding-right: 5px;
+    margin-bottom: 0.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a3c5a;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflow */
+    display: block; /* Ensure block context for overflow handling */
+}
+
+.twitter-account-text span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding-right: 5px;
+    display: block;
+}
+
+/* Tab styling for account sections */
+#accountTabs .nav-link {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+/* Mobile optimizations for Twitter widgets */
+@media (max-width: 992px) {
+    .twitter-embed-container {
+        margin-bottom: 1rem;
+    }
+
+    .twitter-timeline-container {
+        min-height: 500px; /* Minimum height for tablets */
+        height: calc(100vh - 300px); /* Dynamic height based on viewport */
+        max-height: 700px; /* Maximum height for tablets */
+        width: 100%;
+    }
+
+    .twitter-accounts-container {
+        max-height: 350px;
+        padding: 0.3rem;
+    }
+
+    .twitter-follow-button-container {
+        min-width: 70px;
+        max-width: 70px;
+    }
+
+    .twitter-account-info {
+        max-width: calc(100% - 100px);
+    }
+
+    .twitter-account {
+        padding: 0.5rem 0.6rem;
+        margin-bottom: 0.3rem;
+    }
+
+    /* Improve tab display on mobile */
+    .nav-tabs .nav-link {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .nav-pills .nav-link {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* Citation responsive styles */
+    .citation {
+        padding: 1rem;
+    }
+
+    .citation-source small {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .citation-source a,
+    .citation-source span.ms-1 {
+        margin-left: 0 !important;
+        margin-top: 0.25rem;
+    }
+}
+
+/* Extra small device optimizations */
+@media (max-width: 576px) {
+    .twitter-timeline-container {
+        min-height: 400px; /* Minimum height for mobile */
+        height: calc(100vh - 250px); /* Dynamic height based on viewport */
+        max-height: 600px; /* Maximum height for mobile */
+        width: 100%;
+    }
+
+    /* Mobile tweet card adjustments */
+    .tweet-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .tweet-avatar-link {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .tweet-name {
+        font-size: 0.95rem;
+    }
+
+    .tweet-username {
+        font-size: 0.85rem;
+    }
+
+    .tweet-content {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .tweet-footer {
+        font-size: 0.8rem;
+    }
+
+    .tweet-engagement {
+        padding: 6px 0;
+        margin-bottom: 10px;
+    }
+
+    .tweet-stat {
+        padding: 3px 6px;
+        font-size: 0.8rem;
+    }
+
+    .tweet-stat i {
+        font-size: 0.9rem;
+        margin-right: 3px;
+    }
+
+    .tweet-view-link {
+        font-size: 0.8rem;
+    }
+
+    /* Adjust profile hover card for mobile */
+    .profile-hover-card {
+        width: 260px;
+        padding: 12px;
+        font-size: 0.9rem;
+    }
+
+    .profile-card-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .profile-card-bio {
+        font-size: 0.85rem;
+    }
+
+    .profile-card-stats {
+        font-size: 0.8rem;
+    }
+
+    .twitter-accounts-container {
+        max-height: 280px;
+        padding: 0.25rem;
+    }
+
+    .twitter-follow-button-container {
+        min-width: 65px;
+        max-width: 65px;
+    }
+
+    .twitter-account-info {
+        max-width: calc(100% - 95px);
+    }
+
+    .twitter-handle {
+        font-size: 0.8rem;
+    }
+
+    .twitter-account h6 {
+        font-size: 0.9rem;
+    }
+
+    .twitter-account {
+        padding: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .twitter-account img.twitter-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px;
+        min-height: 32px;
+        max-width: 32px;
+        max-height: 32px;
+        margin-right: 10px;
+    }
+
+    .custom-follow-button {
+        padding: 3px 8px;
+        font-size: 12px;
+        min-width: 55px;
+    }
+
+    /* Citation extra small device styles */
+    .citation {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .citation-text {
+        margin-bottom: 0.4rem;
+    }
+
+    .citation-source {
+        font-size: 0.8rem;
+    }
 }
 
 /* Citation style for academic papers */
@@ -335,8 +667,693 @@ blockquote {
     font-size: 0.9rem;
     line-height: 1.6;
     color: #546e7a;
-    padding: 1rem;
+    padding: 1.25rem;
     background-color: #f8f9fa;
     border-left: 3px solid #3498db;
     margin-bottom: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+.citation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05) 0%, rgba(255, 255, 255, 0) 50%);
+    pointer-events: none;
+    border-radius: 0.25rem;
+}
+
+.citation-text {
+    font-style: italic;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.citation-source {
+    color: #78909c;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.5rem;
+}
+
+.citation-source a:hover .badge {
+    background-color: #e3f2fd !important;
+    color: #0d6efd !important;
+    transition: all 0.2s ease;
+}
+
+.citation {
+    transition: all 0.3s ease;
+}
+
+.citation:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-left-width: 5px;
+}
+
+.custom-follow-button {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-bottom: 0;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 20px; /* Rounded button */
+    color: #fff;
+    background-color: #1da1f2; /* Twitter blue */
+    border-color: #1da1f2;
+    text-decoration: none; /* Remove underline from link */
+    min-width: 60px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+.custom-follow-button:hover {
+    background-color: #0c85d0; /* Darker blue on hover */
+    border-color: #0c85d0;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 576px) {
+    /* Extra small devices */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    header p.lead {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    /* Improve image display on very small screens */
+    .col-md-3 img {
+        max-height: 120px !important;
+    }
+
+    /* Make accordion buttons more touch-friendly */
+    .accordion-button {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust footer for small screens */
+    footer p {
+        font-size: 0.8rem;
+    }
+
+    /* Vertical centering for all guideline images */
+    .accordion-body .row .col-md-3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Twitter Account Specific Styles */
+.twitter-account {
+    display: flex;
+    align-items: center;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+    margin-bottom: 0.2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.twitter-account:last-child {
+    border-bottom: none;
+}
+
+.twitter-account:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.twitter-account-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allows this section to take available space */
+    min-width: 0; /* Allow shrinking for text truncation */
+    margin-right: 10px; /* Add space between text and follow button */
+}
+
+.twitter-account img.twitter-avatar { /* Increased specificity */
+    width: 36px !important; /* Force width */
+    height: 36px !important; /* Force height */
+    min-width: 36px; /* Prevent shrinking/growing */
+    min-height: 36px;
+    max-width: 36px;
+    max-height: 36px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    flex-shrink: 0; /* Prevent shrinking in flex container */
+    border: 2px solid #f1f1f1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.twitter-account-text h6 {
+    margin-bottom: 0.1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1a3c5a;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflow */
+    display: block; /* Ensure block context for overflow handling */
+}
+
+.twitter-handle {
+    font-size: 0.85rem;
+    color: #1DA1F2; /* Twitter blue */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Show ellipsis for overflow */
+    display: block; /* Ensure block context for overflow handling */
+}
+
+.twitter-follow-button-container {
+    margin-left: auto; /* Pushes the button to the far right */
+    flex-shrink: 0;    /* Prevent button from shrinking */
+    display: flex;
+    align-items: center;
+}
+
+/* Ensure the container for these accounts allows for proper flex behavior if not already set */
+.twitter-accounts-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 400px; /* Increased height to prevent scrollbar */
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Styles for the tabs */
+.nav-tabs {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
+}
+
+.nav-tabs .nav-link {
+    color: #546e7a;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.6rem 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-radius: 0;
+    margin-right: 0.5rem;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.05);
+    border-bottom-color: rgba(52, 152, 219, 0.3);
+}
+
+.nav-tabs .nav-link.active {
+    color: #1a3c5a;
+    background-color: transparent;
+    border-bottom: 2px solid #3498db;
+    font-weight: 600;
+}
+
+/* Pill tabs styling */
+.nav-pills .nav-link {
+    color: #546e7a;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #e9ecef;
+    color: #3498db;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #3498db;
+    color: white;
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+}
+
+/* Styling for the info box at the top */
+.alert-info {
+    background-color: #e7f3fe;
+    border-color: #d0eaff;
+    color: #0c5460;
+}
+
+/* Twitter Timeline Widget Adjustments */
+.twitter-timeline-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 700px;
+}
+
+.twitter-timeline-container {
+    border-radius: 0.25rem;
+    overflow-y: auto; /* Enable vertical scrolling */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+    min-height: 600px; /* Minimum height for desktop */
+    height: calc(100vh - 350px); /* Dynamic height based on viewport */
+    max-height: 800px; /* Maximum height to prevent excessive stretching */
+    padding: 10px;
+    background-color: #f8f9fa;
+    flex: 1; /* Take up available space */
+}
+
+#twitterTimeline {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 700px;
+    height: 100% !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/* Individual tweet styling */
+.tweet-card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-left: 3px solid #1da1f2;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.tweet-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tweet-avatar-link {
+    display: block;
+    margin-right: 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 2px solid #f1f1f1;
+    transition: border-color 0.2s ease;
+}
+
+.tweet-avatar-link:hover {
+    border-color: #1da1f2;
+}
+
+.tweet-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tweet-user-info {
+    flex: 1;
+    min-width: 0; /* Allows text truncation */
+}
+
+.tweet-name {
+    font-weight: 600;
+    margin-bottom: 0;
+    color: #1a3c5a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.verified-badge {
+    display: inline-flex;
+    font-size: 0.85em;
+    color: #1da1f2;
+}
+
+.tweet-username {
+    color: #657786;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+}
+
+.tweet-username:hover {
+    color: #1da1f2;
+    text-decoration: underline;
+}
+
+.tweet-content {
+    margin-bottom: 15px;
+    line-height: 1.5;
+    word-break: break-word;
+    font-size: 1rem;
+    color: #14171a;
+}
+
+.tweet-hashtag, .tweet-mention {
+    color: #1da1f2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tweet-hashtag:hover, .tweet-mention:hover {
+    text-decoration: underline;
+}
+
+.tweet-media {
+    margin-bottom: 15px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    max-height: 300px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.tweet-media img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.tweet-media:hover img {
+    transform: scale(1.02);
+}
+
+/* Tweet engagement stats */
+.tweet-engagement {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-top: 1px solid #f0f3f5;
+    border-bottom: 1px solid #f0f3f5;
+}
+
+.tweet-stat {
+    display: flex;
+    align-items: center;
+    color: #657786;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tweet-stat:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+    color: #1da1f2;
+}
+
+.tweet-stat i {
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+.tweet-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #657786;
+    font-size: 0.85rem;
+}
+
+.tweet-date {
+    color: #657786;
+    cursor: help;
+}
+
+.tweet-actions a {
+    color: #657786;
+    margin-left: 15px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.tweet-actions a:hover {
+    color: #1da1f2;
+}
+
+.tweet-view-link {
+    display: inline-flex;
+    align-items: center;
+}
+
+.tweet-view-link i {
+    margin-right: 5px;
+    font-size: 0.9rem;
+}
+
+/* Profile hover card */
+.profile-hover-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    width: 300px;
+    padding: 15px;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.profile-card-header {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.profile-card-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 3px solid #f1f1f1;
+}
+
+.profile-card-names {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-card-username {
+    color: #657786;
+    font-size: 0.9rem;
+}
+
+.profile-card-bio {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.profile-card-location {
+    color: #657786;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.profile-card-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+/* Load more button */
+#loadMoreContainer {
+    padding: 10px 0;
+}
+
+/* Loading indicator */
+#loadingMoreTweets {
+    padding: 10px 0;
+    color: #657786;
+}
+
+/* Scroll sentinel */
+#scroll-sentinel {
+    height: 1px;
+    width: 100%;
+    background: transparent;
+}
+
+/* Hashtag Styles */
+.badge.bg-light {
+    background-color: #e9ecef !important; /* Ensure higher specificity if needed */
+    color: #1a3c5a !important;
+    padding: 0.5em 0.75em;
+    border: 1px solid #ced4da;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.badge.bg-light:hover {
+    background-color: #d3d9df !important;
+    color: #000 !important;
+}
+
+/* --- Layout Fixes for Footer and Main Content --- */
+.main-content-row {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: stretch;
+    min-height: calc(100vh - 200px);
+}
+.col-lg-8 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* 改进右侧列 */
+.col-lg-4 {
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 页面布局优化，解决填充问题 --- */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-wrapper {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 改进主内容行的布局 */
+.main-content-row {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: flex-start; /* 改为flex-start */
+    min-height: calc(100vh - 150px);
+}
+
+/* 左侧列固定高度，确保填满 */
+.col-lg-8 {
+    display: flex;
+    flex-direction: column;
+    min-height: 800px;
+    height: 100%;
+}
+
+/* 右侧列自由高度，不限制 */
+.col-lg-4 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+/* Twitter时间线容器填满空间 */
+.twitter-timeline-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 800px !important;
+    height: 100% !important;
+}
+
+#twitterTimeline {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 700px !important;
+    height: 100% !important;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+/* 确保右侧卡片有正确的间距 */
+.col-lg-4 .card {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* 调整footer样式，确保没有额外的间距 */
+footer {
+    flex-shrink: 0;
+    margin-top: 0 !important;
+    background-color: #1a3c5a;
+    color: white;
+    width: 100%;
+}
+
+/* 针对不同屏幕尺寸的调整 */
+@media (max-width: 991px) {
+    .main-content-row {
+        flex-direction: column;
+    }
+
+    .col-lg-8, .col-lg-4 {
+        width: 100%;
+    }
+
+    .col-lg-4 {
+        margin-top: 20px;
+    }
 }

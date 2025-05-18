@@ -6,3 +6,4 @@ vendor/
 .ipynb_checkpoints/
 .jekyll-metadata
 node_modules/
+static/media/Hetao_Talk.mp4

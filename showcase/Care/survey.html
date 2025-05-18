@@ -8,6 +8,153 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .survey-table tr:nth-child(even) {
+            background-color: #0d6efd !important;
+            color: white !important;
+        }
+        .survey-table tr:nth-child(odd) {
+            background-color: white !important;
+        }
+        .hidden-row {
+            display: none;
+        }
+        .filter-header {
+            cursor: pointer;
+            position: relative;
+            padding-right: 28px;
+            transition: background-color 0.2s ease;
+            border-radius: 4px;
+        }
+        .filter-header:hover {
+            background-color: #f0f7ff;
+        }
+        .filter-header:after {
+            content: "\f0d7"; /* FontAwesome down arrow */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 0.85em;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0d6efd;
+            transition: transform 0.2s ease;
+        }
+        .filter-header.active:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        .filter-header.has-filter:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #0d6efd;
+            border-radius: 50%;
+        }
+        .filter-dropdown {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            padding: 12px;
+            min-width: 180px;
+            margin-top: 5px;
+        }
+        .filter-title {
+            font-weight: 600;
+            color: #1a3c5a;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .filter-dropdown label {
+            display: flex;
+            align-items: center;
+            padding: 6px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            transition: background-color 0.2s ease;
+        }
+        .filter-dropdown label:hover {
+            background-color: #f0f7ff;
+        }
+        .filter-dropdown input[type="checkbox"] {
+            margin-right: 8px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+        .filter-actions {
+            margin-top: 10px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .filter-actions button {
+            margin: 0 3px;
+            padding: 6px 10px;
+            font-size: 0.85em;
+            border-radius: 4px;
+            border: none;
+            background-color: #f0f7ff;
+            color: #0d6efd;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .filter-actions button:hover {
+            background-color: #d8e8ff;
+        }
+        /* Mobile optimizations for filters */
+        @media (max-width: 768px) {
+            .filter-dropdown {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 85%;
+                max-width: 300px;
+                max-height: 80vh;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                border-radius: 12px;
+                padding: 16px;
+                z-index: 1100;
+            }
+            .filter-dropdown label {
+                padding: 10px 8px;
+                margin-bottom: 6px;
+            }
+            .filter-dropdown input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+            }
+            .filter-actions button {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            .filter-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 1050;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -35,12 +182,15 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="twitter.html">Community</a>
+                        <a class="nav-link" href="social.html">Community</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Overlay for mobile filter dropdowns -->
+    <div class="filter-overlay" id="filter-overlay"></div>
 
     <div class="container mt-4">
         <header class="text-center mb-5">
@@ -50,77 +200,414 @@
 
         <section class="mb-5">
             <h2 class="section-title">Latest Surveys</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">State of AI in Cytopathology: A Comprehensive Review</h3>
-                            <p class="card-text">This survey provides a comprehensive overview of the current state of artificial intelligence applications in cytopathology, covering deep learning approaches, datasets, and clinical validation studies.</p>
-                            <p><strong>Authors:</strong> Zhang et al.</p>
-                            <p><strong>Publication:</strong> Journal of Pathology Informatics, 2025</p>
-                            <a href="#" class="btn btn-primary">Read Full Survey</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-hover survey-table">
+                    <thead class="table-primary">
+                        <tr>
+                            <th class="filter-header" id="year-header">Year
+                                <div class="filter-dropdown" id="year-dropdown">
+                                    <div class="filter-title">Filter by Year</div>
+                                </div>
+                            </th>
+                            <th>Publication</th>
+                            <th class="filter-header" id="cancer-header">Cancer
+                                <div class="filter-dropdown" id="cancer-dropdown">
+                                    <div class="filter-title">Filter by Cancer Type</div>
+                                </div>
+                            </th>
+                            <th class="filter-header" id="task-header">Task
+                                <div class="filter-dropdown" id="task-dropdown">
+                                    <div class="filter-title">Filter by Task</div>
+                                </div>
+                            </th>
+                            <th>Title</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- First 5 surveys (1-5) -->
+                        <tr>
+                            <td>2023</td>
+                            <td>Medical Image Analysis</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Deep learning for computational cytology: A survey</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Neurocomputing</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>A systematic review on deep learning based methods for cervical cell image analysis</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Artificial Intelligence Review</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>A systematic review of deep learning-based cervical cytology screening: from cell identification to whole slide image analysis</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>The emerging role of deep learning in cytology</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>Acta Cytologica</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Challenges developing deep learning algorithms in cytology</td>
+                            <td></td>
+                        </tr>
 
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">Deep Learning for Cervical Cytology: A Systematic Review</h3>
-                            <p class="card-text">A systematic review of deep learning approaches for cervical cytology analysis, including Pap smear and liquid-based cytology, with a focus on screening and diagnostic applications.</p>
-                            <p><strong>Authors:</strong> Chen et al.</p>
-                            <p><strong>Publication:</strong> Digital Pathology, 2024</p>
-                            <a href="#" class="btn btn-primary">Read Full Survey</a>
-                        </div>
-                    </div>
-                </div>
+                        <!-- Group 2 (6-10) -->
+                        <tr>
+                            <td>2020</td>
+                            <td>IEEE Access</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>A survey for cervical cytopathology image analysis using deep learning</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>Cancers</td>
+                            <td>Non-gynecological</td>
+                            <td>General</td>
+                            <td>Recent application of artificial intelligence in non-gynecological cancer cytopathology: a systematic review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>ACM Computing Surveys</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Cytology image analysis techniques toward automation: systematically revisited</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2025</td>
+                            <td>Bioengineering</td>
+                            <td>Non-gynecological</td>
+                            <td>General</td>
+                            <td>Challenges and Opportunities in Cytopathology Artificial Intelligence</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>CytoJournal</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Artificial neural network in diagnostic cytology</td>
+                            <td></td>
+                        </tr>
 
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">AI-Assisted Cytology Screening: Challenges and Opportunities</h3>
-                            <p class="card-text">This review discusses the challenges and opportunities in implementing AI-assisted cytology screening programs, including technical, regulatory, and workflow integration aspects.</p>
-                            <p><strong>Authors:</strong> Wang et al.</p>
-                            <p><strong>Publication:</strong> Nature Reviews Cancer, 2024</p>
-                            <a href="#" class="btn btn-primary">Read Full Survey</a>
-                        </div>
-                    </div>
-                </div>
+                        <!-- Group 3 (11-15) -->
+                        <tr>
+                            <td>2024</td>
+                            <td>European Journal of Medical Research</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Artificial intelligence in cytopathological applications for cancer: a review of accuracy and analytic validity</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Journal of Clinical Medicine</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>AI in Cytopathology: A Narrative Umbrella Review on Innovations, Challenges, and Future Directions</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2019</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Artificial intelligence in cytopathology: a review of the literature and overview of commercial landscape</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Surgical Pathology Clinics</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Artificial intelligence applications in cytopathology: Current state of the art</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Journal of pathology informatics</td>
+                            <td>Thyroid</td>
+                            <td>General</td>
+                            <td>Current status of machine learning in thyroid cytopathology</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 4 (16-20) -->
+                        <tr>
+                            <td>2021</td>
+                            <td>Computerized Medical Imaging and Graphics</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>What is the state of the art of computer vision-assisted cytology? A Systematic Literature Review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2021</td>
+                            <td>Frontiers in Medicine</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Advances in imaging modalities, artificial intelligence, and single cell biomarker analysis, and their applications in cytopathology</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>The future of digital cytology and artificial intelligence: an editorial commentary for Digital Cytology part 1 and 2</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Digital cytology part 1: digital cytology implementation for practice: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Digital cytology part 2: artificial intelligence in cytology: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 5 (21-25) -->
+                        <tr>
+                            <td>2024</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>The current state of digital cytology and artificial intelligence (AI): Global survey results from the American Society of Cytopathology Digital Cytology Task Force</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2025</td>
+                            <td>EClinicalMedicine</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Performance of artificial intelligence for diagnosing cervical intraepithelial neoplasia and cervical cancer: a systematic review and meta-analysis</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Technical Report</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>A Systematic Literature Review on Vision Transformers applications in Histopathology and Cytopathology: Advances in Cellular Analysis</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>IEEE Access</td>
+                            <td>Cervical</td>
+                            <td>Segmentation</td>
+                            <td>Segmentation of overlapping cells in cervical cytology images: a survey</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>IEEE Access</td>
+                            <td>Cervical</td>
+                            <td>Segmentation and Classification</td>
+                            <td>Segmentation and Classification Techniques for Pap smear Images in Detecting Cervical Cancer: A Systematic Review</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 6 (26-30) -->
+                        <tr>
+                            <td>2024</td>
+                            <td>International Conference on Dependability of Computer Systems</td>
+                            <td>Cervical</td>
+                            <td>Augmentation</td>
+                            <td>Data Augmentation Techniques to Detect Cervical Cancer Using Deep Learning: A Systematic Review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>Diagnostics</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Diagnosis of cervical cancer and pre-cancerous lesions by artificial intelligence: a systematic review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Multimedia Tools and Applications</td>
+                            <td>Cervical</td>
+                            <td>Segmentation</td>
+                            <td>Review of cervical cell segmentation</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Interdisciplinary Medicine</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Advances in AI-based cancer cytopathology</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Cancer Biology & Medicine</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Artificial intelligence strengthens cervical cancer screening--present and future</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 7 (31-35) -->
+                        <tr>
+                            <td>2023</td>
+                            <td>Diagnostic Cytopathology</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Digital cytology: Current status and future prospects</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>IEEE Global Conference for Advancement in Technology</td>
+                            <td>Cervical</td>
+                            <td>Segmentation</td>
+                            <td>A Systematic Study of Challenges in Cervical Cytology Image Segmentation of Intelligence based Cervical Cancer Screening</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2019</td>
+                            <td>International journal of molecular sciences</td>
+                            <td>Cervical</td>
+                            <td>Segmentation and Classification</td>
+                            <td>A review of computational methods for cervical cells segmentation and abnormality classification</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2020</td>
+                            <td>Artificial Intelligence Review</td>
+                            <td>Cervical</td>
+                            <td>Segmentation</td>
+                            <td>Segmentation of cervical cells for automated screening of cervical cancer: a review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>A systematic review and research recommendations on artificial intelligence for automated cervical cancer detection</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 8 (36-40) -->
+                        <tr>
+                            <td>2022</td>
+                            <td>Engineered Science</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Automated detection and classification of cervical cancer using pap smear microscopic images: a comprehensive review and future perspectives</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>Journal of Digital Imaging</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Artificial intelligence-driven digital cytology-based cervical cancer screening: is the time ripe to adopt this disruptive technology in resource-constrained settings? A literature review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2022</td>
+                            <td>Acta Histochemica</td>
+                            <td>General</td>
+                            <td>General</td>
+                            <td>Application and performance of artificial intelligence technology in cytopathology</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>International Journal of Gynecology & Obstetrics</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Artificial intelligence for cervical cancer screening: Scoping review, 2009--2022</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2023</td>
+                            <td>International Conference on Artificial Intelligence and Smart Energy</td>
+                            <td>Cervical</td>
+                            <td>General</td>
+                            <td>Artificial intelligence enabled diagnostic digital cytopathology system for cervical intraepithelial neoplasia detection: Advantages and challenges</td>
+                            <td></td>
+                        </tr>
+
+                        <!-- Group 9 (41-45) -->
+                        <tr>
+                            <td>2023</td>
+                            <td>Seminars in Diagnostic Pathology</td>
+                            <td>General</td>
+                            <td>Molecular</td>
+                            <td>"SMART" cytology: The next generation cytology for precision diagnosis</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2016</td>
+                            <td>Tissue and Cell</td>
+                            <td>Breast</td>
+                            <td>General</td>
+                            <td>Computer-aided diagnosis of breast cancer using cytological images: A systematic review</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Journal of the American Society of Cytopathology</td>
+                            <td>Urine</td>
+                            <td>General</td>
+                            <td>A review of the performance of urinary cytology with a focus on atypia, upper tract and updates on novel ancillary testing</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Surgical pathology clinics</td>
+                            <td>Urine</td>
+                            <td>General</td>
+                            <td>Urinary Tract Cytopathology: Current and Future Impact on Patient Care</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2024</td>
+                            <td>Surgical Pathology Clinics</td>
+                            <td>Thyroid</td>
+                            <td>General</td>
+                            <td>Thyroid Fine-Needle Aspiration: The Current and Future Landscape of Cytopathology</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <section class="mb-5">
-            <h2 class="section-title">Survey Categories</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Technical Surveys</h5>
-                            <p class="card-text">Reviews focusing on technical aspects of AI algorithms, deep learning architectures, and image processing techniques for cytology analysis.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Technical Surveys</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Clinical Implementation</h5>
-                            <p class="card-text">Surveys on the clinical implementation of AI systems in cytopathology laboratories, including workflow integration and validation studies.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Clinical Surveys</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Regulatory & Ethical</h5>
-                            <p class="card-text">Reviews on regulatory frameworks, ethical considerations, and policy implications of AI adoption in cytopathology practice.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Regulatory Surveys</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
     </div>
 
     <footer class="py-4 mt-5">
@@ -132,5 +619,328 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sort table by year (newest first)
+            sortTableByYear();
+
+            // Setup filter dropdowns
+            setupFilters();
+
+            // Add event listeners for filter headers
+            document.getElementById('year-header').addEventListener('click', function(e) {
+                toggleFilterDropdown('year-dropdown', 'year-header');
+                e.stopPropagation();
+            });
+
+            document.getElementById('cancer-header').addEventListener('click', function(e) {
+                toggleFilterDropdown('cancer-dropdown', 'cancer-header');
+                e.stopPropagation();
+            });
+
+            document.getElementById('task-header').addEventListener('click', function(e) {
+                toggleFilterDropdown('task-dropdown', 'task-header');
+                e.stopPropagation();
+            });
+
+            // Close dropdowns when clicking elsewhere
+            document.addEventListener('click', function() {
+                closeAllDropdowns();
+            });
+
+            // Setup overlay for mobile
+            document.getElementById('filter-overlay').addEventListener('click', function() {
+                closeAllDropdowns();
+            });
+
+            // Add filter actions to each dropdown
+            addFilterActions();
+        });
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+
+            document.querySelectorAll('.filter-header').forEach(header => {
+                header.classList.remove('active');
+            });
+
+            document.getElementById('filter-overlay').style.display = 'none';
+        }
+
+        function sortTableByYear() {
+            const tbody = document.querySelector('.survey-table tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            // Sort rows by year (newest first)
+            rows.sort((a, b) => {
+                const yearA = parseInt(a.cells[0].textContent);
+                const yearB = parseInt(b.cells[0].textContent);
+                return yearB - yearA;
+            });
+
+            // Clear table and append sorted rows
+            tbody.innerHTML = '';
+            rows.forEach(row => {
+                tbody.appendChild(row);
+            });
+
+            // Reapply alternating row styles
+            applyRowStyles();
+        }
+
+        function applyRowStyles() {
+            const rows = document.querySelectorAll('.survey-table tbody tr:not(.hidden-row)');
+            rows.forEach((row, index) => {
+                // Remove any existing background styles
+                row.style.backgroundColor = '';
+                row.style.color = '';
+
+                // Apply alternating styles based on visible index
+                if (index % 2 === 1) {
+                    row.style.backgroundColor = '#0d6efd';
+                    row.style.color = 'white';
+                } else {
+                    row.style.backgroundColor = 'white';
+                    row.style.color = '';
+                }
+            });
+        }
+
+        function setupFilters() {
+            // Get unique values for each column
+            const yearTypes = getUniqueValues(0);   // Year is in column index 0
+            const cancerTypes = getUniqueValues(2); // Cancer is in column index 2
+            const taskTypes = getUniqueValues(3);   // Task is in column index 3
+
+            // Create filter dropdowns
+            createFilterDropdown('year-dropdown', yearTypes, 0);
+            createFilterDropdown('cancer-dropdown', cancerTypes, 2);
+            createFilterDropdown('task-dropdown', taskTypes, 3);
+        }
+
+        function getUniqueValues(columnIndex) {
+            const values = new Set();
+            document.querySelectorAll('.survey-table tbody tr').forEach(row => {
+                const value = row.cells[columnIndex].textContent.trim();
+                values.add(value);
+            });
+            return Array.from(values).sort();
+        }
+
+        function createFilterDropdown(dropdownId, values, columnIndex) {
+            const dropdown = document.getElementById(dropdownId);
+            // Keep the title div that's already there
+            const titleDiv = dropdown.querySelector('.filter-title');
+            dropdown.innerHTML = '';
+            dropdown.appendChild(titleDiv);
+
+            // Add "Select All" option
+            const allLabel = document.createElement('label');
+            const allCheckbox = document.createElement('input');
+            allCheckbox.type = 'checkbox';
+            allCheckbox.checked = true;
+            allCheckbox.value = 'all';
+            allCheckbox.addEventListener('change', function() {
+                const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]:not([value="all"])');
+                checkboxes.forEach(cb => {
+                    cb.checked = this.checked;
+                });
+                applyColumnFilter(columnIndex);
+            });
+            allLabel.appendChild(allCheckbox);
+            allLabel.appendChild(document.createTextNode('All'));
+            dropdown.appendChild(allLabel);
+
+            // Add individual options
+            values.forEach(value => {
+                const label = document.createElement('label');
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = true;
+                checkbox.value = value;
+                checkbox.addEventListener('change', function() {
+                    // Update "Select All" checkbox
+                    const allChecked = dropdown.querySelector('input[value="all"]');
+                    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]:not([value="all"])');
+                    const allSelected = Array.from(checkboxes).every(cb => cb.checked);
+                    allChecked.checked = allSelected;
+
+                    applyColumnFilter(columnIndex);
+                });
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(value));
+                dropdown.appendChild(label);
+            });
+
+            // Add filter actions div
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'filter-actions';
+
+            // Add Apply and Cancel buttons
+            const applyBtn = document.createElement('button');
+            applyBtn.textContent = 'Apply';
+            applyBtn.addEventListener('click', function() {
+                closeAllDropdowns();
+            });
+
+            const clearBtn = document.createElement('button');
+            clearBtn.textContent = 'Clear All';
+            clearBtn.addEventListener('click', function() {
+                const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => {
+                    cb.checked = false;
+                });
+                applyColumnFilter(columnIndex);
+            });
+
+            actionsDiv.appendChild(clearBtn);
+            actionsDiv.appendChild(applyBtn);
+            dropdown.appendChild(actionsDiv);
+        }
+
+        function addFilterActions() {
+            const dropdowns = document.querySelectorAll('.filter-dropdown');
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.querySelector('.filter-actions')) {
+                    const columnIndex = dropdown.id === 'year-dropdown' ? 0 :
+                                       dropdown.id === 'cancer-dropdown' ? 2 : 3;
+
+                    const actionsDiv = document.createElement('div');
+                    actionsDiv.className = 'filter-actions';
+
+                    const applyBtn = document.createElement('button');
+                    applyBtn.textContent = 'Apply';
+                    applyBtn.addEventListener('click', function() {
+                        closeAllDropdowns();
+                    });
+
+                    const clearBtn = document.createElement('button');
+                    clearBtn.textContent = 'Clear All';
+                    clearBtn.addEventListener('click', function() {
+                        const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+                        checkboxes.forEach(cb => {
+                            cb.checked = false;
+                        });
+                        applyColumnFilter(columnIndex);
+                    });
+
+                    actionsDiv.appendChild(clearBtn);
+                    actionsDiv.appendChild(applyBtn);
+                    dropdown.appendChild(actionsDiv);
+                }
+            });
+        }
+
+        function toggleFilterDropdown(dropdownId, headerId) {
+            const dropdown = document.getElementById(dropdownId);
+            const header = document.getElementById(headerId);
+            const isMobile = window.innerWidth <= 768;
+            const overlay = document.getElementById('filter-overlay');
+
+            // Close all other dropdowns
+            document.querySelectorAll('.filter-dropdown').forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.style.display = 'none';
+                }
+            });
+
+            // Remove active class from all headers
+            document.querySelectorAll('.filter-header').forEach(h => {
+                if (h.id !== headerId) {
+                    h.classList.remove('active');
+                }
+            });
+
+            // Toggle this dropdown
+            const isOpen = dropdown.style.display === 'block';
+            dropdown.style.display = isOpen ? 'none' : 'block';
+
+            // Toggle active class on header
+            if (isOpen) {
+                header.classList.remove('active');
+                overlay.style.display = 'none';
+            } else {
+                header.classList.add('active');
+                if (isMobile) {
+                    overlay.style.display = 'block';
+                }
+            }
+
+            // Position the dropdown
+            if (!isOpen) {
+                if (isMobile) {
+                    // Mobile positioning is handled by CSS
+                } else {
+                    // Desktop positioning
+                    dropdown.style.top = header.offsetHeight + 'px';
+                    dropdown.style.left = '0';
+
+                    // Ensure dropdown doesn't go off-screen
+                    const rect = dropdown.getBoundingClientRect();
+                    if (rect.right > window.innerWidth) {
+                        dropdown.style.left = 'auto';
+                        dropdown.style.right = '0';
+                    }
+                }
+            }
+        }
+
+        function applyColumnFilter(columnIndex) {
+            // Get selected values for this column
+            let dropdownId;
+            if (columnIndex === 0) {
+                dropdownId = 'year-dropdown';
+            } else if (columnIndex === 2) {
+                dropdownId = 'cancer-dropdown';
+            } else {
+                dropdownId = 'task-dropdown';
+            }
+
+            const dropdown = document.getElementById(dropdownId);
+            const selectedValues = Array.from(dropdown.querySelectorAll('input[type="checkbox"]:not([value="all"]):checked'))
+                .map(cb => cb.value);
+
+            // Get the header element
+            const headerId = dropdownId.replace('dropdown', 'header');
+            const header = document.getElementById(headerId);
+
+            // Check if any filters are applied
+            const hasFilter = selectedValues.length > 0 && selectedValues.length < dropdown.querySelectorAll('input[type="checkbox"]:not([value="all"])').length;
+
+            if (hasFilter) {
+                header.classList.add('has-filter');
+            } else {
+                header.classList.remove('has-filter');
+            }
+
+            // Apply filter to rows
+            document.querySelectorAll('.survey-table tbody tr').forEach(row => {
+                const value = row.cells[columnIndex].textContent.trim();
+                const isVisible = selectedValues.includes(value);
+
+                if (isVisible) {
+                    row.classList.remove(`hidden-by-col-${columnIndex}`);
+                } else {
+                    row.classList.add(`hidden-by-col-${columnIndex}`);
+                }
+
+                // Check if row should be hidden by any filter
+                const hiddenByAnyFilter = row.classList.contains('hidden-by-col-0') ||
+                                         row.classList.contains('hidden-by-col-2') ||
+                                         row.classList.contains('hidden-by-col-3');
+
+                if (hiddenByAnyFilter) {
+                    row.classList.add('hidden-row');
+                } else {
+                    row.classList.remove('hidden-row');
+                }
+            });
+
+            // Reapply alternating row styles
+            applyRowStyles();
+        }
+    </script>
 </body>
 </html>

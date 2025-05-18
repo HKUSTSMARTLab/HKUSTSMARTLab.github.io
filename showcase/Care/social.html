@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media | CARE: Cytology AI and Research Education</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- 内联样式确保布局正确 -->
+    <style>
+        /* 额外的内联CSS，确保页面布局正确，优先级更高 */
+        .main-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 56px); /* 减去导航栏高度 */
+        }
+
+        .main-content-row {
+            flex: 1;
+            display: flex;
+            align-items: stretch; /* 改为stretch，让子元素填满高度 */
+            min-height: calc(100vh - 250px); /* 减去导航栏和标题高度 */
+        }
+
+        .col-lg-8 {
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* 保持填满 */
+            flex: 1; /* 让左侧列占据更多空间 */
+        }
+
+        .twitter-timeline-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        #twitterTimeline {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* 修改右侧列样式 - 让它自由展开但宽度固定 */
+        .col-lg-4 {
+            height: auto; /* 自动高度 */
+            flex: 0 0 350px; /* 固定宽度，不伸缩 */
+        }
+
+        /* 让右侧卡片正确显示 */
+        .col-lg-4 .card {
+            margin-bottom: 15px;
+        }
+
+        /* 维护左侧Twitter时间线固定高度的关键 */
+        .twitter-timeline-wrapper, #twitterTimeline {
+            height: 100% !important;
+        }
+
+        /* 让右侧各部分更紧凑 */
+        .col-lg-4 .card:last-child .table-responsive {
+            max-height: 265px; 
+            overflow-y: auto;
+        }
+
+        .col-lg-4 .card:last-child .table {
+            margin-bottom: 0.5rem;
+        }
+
+        .col-lg-4 .card:last-child .badge {
+            margin-bottom: 0.25rem;
+        }
+
+        /* 调整Twitter账号容器高度 */
+        .twitter-accounts-container {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        footer {
+            margin-top: 0 !important;
+        }
+
+        /* 修复小屏幕设备的布局 */
+        @media (max-width: 992px) {
+            .main-content-row {
+                flex-direction: column;
+            }
+
+            .col-lg-8, .col-lg-4 {
+                width: 100%;
+                flex: none;
+            }
+
+            .col-lg-4 {
+                max-height: none;
+                overflow-y: visible;
+            }
+        }
+    </style>
+
+    <!-- Twitter widget.js for embedded tweets -->
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <!-- Ensure Twitter widget loads properly -->
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span style="color: #1a3c5a; font-weight: 700; font-family: 'Lora', serif;">CARE</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="survey.html">Surveys</a></li>
+                            <li><a class="dropdown-item" href="paper.html">Papers</a></li>
+                            <li><a class="dropdown-item" href="guideline.html">Guidelines</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="twitter.html">Community</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content-wrapper container mt-4">
+        <header class="text-center mb-5">
+            <h1 class="display-4">Cytology on Social Media</h1>
+            <p class="lead">Connect with experts and stay updated with the latest research in cytopathology</p>
+        </header>
+
+        <section class="mb-0">
+            <div class="main-content-row row">
+
+                <!-- 移除多余的嵌套section，简化布局 -->
+                <div class="col-lg-8">
+                    <h2 class="section-title">Selected Recent Tweets</h2>
+                    <p class="mb-4">Stay updated with the latest research, publications, and discussions in the field of cytopathology and AI. Below are recent tweets from leading experts and institutions.</p>
+
+                    <div class="citation mb-4">
+                        <i class="fas fa-quote-left text-primary me-2" style="opacity: 0.7;"></i>
+                        <span class="citation-text">"Twitter has emerged as a vital tool for rapid dissemination of cytopathology research findings and fostering global collaboration among experts."</span>
+                        <div class="citation-source mt-2">
+                            <small>
+                                <strong>Source:</strong> Lepe M, Gardner JM. (2017). <em>Twitter for pathologists: A tool for education, communication, and professional development.</em> Diagnostic Cytopathology, 45(7), 621-628.
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Twitter Timeline Container -->
+                    <div class="twitter-timeline-wrapper mb-4 position-relative">
+                        <!-- Loading Spinner -->
+                        <div id="tweetsLoadingSpinner" class="position-absolute top-50 start-50 translate-middle" style="z-index:10; background:rgba(255,255,255,0.7); border-radius: 8px; padding: 20px; display:flex; align-items:center; justify-content:center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                            <div class="spinner-border text-primary me-2" role="status"></div>
+                            <span>Loading tweets...</span>
+                        </div>
+
+                        <!-- Scrollable Twitter Timeline -->
+                        <div id="twitterTimeline" class="twitter-timeline-container">
+                            <!-- Tweets will be loaded here dynamically -->
+                        </div>
+
+                        <!-- No buttons needed for static data -->
+                    </div>
+
+                    <!-- Fallback message in case Twitter widgets fail to load -->
+                    <div class="alert alert-info twitter-fallback d-none">
+                        <i class="fa-solid fa-info-circle me-2"></i>
+                        Unable to load tweets. Please check your internet connection or try again later.
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Twitter Accounts to Follow</h5>
+                            <p class="card-text small mb-2">Connect with experts, organizations, and journals in cytopathology.</p>
+
+                            <!-- Main tabs for account types -->
+                            <ul class="nav nav-tabs mb-3" id="accountTypesTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="individuals-tab" data-bs-toggle="tab" data-bs-target="#individuals" type="button" role="tab" aria-controls="individuals" aria-selected="true">Individuals</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="organizations-tab" data-bs-toggle="tab" data-bs-target="#organizations" type="button" role="tab" aria-controls="organizations" aria-selected="false">Organizations</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="journals-tab" data-bs-toggle="tab" data-bs-target="#journals" type="button" role="tab" aria-controls="journals" aria-selected="false">Journals</button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content" id="accountTypesTabsContent">
+                                <!-- Individuals Tab -->
+                                <div class="tab-pane fade show active" id="individuals" role="tabpanel" aria-labelledby="individuals-tab">
+                                    <!-- Sub-tabs for individual accounts -->
+                                    <ul class="nav nav-pills nav-justified mb-2" id="individualTabs" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="featured-tab" data-bs-toggle="tab" data-bs-target="#featured" type="button" role="tab" aria-controls="featured" aria-selected="true">Featured</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="more-tab" data-bs-toggle="tab" data-bs-target="#more" type="button" role="tab" aria-controls="more" aria-selected="false">More</button>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content" id="individualTabsContent">
+                                        <!-- Featured Individuals Tab -->
+                                        <div class="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+                                            <div class="twitter-accounts-container">
+                                                <!-- Charles Herndon -->
+                                                <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                                    <img src="https://unavatar.io/twitter/DrCycloPath" alt="Charles Herndon" class="twitter-avatar" data-username="DrCycloPath">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Charles Herndon</h6>
+                                                            <span class="twitter-handle">@DrCycloPath</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/DrCycloPath" target="_blank" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Varsha Manucha -->
+                                                <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                                    <img src="https://unavatar.io/twitter/VarshaManuchaMD" alt="Varsha Manucha, MD" class="twitter-avatar" data-username="VarshaManuchaMD">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Varsha Manucha, MD</h6>
+                                                            <span class="twitter-handle">@VarshaManuchaMD</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/VarshaManuchaMD" target="_blank" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Syed Z. Ali -->
+                                                <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                                    <img src="https://unavatar.io/twitter/sza_jhcyto" alt="Syed Z. Ali" class="twitter-avatar" data-username="sza_jhcyto">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Syed Z. Ali</h6>
+                                                            <span class="twitter-handle">@sza_jhcyto</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/sza_jhcyto" target="_blank" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Héctor-Enrique Torres-Rivas -->
+                                                <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                                    <img src="https://unavatar.io/twitter/duckhuca" alt="Héctor-Enrique Torres-Rivas" class="twitter-avatar" data-username="duckhuca">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Héctor-Enrique Torres-Rivas</h6>
+                                                            <span class="twitter-handle">@duckhuca</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/duckhuca" target="_blank" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Emilio Madrigal -->
+                                                <div class="twitter-account rounded">
+                                                    <img src="https://unavatar.io/twitter/EMadrigalDO" alt="Emilio Madrigal" class="twitter-avatar" data-username="EMadrigalDO">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Emilio Madrigal</h6>
+                                                            <span class="twitter-handle">@EMadrigalDO</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/EMadrigalDO" target="_blank" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- You can add more featured accounts here following the same structure -->
+                                            </div>
+                                        </div>
+
+                                        <!-- More Individuals Tab -->
+                                        <div class="tab-pane fade" id="more" role="tabpanel" aria-labelledby="more-tab">
+                                            <div class="twitter-accounts-container">
+                                                <!-- Lola Lozano -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/mdlozanoe" alt="Lola Lozano" class="twitter-avatar" data-username="mdlozanoe">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Lola Lozano</h6>
+                                                            <span class="twitter-handle">@mdlozanoe</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/mdlozanoe?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Israh Akhtar Khan -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/israhkhan" alt="Israh Akhtar Khan" class="twitter-avatar" data-username="israhkhan">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Israh Akhtar Khan</h6>
+                                                            <span class="twitter-handle">@israhkhan</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/israhkhan?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- C. Christofer Juhlin -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/DrJuhlin" alt="C. Christofer Juhlin" class="twitter-avatar" data-username="DrJuhlin">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">C. Christofer Juhlin</h6>
+                                                            <span class="twitter-handle">@DrJuhlin</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/DrJuhlin?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Vanda Torous MD -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/VandaTorousMD" alt="Vanda Torous MD" class="twitter-avatar" data-username="VandaTorousMD">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Vanda Torous MD</h6>
+                                                            <span class="twitter-handle">@VandaTorousMD</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/VandaTorousMD?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Diane Brackett -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/dgbrackett" alt="Diane Brackett, MD" class="twitter-avatar" data-username="dgbrackett">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Diane Brackett, MD</h6>
+                                                            <span class="twitter-handle">@dgbrackett</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/dgbrackett?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Sam Khader -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/SamKhader" alt="Sam Khader, MD" class="twitter-avatar" data-username="SamKhader">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Sam Khader, MD</h6>
+                                                            <span class="twitter-handle">@SamKhader</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/SamKhader?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Fouad Boulos -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/fouad_boulos" alt="Fouad Boulos" class="twitter-avatar" data-username="fouad_boulos">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Fouad Boulos</h6>
+                                                            <span class="twitter-handle">@fouad_boulos</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/fouad_boulos?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Elizabeth Montgomery -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/LizMontgomeryMD" alt="Elizabeth Montgomery, MD" class="twitter-avatar" data-username="LizMontgomeryMD">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Elizabeth Montgomery, MD</h6>
+                                                            <span class="twitter-handle">@LizMontgomeryMD</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/LizMontgomeryMD?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Ahmed Montasser -->
+                                                <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/AMontasserMD" alt="Ahmed Montasser, MD" class="twitter-avatar" data-username="AMontasserMD">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Ahmed Montasser, MD</h6>
+                                                            <span class="twitter-handle">@AMontasserMD</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/AMontasserMD?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Ziad El-Zaatari -->
+                                                <div class="twitter-account p-1 rounded">
+                                                    <img src="https://unavatar.io/twitter/ziad_zaatari" alt="Ziad El-Zaatari" class="twitter-avatar" data-username="ziad_zaatari">
+                                                    <div class="twitter-account-info">
+                                                        <div class="twitter-account-text">
+                                                            <h6 class="mb-0">Ziad El-Zaatari</h6>
+                                                            <span class="twitter-handle">@ziad_zaatari</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="twitter-follow-button-container">
+                                                        <a href="https://twitter.com/ziad_zaatari?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Organizations Tab -->
+                                <div class="tab-pane fade" id="organizations" role="tabpanel" aria-labelledby="organizations-tab">
+                                    <div class="twitter-accounts-container">
+                                        <!-- Yale Cytopathology -->
+                                        <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                            <img src="https://unavatar.io/twitter/YaleCytology" alt="Yale Cytopathology" class="twitter-avatar" data-username="YaleCytology">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Yale Cytopathology</h6>
+                                                    <span class="twitter-handle">@YaleCytology</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/YaleCytology?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Milan System -->
+                                        <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                            <img src="https://unavatar.io/twitter/MilanSystem" alt="Milan System" class="twitter-avatar" data-username="MilanSystem">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Milan System</h6>
+                                                    <span class="twitter-handle">@MilanSystem</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/MilanSystem?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Cytology Case of the Day -->
+                                        <div class="mb-2 pb-2 border-bottom twitter-account p-1 rounded">
+                                            <img src="https://unavatar.io/twitter/CytologyCOTD" alt="Cytology Case of the Day" class="twitter-avatar" data-username="CytologyCOTD">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Cytology Case of the Day</h6>
+                                                    <span class="twitter-handle">@CytologyCOTD</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/CytologyCOTD?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Cytopathology Cases -->
+                                        <div class="twitter-account p-1 rounded">
+                                            <img src="https://unavatar.io/twitter/UpstateCytology" alt="Cytopathology Cases" class="twitter-avatar" data-username="UpstateCytology">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Cytopathology Cases</h6>
+                                                    <span class="twitter-handle">@UpstateCytology</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/UpstateCytology?ref_src=twsrc%5Etfw" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Journals Tab -->
+                                <div class="tab-pane fade" id="journals" role="tabpanel" aria-labelledby="journals-tab">
+                                    <div class="twitter-accounts-container">
+                                        <!-- Cancer Cytopathology -->
+                                        <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                            <img src="https://unavatar.io/twitter/CancerCytopath" alt="Cancer Cytopathology" class="twitter-avatar" data-username="CancerCytopath">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Cancer Cytopathology</h6>
+                                                    <span class="twitter-handle">@CancerCytopath</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/CancerCytopath" target="_blank" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Diagnostic Cytopathology -->
+                                        <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                            <img src="https://unavatar.io/twitter/DiagnosticCyto" alt="Diagnostic Cytopathology" class="twitter-avatar" data-username="DiagnosticCyto">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Diagnostic Cytopathology</h6>
+                                                    <span class="twitter-handle">@DiagnosticCyto</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/DiagnosticCyto" target="_blank" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Cytopathology -->
+                                        <div class="mb-1 pb-1 border-bottom twitter-account rounded">
+                                            <img src="https://unavatar.io/twitter/CytopathologyJ" alt="Cytopathology" class="twitter-avatar" data-username="CytopathologyJ">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Cytopathology</h6>
+                                                    <span class="twitter-handle">@CytopathologyJ</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/CytopathologyJ" target="_blank" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Journal of the American Society of Cytopathology -->
+                                        <div class="twitter-account rounded">
+                                            <img src="https://unavatar.io/twitter/jascjournal" alt="Journal of the American Society of Cytopathology" class="twitter-avatar" data-username="jascjournal">
+                                            <div class="twitter-account-info">
+                                                <div class="twitter-account-text">
+                                                    <h6 class="mb-0">Journal of the American Society of Cytopathology</h6>
+                                                    <span class="twitter-handle">@jascjournal</span>
+                                                </div>
+                                            </div>
+                                            <div class="twitter-follow-button-container">
+                                                <a href="https://twitter.com/jascjournal" target="_blank" class="custom-follow-button">Follow</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Popular Hashtags</h5>
+                            <p class="small text-muted mb-2">Frequently used hashtags in cytology discussions.</p>
+
+                            <div class="table-responsive mb-2">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Hashtag</th>
+                                            <th>Focus Area</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="https://twitter.com/hashtag/CytologyAI" target="_blank" class="text-decoration-none">#CytologyAI</a></td>
+                                            <td>AI applications in cytology</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="https://twitter.com/hashtag/AIinPathology" target="_blank" class="text-decoration-none">#AIinPathology</a></td>
+                                            <td>AI in pathology broadly</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="https://twitter.com/hashtag/DigitalCytology" target="_blank" class="text-decoration-none">#DigitalCytology</a></td>
+                                            <td>Digital cytology platforms</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a href="https://twitter.com/hashtag/FNAFriday" target="_blank" class="text-decoration-none">#FNAFriday</a></td>
+                                            <td>Fine needle aspiration cases</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="d-flex flex-wrap gap-1 mt-2">
+                                <a href="https://twitter.com/hashtag/CytologyAI" target="_blank" class="badge bg-light text-dark text-decoration-none">#CytologyAI</a>
+                                <a href="https://twitter.com/hashtag/CAREWorkshop2025" target="_blank" class="badge bg-light text-dark text-decoration-none">#CAREWorkshop2025</a>
+                                <a href="https://twitter.com/hashtag/AIinPathology" target="_blank" class="badge bg-light text-dark text-decoration-none">#AIinPathology</a>
+                                <a href="https://twitter.com/hashtag/CytopathologyAI" target="_blank" class="badge bg-light text-dark text-decoration-none">#CytopathologyAI</a>
+                                <a href="https://twitter.com/hashtag/DigitalCytology" target="_blank" class="badge bg-light text-dark text-decoration-none">#DigitalCytology</a>
+                                <a href="https://twitter.com/hashtag/MachineLearning" target="_blank" class="badge bg-light text-dark text-decoration-none">#MachineLearning</a>
+                                <a href="https://twitter.com/hashtag/CervicalScreening" target="_blank" class="badge bg-light text-dark text-decoration-none">#CervicalScreening</a>
+                                <a href="https://twitter.com/hashtag/CytoResearch" target="_blank" class="badge bg-light text-dark text-decoration-none">#CytoResearch</a>
+                                <a href="https://twitter.com/hashtag/FNAFriday" target="_blank" class="badge bg-light text-dark text-decoration-none">#FNAFriday</a>
+                                <a href="https://twitter.com/hashtag/CytoChat" target="_blank" class="badge bg-light text-dark text-decoration-none">#CytoChat</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- 结束col-lg-4 -->
+            </div> <!-- 结束main-content-row -->
+        </section>
+    </div>
+
+    <footer class="py-4 mt-0">
+        <div class="container">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 CARE: Cytology AI and Research Education | HKUST Smart Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Twitter Timeline Handling Script -->
+    <script>
+        // Store all Twitter accounts to fetch tweets from
+        const twitterAccounts = [];
+
+        // Function to collect all Twitter handles from the page
+        function collectTwitterHandles() {
+            const avatars = document.querySelectorAll('.twitter-avatar');
+
+            avatars.forEach(avatar => {
+                const username = avatar.dataset.username;
+                if (username && !twitterAccounts.includes(username)) {
+                    twitterAccounts.push(username);
+                }
+            });
+
+            console.log(`Collected ${twitterAccounts.length} Twitter accounts`);
+        }
+
+        // Function to format a date in a readable format
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHour = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHour / 24);
+
+            if (diffSec < 60) {
+                return `${diffSec}s ago`;
+            } else if (diffMin < 60) {
+                return `${diffMin}m ago`;
+            } else if (diffHour < 24) {
+                return `${diffHour}h ago`;
+            } else if (diffDay < 7) {
+                return `${diffDay}d ago`;
+            } else {
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
+                });
+            }
+        }
+
+        // Function to show notifications to the user
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} notification-toast`;
+            notification.role = 'alert';
+            notification.innerHTML = message;
+
+            // Style the notification
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.zIndex = '9999';
+            notification.style.minWidth = '250px';
+            notification.style.maxWidth = '350px';
+            notification.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+            notification.style.transition = 'all 0.3s ease-in-out';
+            notification.style.opacity = '0';
+            notification.style.transform = 'translateY(-20px)';
+
+            // Add to document
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateY(0)';
+            }, 10);
+
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateY(-20px)';
+
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+
+        // Function to create a tweet card element
+        function createTweetCard(tweet) {
+            const tweetCard = document.createElement('div');
+            tweetCard.className = 'tweet-card';
+            tweetCard.setAttribute('data-tweet-id', tweet.id);
+
+            // Create tweet header with user info
+            const tweetHeader = document.createElement('div');
+            tweetHeader.className = 'tweet-header';
+
+            // Avatar with link to profile
+            const avatarLink = document.createElement('a');
+            avatarLink.href = `https://twitter.com/${tweet.username}`;
+            avatarLink.target = '_blank';
+            avatarLink.className = 'tweet-avatar-link';
+
+            const avatar = document.createElement('img');
+            avatar.className = 'tweet-avatar';
+            avatar.src = `https://unavatar.io/twitter/${tweet.username}`;
+            avatar.alt = tweet.name;
+            avatar.onerror = function() {
+                this.src = 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png';
+            };
+
+            avatarLink.appendChild(avatar);
+
+            // User info with verification badge if applicable
+            const userInfo = document.createElement('div');
+            userInfo.className = 'tweet-user-info';
+
+            const nameContainer = document.createElement('div');
+            nameContainer.className = 'd-flex align-items-center';
+
+            const name = document.createElement('h5');
+            name.className = 'tweet-name mb-0 me-1';
+            name.textContent = tweet.name;
+
+            nameContainer.appendChild(name);
+
+            // Add verification badge if verified
+            if (tweet.verified) {
+                const verifiedBadge = document.createElement('span');
+                verifiedBadge.className = 'verified-badge';
+                verifiedBadge.innerHTML = '<i class="fa-solid fa-check-circle text-primary" title="Verified Account"></i>';
+                nameContainer.appendChild(verifiedBadge);
+            }
+
+            const username = document.createElement('span');
+            username.className = 'tweet-username';
+            username.textContent = `@${tweet.username}`;
+
+            userInfo.appendChild(nameContainer);
+            userInfo.appendChild(username);
+
+            tweetHeader.appendChild(avatarLink);
+            tweetHeader.appendChild(userInfo);
+
+            // Tweet content with clickable hashtags and mentions
+            const content = document.createElement('div');
+            content.className = 'tweet-content';
+
+            // Process text to make hashtags and mentions clickable
+            let processedText = tweet.text;
+
+            // Make hashtags clickable
+            processedText = processedText.replace(/#(\w+)/g, '<a href="https://twitter.com/hashtag/$1" target="_blank" class="tweet-hashtag">#$1</a>');
+
+            // Make mentions clickable
+            processedText = processedText.replace(/@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank" class="tweet-mention">@$1</a>');
+
+            content.innerHTML = processedText;
+
+            // Tweet media (if available)
+            let mediaElement = null;
+            if (tweet.media && tweet.media.length > 0) {
+                mediaElement = document.createElement('div');
+                mediaElement.className = 'tweet-media';
+
+                const mediaLink = document.createElement('a');
+                mediaLink.href = `https://twitter.com/${tweet.username}/status/${tweet.id}`;
+                mediaLink.target = '_blank';
+
+                const img = document.createElement('img');
+                img.src = tweet.media[0];
+                img.alt = 'Tweet media';
+                img.loading = 'lazy'; // Lazy load images
+
+                mediaLink.appendChild(img);
+                mediaElement.appendChild(mediaLink);
+            }
+
+            // Tweet engagement stats
+            const engagement = document.createElement('div');
+            engagement.className = 'tweet-engagement';
+
+            // Comments/Replies
+            const replies = document.createElement('div');
+            replies.className = 'tweet-stat';
+            replies.innerHTML = `<i class="far fa-comment"></i> <span>${tweet.replies}</span>`;
+            replies.title = `${tweet.replies} ${tweet.replies === 1 ? 'reply' : 'replies'}`;
+
+            // Retweets
+            const retweets = document.createElement('div');
+            retweets.className = 'tweet-stat';
+            retweets.innerHTML = `<i class="fas fa-retweet"></i> <span>${tweet.retweets}</span>`;
+            retweets.title = `${tweet.retweets} ${tweet.retweets === 1 ? 'retweet' : 'retweets'}`;
+
+            // Likes
+            const likes = document.createElement('div');
+            likes.className = 'tweet-stat';
+            likes.innerHTML = `<i class="far fa-heart"></i> <span>${tweet.likes}</span>`;
+            likes.title = `${tweet.likes} ${tweet.likes === 1 ? 'like' : 'likes'}`;
+
+            // Add interaction behavior (just visual, not functional)
+            likes.addEventListener('click', function(e) {
+                e.preventDefault();
+                const icon = this.querySelector('i');
+                const count = this.querySelector('span');
+
+                if (icon.classList.contains('far')) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    icon.classList.add('text-danger');
+                    count.textContent = parseInt(count.textContent) + 1;
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.remove('text-danger');
+                    icon.classList.add('far');
+                    count.textContent = parseInt(count.textContent) - 1;
+                }
+            });
+
+            retweets.addEventListener('click', function(e) {
+                e.preventDefault();
+                const icon = this.querySelector('i');
+                const count = this.querySelector('span');
+
+                if (!icon.classList.contains('text-success')) {
+                    icon.classList.add('text-success');
+                    count.textContent = parseInt(count.textContent) + 1;
+                } else {
+                    icon.classList.remove('text-success');
+                    count.textContent = parseInt(count.textContent) - 1;
+                }
+            });
+
+            engagement.appendChild(replies);
+            engagement.appendChild(retweets);
+            engagement.appendChild(likes);
+
+            // Tweet footer with date and actions
+            const footer = document.createElement('div');
+            footer.className = 'tweet-footer';
+
+            const date = document.createElement('span');
+            date.className = 'tweet-date';
+            date.textContent = formatDate(tweet.date);
+            date.title = new Date(tweet.date).toLocaleString();
+
+            const actions = document.createElement('div');
+            actions.className = 'tweet-actions';
+
+            const viewLink = document.createElement('a');
+            viewLink.href = `https://twitter.com/${tweet.username}/status/${tweet.id}`;
+            viewLink.target = '_blank';
+            viewLink.className = 'tweet-view-link';
+            viewLink.innerHTML = '<i class="fa-solid fa-external-link-alt"></i> View on Twitter';
+
+            actions.appendChild(viewLink);
+
+            footer.appendChild(date);
+            footer.appendChild(actions);
+
+            // Assemble the tweet card
+            tweetCard.appendChild(tweetHeader);
+            tweetCard.appendChild(content);
+            if (mediaElement) {
+                tweetCard.appendChild(mediaElement);
+            }
+            tweetCard.appendChild(engagement);
+            tweetCard.appendChild(footer);
+
+            // Add hover effect for better UX
+            tweetCard.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 6px 12px rgba(0,0,0,0.1)';
+            });
+
+            tweetCard.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 1px 3px rgba(0,0,0,0.1)';
+            });
+
+            return tweetCard;
+        }
+
+        // Mock Twitter API database
+        const twitterDatabase = {
+            // Sample tweets with more realistic content and media
+            tweets: [
+                {
+                    id: '1856667867120381976',
+                    name: 'Charles Herndon',
+                    username: 'DrCycloPath',
+                    text: 'Two signet rings, which one is malignant? #CytoPath #PathTwitter #Pathology https://pmc.ncbi.nlm.nih.gov/articles/PMC9063554/',
+                    date: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
+                    media: ['https://placehold.co/600x400/fff5e6/ff9900?text=Malignant+Case'],
+                    likes: 317,
+                    retweets: 103,
+                    replies: 22,
+                    verified: true
+                },
+                {
+                    id: '1234567891',
+                    name: 'Yale Cytopathology',
+                    username: 'YaleCytology',
+                    text: 'Registration is now open for our annual cytopathology workshop. Early bird pricing available until next month! #CytopathologyTraining',
+                    date: new Date(Date.now() - 7200000).toISOString(), // 2 hours ago
+                    media: [],
+                    likes: 28,
+                    retweets: 15,
+                    replies: 3,
+                    verified: true
+                },
+                {
+                    id: '1234567892',
+                    name: 'Varsha Manucha, MD',
+                    username: 'VarshaManuchaMD',
+                    text: 'Interesting case of the day: Papillary thyroid carcinoma with unusual cytomorphologic features. What would be your diagnosis based on these findings? #FNAFriday',
+                    date: new Date(Date.now() - 18000000).toISOString(), // 5 hours ago
+                    media: ['https://placehold.co/600x400/fff5e6/ff9900?text=Thyroid+FNA+Case'],
+                    likes: 56,
+                    retweets: 12,
+                    replies: 8,
+                    verified: true
+                },
+                {
+                    id: '1234567893',
+                    name: 'Cancer Cytopathology',
+                    username: 'CancerCytopath',
+                    text: 'Our latest issue is now available online! Featured articles include advances in molecular testing for thyroid FNA specimens and AI applications in cervical cytology screening.',
+                    date: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
+                    media: ['https://placehold.co/600x400/f0f0f0/333333?text=Journal+Cover'],
+                    likes: 75,
+                    retweets: 43,
+                    replies: 7,
+                    verified: true
+                },
+                {
+                    id: '1234567894',
+                    name: 'Syed Z. Ali',
+                    username: 'sza_jhcyto',
+                    text: 'Honored to be speaking at the International Academy of Cytology meeting next month on the future of digital cytology. Hope to see many colleagues there! #IAC2025 #DigitalCytology',
+                    date: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+                    media: [],
+                    likes: 89,
+                    retweets: 24,
+                    replies: 11,
+                    verified: true
+                },
+                {
+                    id: '1234567895',
+                    name: 'Cytology Case of the Day',
+                    username: 'CytologyCOTD',
+                    text: 'Today\'s case: 45-year-old female with a 2cm pancreatic mass. FNA shows these cells. What\'s your diagnosis? #CytoCase #Pancreas',
+                    date: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+                    media: ['https://placehold.co/600x400/e6ffe6/009900?text=Pancreatic+FNA+Case'],
+                    likes: 63,
+                    retweets: 19,
+                    replies: 27,
+                    verified: false
+                },
+                {
+                    id: '1234567896',
+                    name: 'Emilio Madrigal',
+                    username: 'EMadrigalDO',
+                    text: 'New publication alert! Our team\'s work on implementing digital pathology workflow for rapid on-site evaluation (ROSE) is now available. Link in bio. #DigitalROSE #CytoResearch',
+                    date: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
+                    media: [],
+                    likes: 47,
+                    retweets: 21,
+                    replies: 5,
+                    verified: true
+                },
+                {
+                    id: '1234567897',
+                    name: 'Milan System',
+                    username: 'MilanSystem',
+                    text: 'The updated Milan System for Reporting Salivary Gland Cytopathology (MSRSGC) guidelines are now available for download. See our website for details. #MSRSGC #SalivaryGland',
+                    date: new Date(Date.now() - 432000000).toISOString(), // 5 days ago
+                    media: ['https://placehold.co/600x400/f2e6ff/6600cc?text=Milan+System+Guidelines'],
+                    likes: 112,
+                    retweets: 78,
+                    replies: 14,
+                    verified: true
+                },
+                {
+                    id: '1234567898',
+                    name: 'HKUST SMART Lab',
+                    username: 'SMARTLab_HKUST',
+                    text: 'Excited to announce our new AI model for automated cervical cytology screening achieved 98% sensitivity in our latest clinical validation study. Full paper coming soon! #CervicalCancer #AIinPathology',
+                    date: new Date(Date.now() - 518400000).toISOString(), // 6 days ago
+                    media: ['https://placehold.co/600x400/e6f7ff/0066cc?text=AI+Model+Results'],
+                    likes: 156,
+                    retweets: 87,
+                    replies: 23,
+                    verified: true
+                },
+                {
+                    id: '1234567899',
+                    name: 'Diagnostic Cytopathology',
+                    username: 'DiagnosticCyto',
+                    text: 'Call for papers: Special issue on digital cytology and artificial intelligence applications. Submission deadline is next month. See our website for details and submission guidelines.',
+                    date: new Date(Date.now() - 604800000).toISOString(), // 7 days ago
+                    media: [],
+                    likes: 45,
+                    retweets: 38,
+                    replies: 4,
+                    verified: true
+                },
+                {
+                    id: '1234567900',
+                    name: 'Lola Lozano',
+                    username: 'mdlozanoe',
+                    text: 'Great discussion at today\'s tumor board on challenging thyroid FNA cases. Always learning from my colleagues! #ContinuingEducation #Cytopathology',
+                    date: new Date(Date.now() - 691200000).toISOString(), // 8 days ago
+                    media: [],
+                    likes: 37,
+                    retweets: 5,
+                    replies: 8,
+                    verified: false
+                },
+                {
+                    id: '1234567901',
+                    name: 'Cytopathology',
+                    username: 'CytopathologyJ',
+                    text: 'Our most cited paper of 2024 is now available with free access for the next month: "Artificial Intelligence in Cytopathology: Current Applications and Future Directions" #OpenAccess',
+                    date: new Date(Date.now() - 777600000).toISOString(), // 9 days ago
+                    media: ['https://placehold.co/600x400/f0f0f0/333333?text=Journal+Article'],
+                    likes: 92,
+                    retweets: 64,
+                    replies: 7,
+                    verified: true
+                },
+                {
+                    id: '1234567902',
+                    name: 'Israh Akhtar Khan',
+                    username: 'israhkhan',
+                    text: 'Just wrapped up teaching our cytopathology fellows about digital image analysis. The future of our field is bright with these talented trainees! #CytologyEducation',
+                    date: new Date(Date.now() - 864000000).toISOString(), // 10 days ago
+                    media: [],
+                    likes: 41,
+                    retweets: 9,
+                    replies: 3,
+                    verified: false
+                },
+                {
+                    id: '1234567903',
+                    name: 'Journal of the American Society of Cytopathology',
+                    username: 'jascjournal',
+                    text: 'New guidelines for reporting urine cytology using the Paris System are now published in our latest issue. #PariSystem #UrineCytology',
+                    date: new Date(Date.now() - 950400000).toISOString(), // 11 days ago
+                    media: ['https://placehold.co/600x400/e6ffff/006666?text=Paris+System+Guidelines'],
+                    likes: 83,
+                    retweets: 51,
+                    replies: 6,
+                    verified: true
+                },
+                {
+                    id: '1234567904',
+                    name: 'C. Christofer Juhlin',
+                    username: 'DrJuhlin',
+                    text: 'Fascinating case today: Metastatic medullary thyroid carcinoma with unusual morphology. Always keep calcitonin staining in your back pocket for challenging thyroid FNAs! #CytoTips',
+                    date: new Date(Date.now() - 1036800000).toISOString(), // 12 days ago
+                    media: ['https://placehold.co/600x400/ffe6e6/cc0000?text=Medullary+Thyroid+Carcinoma'],
+                    likes: 58,
+                    retweets: 17,
+                    replies: 12,
+                    verified: true
+                },
+                {
+                    id: '1234567905',
+                    name: 'Vanda Torous MD',
+                    username: 'VandaTorousMD',
+                    text: 'Reminder: Abstract submission for the International Cytology Congress closes next week. Don\'t miss the opportunity to present your research! #ICC2025',
+                    date: new Date(Date.now() - 1123200000).toISOString(), // 13 days ago
+                    media: [],
+                    likes: 29,
+                    retweets: 24,
+                    replies: 2,
+                    verified: false
+                },
+                {
+                    id: '1234567906',
+                    name: 'Diane Brackett, MD',
+                    username: 'dgbrackett',
+                    text: 'Just published: Our multi-institutional study on the implementation of digital cytology workflows. Link in bio. #DigitalCytology #LaboratoryInformatics',
+                    date: new Date(Date.now() - 1209600000).toISOString(), // 14 days ago
+                    media: ['https://placehold.co/600x400/f2f2f2/666666?text=Digital+Workflow+Study'],
+                    likes: 67,
+                    retweets: 31,
+                    replies: 8,
+                    verified: true
+                },
+                {
+                    id: '1234567907',
+                    name: 'Sam Khader, MD',
+                    username: 'SamKhader',
+                    text: 'Excellent webinar yesterday on molecular testing in cytopathology. Thanks to all who attended! Recording will be available next week. #MolecularCytology',
+                    date: new Date(Date.now() - 1296000000).toISOString(), // 15 days ago
+                    media: [],
+                    likes: 43,
+                    retweets: 12,
+                    replies: 5,
+                    verified: false
+                },
+                {
+                    id: '1234567908',
+                    name: 'Fouad Boulos',
+                    username: 'fouad_boulos',
+                    text: 'Looking forward to chairing the session on AI in cytopathology at next month\'s pathology informatics conference. Great lineup of speakers! #PathInfo2025',
+                    date: new Date(Date.now() - 1382400000).toISOString(), // 16 days ago
+                    media: [],
+                    likes: 51,
+                    retweets: 18,
+                    replies: 7,
+                    verified: true
+                }
+            ],
+
+            // User profiles for each account
+            profiles: {
+                'DrCycloPath': {
+                    name: 'Charles Herndon',
+                    bio: 'Cytopathologist | Researcher | Digital Pathology Enthusiast | Views are my own',
+                    location: 'Boston, MA',
+                    followers: 5842,
+                    following: 723,
+                    verified: true
+                },
+                'YaleCytology': {
+                    name: 'Yale Cytopathology',
+                    bio: 'Official account of the Yale Cytopathology Program | Education, Research, Clinical Excellence',
+                    location: 'New Haven, CT',
+                    followers: 8721,
+                    following: 512,
+                    verified: true
+                },
+                'VarshaManuchaMD': {
+                    name: 'Varsha Manucha, MD',
+                    bio: 'Cytopathologist | Associate Professor | Researcher | Educator',
+                    location: 'Jackson, MS',
+                    followers: 4231,
+                    following: 651,
+                    verified: true
+                },
+                'CancerCytopath': {
+                    name: 'Cancer Cytopathology',
+                    bio: 'Official journal of the American Society of Cytopathology | Published by Wiley',
+                    location: 'Global',
+                    followers: 12453,
+                    following: 245,
+                    verified: true
+                },
+                'sza_jhcyto': {
+                    name: 'Syed Z. Ali',
+                    bio: 'Professor of Pathology | Director of Cytopathology | Johns Hopkins Medicine',
+                    location: 'Baltimore, MD',
+                    followers: 7823,
+                    following: 412,
+                    verified: true
+                },
+                'CytologyCOTD': {
+                    name: 'Cytology Case of the Day',
+                    bio: 'Daily cytopathology cases for education | Run by pathology residents and fellows',
+                    location: 'United States',
+                    followers: 6254,
+                    following: 187,
+                    verified: false
+                },
+                'EMadrigalDO': {
+                    name: 'Emilio Madrigal',
+                    bio: 'Pathologist | Digital Pathology Researcher | Informatics Enthusiast',
+                    location: 'Boston, MA',
+                    followers: 3987,
+                    following: 721,
+                    verified: true
+                },
+                'MilanSystem': {
+                    name: 'Milan System',
+                    bio: 'Official account for The Milan System for Reporting Salivary Gland Cytopathology (MSRSGC)',
+                    location: 'Global',
+                    followers: 9876,
+                    following: 134,
+                    verified: true
+                },
+                'SMARTLab_HKUST': {
+                    name: 'HKUST SMART Lab',
+                    bio: 'System and Media Lab | Hong Kong University of Science and Technology | AI Research in Healthcare',
+                    location: 'Hong Kong',
+                    followers: 7432,
+                    following: 521,
+                    verified: true
+                },
+                'DiagnosticCyto': {
+                    name: 'Diagnostic Cytopathology',
+                    bio: 'Official journal account | Published by Wiley | Cytopathology research and practice',
+                    location: 'Global',
+                    followers: 8765,
+                    following: 231,
+                    verified: true
+                },
+                'mdlozanoe': {
+                    name: 'Lola Lozano',
+                    bio: 'Cytopathologist | Assistant Professor | Researcher | Educator',
+                    location: 'Madrid, Spain',
+                    followers: 2987,
+                    following: 543,
+                    verified: false
+                },
+                'CytopathologyJ': {
+                    name: 'Cytopathology',
+                    bio: 'Official journal of the British Association for Cytopathology | Published by Wiley',
+                    location: 'United Kingdom',
+                    followers: 7654,
+                    following: 198,
+                    verified: true
+                },
+                'israhkhan': {
+                    name: 'Israh Akhtar Khan',
+                    bio: 'Cytopathologist | Educator | Researcher | Digital Pathology Advocate',
+                    location: 'Chicago, IL',
+                    followers: 3421,
+                    following: 876,
+                    verified: false
+                },
+                'jascjournal': {
+                    name: 'Journal of the American Society of Cytopathology',
+                    bio: 'Official journal of the American Society of Cytopathology | Published by Elsevier',
+                    location: 'United States',
+                    followers: 9876,
+                    following: 156,
+                    verified: true
+                },
+                'DrJuhlin': {
+                    name: 'C. Christofer Juhlin',
+                    bio: 'Endocrine Pathologist | Associate Professor | Researcher | Karolinska Institute',
+                    location: 'Stockholm, Sweden',
+                    followers: 4532,
+                    following: 687,
+                    verified: true
+                },
+                'VandaTorousMD': {
+                    name: 'Vanda Torous MD',
+                    bio: 'Cytopathologist | Assistant Professor | Researcher | MGH/Harvard Medical School',
+                    location: 'Boston, MA',
+                    followers: 3876,
+                    following: 542,
+                    verified: false
+                },
+                'dgbrackett': {
+                    name: 'Diane Brackett, MD',
+                    bio: 'Pathologist | Digital Pathology Researcher | Informatics | MGH/Harvard Medical School',
+                    location: 'Boston, MA',
+                    followers: 4123,
+                    following: 587,
+                    verified: true
+                },
+                'SamKhader': {
+                    name: 'Sam Khader, MD',
+                    bio: 'Cytopathologist | Assistant Professor | Molecular Diagnostics | Memorial Sloan Kettering',
+                    location: 'New York, NY',
+                    followers: 3654,
+                    following: 721,
+                    verified: false
+                },
+                'fouad_boulos': {
+                    name: 'Fouad Boulos',
+                    bio: 'Pathologist | Associate Professor | Digital Pathology | Informatics',
+                    location: 'Lebanon',
+                    followers: 3987,
+                    following: 612,
+                    verified: true
+                }
+            }
+        };
+
+        // Global variables for pagination
+        let currentPage = 1;
+        const tweetsPerPage = 5;
+        let allTweets = [];
+        let isLoading = false;
+
+        // Simple configuration for static mock data
+        const config = {
+            tweetsPerPage: 5 // Number of tweets to show per page
+        };
+
+        // Function to fetch tweets from our mock database
+        async function fetchTweets(page = 1, refresh = false) {
+            if (isLoading) return false;
+            isLoading = true;
+            // Show loading spinner
+            if (page === 1 || refresh) {
+                document.getElementById('tweetsLoadingSpinner').style.display = 'flex';
+            } else {
+                // Show loading indicator at the bottom for pagination
+                const loadingMore = document.createElement('div');
+                loadingMore.id = 'loadingMoreTweets';
+                loadingMore.className = 'text-center my-3';
+                loadingMore.innerHTML = '<div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div><span>Loading more tweets...</span>';
+                document.getElementById('twitterTimeline').appendChild(loadingMore);
+            }
+
+            try {
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 800));
+
+                // Reset timeline on refresh or first page
+                if (refresh || page === 1) {
+                    allTweets = [];
+                    document.getElementById('twitterTimeline').innerHTML = '';
+                    currentPage = 1;
+                }
+
+                // Get mock tweets for the current page
+                const start = (page - 1) * tweetsPerPage;
+                const end = start + tweetsPerPage;
+
+                // Get tweets from our mock database
+                const mockTweets = twitterDatabase.tweets.slice(start, end);
+
+                // Append tweets to timeline
+                const timelineContainer = document.getElementById('twitterTimeline');
+                mockTweets.forEach(tweet => {
+                    const tweetCard = createTweetCard(tweet);
+                    timelineContainer.appendChild(tweetCard);
+                });
+
+                // Add "Load More" button if there are more tweets
+                if (end < twitterDatabase.tweets.length) {
+                    // Show or update the Load More button
+                    const loadMoreContainer = document.createElement('div');
+                    loadMoreContainer.className = 'text-center my-3';
+                    loadMoreContainer.id = 'loadMoreContainer';
+
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.className = 'btn btn-outline-primary';
+                    loadMoreBtn.innerHTML = 'Load More Tweets';
+                    loadMoreBtn.onclick = () => {
+                        currentPage++;
+                        fetchTweets(currentPage);
+                    };
+
+                    loadMoreContainer.appendChild(loadMoreBtn);
+                    timelineContainer.appendChild(loadMoreContainer);
+                }
+
+                // Hide spinner and update loading flag
+                document.getElementById('tweetsLoadingSpinner').style.display = 'none';
+                isLoading = false;
+                return true;
+            } catch (error) {
+                console.error('Error fetching tweets:', error);
+                document.getElementById('tweetsLoadingSpinner').style.display = 'none';
+                isLoading = false;
+
+                if (page === 1) {
+                    document.querySelector('.twitter-fallback').classList.remove('d-none');
+                } else {
+                    // Show pagination error message
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'alert alert-danger my-3';
+                    errorMsg.innerHTML = '<i class="fa-solid fa-exclamation-circle me-2"></i>Failed to load more tweets. Please try again.';
+                    document.getElementById('twitterTimeline').appendChild(errorMsg);
+                }
+                return false;
+            }
+        }
+
+        // Function to handle Twitter avatar loading with fallbacks
+        function handleTwitterAvatars() {
+            const avatars = document.querySelectorAll('.twitter-avatar');
+
+            avatars.forEach(avatar => {
+                const username = avatar.dataset.username;
+
+                // Set error handler for each avatar
+                avatar.onerror = function() {
+                    // Try Twitter API first (if available)
+                    this.src = `https://unavatar.io/twitter/${username}`;
+
+                    // If that fails, use a fallback
+                    this.onerror = function() {
+                        // Final fallback to default avatar
+                        this.src = 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png';
+                        this.onerror = null; // Prevent infinite loop
+                    };
+                };
+
+                // Initially try to load from Twitter directly
+                avatar.src = `https://unavatar.io/twitter/${username}`;
+            });
+        }
+
+        // Function to handle profile hover cards
+        function setupProfileHoverCards() {
+            // Add event listeners to all tweet avatars and usernames
+            document.querySelectorAll('.tweet-avatar-link, .tweet-username').forEach(element => {
+                element.addEventListener('mouseenter', function(e) {
+                    // Get username
+                    let username;
+                    if (this.classList.contains('tweet-avatar-link')) {
+                        username = this.href.split('/').pop();
+                    } else {
+                        username = this.textContent.substring(1); // Remove @ symbol
+                    }
+
+                    // Check if we have profile data for this user
+                    if (twitterDatabase.profiles[username]) {
+                        // Create hover card
+                        const profile = twitterDatabase.profiles[username];
+
+                        // Remove any existing hover cards
+                        const existingCards = document.querySelectorAll('.profile-hover-card');
+                        existingCards.forEach(card => card.remove());
+
+                        const hoverCard = document.createElement('div');
+                        hoverCard.className = 'profile-hover-card';
+
+                        // Position the hover card
+                        const rect = this.getBoundingClientRect();
+                        hoverCard.style.position = 'absolute';
+                        hoverCard.style.top = `${window.scrollY + rect.bottom + 10}px`;
+                        hoverCard.style.left = `${window.scrollX + rect.left}px`;
+
+                        // Card content
+                        hoverCard.innerHTML = `
+                            <div class="profile-card-header">
+                                <img src="https://unavatar.io/twitter/${username}" alt="${profile.name}" class="profile-card-avatar">
+                                <div class="profile-card-names">
+                                    <h6 class="mb-0 d-flex align-items-center">
+                                        ${profile.name}
+                                        ${profile.verified ? '<span class="verified-badge ms-1"><i class="fa-solid fa-check-circle text-primary"></i></span>' : ''}
+                                    </h6>
+                                    <span class="profile-card-username">@${username}</span>
+                                </div>
+                            </div>
+                            <div class="profile-card-bio">${profile.bio}</div>
+                            <div class="profile-card-location">
+                                <i class="fa-solid fa-map-marker-alt"></i> ${profile.location}
+                            </div>
+                            <div class="profile-card-stats">
+                                <div><strong>${profile.following.toLocaleString()}</strong> Following</div>
+                                <div><strong>${profile.followers.toLocaleString()}</strong> Followers</div>
+                            </div>
+                            <a href="https://twitter.com/${username}" target="_blank" class="btn btn-sm btn-primary w-100 mt-2">
+                                View Profile
+                            </a>
+                        `;
+
+                        // Add to document
+                        document.body.appendChild(hoverCard);
+
+                        // Remove on mouseleave
+                        hoverCard.addEventListener('mouseleave', function() {
+                            this.remove();
+                        });
+
+                        // Also remove if mouse leaves the trigger element
+                        this.addEventListener('mouseleave', function() {
+                            setTimeout(() => {
+                                // Check if mouse is over the hover card
+                                const hoverCardElement = document.querySelector('.profile-hover-card');
+                                if (hoverCardElement) {
+                                    const isMouseOverCard = hoverCardElement.matches(':hover');
+                                    if (!isMouseOverCard) {
+                                        hoverCardElement.remove();
+                                    }
+                                }
+                            }, 300);
+                        });
+                    }
+                });
+            });
+        }
+
+        // Function to handle infinite scroll
+        function setupInfiniteScroll() {
+            const timelineContainer = document.getElementById('twitterTimeline');
+
+            // Use Intersection Observer to detect when user scrolls near the bottom
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Load more tweets if we're at the bottom and there's a "Load More" button
+                        const loadMoreBtn = document.querySelector('#loadMoreContainer button');
+                        if (loadMoreBtn && !isLoading) {
+                            loadMoreBtn.click();
+                        }
+                    }
+                });
+            }, {
+                root: timelineContainer,
+                rootMargin: '0px 0px 200px 0px', // Start loading when within 200px of the bottom
+                threshold: 0.1
+            });
+
+            // Create a sentinel element to observe
+            const sentinel = document.createElement('div');
+            sentinel.id = 'scroll-sentinel';
+            sentinel.style.height = '1px';
+            timelineContainer.appendChild(sentinel);
+
+            // Start observing
+            observer.observe(sentinel);
+        }
+
+        // Initialize the Twitter timeline
+        function initTwitterTimeline() {
+            // Collect Twitter handles from the page
+            collectTwitterHandles();
+
+            // Fetch tweets
+            fetchTweets(1, true).then(success => {
+                if (success) {
+                    // Setup profile hover cards
+                    setupProfileHoverCards();
+
+                    // Setup infinite scroll
+                    setupInfiniteScroll();
+                }
+            });
+        }
+
+        // Run initialization when the page loads
+        window.addEventListener('load', function() {
+            handleTwitterAvatars();
+            initTwitterTimeline();
+        });
+    </script>
+</body>
+</html>
