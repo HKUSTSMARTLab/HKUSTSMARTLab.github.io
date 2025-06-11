@@ -3,11 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CARE: Cytology AI and Research Education</title>
+    <title>CARE: Cytology AI Research and Education</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .news-carousel {
+            position: relative;
+            overflow: hidden;
+        }
+        .news-container {
+            display: flex;
+            transition: transform 0.3s ease;
+            gap: 1.5rem;
+        }
+        .news-item {
+            flex: 0 0 calc(33.333% - 1rem);
+            min-width: 300px;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .carousel-btn:hover {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .carousel-btn.prev {
+            left: -20px;
+        }
+        .carousel-btn.next {
+            right: -20px;
+        }
+        .carousel-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        @media (max-width: 768px) {
+            .news-item {
+                flex: 0 0 calc(100% - 1rem);
+                min-width: 280px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -45,38 +96,116 @@
 
     <div class="container mt-4">
         <header class="text-center mb-5">
-            <h1 class="display-4">CARE: Cytology AI and Research Education</h1>
+            <h1 class="display-4">CARE: Cytology AI Research and Education</h1>
             <p class="lead">Advancing AI technologies for cytology analysis and education</p>
         </header>
 
         <!-- News Section -->
         <section class="mb-5">
             <h2 class="section-title">News</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="news-carousel">
+                <button class="carousel-btn prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="news-container" id="newsContainer">
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Latest Research Publication</h5>
+                                <p class="card-text">Our team has published a new paper on AI-assisted cytology screening in Nature Medicine.</p>
+                                <p class="card-text"><small class="text-muted">May 10, 2025</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">CARE Workshop 2025</h5>
+                                <p class="card-text">Join us for the annual CARE Workshop on Cytology AI advancements on June 15-17, 2025.</p>
+                                <p class="card-text"><small class="text-muted">April 28, 2025</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">New Dataset Release</h5>
+                                <p class="card-text">We've released a comprehensive cytology image dataset with over 10,000 annotated samples.</p>
+                                <p class="card-text"><small class="text-muted">March 15, 2025</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">AI Model Breakthrough</h5>
+                                <p class="card-text">New foundation model achieves 98% accuracy in cervical cancer screening with reduced false positives.</p>
+                                <p class="card-text"><small class="text-muted">February 20, 2025</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">International Collaboration</h5>
+                                <p class="card-text">CARE platform now supports multi-language interface for global cytopathology community.</p>
+                                <p class="card-text"><small class="text-muted">January 18, 2025</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Clinical Trial Results</h5>
+                                <p class="card-text">Phase III clinical trials show significant improvement in diagnostic accuracy using our AI system.</p>
+                                <p class="card-text"><small class="text-muted">December 10, 2024</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Computational Cytology Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Computational Cytology</h2>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Latest Research Publication</h5>
-                            <p class="card-text">Our team has published a new paper on AI-assisted cytology screening in Nature Medicine.</p>
-                            <p class="card-text"><small class="text-muted">May 10, 2025</small></p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Survey</h5>
+                            <p class="card-text">Comprehensive surveys on cytopathology AI research and applications.</p>
+                            <a href="survey.html" class="btn btn-outline-primary">View Surveys</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">CARE Workshop 2025</h5>
-                            <p class="card-text">Join us for the annual CARE Workshop on Cytology AI advancements on June 15-17, 2025.</p>
-                            <p class="card-text"><small class="text-muted">April 28, 2025</small></p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Literature</h5>
+                            <p class="card-text">Research publications from our team and collaborators.</p>
+                            <a href="paper.html" class="btn btn-outline-primary">Browse Papers</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">New Dataset Release</h5>
-                            <p class="card-text">We've released a comprehensive cytology image dataset with over 10,000 annotated samples.</p>
-                            <p class="card-text"><small class="text-muted">March 15, 2025</small></p>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Guideline</h5>
+                            <p class="card-text">Best practices and guidelines for clinical cytopathology and AI development and implementation.</p>
+                            <a href="guideline.html" class="btn btn-outline-primary">Read Guidelines</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Social Media</h5>
+                            <p class="card-text">Connect with cytopathology experts and institutions on Social Media.</p>
+                            <a href="social.html" class="btn btn-outline-primary">Explore Accounts</a>
                         </div>
                     </div>
                 </div>
@@ -85,12 +214,12 @@
 
         <!-- Benchmark Section -->
         <section class="mb-5">
-            <h2 class="section-title">Benchmark</h2>
+            <h2 class="section-title">CytoBench</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">CytoBench</h5>
+                            <h5 class="card-title">Overview</h5>
                             <p class="card-text">A standardized benchmark for evaluating AI models on cytology image analysis tasks.</p>
                             <a href="#" class="btn btn-primary">Explore</a>
                         </div>
@@ -99,7 +228,7 @@
                 <div class="col">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Performance Metrics</h5>
+                            <h5 class="card-title">Public Datasets</h5>
                             <p class="card-text">Comprehensive evaluation metrics for cytopathology AI models including sensitivity, specificity, and F1 scores.</p>
                             <a href="#" class="btn btn-primary">View Metrics</a>
                         </div>
@@ -139,58 +268,152 @@
             </div>
         </section>
 
-        <!-- Know More Section -->
+        <!-- More Section -->
         <section class="mb-5">
-            <h2 class="section-title">Know More</h2>
-            <div class="row row-cols-1 row-cols-md-4 g-4">
+            <h2 class="section-title">More</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Survey</h5>
-                            <p class="card-text">Comprehensive surveys on cytopathology AI research and applications.</p>
-                            <a href="survey.html" class="btn btn-outline-primary">View Surveys</a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-briefcase text-primary me-2"></i>
+                                Opportunities
+                            </h5>
+                            <p class="card-text">Explore career opportunities, research collaborations, and funding opportunities in computational cytology and AI research.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-graduation-cap text-muted me-2"></i>PhD Positions</li>
+                                <li><i class="fas fa-users text-muted me-2"></i>Research Collaborations</li>
+                                <li><i class="fas fa-dollar-sign text-muted me-2"></i>Funding Opportunities</li>
+                                <li><i class="fas fa-handshake text-muted me-2"></i>Industry Partnerships</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">View Opportunities</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Paper</h5>
-                            <p class="card-text">Research publications from our team and collaborators.</p>
-                            <a href="paper.html" class="btn btn-outline-primary">Browse Papers</a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-heart text-primary me-2"></i>
+                                Acknowledgment
+                            </h5>
+                            <p class="card-text">We gratefully acknowledge the support and contributions from our collaborators, funding agencies, and the global cytopathology community.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-university text-muted me-2"></i>HKUST Smart Lab</li>
+                                <li><i class="fas fa-flask text-muted me-2"></i>Research Institutions</li>
+                                <li><i class="fas fa-money-bill-wave text-muted me-2"></i>Funding Agencies</li>
+                                <li><i class="fas fa-globe text-muted me-2"></i>Global Community</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
                     <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Guideline</h5>
-                            <p class="card-text">Best practices and guidelines for clinical cytopathology and AI development and implementation.</p>
-                            <a href="guideline.html" class="btn btn-outline-primary">Read Guidelines</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Social Media</h5>
-                            <p class="card-text">Connect with cytopathology experts and institutions on Social Media.</p>
-                            <a href="social.html" class="btn btn-outline-primary">Explore Accounts</a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-external-link-alt text-primary me-2"></i>
+                                Other Sources
+                            </h5>
+                            <p class="card-text">Discover additional resources, external databases, tools, and platforms related to cytopathology and AI research.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-database text-muted me-2"></i>External Databases</li>
+                                <li><i class="fas fa-tools text-muted me-2"></i>Research Tools</li>
+                                <li><i class="fas fa-link text-muted me-2"></i>Related Platforms</li>
+                                <li><i class="fas fa-book text-muted me-2"></i>Educational Resources</li>
+                            </ul>
+                            <a href="#" class="btn btn-outline-primary">Explore Sources</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </div>
 
     <footer class="py-4 mt-5">
         <div class="container">
             <div class="text-center">
-                <p class="mb-0">&copy; 2025 CARE: Cytology AI and Research Education | HKUST Smart Lab. All rights reserved.</p>
+                <p class="mb-0">&copy; 2025 CARE: Cytology AI Research and Education | HKUST Smart Lab. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsContainer = document.getElementById('newsContainer');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            let currentIndex = 0;
+            const itemsToShow = 3; // Number of items to show at once
+            const totalItems = newsContainer.children.length;
+            const maxIndex = Math.max(0, totalItems - itemsToShow);
+
+            function updateCarousel() {
+                const itemWidth = newsContainer.children[0].offsetWidth;
+                const gap = 24; // 1.5rem gap
+                const translateX = -(currentIndex * (itemWidth + gap));
+                newsContainer.style.transform = `translateX(${translateX}px)`;
+
+                // Update button states
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
+            }
+
+            function goToNext() {
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            }
+
+            function goToPrev() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            }
+
+            // Event listeners
+            nextBtn.addEventListener('click', goToNext);
+            prevBtn.addEventListener('click', goToPrev);
+
+            // Initialize carousel
+            updateCarousel();
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                updateCarousel();
+            });
+
+            // Auto-scroll functionality (optional)
+            let autoScrollInterval;
+
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(function() {
+                    if (currentIndex >= maxIndex) {
+                        currentIndex = 0;
+                    } else {
+                        currentIndex++;
+                    }
+                    updateCarousel();
+                }, 5000); // Auto-scroll every 5 seconds
+            }
+
+            function stopAutoScroll() {
+                clearInterval(autoScrollInterval);
+            }
+
+            // Start auto-scroll
+            startAutoScroll();
+
+            // Pause auto-scroll on hover
+            const newsCarousel = document.querySelector('.news-carousel');
+            newsCarousel.addEventListener('mouseenter', stopAutoScroll);
+            newsCarousel.addEventListener('mouseleave', startAutoScroll);
+        });
+    </script>
 </body>
 </html>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -48,36 +50,140 @@
             <p class="lead">Cutting-edge research publications in cytology AI</p>
         </header>
 
+        <!-- Overview Section -->
         <section class="mb-5">
-            <h2 class="section-title">Featured Publications</h2>
+            <h2 class="section-title">Overview</h2>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <!-- First Row: Year Chart and Word Cloud -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <h6 class="text-center mb-3">Publications by Year</h6>
+                                    <div style="height: 250px;">
+                                        <canvas id="yearChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-center mb-3">Keywords</h6>
+                                    <div style="height: 250px; border: 1px solid #e0e0e0; border-radius: 8px;">
+                                        <canvas id="wordCloud" style="width: 100%; height: 100%;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Second Row: Task and Organ Pie Charts -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-center mb-3">Tasks Distribution</h6>
+                                    <div style="height: 300px;">
+                                        <canvas id="taskChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-center mb-3">Organ Distribution</h6>
+                                    <div style="height: 300px;">
+                                        <canvas id="organChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card text-center h-100">
                         <div class="card-body">
-                            <h3 class="card-title">CytoNet: A Multi-scale Convolutional Network for Cytology Image Classification</h3>
-                            <p class="card-text">This paper introduces CytoNet, a novel multi-scale convolutional neural network architecture specifically designed for cytology image classification that achieves state-of-the-art performance on multiple cytology datasets.</p>
-                            <p><strong>Authors:</strong> Li J, Zhang W, Wang H, et al.</p>
-                            <p><strong>Publication:</strong> Nature Machine Intelligence, 2025</p>
-                            <p><strong>DOI:</strong> 10.1038/s42256-025-00123-x</p>
-                            <div class="d-flex gap-2">
-                                <a href="#" class="btn btn-primary">Read Paper</a>
-                                <a href="#" class="btn btn-outline-secondary">View Code</a>
+                            <h3 class="text-primary" id="totalPapers">5</h3>
+                            <p class="card-text">Published Papers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h3 class="text-primary" id="totalOrgans">5</h3>
+                            <p class="card-text">Organs</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h3 class="text-primary" id="totalTasks">4</h3>
+                            <p class="card-text">Tasks</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card text-center h-100">
+                        <div class="card-body">
+                            <h3 class="text-primary">50+</h3>
+                            <p class="card-text">Applications</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Publication Section -->
+        <section class="mb-5">
+            <h2 class="section-title">Recent Publication</h2>
+            <div class="row">
+                <!-- First Publication -->
+                <div class="col-12">
+                    <div class="card mb-4 border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title">Prediction of tumor origin in cancers of unknown primary origin with cytology-based deep learning</h3>
+                            <p class="card-text">Cancer of unknown primary (CUP) site poses diagnostic challenges due to its elusive nature. Many cases of CUP manifest as pleural and peritoneal serous effusions. Leveraging cytological images from 57,220 cases at four tertiary hospitals, we developed a deep-learning method for tumor origin differentiation using cytological histology (TORCH) that can identify malignancy and predict tumor origin in both hydrothorax and ascites.</p>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p><strong><i class="fas fa-users me-2"></i>Authors:</strong> Tian F, Liu D, Wei N, Fu Q, Sun L, Liu W, Sui X, Tian K, Nemeth G, Feng J, et al.</p>
+                                    <p><strong><i class="fas fa-journal-whills me-2"></i>Publication:</strong> Nature Medicine, Vol. 30, No. 5, pp. 1309-1319</p>
+                                    <p><strong><i class="fas fa-link me-2"></i>DOI:</strong> 10.1038/s41591-024-02915-w</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong><i class="fas fa-calendar me-2"></i>Published:</strong> 2024</p>
+                                    <p><strong><i class="fas fa-tags me-2"></i>Keywords:</strong> Cancer of Unknown Primary, Deep Learning, Cytology, TORCH</p>
+                                    <p><strong><i class="fas fa-quote-left me-2"></i>Impact Factor:</strong> 87.2</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                                <a href="https://www.nature.com/articles/s41591-024-02915-w" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf me-2"></i>Read Paper</a>
+                                <a href="#" class="btn btn-outline-secondary"><i class="fas fa-code me-2"></i>View Code</a>
+                                <a href="#" class="btn btn-outline-info"><i class="fas fa-database me-2"></i>Dataset</a>
+                                <a href="#" class="btn btn-outline-success"><i class="fas fa-quote-right me-2"></i>Cite</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="card mb-4">
+                <!-- Second Publication -->
+                <div class="col-12">
+                    <div class="card mb-4 border-primary">
                         <div class="card-body">
-                            <h3 class="card-title">Self-supervised Learning for Cytology Image Representation</h3>
-                            <p class="card-text">A novel self-supervised learning approach for cytology image representation that leverages unlabeled data to improve performance on downstream tasks with limited labeled data.</p>
-                            <p><strong>Authors:</strong> Chen Y, Liu X, Zhao T, et al.</p>
-                            <p><strong>Publication:</strong> Medical Image Analysis, 2024</p>
-                            <p><strong>DOI:</strong> 10.1016/j.media.2024.02.015</p>
-                            <div class="d-flex gap-2">
-                                <a href="#" class="btn btn-primary">Read Paper</a>
-                                <a href="#" class="btn btn-outline-secondary">View Code</a>
+                            <h3 class="card-title">Artificial intelligence enables precision diagnosis of cervical cytology grades and cervical cancer</h3>
+                            <p class="card-text">This research aimed to create and validate an artificial intelligence cervical cancer screening (AICCS) system for grading cervical cytology. The AICCS system was trained and validated using various datasets, including retrospective, prospective, and randomized observational trial data, involving a total of 16,056 participants. It utilized two artificial intelligence (AI) models: one for detecting cells at the patch-level and another for classifying whole-slide image (WSIs).</p>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <p><strong><i class="fas fa-users me-2"></i>Authors:</strong> Wang J, Yu Y, Tan Y, Wan H, Zheng N, He Z, Mao L, Ren W, Chen K, Lin Z, et al.</p>
+                                    <p><strong><i class="fas fa-journal-whills me-2"></i>Publication:</strong> Nature Communications, Vol. 15, No. 1, Article 4369</p>
+                                    <p><strong><i class="fas fa-link me-2"></i>DOI:</strong> 10.1038/s41467-024-48705-3</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><strong><i class="fas fa-calendar me-2"></i>Published:</strong> 2024</p>
+                                    <p><strong><i class="fas fa-tags me-2"></i>Keywords:</strong> Cervical Cancer, AI Screening, Cytology Grading, WSI Classification</p>
+                                    <p><strong><i class="fas fa-quote-left me-2"></i>Impact Factor:</strong> 16.6</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2 mt-3">
+                                <a href="https://www.nature.com/articles/s41467-024-48705-3" target="_blank" class="btn btn-primary"><i class="fas fa-file-pdf me-2"></i>Read Paper</a>
+                                <a href="#" class="btn btn-outline-secondary"><i class="fas fa-code me-2"></i>View Code</a>
+                                <a href="#" class="btn btn-outline-info"><i class="fas fa-database me-2"></i>Dataset</a>
+                                <a href="#" class="btn btn-outline-success"><i class="fas fa-quote-right me-2"></i>Cite</a>
                             </div>
                         </div>
                     </div>
@@ -85,83 +191,115 @@
             </div>
         </section>
 
+        <!-- Publication List Section -->
         <section class="mb-5">
-            <h2 class="section-title">Recent Publications</h2>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Attention-based Models for Cytology Image Analysis</h5>
-                            <p class="card-text">This paper explores various attention mechanisms for cytology image analysis, demonstrating improved performance in cell detection and classification tasks.</p>
-                            <p><small class="text-muted">Journal of Biomedical Imaging, 2024</small></p>
-                            <a href="#" class="btn btn-sm btn-primary">Read Paper</a>
-                        </div>
+            <h2 class="section-title">Publication List</h2>
+
+            <!-- Filter and Search -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Search publications..." id="searchInput">
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Weakly-supervised Learning for Cytology Segmentation</h5>
-                            <p class="card-text">A weakly-supervised learning approach for cytology image segmentation that requires only image-level labels for training.</p>
-                            <p><small class="text-muted">IEEE Transactions on Medical Imaging, 2024</small></p>
-                            <a href="#" class="btn btn-sm btn-primary">Read Paper</a>
-                        </div>
-                    </div>
+                <div class="col-md-2">
+                    <select class="form-select" id="yearFilter">
+                        <option value="">All Years</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Multi-instance Learning for Whole Slide Cytology Images</h5>
-                            <p class="card-text">A multi-instance learning framework for analyzing whole slide cytology images with applications in cancer screening.</p>
-                            <p><small class="text-muted">MICCAI, 2024</small></p>
-                            <a href="#" class="btn btn-sm btn-primary">Read Paper</a>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="taskFilter">
+                        <option value="">All Tasks</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">Explainable AI for Cytopathology: A Clinical Perspective</h5>
-                            <p class="card-text">This paper presents methods for making AI models for cytopathology more explainable and interpretable for clinical use.</p>
-                            <p><small class="text-muted">npj Digital Medicine, 2024</small></p>
-                            <a href="#" class="btn btn-sm btn-primary">Read Paper</a>
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="organFilter">
+                        <option value="">All Organs</option>
+                        <!-- Options will be populated dynamically -->
+                    </select>
                 </div>
+            </div>
+
+            <!-- Publication Cards -->
+            <div class="row" id="publicationList">
+                <!-- Publications will be loaded dynamically from publications_data.js -->
+            </div>
+
+
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" id="loadMoreBtn" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
+                    <i class="fas fa-plus me-2"></i>Add New Publication
+                </button>
             </div>
         </section>
 
-        <section class="mb-5">
-            <h2 class="section-title">Research Categories</h2>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Classification</h5>
-                            <p class="card-text">Papers focusing on cell and specimen classification algorithms and methods.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Papers</a>
-                        </div>
+        <!-- Add Publication Modal -->
+        <div class="modal fade" id="addPublicationModal" tabindex="-1" aria-labelledby="addPublicationModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addPublicationModalLabel">Add New Publication</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Segmentation</h5>
-                            <p class="card-text">Research on cell and nuclear segmentation in cytology images.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Papers</a>
-                        </div>
+                    <div class="modal-body">
+                        <form id="addPublicationForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="pubTitle" class="form-label">Title *</label>
+                                        <textarea class="form-control" id="pubTitle" rows="2" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubPublication" class="form-label">Publication *</label>
+                                        <input type="text" class="form-control" id="pubPublication" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubYear" class="form-label">Year *</label>
+                                        <input type="number" class="form-control" id="pubYear" min="2000" max="2030" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubApplication" class="form-label">Application *</label>
+                                        <input type="text" class="form-control" id="pubApplication" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubOrgan" class="form-label">Organ *</label>
+                                        <input type="text" class="form-control" id="pubOrgan" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="pubMethodology" class="form-label">Methodology *</label>
+                                        <textarea class="form-control" id="pubMethodology" rows="2" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubData" class="form-label">Data *</label>
+                                        <textarea class="form-control" id="pubData" rows="2" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubMainResults" class="form-label">Main Results *</label>
+                                        <textarea class="form-control" id="pubMainResults" rows="3" required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="pubTasks" class="form-label">Tasks *</label>
+                                        <input type="text" class="form-control" id="pubTasks" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Clinical Validation</h5>
-                            <p class="card-text">Studies on clinical validation and implementation of AI systems.</p>
-                            <a href="#" class="btn btn-outline-primary">Browse Papers</a>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="savePublicationBtn">Add Publication</button>
                     </div>
                 </div>
             </div>
+        </div>
         </section>
     </div>
 
@@ -174,5 +312,614 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="publications_data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const yearFilter = document.getElementById('yearFilter');
+            const taskFilter = document.getElementById('taskFilter');
+            const organFilter = document.getElementById('organFilter');
+            const publicationList = document.getElementById('publicationList');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+            // Chart instances
+            let yearChart = null;
+            let taskChart = null;
+            let organChart = null;
+            let wordCloudInstance = null;
+
+            // Load publications from data file
+            if (typeof loadPublications === 'function') {
+                loadPublications();
+            }
+
+            // Populate filter options dynamically
+            populateFilterOptions();
+
+            // Initialize charts and statistics
+            initializeChartsAndStats();
+
+            // Handle window resize for responsive word cloud
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    // Regenerate word cloud with new dimensions
+                    initializeChartsAndStats();
+                }, 300);
+            });
+
+            // Filter functionality
+            function filterPublications() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedYear = yearFilter.value;
+                const selectedTask = taskFilter.value;
+                const selectedOrgan = organFilter.value;
+                const publications = publicationList.querySelectorAll('.card');
+
+                publications.forEach(publication => {
+                    const title = publication.querySelector('.card-title').textContent.toLowerCase();
+                    const cardBody = publication.querySelector('.card-body').textContent.toLowerCase();
+                    const year = publication.getAttribute('data-year');
+                    const task = publication.getAttribute('data-task');
+                    const organ = publication.getAttribute('data-organ');
+
+                    const matchesSearch = title.includes(searchTerm) || cardBody.includes(searchTerm);
+                    const matchesYear = !selectedYear || year === selectedYear;
+                    const matchesTask = !selectedTask || task === selectedTask;
+                    const matchesOrgan = !selectedOrgan || organ === selectedOrgan;
+
+                    if (matchesSearch && matchesYear && matchesTask && matchesOrgan) {
+                        publication.parentElement.style.display = 'block';
+                    } else {
+                        publication.parentElement.style.display = 'none';
+                    }
+                });
+            }
+
+            // Event listeners
+            searchInput.addEventListener('input', filterPublications);
+            yearFilter.addEventListener('change', filterPublications);
+            taskFilter.addEventListener('change', filterPublications);
+            organFilter.addEventListener('change', filterPublications);
+
+            // Add publication functionality
+            const savePublicationBtn = document.getElementById('savePublicationBtn');
+            savePublicationBtn.addEventListener('click', function() {
+                addNewPublication();
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Initialize charts and statistics
+            function initializeChartsAndStats() {
+                // Destroy existing charts if they exist
+                if (yearChart) {
+                    yearChart.destroy();
+                }
+                if (taskChart) {
+                    taskChart.destroy();
+                }
+                if (organChart) {
+                    organChart.destroy();
+                }
+
+                // Collect data from publication list
+                const publications = publicationList.querySelectorAll('.card');
+                const yearData = {};
+                const taskData = {};
+                const organData = {};
+                const keywordData = {};
+
+                publications.forEach(publication => {
+                    const year = publication.getAttribute('data-year');
+                    const task = publication.getAttribute('data-task');
+                    const organ = publication.getAttribute('data-organ');
+                    const title = publication.querySelector('.card-title').textContent;
+
+                    // Count years
+                    yearData[year] = (yearData[year] || 0) + 1;
+
+                    // Count tasks
+                    if (task) {
+                        taskData[task] = (taskData[task] || 0) + 1;
+                    }
+
+                    // Count organs
+                    if (organ) {
+                        organData[organ] = (organData[organ] || 0) + 1;
+                    }
+
+                    // Extract keywords from titles for word cloud
+                    const keywords = extractKeywords(title);
+                    keywords.forEach(keyword => {
+                        keywordData[keyword] = (keywordData[keyword] || 0) + 1;
+                    });
+                });
+
+                // Update statistics cards
+                document.getElementById('totalPapers').textContent = publications.length;
+                document.getElementById('totalOrgans').textContent = Object.keys(organData).length;
+                document.getElementById('totalTasks').textContent = Object.keys(taskData).length;
+
+                // Generate word cloud
+                generateWordCloud(keywordData);
+
+                // Create Year Bar Chart
+                const yearCtx = document.getElementById('yearChart').getContext('2d');
+                yearChart = new Chart(yearCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: Object.keys(yearData).sort(),
+                        datasets: [{
+                            label: 'Publications',
+                            data: Object.keys(yearData).sort().map(year => yearData[year]),
+                            backgroundColor: 'rgba(13, 110, 253, 0.8)',
+                            borderColor: 'rgba(13, 110, 253, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Sort task data by count (descending)
+                const sortedTaskEntries = Object.entries(taskData).sort((a, b) => b[1] - a[1]);
+                const sortedTaskLabels = sortedTaskEntries.map(([task]) => task.charAt(0).toUpperCase() + task.slice(1));
+                const sortedTaskValues = sortedTaskEntries.map(([, count]) => count);
+
+                // Create Task Pie Chart
+                const taskCtx = document.getElementById('taskChart').getContext('2d');
+                taskChart = new Chart(taskCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: sortedTaskLabels,
+                        datasets: [{
+                            data: sortedTaskValues,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 205, 86, 0.8)',
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(153, 102, 255, 0.8)',
+                                'rgba(255, 159, 64, 0.8)',
+                                'rgba(199, 199, 199, 0.8)'
+                            ],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 9
+                                    },
+                                    padding: 8,
+                                    usePointStyle: true,
+                                    boxWidth: 12,
+                                    boxHeight: 12,
+                                    generateLabels: function(chart) {
+                                        const data = chart.data;
+                                        return data.labels.map((label, i) => ({
+                                            text: `${label} (${data.datasets[0].data[i]})`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            strokeStyle: data.datasets[0].borderColor,
+                                            lineWidth: data.datasets[0].borderWidth,
+                                            pointStyle: 'circle',
+                                            hidden: false,
+                                            index: i
+                                        }));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Sort organ data by count (descending)
+                const sortedOrganEntries = Object.entries(organData).sort((a, b) => b[1] - a[1]);
+                const sortedOrganLabels = sortedOrganEntries.map(([organ]) => organ.charAt(0).toUpperCase() + organ.slice(1));
+                const sortedOrganValues = sortedOrganEntries.map(([, count]) => count);
+
+                // Create Organ Pie Chart
+                const organCtx = document.getElementById('organChart').getContext('2d');
+                organChart = new Chart(organCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: sortedOrganLabels,
+                        datasets: [{
+                            data: sortedOrganValues,
+                            backgroundColor: [
+                                'rgba(255, 159, 64, 0.8)',
+                                'rgba(255, 99, 132, 0.8)',
+                                'rgba(54, 162, 235, 0.8)',
+                                'rgba(255, 205, 86, 0.8)',
+                                'rgba(75, 192, 192, 0.8)',
+                                'rgba(153, 102, 255, 0.8)',
+                                'rgba(199, 199, 199, 0.8)',
+                                'rgba(83, 102, 255, 0.8)'
+                            ],
+                            borderWidth: 2,
+                            borderColor: '#fff'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    font: {
+                                        size: 9
+                                    },
+                                    padding: 8,
+                                    usePointStyle: true,
+                                    boxWidth: 12,
+                                    boxHeight: 12,
+                                    generateLabels: function(chart) {
+                                        const data = chart.data;
+                                        return data.labels.map((label, i) => ({
+                                            text: `${label} (${data.datasets[0].data[i]})`,
+                                            fillStyle: data.datasets[0].backgroundColor[i],
+                                            strokeStyle: data.datasets[0].borderColor,
+                                            lineWidth: data.datasets[0].borderWidth,
+                                            pointStyle: 'circle',
+                                            hidden: false,
+                                            index: i
+                                        }));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Function to extract keywords from publication titles
+            function extractKeywords(title) {
+                // Common stop words to filter out
+                const stopWords = new Set([
+                    'a', 'an', 'and', 'are', 'as', 'at', 'be', 'by', 'for', 'from', 'has', 'he', 'in', 'is', 'it',
+                    'its', 'of', 'on', 'that', 'the', 'to', 'was', 'will', 'with', 'using', 'based', 'approach',
+                    'method', 'methods', 'analysis', 'study', 'research', 'paper', 'novel', 'new', 'improved'
+                ]);
+
+                // Extract meaningful keywords
+                const words = title.toLowerCase()
+                    .replace(/[^\w\s]/g, ' ') // Remove punctuation
+                    .split(/\s+/) // Split by whitespace
+                    .filter(word => word.length > 3 && !stopWords.has(word)) // Filter short words and stop words
+                    .map(word => word.charAt(0).toUpperCase() + word.slice(1)); // Capitalize
+
+                // Add some domain-specific compound terms
+                const compoundTerms = [
+                    'Deep Learning', 'Machine Learning', 'Artificial Intelligence', 'Neural Network',
+                    'Convolutional Neural Network', 'CNN', 'Computer Vision', 'Image Processing',
+                    'Cell Classification', 'Cancer Detection', 'Medical Imaging', 'Cytology',
+                    'Blood Cell', 'White Blood Cell', 'Cervical Cancer', 'Bone Marrow'
+                ];
+
+                const titleLower = title.toLowerCase();
+                compoundTerms.forEach(term => {
+                    if (titleLower.includes(term.toLowerCase())) {
+                        words.push(term);
+                    }
+                });
+
+                return words;
+            }
+
+            // Function to generate word cloud
+            function generateWordCloud(keywordData) {
+                const canvas = document.getElementById('wordCloud');
+                if (!canvas) return;
+
+                // Get the container dimensions
+                const container = canvas.parentElement;
+                const containerRect = container.getBoundingClientRect();
+
+                // Set high-resolution canvas dimensions
+                const pixelRatio = window.devicePixelRatio || 1;
+                const displayWidth = containerRect.width - 20; // Account for padding
+                const displayHeight = containerRect.height - 20;
+
+                // Set canvas actual size (high resolution)
+                canvas.width = displayWidth * pixelRatio;
+                canvas.height = displayHeight * pixelRatio;
+
+                // Set canvas display size (CSS)
+                canvas.style.width = displayWidth + 'px';
+                canvas.style.height = displayHeight + 'px';
+
+                // Scale the drawing context so everything draws at high resolution
+                const ctx = canvas.getContext('2d');
+                ctx.scale(pixelRatio, pixelRatio);
+
+                // Sort keywords by frequency and take top 50
+                const sortedKeywords = Object.entries(keywordData)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 50);
+
+                // Prepare data for wordcloud2
+                const wordList = sortedKeywords.map(([word, count]) => [word, count * 8]); // Scale for better visualization
+
+                // Clear previous word cloud
+                ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+                // Generate word cloud
+                if (typeof WordCloud !== 'undefined') {
+                    WordCloud(canvas, {
+                        list: wordList,
+                        gridSize: Math.max(4, Math.floor(displayWidth / 100)), // Adaptive grid size
+                        weightFactor: function(size) {
+                            return Math.pow(size, 0.6) * displayWidth / 800; // Adaptive weight factor
+                        },
+                        fontFamily: 'Arial, Helvetica, sans-serif',
+                        color: function() {
+                            const colors = [
+                                '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd',
+                                '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf',
+                                '#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#592E83'
+                            ];
+                            return colors[Math.floor(Math.random() * colors.length)];
+                        },
+                        backgroundColor: 'transparent', // Use transparent background
+                        rotateRatio: 0.2, // Reduce rotation for better readability
+                        rotationSteps: 2,
+                        minSize: Math.max(8, displayWidth / 80), // Adaptive minimum size
+                        maxSize: Math.max(24, displayWidth / 15), // Adaptive maximum size
+                        drawOutOfBound: false,
+                        shrinkToFit: true,
+                        origin: [displayWidth / 2, displayHeight / 2] // Center the cloud
+                    });
+                } else {
+                    // Fallback if wordcloud2 is not available
+                    ctx.fillStyle = '#666';
+                    ctx.font = `${Math.max(14, displayWidth / 40)}px Arial`;
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('Word Cloud Loading...', displayWidth / 2, displayHeight / 2);
+                }
+            }
+
+            // Function to populate filter options dynamically
+            function populateFilterOptions() {
+                const years = new Set();
+                const tasks = new Set();
+                const organs = new Set();
+
+                // Collect unique values from publications data
+                publicationsData.forEach(pub => {
+                    if (pub.year) years.add(pub.year);
+                    if (pub.tasks) tasks.add(pub.tasks);
+                    if (pub.organ) organs.add(pub.organ);
+                });
+
+                // Populate year filter
+                const yearFilter = document.getElementById('yearFilter');
+                const sortedYears = Array.from(years).sort((a, b) => b - a); // Descending order
+                sortedYears.forEach(year => {
+                    const option = document.createElement('option');
+                    option.value = year;
+                    option.textContent = year;
+                    yearFilter.appendChild(option);
+                });
+
+                // Populate task filter
+                const taskFilter = document.getElementById('taskFilter');
+                const sortedTasks = Array.from(tasks).sort();
+                sortedTasks.forEach(task => {
+                    const option = document.createElement('option');
+                    option.value = task;
+                    option.textContent = task.charAt(0).toUpperCase() + task.slice(1);
+                    taskFilter.appendChild(option);
+                });
+
+                // Populate organ filter
+                const organFilter = document.getElementById('organFilter');
+                const sortedOrgans = Array.from(organs).sort();
+                sortedOrgans.forEach(organ => {
+                    const option = document.createElement('option');
+                    option.value = organ;
+                    option.textContent = organ.charAt(0).toUpperCase() + organ.slice(1);
+                    organFilter.appendChild(option);
+                });
+            }
+
+            // Function to add new publication
+            function addNewPublication() {
+                // Get form values
+                const title = document.getElementById('pubTitle').value.trim();
+                const publication = document.getElementById('pubPublication').value.trim();
+                const year = document.getElementById('pubYear').value.trim();
+                const application = document.getElementById('pubApplication').value.trim();
+                const organ = document.getElementById('pubOrgan').value.trim();
+                const methodology = document.getElementById('pubMethodology').value.trim();
+                const data = document.getElementById('pubData').value.trim();
+                const mainResults = document.getElementById('pubMainResults').value.trim();
+                const tasks = document.getElementById('pubTasks').value.trim();
+
+                // Validate required fields
+                if (!title || !publication || !year || !application || !organ || !methodology || !data || !mainResults || !tasks) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // Create new publication object
+                const newPublication = {
+                    title: title,
+                    publication: publication,
+                    year: year,
+                    application: application,
+                    organ: organ,
+                    methodology: methodology,
+                    data: data,
+                    mainResults: mainResults,
+                    tasks: tasks
+                };
+
+                // Add to the beginning of publications array (for immediate display)
+                publicationsData.unshift(newPublication);
+
+                // Reload publications list
+                loadPublications();
+
+                // Update charts and statistics
+                initializeChartsAndStats();
+
+                // Update filter options
+                populateFilterOptions();
+
+                // Generate JavaScript code for manual addition to publications_data.js
+                generatePublicationCode(newPublication);
+
+                // Clear form
+                document.getElementById('addPublicationForm').reset();
+
+                // Close modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addPublicationModal'));
+                modal.hide();
+
+                // Scroll to top to show the new publication
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Function to generate JavaScript code for manual addition
+            function generatePublicationCode(pub) {
+                // Clean and escape text for JavaScript
+                function cleanText(text) {
+                    if (!text) return '';
+                    return text.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
+                }
+
+                const jsCode = `    {
+        title: "${cleanText(pub.title)}",
+        publication: "${cleanText(pub.publication)}",
+        year: "${cleanText(pub.year)}",
+        application: "${cleanText(pub.application)}",
+        organ: "${cleanText(pub.organ)}",
+        methodology: "${cleanText(pub.methodology)}",
+        data: "${cleanText(pub.data)}",
+        mainResults: "${cleanText(pub.mainResults)}",
+        tasks: "${cleanText(pub.tasks)}"
+    },`;
+
+                // Show modal with the generated code
+                showCodeModal(jsCode, pub.title);
+            }
+
+            // Function to show modal with generated code
+            function showCodeModal(code, title) {
+                const modalHTML = `
+                    <div class="modal fade" id="codeModal" tabindex="-1" aria-labelledby="codeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="codeModalLabel">Publication Added - Manual Save Required</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="alert alert-info">
+                                        <strong>Publication "${title}" has been added temporarily.</strong><br>
+                                        To make it permanent, copy the code below and add it to the beginning of the <code>publicationsData</code> array in <code>publications_data.js</code>.
+                                    </div>
+                                    <h6>Code to add to publications_data.js:</h6>
+                                    <div class="position-relative">
+                                        <pre class="bg-light p-3 border rounded" style="max-height: 300px; overflow-y: auto;"><code id="generatedCode">${code}</code></pre>
+                                        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2" onclick="copyToClipboard()">
+                                            <i class="fas fa-copy"></i> Copy
+                                        </button>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h6>Instructions:</h6>
+                                        <ol>
+                                            <li>Open <code>publications_data.js</code> in your editor</li>
+                                            <li>Find the line <code>const publicationsData = [</code></li>
+                                            <li>Paste the above code right after the opening bracket <code>[</code></li>
+                                            <li>Save the file</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="copyToClipboard()">Copy Code</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Remove existing modal if any
+                const existingModal = document.getElementById('codeModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+
+                // Add modal to body
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('codeModal'));
+                modal.show();
+            }
+
+            // Function to copy code to clipboard
+            function copyToClipboard() {
+                const codeElement = document.getElementById('generatedCode');
+                const textArea = document.createElement('textarea');
+                textArea.value = codeElement.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                // Show feedback
+                const copyBtn = event.target.closest('button');
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.remove('btn-outline-primary');
+                copyBtn.classList.add('btn-success');
+
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                    copyBtn.classList.remove('btn-success');
+                    copyBtn.classList.add('btn-outline-primary');
+                }, 2000);
+            }
+        });
+    </script>
 </body>
 </html>
