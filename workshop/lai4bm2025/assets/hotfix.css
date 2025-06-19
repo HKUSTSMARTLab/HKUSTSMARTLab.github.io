@@ -7,6 +7,213 @@
 @media only screen and (max-width:750px){
 	.table-time-div{width:40%}
 	.table-event-div{width:60%}
-	
+
+}
+
+/* Venue Page Optimizations */
+.venue-image-container {
+	text-align: center;
+	margin: 30px 0;
+	padding: 15px;
+	background: #f9f9f9;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.venue-main-image {
+	max-width: 100%;
+	height: auto;
+	width: 100%;
+	border-radius: 6px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	transition: transform 0.3s ease;
+	display: block;
+}
+
+.venue-main-image:hover {
+	transform: scale(1.02);
+}
+
+.maps-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+	margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+	.maps-grid {
+		grid-template-columns: 1fr;
+		gap: 20px;
+	}
+}
+
+.map-item {
+	background: #fff;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.map-item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.map-image-container {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: 4/3;
+}
+
+.map-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.map-image-container:hover .map-image {
+	transform: scale(1.05);
+}
+
+.map-description {
+	padding: 20px;
+}
+
+.map-description h4 {
+	font-family: "Jockey One", sans-serif;
+	font-size: 20px;
+	color: #231f20;
+	margin: 0 0 10px 0;
+	font-weight: 400;
+}
+
+.map-description p {
+	color: #666;
+	margin: 0 0 15px 0;
+	line-height: 1.5;
+}
+
+.map-link {
+	display: inline-flex;
+	align-items: center;
+	color: #e0172a;
+	text-decoration: none;
+	font-weight: 600;
+	transition: color 0.3s ease;
+}
+
+.map-link:hover {
+	color: #b21221;
+	text-decoration: none;
+}
+
+.map-link i {
+	margin-right: 8px;
+	font-size: 14px;
+}
+
+/* Improve venue section spacing */
+.page-venue .info-cards__content p {
+	margin-bottom: 20px;
+}
+
+.page-venue .info-cards__content p:last-of-type {
+	margin-bottom: 30px;
+}
+
+/* Better responsive behavior for venue images */
+@media only screen and (max-width: 480px) {
+	.venue-image-container {
+		padding: 10px;
+		margin: 20px 0;
+	}
+
+	.map-description {
+		padding: 15px;
+	}
+
+	.map-description h4 {
+		font-size: 18px;
+	}
+}
+
+/* Fix any potential layout issues */
+.page-venue .info-cards__content img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Venue info grid layout */
+.venue-info-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	gap: 40px;
+	margin-bottom: 30px;
+}
+
+.venue-address {
+	background: #f8f9fa;
+	padding: 25px;
+	border-radius: 8px;
+	border-left: 4px solid #007bff;
+}
+
+.venue-description {
+	padding: 10px 0;
+}
+
+.venue-address h4,
+.venue-description h4 {
+	color: #333;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 15px;
+	margin-top: 0;
+}
+
+.venue-address p {
+	margin-bottom: 0;
+	line-height: 1.6;
+	color: #555;
+}
+
+.venue-description p {
+	margin-bottom: 15px;
+	line-height: 1.6;
+	color: #555;
+}
+
+.venue-description p:last-child {
+	margin-bottom: 0;
+}
+
+/* Responsive design for venue info grid */
+@media (max-width: 768px) {
+	.venue-info-grid {
+		grid-template-columns: 1fr;
+		gap: 25px;
+	}
+
+	.venue-address {
+		padding: 20px;
+	}
+}
+
+/* Ensure no extra spacing around venue content */
+.page-venue .eefact_intro {
+	padding-bottom: 0;
+	padding-top: 30px;
+}
+
+.page-venue .info-cards__card {
+	margin-bottom: 30px;
+	padding: 25px;
+}
+
+.page-venue .info-cards__title {
+	margin-bottom: 20px;
 }
 

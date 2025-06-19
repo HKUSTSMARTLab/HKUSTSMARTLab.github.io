@@ -14,6 +14,279 @@
   <link rel="stylesheet" href="./assets/select2.min.css">
   <link rel="stylesheet" href="./assets/main.css">
   <link rel="stylesheet" href="./assets/hotfix.css">
+
+  <style>
+    /* Modern Schedule Styles */
+    .schedule-section {
+      margin-bottom: 40px;
+    }
+
+    .schedule-header {
+      background: linear-gradient(135deg, #073d5f 0%, #095193 100%);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 10px 10px 0 0;
+      margin-bottom: 0;
+      box-shadow: 0 2px 10px rgba(7, 61, 95, 0.3);
+    }
+
+    .schedule-header h3 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid #e6e7e8;
+      border-top: none;
+      background: white;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .schedule-item:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .schedule-item:last-child {
+      border-radius: 0 0 10px 10px;
+    }
+
+    .schedule-time {
+      background: #f8f9fa;
+      padding: 25px 20px;
+      border-right: 1px solid #e6e7e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 140px;
+      position: relative;
+    }
+
+    .time-badge {
+      background: #073d5f;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 14px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(7, 61, 95, 0.4);
+      border: 2px solid white;
+    }
+
+    .break-time {
+      background: #198754 !important;
+      box-shadow: 0 3px 10px rgba(25, 135, 84, 0.4) !important;
+    }
+
+    .lunch-time {
+      background: #fd7e14 !important;
+      box-shadow: 0 3px 10px rgba(253, 126, 20, 0.4) !important;
+    }
+
+    .panel-time {
+      background: #6f42c1 !important;
+      box-shadow: 0 3px 10px rgba(111, 66, 193, 0.4) !important;
+    }
+
+    .closing-time {
+      background: #dc3545 !important;
+      box-shadow: 0 3px 10px rgba(220, 53, 69, 0.4) !important;
+    }
+
+    .schedule-content {
+      flex: 1;
+      padding: 25px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .session-type {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .talk-type {
+      color: #073d5f;
+      font-weight: 700;
+    }
+
+    .opening-type {
+      color: #198754;
+      font-weight: 700;
+    }
+
+    .break-type {
+      color: #198754;
+      font-weight: 700;
+    }
+
+    .lunch-type {
+      color: #fd7e14;
+      font-weight: 700;
+    }
+
+    .panel-type {
+      color: #6f42c1;
+      font-weight: 700;
+    }
+
+    .closing-type {
+      color: #dc3545;
+      font-weight: 700;
+    }
+
+    .speaker-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #231f20;
+      margin-bottom: 5px;
+    }
+
+    .speaker-affiliation {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .session-details {
+      color: #666;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .remote-tag {
+      background: #e74c3c;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .panel-details {
+      margin-top: 10px;
+    }
+
+    .moderator, .panelists {
+      margin-bottom: 8px;
+      color: #444;
+      font-size: 14px;
+    }
+
+    .panelists ul {
+      list-style: none;
+      margin: 5px 0 0 0;
+      padding: 0;
+    }
+
+    .panelists li {
+      padding: 3px 0;
+      position: relative;
+      padding-left: 15px;
+    }
+
+    .panelists li:before {
+      content: "•";
+      color: #6f42c1;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+
+    /* Break items styling */
+    .schedule-item.break {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .schedule-item.lunch {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    }
+
+    .schedule-item.opening {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    }
+
+    .schedule-item.panel {
+      background: linear-gradient(135deg, #e2e3f1 0%, #d1d1e9 100%);
+    }
+
+    .schedule-item.closing {
+      background: linear-gradient(135deg, #f8d7da 0%, #f1b0b7 100%);
+    }
+
+    /* Interactive buttons */
+    .calendar-btn, .location-btn {
+      transition: all 0.3s ease !important;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .calendar-btn:hover {
+      background-color: #006CBF !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 108, 191, 0.3);
+    }
+
+    .calendar-btn:hover span {
+      color: white !important;
+    }
+
+    .location-btn:hover {
+      background-color: #e0172a !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(224, 23, 42, 0.3);
+    }
+
+    .location-btn:hover span {
+      color: white !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .schedule-item {
+        flex-direction: column;
+      }
+
+      .schedule-time {
+        border-right: none;
+        border-bottom: 1px solid #e6e7e8;
+        min-width: auto;
+        padding: 15px 20px;
+      }
+
+      .schedule-content {
+        padding: 20px;
+      }
+
+      .schedule-header {
+        padding: 15px 20px;
+      }
+
+      .schedule-header h3 {
+        font-size: 20px;
+      }
+
+      .calendar-btn, .location-btn {
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 
 <body class="page-schedule">
@@ -90,150 +363,236 @@
           <div class="wrapper">
             <div class="section-content">
               <div class="info-cards__card goals">
-                <div class="info-cards__title">Schedule - July 12, 2025</div>
+                <div class="info-cards__title">Schedule</div>
                 <div class="info-cards__content">
-                  <p style="text-align: center; margin-bottom: 20px;"><strong>International Workshop on Large AI Models for Biomedicine</strong></p>
-                  <p style="text-align: center; margin-bottom: 30px;"><em>HKUST Jockey Club Institute for Advanced Study, Lo Ka Chung Building</em></p>
+                  <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="color: #006CBF; margin-bottom: 20px; font-size: 28px;">International Workshop on Large AI Models for Biomedicine</h2>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; margin-bottom: 10px;">
+                      <a href="#" onclick="addToCalendar(); return false;" class="calendar-btn" style="background-color: #f8f9fa; border: 2px solid #006CBF; border-radius: 8px; padding: 12px 20px; text-decoration: none;">
+                        <span style="color: #006CBF; font-size: 18px; font-weight: 600;"><i class="fa fa-calendar-plus-o" style="margin-right: 8px;"></i>July 12, 2025</span>
+                      </a>
+                      <a href="https://www.google.com/maps/place/%E9%A6%99%E6%B8%AF%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%B8%E8%B3%BD%E9%A6%AC%E6%9C%83%E9%AB%98%E7%AD%89%E7%A0%94%E7%A9%B6%E9%99%A2%2F%E7%9B%A7%E5%AE%B6%E9%A9%84%E8%96%88%E8%90%83%E6%A8%93/data=!4m2!3m1!1s0x0:0x396ef6caee254b22?sa=X&ved=1t:2428&ictx=111" target="_blank" class="location-btn" style="background-color: #f8f9fa; border: 2px solid #e0172a; border-radius: 8px; padding: 12px 20px; text-decoration: none;">
+                        <span style="color: #e0172a; font-size: 18px; font-weight: 600;"><i class="fa fa-map-marker" style="margin-right: 8px;"></i>HKUST IAS, Lo Ka Chung Building</span>
+                      </a>
+                    </div>
+                  </div>
 
-                  <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                    <thead>
-                      <tr style="background-color: #095193; color: white;">
-                        <th style="padding: 10px; text-align: center; width: 20%;">Time</th>
-                        <th style="padding: 10px; text-align: center; width: 80%;">Session</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">9:00-9:10</td>
-                        <td style="padding: 8px;"><strong>Opening Remarks</strong></td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">9:10-9:35</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Prof. Ruijiang Li (Stanford University)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">9:35-10:00</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Prof. Pranav Rajpurkar (Harvard University) (remote)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">10:00-10:25</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Local Speaker</em>
-                        </td>
-                      </tr>
-                      <tr style="background-color: #ADE3F7;">
-                        <td style="padding: 8px; text-align: center;">10:25-10:35</td>
-                        <td style="padding: 8px;">Coffee Break</td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">10:35-11:00</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Prof. Dong Liang (SIAT, Chinese Academy of Sciences)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">11:00-11:25</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Prof. Wang Xin (CUHK)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">11:25-11:50</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Prof. Ouyang Xiaomin (HKUST)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">11:50-12:15</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>TBD</em>
-                        </td>
-                      </tr>
-                      <tr style="background-color: #ADE3F7;">
-                        <td style="padding: 8px; text-align: center;">12:15-14:00</td>
-                        <td style="padding: 8px;">Lunch</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <!-- Morning Session -->
+                  <div class="schedule-section">
+                    <div class="schedule-header">
+                      <h3><i class="fa fa-sun-o" style="margin-right: 10px;"></i>Morning Session</h3>
+                    </div>
 
-                  <!-- Afternoon Schedule -->
-                  <table border="1" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                    <thead>
-                      <tr style="background-color: #095193; color: white;">
-                        <th style="padding: 10px; text-align: center; width: 20%;">Time</th>
-                        <th style="padding: 10px; text-align: center; width: 80%;">Session</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">14:00-14:25</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>Dr. Cheong Kin Ronald Chan (CUHK/Hospital Authority)</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">14:25-14:50</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>TBD</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">14:50-15:15</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>TBD</em>
-                        </td>
-                      </tr>
-                      <tr style="background-color: #ADE3F7;">
-                        <td style="padding: 8px; text-align: center;">15:15-15:25</td>
-                        <td style="padding: 8px;">Coffee Break</td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">15:25-15:50</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>TBD</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">15:50-16:15</td>
-                        <td style="padding: 8px;">
-                          <strong>Invited Talk:</strong><br>
-                          <em>TBD</em>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style="padding: 8px; text-align: center;">16:15-17:00</td>
-                        <td style="padding: 8px;">
-                          <strong>Panel Discussion</strong><br>
-                          <em>Moderator: Prof. Hao Chen</em><br>
-                          <em>Panelists:</em><br>
-                          - Prof. Pranav Rajpurkar<br>
-                          - Prof. Ruijiang Li<br>
-                          - Local Speakers TBD
-                        </td>
-                      </tr>
-                      <tr style="background-color: #ADE3F7;">
-                        <td style="padding: 8px; text-align: center;">17:00-17:30</td>
-                        <td style="padding: 8px;">Closing</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                    <div class="schedule-item opening">
+                      <div class="schedule-time">
+                        <span class="time-badge">9:00-9:10</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type opening-type">Opening Remarks</div>
+                        <div class="session-details">Welcome & Introduction</div>
+                      </div>
+                    </div>
 
-                  <p style="margin-top: 20px;"><strong>Note:</strong> Some speaker details are still being finalized and will be updated soon.</p>
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">9:10-9:35</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Prof. Ruijiang Li</div>
+                        <div class="speaker-affiliation">Stanford University</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">9:35-10:00</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Prof. Pranav Rajpurkar</div>
+                        <div class="speaker-affiliation">Harvard University <span class="remote-tag">(Remote)</span></div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">10:00-10:25</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Local Speaker</div>
+                        <div class="speaker-affiliation">TBD</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item break">
+                      <div class="schedule-time">
+                        <span class="time-badge break-time">10:25-10:35</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type break-type"><i class="fa fa-coffee" style="margin-right: 8px;"></i>Coffee Break</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">10:35-11:00</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Prof. Dong Liang</div>
+                        <div class="speaker-affiliation">SIAT, Chinese Academy of Sciences</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">11:00-11:25</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Prof. Wang Xin</div>
+                        <div class="speaker-affiliation">CUHK</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">11:25-11:50</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Prof. Ouyang Xiaomin</div>
+                        <div class="speaker-affiliation">HKUST</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">11:50-12:15</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">TBD</div>
+                        <div class="speaker-affiliation">To be announced</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item break lunch">
+                      <div class="schedule-time">
+                        <span class="time-badge lunch-time">12:15-14:00</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type lunch-type"><i class="fa fa-cutlery" style="margin-right: 8px;"></i>Lunch Break</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Afternoon Session -->
+                  <div class="schedule-section">
+                    <div class="schedule-header">
+                      <h3><i class="fa fa-sun-o" style="margin-right: 10px;"></i>Afternoon Session</h3>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">14:00-14:25</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">Dr. Cheong Kin Ronald Chan</div>
+                        <div class="speaker-affiliation">CUHK/Hospital Authority</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">14:25-14:50</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">TBD</div>
+                        <div class="speaker-affiliation">To be announced</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">14:50-15:15</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">TBD</div>
+                        <div class="speaker-affiliation">To be announced</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item break">
+                      <div class="schedule-time">
+                        <span class="time-badge break-time">15:15-15:25</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type break-type"><i class="fa fa-coffee" style="margin-right: 8px;"></i>Coffee Break</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">15:25-15:50</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">TBD</div>
+                        <div class="speaker-affiliation">To be announced</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item talk">
+                      <div class="schedule-time">
+                        <span class="time-badge">15:50-16:15</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type talk-type">Invited Talk</div>
+                        <div class="speaker-name">TBD</div>
+                        <div class="speaker-affiliation">To be announced</div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item panel">
+                      <div class="schedule-time">
+                        <span class="time-badge panel-time">16:15-17:00</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type panel-type"><i class="fa fa-users" style="margin-right: 8px;"></i>Panel Discussion</div>
+                        <div class="panel-details">
+                          <div class="moderator"><strong>Moderator:</strong> Prof. Hao Chen</div>
+                          <div class="panelists">
+                            <strong>Panelists:</strong>
+                            <ul style="margin: 8px 0 0 20px; padding: 0;">
+                              <li>Prof. Pranav Rajpurkar</li>
+                              <li>Prof. Ruijiang Li</li>
+                              <li>Local Speakers TBD</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="schedule-item closing">
+                      <div class="schedule-time">
+                        <span class="time-badge closing-time">17:00-17:30</span>
+                      </div>
+                      <div class="schedule-content">
+                        <div class="session-type closing-type"><i class="fa fa-flag-checkered" style="margin-right: 8px;"></i>Closing Ceremony</div>
+                        <div class="session-details">Wrap-up & Final Remarks</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div style="background-color: #f8f9fa; border-left: 4px solid #006CBF; padding: 20px; margin-top: 30px; border-radius: 5px;">
+                    <p style="margin: 0; color: #666;"><i class="fa fa-info-circle" style="color: #006CBF; margin-right: 8px;"></i><strong>Note:</strong> Some speaker details are still being finalized and will be updated soon. Please check back regularly for the latest information.</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -274,5 +633,109 @@
   <script src="./assets/slick.min.js"></script>
   <script src="./assets/plugins.min.js"></script>
   <script src="./assets/main.min.js"></script>
+
+  <script>
+    function addToCalendar() {
+      // Event details
+      const eventTitle = "International Workshop on Large AI Models for Biomedicine";
+      const eventLocation = "HKUST Jockey Club Institute for Advanced Study, Lo Ka Chung Building, Clear Water Bay, Kowloon, Hong Kong";
+      const eventDescription = "International Workshop on Large AI Models for Biomedicine - LAI4BM 2025";
+
+      // Date and time (July 12, 2025, 9:00 AM - 5:30 PM Hong Kong Time)
+      const startDate = "20250712T090000";
+      const endDate = "20250712T173000";
+      const timezone = "Asia/Hong_Kong";
+
+      // Create Google Calendar URL
+      const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(eventDescription)}&location=${encodeURIComponent(eventLocation)}&ctz=${timezone}`;
+
+      // Create ICS file content for other calendar apps
+      const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//LAI4BM 2025//Workshop//EN
+BEGIN:VEVENT
+UID:lai4bm2025-workshop@smartlab.cse.ust.hk
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART;TZID=${timezone}:${startDate}
+DTEND;TZID=${timezone}:${endDate}
+SUMMARY:${eventTitle}
+DESCRIPTION:${eventDescription}
+LOCATION:${eventLocation}
+URL:https://smartlab.cse.ust.hk/workshop/lai4bm2025/
+END:VEVENT
+END:VCALENDAR`;
+
+      // Detect user's platform and show appropriate options
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isMobile = /android|iphone|ipad|ipod|blackberry|iemobile|opera mini/.test(userAgent);
+      const isApple = /mac|iphone|ipad|ipod/.test(userAgent);
+
+      if (isMobile) {
+        // For mobile devices, try to open Google Calendar directly
+        window.open(googleCalendarUrl, '_blank');
+      } else {
+        // For desktop, show options
+        const options = `
+          <div style="text-align: left; line-height: 1.6;">
+            <p style="margin-bottom: 15px; font-weight: 600;">Choose your calendar app:</p>
+            <p style="margin-bottom: 10px;">
+              <a href="${googleCalendarUrl}" target="_blank" style="color: #006CBF; text-decoration: none; font-weight: 500;">
+                <i class="fa fa-google" style="margin-right: 8px;"></i>Google Calendar
+              </a>
+            </p>
+            <p style="margin-bottom: 10px;">
+              <a href="#" onclick="downloadICS(); return false;" style="color: #006CBF; text-decoration: none; font-weight: 500;">
+                <i class="fa fa-calendar" style="margin-right: 8px;"></i>Outlook / Apple Calendar / Other
+              </a>
+            </p>
+          </div>
+        `;
+
+        swal({
+          title: "Add to Calendar",
+          content: {
+            element: "div",
+            attributes: {
+              innerHTML: options
+            }
+          },
+          button: "Close"
+        });
+      }
+    }
+
+    function downloadICS() {
+      const eventTitle = "International Workshop on Large AI Models for Biomedicine";
+      const eventLocation = "HKUST Jockey Club Institute for Advanced Study, Lo Ka Chung Building, Clear Water Bay, Kowloon, Hong Kong";
+      const eventDescription = "International Workshop on Large AI Models for Biomedicine - LAI4BM 2025";
+      const startDate = "20250712T090000";
+      const endDate = "20250712T173000";
+      const timezone = "Asia/Hong_Kong";
+
+      const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//LAI4BM 2025//Workshop//EN
+BEGIN:VEVENT
+UID:lai4bm2025-workshop@smartlab.cse.ust.hk
+DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z
+DTSTART;TZID=${timezone}:${startDate}
+DTEND;TZID=${timezone}:${endDate}
+SUMMARY:${eventTitle}
+DESCRIPTION:${eventDescription}
+LOCATION:${eventLocation}
+URL:https://smartlab.cse.ust.hk/workshop/lai4bm2025/
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'LAI4BM-2025-Workshop.ics';
+      link.click();
+
+      // Close the modal
+      swal.close();
+    }
+  </script>
 </body>
 </html>
