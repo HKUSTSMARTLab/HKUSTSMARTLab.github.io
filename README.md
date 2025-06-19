@@ -1,6 +1,6 @@
 # HKUST SMART lab webpage
 
-First written on 21/05/2024 by Cheng Jin
+First written on 19/06/2024 by Cheng Jin
 
 Last modified on 28/05/2025 by Cheng Jin
 
