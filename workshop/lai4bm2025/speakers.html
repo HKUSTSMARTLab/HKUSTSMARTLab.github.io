@@ -57,10 +57,7 @@
                 <a class="" href="registration.html"><i class="fa fa-edit"></i> Registration</a>
                 <span class="slash"></span>
               </li>
-              <li>
-                <a class="" href="accommodation.html"><i class="fa fa-bed"></i> Accommodation</a>
-                <span class="slash"></span>
-              </li>
+
               <li>
                 <a class="" href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a>
               </li>
@@ -93,111 +90,248 @@
           <div class="wrapper">
             <div class="section-content">
               <div class="info-cards__card goals">
-                <div class="info-cards__title">Keynote Speakers</div>
+                <div class="info-cards__title">Speakers</div>
                 <div class="info-cards__content">
 
+                  <style>
+                    .speaker-card {
+                      display: flex;
+                      margin-bottom: 40px;
+                      padding: 25px;
+                      border: 1px solid #e0e0e0;
+                      border-radius: 12px;
+                      background: #ffffff;
+                      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                      transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    }
+                    .speaker-card:hover {
+                      transform: translateY(-2px);
+                      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                    }
+                    .speaker-photo {
+                      flex-shrink: 0;
+                      width: 120px;
+                      height: 120px;
+                      margin-right: 25px;
+                      border-radius: 50%;
+                      overflow: hidden;
+                      border: 3px solid #006CBF;
+                    }
+                    .speaker-photo img {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                    }
+                    .speaker-info {
+                      flex: 1;
+                    }
+                    .speaker-name {
+                      color: #006CBF;
+                      font-size: 24px;
+                      font-weight: bold;
+                      margin-bottom: 8px;
+                    }
+                    .speaker-affiliation {
+                      color: #666;
+                      font-style: italic;
+                      font-size: 16px;
+                      margin-bottom: 15px;
+                      font-weight: 600;
+                    }
+                    .speaker-bio {
+                      text-align: justify;
+                      line-height: 1.6;
+                      color: #333;
+                    }
+                    .speaker-links {
+                      margin-top: 15px;
+                    }
+                    .speaker-links a {
+                      display: inline-block;
+                      margin-right: 15px;
+                      color: #006CBF;
+                      text-decoration: none;
+                      font-size: 14px;
+                      padding: 5px 10px;
+                      border: 1px solid #006CBF;
+                      border-radius: 4px;
+                      transition: all 0.3s ease;
+                    }
+                    .speaker-links a:hover {
+                      background-color: #006CBF;
+                      color: white;
+                    }
+                    @media (max-width: 768px) {
+                      .speaker-card {
+                        flex-direction: column;
+                        text-align: center;
+                      }
+                      .speaker-photo {
+                        margin: 0 auto 20px auto;
+                      }
+                    }
+                  </style>
+
                   <!-- Speaker 1 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Hao Chen</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>HKUST</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Hao Chen is an Assistant Professor at Department of Computer Science and Engineering, Department of Chemical and Biological Engineering and Division of Life Science, Hong Kong University of Science and Technology (HKUST). He leads the SMART Lab focusing on Trustworthy Artificial Intelligence (AI) for Healthcare. He has 200+ publications (Google Scholar Citations 27K+, h-index 66) in top-tier conferences and journals including MICCAI, IEEE-TMI, Medical Image Analysis, CVPR, ICCV, AAAI, Radiology, Nature Communications, Lancet Digital Health, Nature Machine Intelligence, JAMA, etc. He has received several premium awards such as 2023 Asian Young Scientist Fellowship, 2019 MICCAI Young Scientist Impact Award, 2023 Prestigious Achievement Award of OMIA-X, and several Best Paper Awards. He was reported as one of the six researchers who are shaping the future of artificial intelligence by Nature Index 2020. He also led the team winning 15+ medical grand challenges.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://smartlab.cse.ust.hk/static/img/members/jhc.jpg" alt="Prof. Hao Chen" onerror="this.src='assets/default-avatar.svg'">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Hao Chen</div>
+                      <div class="speaker-affiliation">HKUST</div>
+                      <div class="speaker-bio">
+                        Prof. Hao Chen is an Assistant Professor at Department of Computer Science and Engineering, Department of Chemical and Biological Engineering and Division of Life Science, Hong Kong University of Science and Technology (HKUST). He leads the SMART Lab focusing on Trustworthy Artificial Intelligence (AI) for Healthcare. He has 200+ publications (Google Scholar Citations 27K+, h-index 66) in top-tier conferences and journals including MICCAI, IEEE-TMI, Medical Image Analysis, CVPR, ICCV, AAAI, Radiology, Nature Communications, Lancet Digital Health, Nature Machine Intelligence, JAMA, etc. He has received several premium awards such as 2023 Asian Young Scientist Fellowship, 2019 MICCAI Young Scientist Impact Award, 2023 Prestigious Achievement Award of OMIA-X, and several Best Paper Awards.
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://scholar.google.com/citations?user=Z_t5DjwAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+                        <a href="https://cse.hkust.edu.hk/~jhc/" target="_blank"><i class="fa fa-home"></i> Homepage</a>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 2 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Pranav Rajpurkar</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>Harvard University (Remote)</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Pranav Rajpurkar, PhD, is an Assistant Professor at Harvard University and a researcher in the field of medical artificial intelligence. With a focus on medical image interpretation, Dr. Rajpurkar's research lab strives to develop AI models that can match the proficiency of top-tier medical doctors. His research group is at the forefront of developing "Generalist Medical AI" systems that can closely resemble doctors in their ability to reason through a wide range of medical tasks, incorporate multiple data modalities, and communicate in natural language. He has written over 100 academic articles with more than 24K citations in notable journals like Nature, NEJM, and Nature Medicine. His work has been recognized by MIT Tech Review's Innovator Under 35 in 2023, Nature Medicine Early-career Researcher To Watch in 2022, and the Google Research Scholar Program in 2023, Forbes 30 Under 30 in 2022.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://images.squarespace-cdn.com/content/v1/631510b315db3003bd37d753/3679a55d-f2dd-4d40-84a3-b7b5dd335bd5/Pranav_new_headshot.jpg" alt="Prof. Pranav Rajpurkar" onerror="this.src='assets/default-avatar.svg'">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Pranav Rajpurkar</div>
+                      <div class="speaker-affiliation">Harvard University (Remote)</div>
+                      <div class="speaker-bio">
+                        Prof. Pranav Rajpurkar, PhD, is an Assistant Professor at Harvard University and a researcher in the field of medical artificial intelligence. With a focus on medical image interpretation, Dr. Rajpurkar's research lab strives to develop AI models that can match the proficiency of top-tier medical doctors. His research group is at the forefront of developing "Generalist Medical AI" systems that can closely resemble doctors in their ability to reason through a wide range of medical tasks, incorporate multiple data modalities, and communicate in natural language. He has written over 100 academic articles with more than 24K citations in notable journals like Nature, NEJM, and Nature Medicine.
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://scholar.google.com/citations?user=QcOG6sgAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+                        <a href="https://pranavrajpurkar.com/" target="_blank"><i class="fa fa-home"></i> Homepage</a>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 3 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Ruijiang Li</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>Stanford University</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Ruijiang Li is an Associate Professor (Research) of Radiation Oncology (Radiation Physics) at Stanford University. He leads a lab focused on the development and application of novel machine learning and deep learning approaches for medical imaging analysis and precision oncology. His research aims to discover imaging-based biomarkers for cancer detection, diagnosis, treatment response prediction, and prognosis, with the goal of transforming cancer care. His work spans radiology, histopathology, and genomic data integration to advance personalized cancer therapy. Prof. Li has authored numerous high-impact publications in top-tier journals and conferences, including Nature, Nature Communications, Lancet Digital Health, Nature Machine Intelligence, JAMA Network Open, Radiology, and Journal of Clinical Oncology.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://profiles.stanford.edu/proxy/api/cap/profiles/20988/resources/profilephoto/350x350.1509536341128.jpg" alt="Prof. Ruijiang Li" onerror="this.src='assets/default-avatar.svg'">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Ruijiang Li</div>
+                      <div class="speaker-affiliation">Stanford University</div>
+                      <div class="speaker-bio">
+                        Prof. Ruijiang Li is an Associate Professor (Research) of Radiation Oncology (Radiation Physics) at Stanford University. He leads a lab focused on the development and application of novel machine learning and deep learning approaches for medical imaging analysis and precision oncology. His research aims to discover imaging-based biomarkers for cancer detection, diagnosis, treatment response prediction, and prognosis, with the goal of transforming cancer care. His work spans radiology, histopathology, and genomic data integration to advance personalized cancer therapy.
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://scholar.google.com/citations?user=Y89JnCYAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+                        <a href="https://profiles.stanford.edu/ruijiang-li" target="_blank"><i class="fa fa-home"></i> Homepage</a>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 4 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Dong Liang</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>SIAT, Chinese Academy of Sciences</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Dong Liang is a Full Professor and Vice Director of the Paul C. Lauterbur Research Center for Biomedical Imaging at the Shenzhen Institutes of Advanced Technology (SIAT), Chinese Academy of Sciences. He also leads research at the Research Center for Medical AI, focusing on compressed sensing (CS), magnetic resonance imaging (MRI), and machine learning for biomedical applications. With 100+ publications in top-tier journals and conferences, his work advances fast MRI reconstruction, AI-driven medical imaging, and computational diagnostics. He is a recipient of multiple awards, including the first prize of the National Science and Technology Progress Award (2021). Prof. Liang holds prestigious editorial roles, including Associate Editor of IEEE Transactions on Medical Imaging and Editorial Board Member of Magnetic Resonance in Medicine.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://lh3.googleusercontent.com/MVwG41w4VSd46eKNzlsSEJgddCfA_4A8tN8p1CSAkg1Ea4W0bKvhD3mGNibnO2OGtFOaC5VHc66DXDyOlEyFED1GHfE_nLxnJYMzOHsPVDjW-GSVxG9BMMwfhkXxjxDNC7lhd5fRSZIXX7OCltKgiKfruUNDVVBhf97Oj4nQjZAEXSYkSXoCuA=w1280" alt="Prof. Dong Liang">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Dong Liang</div>
+                      <div class="speaker-affiliation">SIAT, Chinese Academy of Sciences</div>
+                      <div class="speaker-bio">
+                        Prof. Dong Liang is a Full Professor and Vice Director of the Paul C. Lauterbur Research Center for Biomedical Imaging at the Shenzhen Institutes of Advanced Technology (SIAT), Chinese Academy of Sciences. He also leads research at the Research Center for Medical AI, focusing on compressed sensing (CS), magnetic resonance imaging (MRI), and machine learning for biomedical applications. With 100+ publications in top-tier journals and conferences, his work advances fast MRI reconstruction, AI-driven medical imaging, and computational diagnostics.
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://scholar.google.com/citations?user=3cAJWoIAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 5 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Wang Xin</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>CUHK</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Xin Wang is an Associate Professor at the Department of Surgery, Chinese University of Hong Kong (CUHK), and a Guest Associate Professor at the West China School of Basic Medical Sciences & Forensic Medicine, Sichuan University. He leads research in Biomedical Informatics, with a focus on Cancer Bioinformatics, integrating bioinformatics, systems biology, machine learning, and AI for mechanistic and translational studies in human diseases, particularly cancer. He has published 70+ papers in prestigious journals (Nature Medicine, Gastroenterology, Hepatology, Annals of Surgery, Science Advances, Nature Communications, etc.). His work is funded by the Hong Kong Research Grants Council, Shenzhen/Guangdong grants, and the National Natural Science Foundation of China.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://xinwlab.netlify.app/img/testimonials/xw.jpg" alt="Prof. Xin Wang" onerror="this.src='assets/default-avatar.svg'">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Xin Wang</div>
+                      <div class="speaker-affiliation">CUHK</div>
+                      <div class="speaker-bio">
+                        Prof. Xin Wang is an Associate Professor at the Department of Surgery, Chinese University of Hong Kong (CUHK), and a Guest Associate Professor at the West China School of Basic Medical Sciences & Forensic Medicine, Sichuan University. He leads research in Biomedical Informatics, with a focus on Cancer Bioinformatics, integrating bioinformatics, systems biology, machine learning, and AI for mechanistic and translational studies in human diseases, particularly cancer. He has published 70+ papers in prestigious journals (Nature Medicine, Gastroenterology, Hepatology, Annals of Surgery, Science Advances, Nature Communications, etc.).
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://xinwlab.netlify.app/" target="_blank"><i class="fa fa-home"></i> Homepage</a>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 6 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Prof. Ouyang Xiaomin</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>HKUST</strong></p>
-                    <p style="text-align: justify;">
-                      Prof. Xiaomin Ouyang is an Assistant Professor at the Department of Computer Science and Engineering at the Hong Kong University of Science and Technology (HKUST), specializing in AI-powered mobile and IoT systems with a focus on machine learning for IoT, mobile computing, smart health, and cyber-physical systems. Her work emphasizes developing efficient machine learning and sensing systems for real-world applications, including deploying IoT systems to monitor digital biomarkers for Alzheimer's Disease in clinical trials. Recognized for her contributions, she received the ACM MobiSys 2023 Best Paper Award, the ACM SIGBED China Outstanding Doctoral Dissertation Award, and was named a 2023 EECS Rising Star and a 2024 NIH mHealth Training Institute Scholar.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://xmouyang.github.io/assets/img/Xiaomin_OUYANG_photo.jpeg" alt="Prof. Xiaomin Ouyang" onerror="this.src='assets/default-avatar.svg'">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Prof. Xiaomin Ouyang</div>
+                      <div class="speaker-affiliation">HKUST</div>
+                      <div class="speaker-bio">
+                        Prof. Xiaomin Ouyang is an Assistant Professor at the Department of Computer Science and Engineering at the Hong Kong University of Science and Technology (HKUST), specializing in AI-powered mobile and IoT systems with a focus on machine learning for IoT, mobile computing, smart health, and cyber-physical systems. Her work emphasizes developing efficient machine learning and sensing systems for real-world applications, including deploying IoT systems to monitor digital biomarkers for Alzheimer's Disease in clinical trials. Recognized for her contributions, she received the ACM MobiSys 2023 Best Paper Award, the ACM SIGBED China Outstanding Doctoral Dissertation Award, and was named a 2023 EECS Rising Star and a 2024 NIH mHealth Training Institute Scholar.
+                      </div>
+                      <div class="speaker-links">
+                        <a href="https://scholar.google.com/citations?user=y7oUVucAAAAJ" target="_blank"><i class="fa fa-graduation-cap"></i> Google Scholar</a>
+                        <a href="https://xmouyang.github.io/" target="_blank"><i class="fa fa-home"></i> Homepage</a>
+                      </div>
+                    </div>
                   </div>
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Additional Speakers Section -->
-        <section class="eefact_intro">
-          <div class="wrapper">
-            <div class="section-content">
-              <div class="info-cards__card goals">
-                <div class="info-cards__title">Additional Speakers</div>
-                <div class="info-cards__content">
-
                   <!-- Speaker 7 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Dr. Cheong Kin Ronald Chan</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>CUHK/Hospital Authority</strong></p>
-                    <p style="text-align: justify;">
-                      Dr. Cheong Kin Ronald Chan is a Consultant at the Hospital Authority, NTEC (Pathology), and Lab Director of North District Hospital, as well as an Honorary Clinical Associate Professor at the Department of Anatomical and Cellular Pathology, The Chinese University of Hong Kong. He leads the Pathology Artificial Intelligence Development and Assessment Laboratory. Dr. Chan has published numerous papers in reputable journals and conferences, contributing significantly to the fields of digital pathology and artificial intelligence. His work includes over 30 publications, with notable journals such as Diagnostic Cytopathology, The Oncologist, and Advanced Science.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://i1.rgstatic.net/ii/profile.image/729864697036800-1551024712098_Q512/Ronald-Cheong-Kin-Chan.jpgg" alt="Dr. Cheong Kin Ronald Chan">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Dr. Cheong Kin Ronald Chan</div>
+                      <div class="speaker-affiliation">CUHK/Hospital Authority</div>
+                      <div class="speaker-bio">
+                        Dr. Cheong Kin Ronald Chan is a Consultant at the Hospital Authority, NTEC (Pathology), and Lab Director of North District Hospital, as well as an Honorary Clinical Associate Professor at the Department of Anatomical and Cellular Pathology, The Chinese University of Hong Kong. He leads the Pathology Artificial Intelligence Development and Assessment Laboratory. Dr. Chan has published numerous papers in reputable journals and conferences, contributing significantly to the fields of digital pathology and artificial intelligence. His work includes over 30 publications, with notable journals such as Diagnostic Cytopathology, The Oncologist, and Advanced Science.
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 8 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Dr. Zheng Li</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>CUHK</strong></p>
-                    <p style="text-align: justify;">
-                      Dr. Zheng LI is currently an Associate Professor in department of Surgery and an associated member of Chow Yuk Ho Technology Centre for Innovative Medicine, department of biomedical engineering and T Stone Robotics Institute of the Chinese University of Hong Kong. He is also an adjunct associate professor of Monash University, Australia. Previously, he worked as a research assistant professor in the institute of digestive disease and as a research fellow in National University of Singapore. He is a senior member of IEEE, member of ASME, and member of RAS. Zheng served as the editor of BioRob 2020 and associate editor of RA-L, associate editor of ICRA, IROS, etc.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://www.surgery.cuhk.edu.hk/people/zli.jpg" alt="Dr. Zheng Li">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Dr. Zheng Li</div>
+                      <div class="speaker-affiliation">CUHK</div>
+                      <div class="speaker-bio">
+                        Dr. Zheng LI is currently an Associate Professor in department of Surgery and an associated member of Chow Yuk Ho Technology Centre for Innovative Medicine, department of biomedical engineering and T Stone Robotics Institute of the Chinese University of Hong Kong. He is also an adjunct associate professor of Monash University, Australia. Previously, he worked as a research assistant professor in the institute of digestive disease and as a research fellow in National University of Singapore. He is a senior member of IEEE, member of ASME, and member of RAS. Zheng served as the editor of BioRob 2020 and associate editor of RA-L, associate editor of ICRA, IROS, etc.
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 9 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Dr. Cheng Yang</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>AstraZeneca</strong></p>
-                    <p style="text-align: justify;">
-                      Dr. Cheng Yang is a researcher at AstraZeneca, focusing on the application of artificial intelligence and machine learning in pharmaceutical research and drug discovery. His work contributes to advancing AI-driven approaches in biomedical research and pharmaceutical development.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://media.licdn.com/dms/image/v2/C5603AQGdLW5XkBTsNg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1592025853998?e=2147483647&v=beta&t=U_y2zpbymRea-piL59uhntl30ra63qKUJR1B7lEqWW0" alt="Dr. Cheng Yang">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Dr. Cheng Yang</div>
+                      <div class="speaker-affiliation">AstraZeneca</div>
+                      <div class="speaker-bio">
+                        Dr. Cheng Yang is a researcher at AstraZeneca, focusing on the application of artificial intelligence and machine learning in pharmaceutical research and drug discovery. His work contributes to advancing AI-driven approaches in biomedical research and pharmaceutical development.
+                      </div>
+                    </div>
                   </div>
 
                   <!-- Speaker 10 -->
-                  <div style="margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px;">
-                    <h3 style="color: #006CBF; margin-bottom: 10px;">Dr. Dennis Lee</h3>
-                    <p style="font-style: italic; margin-bottom: 10px;"><strong>Hospital Authority</strong></p>
-                    <p style="text-align: justify;">
-                      Dr. Dennis Lee is a medical professional at the Hospital Authority, contributing to the integration of AI technologies in clinical practice and healthcare delivery.
-                    </p>
+                  <div class="speaker-card">
+                    <div class="speaker-photo">
+                      <img src="https://media.licdn.com/dms/image/v2/C5603AQEqsAG4wyVa6w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1658358333572?e=1755734400&v=beta&t=FuPhWHpd4sN2utLrAbMkdcD4pzgythgSWs1jnZRuW58" alt="Dr. Dennis Lee">
+                    </div>
+                    <div class="speaker-info">
+                      <div class="speaker-name">Dr. Dennis Lee</div>
+                      <div class="speaker-affiliation">Hospital Authority</div>
+                      <div class="speaker-bio">
+                        Dr. Dennis Lee is a medical professional at the Hospital Authority, contributing to the integration of AI technologies in clinical practice and healthcare delivery.
+                      </div>
+                    </div>
                   </div>
 
                 </div>
