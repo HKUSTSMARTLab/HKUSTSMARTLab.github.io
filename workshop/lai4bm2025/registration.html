@@ -92,54 +92,230 @@
               <div class="info-cards__card goals">
                 <div class="info-cards__title">Registration</div>
                 <div class="info-cards__content">
-                  <p style="text-align: justify;">
-                    <strong>Workshop Date:</strong> July 12, 2025<br>
-                    <strong>Venue:</strong> HKUST Jockey Club Institute for Advanced Study, Lo Ka Chung Building<br>
-                    <strong>Registration:</strong> Free of charge
-                  </p>
 
-                  <div style="background-color: #f8f9fa; padding: 20px; border-left: 4px solid #006CBF; margin: 20px 0;">
-                    <h3 style="color: #006CBF; margin-top: 0;">Registration Form</h3>
-                    <p style="margin-bottom: 15px;">Please register for the International Workshop on Large AI Models for Biomedicine using the link below:</p>
-                    <p style="text-align: center;">
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdykMBeSm2pyWT3xgLmg5Z6iRjh3aZd8bQ74JmiGBIwxA-PmQ/viewform" target="_blank" style="background-color: #006CBF; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: bold;">
-                        Register Now (Google Form)
+                  <style>
+                    .registration-container {
+                      max-width: 900px;
+                      margin: 0 auto;
+                    }
+
+                    .workshop-info {
+                      background: #f8f9fa;
+                      border: 1px solid #dee2e6;
+                      border-radius: 8px;
+                      padding: 30px;
+                      margin-bottom: 30px;
+                      text-align: center;
+                    }
+
+                    .workshop-info h2 {
+                      color: #006CBF;
+                      font-size: 24px;
+                      font-weight: 600;
+                      margin-bottom: 20px;
+                    }
+
+                    .workshop-details {
+                      display: flex;
+                      justify-content: center;
+                      gap: 30px;
+                      flex-wrap: wrap;
+                      margin-bottom: 25px;
+                      font-size: 16px;
+                      color: #495057;
+                    }
+
+                    .detail-item {
+                      display: flex;
+                      align-items: center;
+                      gap: 8px;
+                    }
+
+                    .register-button {
+                      background: #006CBF;
+                      color: white;
+                      padding: 12px 30px;
+                      border-radius: 5px;
+                      text-decoration: none;
+                      font-size: 16px;
+                      font-weight: 600;
+                      display: inline-block;
+                      transition: background-color 0.3s ease;
+                    }
+
+                    .register-button:hover {
+                      background: #004a8a;
+                      color: white;
+                    }
+
+                    .info-section {
+                      margin-bottom: 40px;
+                    }
+
+                    .info-section h3 {
+                      color: #006CBF;
+                      font-size: 20px;
+                      font-weight: 600;
+                      margin-bottom: 15px;
+                      border-bottom: 2px solid #006CBF;
+                      padding-bottom: 8px;
+                    }
+
+                    .info-section ul {
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                    }
+
+                    .info-section li {
+                      padding: 8px 0;
+                      position: relative;
+                      padding-left: 20px;
+                      line-height: 1.6;
+                      color: #495057;
+                    }
+
+                    .info-section li:before {
+                      content: "•";
+                      color: #006CBF;
+                      font-weight: bold;
+                      position: absolute;
+                      left: 0;
+                    }
+
+                    .target-audience {
+                      background: #f8f9fa;
+                      border: 1px solid #dee2e6;
+                      border-radius: 8px;
+                      padding: 25px;
+                      margin-bottom: 30px;
+                    }
+
+                    .target-audience h3 {
+                      color: #006CBF;
+                      font-size: 20px;
+                      font-weight: 600;
+                      margin-bottom: 15px;
+                      text-align: center;
+                      border-bottom: none;
+                    }
+
+                    .target-audience p {
+                      text-align: center;
+                      color: #6c757d;
+                      margin-bottom: 20px;
+                    }
+
+                    .audience-list {
+                      display: flex;
+                      flex-wrap: wrap;
+                      gap: 15px;
+                      justify-content: center;
+                    }
+
+                    .audience-item {
+                      background: white;
+                      padding: 10px 5px;
+                      border-radius: 5px;
+                      border: 1px solid #dee2e6;
+                      text-align: center;
+                      font-size: 14px;
+                      color: #495057;
+                      flex: 1;
+                      min-width: 180px;
+                      max-width: 220px;
+                    }
+
+                    .contact-info {
+                      background: #006CBF;
+                      color: white;
+                      padding: 25px;
+                      border-radius: 8px;
+                      text-align: center;
+                    }
+
+                    .contact-info h3 {
+                      color: white;
+                      font-size: 18px;
+                      font-weight: 600;
+                      margin-bottom: 15px;
+                    }
+
+                    .contact-info p {
+                      margin-bottom: 15px;
+                    }
+
+                    .contact-email {
+                      background: white;
+                      color: #006CBF;
+                      padding: 10px 20px;
+                      border-radius: 5px;
+                      text-decoration: none;
+                      font-weight: 600;
+                      display: inline-block;
+                    }
+
+                    .contact-email:hover {
+                      background: #f8f9fa;
+                      color: #006CBF;
+                    }
+
+                    @media (max-width: 768px) {
+                      .workshop-details {
+                        flex-direction: column;
+                        gap: 10px;
+                      }
+
+                      .audience-list {
+                        grid-template-columns: 1fr;
+                      }
+                    }
+                  </style>
+
+                  <div class="registration-container">
+                    <!-- Workshop Information -->
+                    <div class="workshop-info">
+                      <h2>International Workshop on Large AI Models for Biomedicine</h2>
+                      <div class="workshop-details">
+                        <div class="detail-item">
+                          <strong>Date:</strong> July 12, 2025
+                        </div>
+                        <div class="detail-item">
+                          <strong>Venue:</strong> HKUST IAS, Lo Ka Chung Building
+                        </div>
+                        <div class="detail-item">
+                          <strong>Registration:</strong> Free of charge
+                        </div>
+                      </div>
+                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdykMBeSm2pyWT3xgLmg5Z6iRjh3aZd8bQ74JmiGBIwxA-PmQ/viewform" target="_blank" class="register-button">
+                        Register Now
                       </a>
-                    </p>
+                    </div>
+
+                    <!-- Registration Information -->
+                    <div class="info-section">
+                      <h3>Registration Information</h3>
+                      <ul>
+                        <li>Registration is completely free of charge</li>
+                        <li>Limited seats available - register early to secure your spot</li>
+                        <li>Registration deadline will be announced soon</li>
+                        <li>Confirmation email will be sent upon successful registration</li>
+                        <li>Please bring a valid ID for venue entry</li>
+                      </ul>
+                    </div>
+
+                    <!-- What's Included -->
+                    <div class="info-section">
+                      <h3>What's Included</h3>
+                      <ul>
+                        <li>Access to all keynote presentations and panel discussions</li>
+                        <li>Coffee breaks and networking opportunities</li>
+                        <li>Workshop materials and program</li>
+                        <li>Certificate of attendance (upon request)</li>
+                      </ul>
+                    </div>
                   </div>
 
-                  <h3 style="color: #006CBF; margin-top: 30px; margin-bottom: 15px;">Registration Information</h3>
-                  <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Registration is free of charge</li>
-                    <li>Limited seats available - register early to secure your spot</li>
-                    <li>Registration deadline will be announced soon</li>
-                    <li>Confirmation email will be sent upon successful registration</li>
-                    <li>Please bring a valid ID for venue entry</li>
-                  </ul>
-
-                  <h3 style="color: #006CBF; margin-top: 30px; margin-bottom: 15px;">What's Included</h3>
-                  <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>Access to all keynote presentations and panel discussions</li>
-                    <li>Coffee breaks and networking opportunities</li>
-                    <li>Workshop materials and program</li>
-                    <li>Certificate of attendance (upon request)</li>
-                  </ul>
-
-                  <h3 style="color: #006CBF; margin-top: 30px; margin-bottom: 15px;">Target Audience</h3>
-                  <p style="text-align: justify; margin-bottom: 15px;">
-                    This workshop is designed for researchers, practitioners, and students interested in AI applications in biomedicine, including but not limited to:
-                  </p>
-                  <ul style="margin-left: 20px; line-height: 1.8;">
-                    <li>AI and machine learning researchers</li>
-                    <li>Biomedical engineers and scientists</li>
-                    <li>Healthcare professionals and clinicians</li>
-                    <li>Graduate students and postdocs in related fields</li>
-                    <li>Industry professionals in healthcare technology</li>
-                  </ul>
-
-                  <p style="text-align: justify;">
-                    For any inquiries regarding registration, please contact us at <a href="mailto:csfuxiangh@ust.hk?subject=LAI4BM%202025%20Workshop%20Registration" style="color: #990000;">csfuxiangh@ust.hk</a>.
-                  </p>
                 </div>
               </div>
             </div>
