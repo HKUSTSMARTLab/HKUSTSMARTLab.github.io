@@ -1546,6 +1546,33 @@
           <span>All rights reserved.</span>      
         </div>
       </div>
+
+      <style>
+        #BackToTop{
+          position: fixed;
+          bottom: 20px;
+          right: -100px;
+          z-index: 99;
+          color: #FFF;
+          background-color: #EB984E;
+          padding: 10px 15px;
+          border-radius: 3px;
+        }
+        #BackToTop:hover{
+          background-color: #333;
+        }
+        #BackToTop.show{
+          right: 30px;
+        }
+      </style>
+      <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
+      <script>
+        window.onload = function(){
+          setTimeout(function(){
+            document.getElementById("BackToTop").className = "show";
+          }, 500);
+        }
+      </script>
     </footer>
   </div>
 

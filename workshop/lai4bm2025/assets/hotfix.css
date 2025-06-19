@@ -10,6 +10,183 @@
 
 }
 
+/* Mobile Header Logo Fixes */
+@media only screen and (max-width: 1024px) {
+	.header-desktop > div.wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 15px;
+	}
+
+	.site-logos {
+		order: 1;
+		margin: 0 0 15px 0;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	.header-desktop__trigger {
+		order: 2;
+		position: relative;
+		margin: 0;
+		top: auto;
+		right: auto;
+		align-self: flex-end;
+		margin-top: -50px;
+	}
+
+	.header-desktop__menu {
+		order: 3;
+		margin: 0;
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 750px) {
+	.site-logos a img {
+		max-height: 35px !important;
+		height: 35px !important;
+	}
+
+	.site-logos__hkust {
+		max-width: 100px !important;
+	}
+
+	.site-logos__smartlab {
+		max-width: 120px !important;
+	}
+
+	.site-logos {
+		gap: 8px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.site-logos a img {
+		max-height: 30px !important;
+		height: 30px !important;
+	}
+
+	.site-logos__hkust {
+		max-width: 80px !important;
+	}
+
+	.site-logos__smartlab {
+		max-width: 100px !important;
+	}
+}
+
+/* Organization Section Mobile Fixes */
+@media only screen and (max-width: 768px) {
+	/* Fix organization units text overflow */
+	.info-cards__content div[style*="margin-left: 20px"] {
+		margin-left: 10px !important;
+		margin-right: 10px !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] {
+		flex-wrap: wrap !important;
+		align-items: flex-start !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] span {
+		word-wrap: break-word !important;
+		word-break: break-word !important;
+		hyphens: auto !important;
+		line-height: 1.4 !important;
+		flex: 1 !important;
+		min-width: 0 !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] img {
+		flex-shrink: 0 !important;
+		margin-right: 8px !important;
+		margin-bottom: 4px !important;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.info-cards__content div[style*="margin-left: 20px"] {
+		margin-left: 5px !important;
+		margin-right: 5px !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] img {
+		margin-right: 0 !important;
+		margin-bottom: 8px !important;
+		align-self: flex-start !important;
+	}
+
+	.info-cards__content div[style*="display: flex"] span {
+		font-size: 14px !important;
+		line-height: 1.5 !important;
+	}
+}
+
+/* WiFi App Images Mobile Fixes */
+@media only screen and (max-width: 768px) {
+	.wifi-app-inline {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+		gap: 10px !important;
+		padding: 15px !important;
+	}
+
+	.app-label {
+		width: 100% !important;
+		margin-bottom: 8px !important;
+		font-size: 14px !important;
+	}
+
+	.app-badge {
+		display: inline-block !important;
+		margin-right: 10px !important;
+	}
+
+	.app-badge img {
+		height: 32px !important;
+		width: auto !important;
+		max-width: 120px !important;
+		object-fit: contain !important;
+	}
+
+	.qr-badge {
+		width: 32px !important;
+		height: 32px !important;
+		object-fit: contain !important;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.wifi-app-inline {
+		padding: 12px !important;
+		gap: 8px !important;
+	}
+
+	.app-badge img {
+		height: 28px !important;
+		max-width: 100px !important;
+	}
+
+	.qr-badge {
+		width: 28px !important;
+		height: 28px !important;
+	}
+
+	.app-label {
+		font-size: 13px !important;
+	}
+}
+
 /* Venue Page Optimizations */
 .venue-image-container {
 	text-align: center;
