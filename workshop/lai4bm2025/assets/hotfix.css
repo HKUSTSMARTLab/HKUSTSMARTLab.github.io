@@ -1,0 +1,12 @@
+
+@media only screen and (min-width:751px){
+	.table-time-div{width:16%}
+	.table-event-div{width:84%}
+}
+
+@media only screen and (max-width:750px){
+	.table-time-div{width:40%}
+	.table-event-div{width:60%}
+	
+}
+
