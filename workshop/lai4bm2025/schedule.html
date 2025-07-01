@@ -61,25 +61,27 @@
 
     .schedule-time {
       background: #f8f9fa;
-      padding: 25px 20px;
+      padding: 25px 10px;
       border-right: 1px solid #e6e7e8;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 140px;
+      min-width: 100px;
       position: relative;
     }
 
     .time-badge {
       background: #073d5f;
       color: white;
-      padding: 10px 18px;
-      border-radius: 25px;
+      padding: 8px 0;
+      border-radius: 20px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 12px;
       text-align: center;
       box-shadow: 0 3px 10px rgba(7, 61, 95, 0.4);
       border: 2px solid white;
+      width: 80px;
+      display: inline-block;
     }
 
     .break-time {
@@ -115,17 +117,30 @@
       font-size: 16px;
       margin-bottom: 8px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      line-height: 1.4;
     }
 
     .talk-type {
       color: #073d5f;
       font-weight: 700;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .talk-type::before {
+      content: "Invited Talk:";
+      white-space: nowrap;
+      margin-right: 0.5em;
     }
 
     .talk-title {
       font-style: italic;
       font-weight: 600;
+      flex: 1;
+      min-width: 0;
     }
 
 
@@ -405,7 +420,7 @@
                         <span class="time-badge">9:10-9:35</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">Beyond Assistance: Rethinking AI-Human Integration in Radiology</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Beyond Assistance: Rethinking AI-Human Integration in Radiology</span></div>
                         <div class="speaker-name">Prof. Pranav Rajpurkar</div>
                         <div class="speaker-affiliation">Harvard University <span class="remote-tag">Remote</span></div>
                       </div>
@@ -416,7 +431,7 @@
                         <span class="time-badge">9:35-10:00</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Multi-modal Foundation AI for Precision Oncology</span></div>
                         <div class="speaker-name">Prof. Ruijiang Li</div>
                         <div class="speaker-affiliation">Stanford University <span class="remote-tag">Remote</span></div>
                       </div>
@@ -427,9 +442,9 @@
                         <span class="time-badge">10:00-10:25</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
-                        <div class="speaker-name">Prof. Xin Wang</div>
-                        <div class="speaker-affiliation">The Chinese University of Hong Kong</div>
+                        <div class="session-type talk-type"><span class="talk-title long-title">Reimagining Healthcare with AI: A Real-World Application of Clinical Management Systems in Hong Kong Hospital Authority</span></div>
+                        <div class="speaker-name">Mr. Dennis Lee</div>
+                        <div class="speaker-affiliation">Hong Kong Hospital Authority</div>
                       </div>
                     </div>
 
@@ -447,7 +462,7 @@
                         <span class="time-badge">10:35-11:00</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">TBD</span></div>
                         <div class="speaker-name">Prof. Dong Liang</div>
                         <div class="speaker-affiliation">SIAT, Chinese Academy of Sciences</div>
                       </div>
@@ -458,7 +473,7 @@
                         <span class="time-badge">11:00-11:25</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">Building Foundation Model-Powered Multimodal Sensing Systems for Daily Healthcare</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Building Foundation Model-Powered Multimodal Sensing Systems for Daily Healthcare</span></div>
                         <div class="speaker-name">Prof. Xiaomin Ouyang</div>
                         <div class="speaker-affiliation">The Hong Kong University of Science and Technology</div>
                       </div>
@@ -479,7 +494,7 @@
                               <li>Prof. Dong Liang</li>
                               <li>Prof. Xiaomin Ouyang</li>
                               <li>Prof. Yingcong Chen</li>
-                              <li>Prof. Varut Vardhanabhuti</li>
+                              <li>Prof. Vince Vardhanabhuti</li>
                               <li>Prof. Neeraj Mahboobani</li>
                               <li>Prof. Kyongtae Tyler Bae</li>
                             </ul>
@@ -509,9 +524,9 @@
                         <span class="time-badge">14:00-14:25</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">TBD</span></div>
                         <div class="speaker-name">Dr. Cheong Kin Ronald Chan</div>
-                        <div class="speaker-affiliation">The Chinese University of Hong Kong & Hospital Authority</div>
+                        <div class="speaker-affiliation">The Chinese University of Hong Kong & Hong Kong Hospital Authority</div>
                       </div>
                     </div>
 
@@ -520,7 +535,7 @@
                         <span class="time-badge">14:25-14:50</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Artificial Intelligence Meets Medical Imaging: From Signals to Interpretation</span></div>
                         <div class="speaker-name">Prof. Chen Qin</div>
                         <div class="speaker-affiliation">Imperial College London</div>
                       </div>
@@ -531,7 +546,7 @@
                         <span class="time-badge">14:50-15:15</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">Intelligent Surgical Assistive Robots</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Intelligent Surgical Assistive Robots</span></div>
                         <div class="speaker-name">Prof. Zheng Li</div>
                         <div class="speaker-affiliation">The Chinese University of Hong Kong</div>
                       </div>
@@ -551,9 +566,9 @@
                         <span class="time-badge">15:25-15:50</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
-                        <div class="speaker-name">Mr. Dennis Lee</div>
-                        <div class="speaker-affiliation">Hospital Authority</div>
+                        <div class="session-type talk-type"><span class="talk-title">Deep Learning Models for Cancer Subtype Classification to Advance Precision Oncology</span></div>
+                        <div class="speaker-name">Prof. Xin Wang</div>
+                        <div class="speaker-affiliation">The Chinese University of Hong Kong</div>
                       </div>
                     </div>
 
@@ -562,7 +577,7 @@
                         <span class="time-badge">15:50-16:15</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">Charting the AI Pathway: Opportunities and Challenges in Pharma Development</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">Charting the AI Pathway: Opportunities and Challenges in Pharma Development</span></div>
                         <div class="speaker-name">Dr. Yang Cheng</div>
                         <div class="speaker-affiliation">AstraZeneca</div>
                       </div>
@@ -573,7 +588,7 @@
                         <span class="time-badge">16:15-16:40</span>
                       </div>
                       <div class="schedule-content">
-                        <div class="session-type talk-type">Invited Talk:&nbsp;<span class="talk-title">TBD</span></div>
+                        <div class="session-type talk-type"><span class="talk-title">TBD</span></div>
                         <div class="speaker-name">TBD</div>
                         <div class="speaker-affiliation">To be announced</div>
                       </div>
@@ -593,9 +608,10 @@
                               <li>Prof. Cheong Kin Ronald Chan</li>
                               <li>Prof. Chen Qin</li>
                               <li>Prof. Zheng Li</li>
-                              <li>Mr. Dennis Lee</li>
+                              <li>Prof. Xin Wang</li>
                               <li>Dr. Yang Cheng</li>
                               <li>Prof. Tiffany Y SO</li>
+                              <li>Dr. Tsougenis Efstratios</li>
                               <li>Mr. Wayne Wing Kang Tan (TBD)</li>
                             </ul>
                           </div>
