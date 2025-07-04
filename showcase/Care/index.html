@@ -58,6 +58,12 @@
                 min-width: 280px;
             }
         }
+
+        /* SmartCyto card hover effects */
+        .smartcyto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
     </style>
 </head>
 <body>
@@ -249,23 +255,73 @@
         <!-- SmartCyto Section -->
         <section class="mb-5">
             <h2 class="section-title">SmartCyto</h2>
-            <div class="row">
-                <div class="col-12">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4 text-center">
-                            <div class="mb-3">
-                                <i class="fas fa-microscope fa-3x text-primary"></i>
+            <a href="brochure/index.html" class="text-decoration-none">
+                <div class="card shadow-sm border-0 h-100 smartcyto-card" style="transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;">
+                    <div class="card-body p-5">
+                        <div class="row align-items-center">
+                            <!-- Left Side: Icon and Description -->
+                            <div class="col-lg-5 col-md-6 text-center text-md-start mb-4 mb-md-0">
+                                <div class="mb-3">
+                                    <i class="fas fa-microscope fa-4x text-primary"></i>
+                                </div>
+                                <h4 class="card-title mb-3 text-dark">SmartCyto</h4>
+                                <p class="card-text lead text-muted">A foundation model-powered platform for general cytopathology cancer screening</p>
                             </div>
-                            <h4 class="card-title mb-3">SmartCyto</h4>
-                            <p class="card-text lead">A foundation model-powered platform for general cytopathology cancer screening</p>
-                            <div class="d-flex justify-content-center mt-4">
-                                <a href="#" class="btn btn-primary mx-2">Learn More</a>
-                                <a href="http://143.89.76.99:2025/" target="_blank" class="btn btn-outline-primary mx-2">Open Demo</a>
+
+                            <!-- Right Side: Features and Performance -->
+                            <div class="col-lg-7 col-md-6">
+                                <!-- Key Features Grid -->
+                                <div class="row g-3 mb-4">
+                                    <div class="col-6">
+                                        <div class="text-center p-3 bg-light rounded">
+                                            <i class="fas fa-file-image text-success mb-2" style="font-size: 1.5rem;"></i>
+                                            <div class="fw-bold text-success">7+</div>
+                                            <small class="text-muted">WSI Formats</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 bg-light rounded">
+                                            <i class="fas fa-search-plus text-info mb-2" style="font-size: 1.5rem;"></i>
+                                            <div class="fw-bold text-info">80x</div>
+                                            <small class="text-muted">Zoom Level</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 bg-light rounded">
+                                            <i class="fas fa-users text-warning mb-2" style="font-size: 1.5rem;"></i>
+                                            <div class="fw-bold text-warning">Multi</div>
+                                            <small class="text-muted">User Collab</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="text-center p-3 bg-light rounded">
+                                            <i class="fas fa-file-alt text-purple mb-2" style="font-size: 1.5rem; color: #9C27B0 !important;"></i>
+                                            <div class="fw-bold" style="color: #9C27B0;">1-Click</div>
+                                            <small class="text-muted">Auto Reports</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Performance Highlights -->
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <div class="text-primary fw-bold">⚡ Fast</div>
+                                        <small class="text-muted">Hours → Minutes</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-primary fw-bold">🎯 Accurate</div>
+                                        <small class="text-muted">AI-Powered Detection</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-primary fw-bold">📱 Accessible</div>
+                                        <small class="text-muted">Mobile Friendly</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </section>
 
         <!-- More Section -->
