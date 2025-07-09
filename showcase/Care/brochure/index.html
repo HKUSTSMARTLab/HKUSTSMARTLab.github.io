@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartCyto Platform - Empowering Precision in Cytology Screening</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         * {
             margin: 0;
@@ -579,6 +580,21 @@
                 height: auto;
             }
 
+            /* Video section responsive */
+            .video-section {
+                margin: 30px 0 !important;
+            }
+
+            .video-container {
+                padding: 20px !important;
+                margin: 30px 0 !important;
+            }
+
+            .video-section h3 {
+                font-size: 1.5em !important;
+                margin-bottom: 20px !important;
+            }
+
 
 
             /* Comparison table responsive */
@@ -761,6 +777,33 @@
             color: #1976d2;
             margin-bottom: 15px;
             font-size: 1.3em;
+        }
+
+        /* Video Section */
+        .video-section {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .video-section video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-section video:hover {
+            transform: scale(1.02);
+        }
+
+        .video-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            margin: 40px 0;
         }
 
         /* Performance Charts */
@@ -1136,6 +1179,26 @@
                 </div>
             </div>
 
+            <!-- Video Section -->
+            <div class="video-section fade-in">
+                <h3 style="color: #1976d2; margin-bottom: 30px; font-size: 1.8em;">See SmartCyto in Action</h3>
+                <div class="video-container">
+                    <video
+                        controls
+                        preload="metadata"
+                        muted
+                        playsinline
+                        poster=""
+                    >
+                        <source src="/static/media/SmartCyto.mp4" type="video/mp4">
+                        <p>Your browser does not support the video tag. <a href="/static/media/SmartCyto.mp4" target="_blank">Download the video</a> instead.</p>
+                    </video>
+                    <p style="color: #666; font-size: 0.9em; margin-top: 15px; font-style: italic;">
+                        Watch how SmartCyto transforms cytology screening with AI-powered precision and speed
+                    </p>
+                </div>
+            </div>
+
             <div class="fade-in">
                 <img src="platform.png" alt="SmartCyto Platform Overview">
             </div>
@@ -1190,7 +1253,7 @@
                 <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: center; border-top: 4px solid #4CAF50; display: flex; flex-direction: column; min-height: 320px;">
                     <div style="font-size: 2.5em; color: #4CAF50; margin-bottom: 15px;">📁</div>
                     <h4 style="color: #1976d2; margin-bottom: 15px;">Multi-Format Support</h4>
-                    <div style="font-size: 1.5em; font-weight: bold; color: #4CAF50; margin-bottom: 15px;">7</div>
+                    <div style="font-size: 1.5em; font-weight: bold; color: #4CAF50; margin-bottom: 15px;">17</div>
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; flex-grow: 1; display: flex; align-items: center;">
                         <p style="color: #666; font-size: 0.85em; margin: 0; line-height: 1.4;">Supports KFB, SDPC, SVS, NDPI and other mainstream WSI formats from leading vendors worldwide</p>
                     </div>
@@ -1218,7 +1281,7 @@
                 <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); text-align: center; border-top: 4px solid #FF9800; display: flex; flex-direction: column; min-height: 320px;">
                     <div style="font-size: 2.5em; color: #FF9800; margin-bottom: 15px;">✏️</div>
                     <h4 style="color: #1976d2; margin-bottom: 15px;">Smart Annotation</h4>
-                    <div style="font-size: 1.5em; font-weight: bold; color: #FF9800; margin-bottom: 15px;">7+</div>
+                    <div style="font-size: 1.5em; font-weight: bold; color: #FF9800; margin-bottom: 15px;">3+</div>
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; flex-grow: 1; display: flex; align-items: center;">
                         <p style="color: #666; font-size: 0.85em; margin: 0; line-height: 1.4;">Multi user collaborative annotation with side-by-side AI and human annotations display</p>
                     </div>

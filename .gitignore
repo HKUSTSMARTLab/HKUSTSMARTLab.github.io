@@ -7,3 +7,5 @@ vendor/
 .jekyll-metadata
 node_modules/
 static/media/Hetao_Talk.mp4
+static/media/SmartCyto.mp4
+static/media/SmartPath.mp4
