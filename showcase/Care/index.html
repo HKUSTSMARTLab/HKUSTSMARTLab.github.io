@@ -57,12 +57,143 @@
                 flex: 0 0 calc(100% - 1rem);
                 min-width: 280px;
             }
+
+            /* SmartCyto mobile optimizations */
+            .smartcyto-card .row.g-3 {
+                gap: 0.75rem !important;
+            }
+
+            .smartcyto-card .col-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .smartcyto-card .col-6 > div {
+                padding: 0.75rem !important;
+                margin-bottom: 0.5rem;
+            }
+
+            .smartcyto-card .col-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+                padding: 0.25rem;
+            }
+
+            .smartcyto-card .col-4 > div {
+                font-size: 0.85rem;
+            }
+
+            .smartcyto-card .col-4 small {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            /* Very small screens - better grid layout */
+            .smartcyto-card .row.g-3 {
+                gap: 0.5rem !important;
+                justify-content: center;
+            }
+
+            .smartcyto-card .col-6 {
+                flex: 0 0 calc(50% - 0.25rem);
+                max-width: calc(50% - 0.25rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .smartcyto-card .col-6 > div {
+                padding: 0.5rem !important;
+                font-size: 0.85rem;
+            }
+
+            .smartcyto-card .col-6 i {
+                font-size: 1.2rem !important;
+            }
+
+            .smartcyto-card .col-4 {
+                flex: 0 0 calc(33.333333% - 0.25rem);
+                max-width: calc(33.333333% - 0.25rem);
+                padding: 0.125rem;
+            }
+
+            .smartcyto-card .col-4 > div {
+                font-size: 0.75rem;
+                padding: 0.25rem;
+            }
+
+            .smartcyto-card .col-4 small {
+                font-size: 0.65rem;
+                line-height: 1.2;
+            }
+
+            /* Logo size adjustment for very small screens */
+            .smartcyto-card img {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            /* Better spacing for card body */
+            .smartcyto-card .card-body {
+                padding: 1.5rem !important;
+            }
+
+            /* Ensure proper alignment */
+            .smartcyto-card .row.text-center {
+                justify-content: center;
+                align-items: center;
+            }
         }
 
         /* SmartCyto card hover effects */
         .smartcyto-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+        }
+
+        /* SmartCyto logo styling */
+        .smartcyto-logo {
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .smartcyto-logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Ensure proper alignment for SmartCyto section */
+        .smartcyto-card .text-center.text-md-start {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .smartcyto-card .text-center.text-md-start {
+                align-items: flex-start;
+            }
+        }
+
+        /* Medium screens optimization */
+        @media (min-width: 577px) and (max-width: 991px) {
+            .smartcyto-card .col-lg-5 {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .smartcyto-card .row.g-3 {
+                justify-content: center;
+            }
+
+            .smartcyto-card .col-6 {
+                flex: 0 0 45%;
+                max-width: 45%;
+            }
+        }
+
+        /* Ensure consistent spacing */
+        .smartcyto-card .row.g-3 > * {
+            padding-left: calc(var(--bs-gutter-x) * 0.5);
+            padding-right: calc(var(--bs-gutter-x) * 0.5);
         }
     </style>
 </head>
@@ -262,7 +393,7 @@
                             <!-- Left Side: Icon and Description -->
                             <div class="col-lg-5 col-md-6 text-center text-md-start mb-4 mb-md-0">
                                 <div class="mb-3">
-                                    <i class="fas fa-microscope fa-4x text-primary"></i>
+                                    <img src="smartcyto_logo.png" alt="SmartCyto Logo" class="smartcyto-logo" style="width: 80px; height: 80px; object-fit: contain;">
                                 </div>
                                 <h4 class="card-title mb-3 text-dark">SmartCyto</h4>
                                 <p class="card-text lead text-muted">A foundation model-powered platform for general cytopathology cancer screening</p>
@@ -310,7 +441,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="text-primary fw-bold">🎯 Accurate</div>
-                                        <small class="text-muted">AI-Powered Detection</small>
+                                        <small class="text-muted">AI-Powered</small>
                                     </div>
                                     <div class="col-4">
                                         <div class="text-primary fw-bold">📱 Accessible</div>
