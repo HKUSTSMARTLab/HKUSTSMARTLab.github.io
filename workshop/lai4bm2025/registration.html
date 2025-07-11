@@ -148,6 +148,19 @@
                       color: white;
                     }
 
+                    .register-button.disabled {
+                      background-color: #6c757d !important;
+                      border-color: #6c757d !important;
+                      cursor: not-allowed;
+                      opacity: 0.7;
+                      color: white;
+                    }
+
+                    .register-button.disabled:hover {
+                      background-color: #6c757d !important;
+                      border-color: #6c757d !important;
+                    }
+
                     .info-section {
                       margin-bottom: 40px;
                     }
@@ -287,9 +300,22 @@
                           <strong>Registration:</strong> Free of charge
                         </div>
                       </div>
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSdykMBeSm2pyWT3xgLmg5Z6iRjh3aZd8bQ74JmiGBIwxA-PmQ/viewform" target="_blank" class="register-button">
-                        Register Now
-                      </a>
+                      <button class="register-button disabled" disabled>
+                        Registration Closed
+                      </button>
+                    </div>
+
+                    <!-- Registration closed notice -->
+                    <div style="margin-top: 30px; margin-bottom: 40px; padding: 25px; background-color: #fff3cd; border-left: 4px solid #f39c12; border-radius: 8px; color: #856404; text-align: left;">
+                      <h4 style="color: #856404; margin-top: 0; margin-bottom: 20px; font-size: 20px;">
+                        <i class="fa fa-info-circle" style="margin-right: 10px;"></i>
+                        Online Registration is Now Closed
+                      </h4>
+                      <div style="line-height: 1.8; font-size: 16px;">
+                        <p style="margin-bottom: 15px;">• An email has been sent to all registrants on June 9, 2025, informing them of their acceptance or rejection to the symposium.</p>
+                        <p style="margin-bottom: 15px;">• If you have registered for the event but have not received any communication from us, please reach out to the secretary at <a href="mailto:ias2025ns@ust.hk" style="color: #856404; text-decoration: underline; font-weight: 500;">ias2025ns@ust.hk</a>.</p>
+                        <p style="margin-bottom: 0;">• <strong>Walk-ins are welcome</strong> but admission will be subject to the availability of seats at the venue.</p>
+                      </div>
                     </div>
 
                     <!-- Registration Information -->
