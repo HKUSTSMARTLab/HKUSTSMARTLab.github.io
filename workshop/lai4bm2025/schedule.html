@@ -277,6 +277,37 @@
       color: white !important;
     }
 
+    /* Download button styling */
+    .download-btn {
+      transition: all 0.3s ease !important;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .download-btn:hover {
+      background-color: #218838 !important;
+      border-color: #218838 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .download-btn:hover span {
+      color: white !important;
+    }
+
+    /* Mobile responsive styles for download buttons */
+    @media only screen and (max-width: 768px) {
+      .download-btn {
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .download-btn span {
+        font-size: 16px !important;
+      }
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
       .schedule-item {
@@ -505,9 +536,12 @@
                 <div class="info-cards__content">
                   <div style="text-align: center; margin-bottom: 40px;">
                     <h2 style="color: #006CBF; margin-bottom: 20px; font-size: 28px;">International Workshop on Large AI Models for Biomedicine</h2>
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 30px; flex-wrap: wrap; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 10px;">
                       <a href="#" onclick="addToCalendar(); return false;" class="calendar-btn" style="background-color: #f8f9fa; border: 2px solid #006CBF; border-radius: 8px; padding: 12px 20px; text-decoration: none;">
                         <span style="color: #006CBF; font-size: 18px; font-weight: 600;"><i class="fa fa-calendar-plus-o" style="margin-right: 8px;"></i>July 12, 2025</span>
+                      </a>
+                      <a href="assets/LAI4BM_schedule.pdf" target="_blank" class="download-btn" style="background-color: #28a745; border: 2px solid #28a745; border-radius: 8px; padding: 12px 20px; text-decoration: none;">
+                        <span style="color: white; font-size: 18px; font-weight: 600;"><i class="fa fa-download" style="margin-right: 8px;"></i>Download Schedule</span>
                       </a>
                       <a href="https://www.google.com/maps/place/%E9%A6%99%E6%B8%AF%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%B8%E8%B3%BD%E9%A6%AC%E6%9C%83%E9%AB%98%E7%AD%89%E7%A0%94%E7%A9%B6%E9%99%A2%2F%E7%9B%A7%E5%AE%B6%E9%A9%84%E8%96%88%E8%90%83%E6%A8%93/data=!4m2!3m1!1s0x0:0x396ef6caee254b22?sa=X&ved=1t:2428&ictx=111" target="_blank" class="location-btn" style="background-color: #f8f9fa; border: 2px solid #e0172a; border-radius: 8px; padding: 12px 20px; text-decoration: none;">
                         <span style="color: #e0172a; font-size: 18px; font-weight: 600;"><i class="fa fa-map-marker" style="margin-right: 8px;"></i>Kaisa Group Lecture Theater, Lo Ka Chung Building</span>
@@ -749,6 +783,23 @@
                       <div class="schedule-content">
                         <div class="session-type lunch-type"><i class="fa fa-cutlery" style="margin-right: 8px;"></i>Dinner (invitation only)</div>
                       </div>
+                    </div>
+
+                    <!-- Download reminder at the end -->
+                    <div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; border: 1px solid #dee2e6;">
+                      <h4 style="color: #006CBF; margin-bottom: 15px; font-size: 20px;">
+                        <i class="fa fa-info-circle" style="margin-right: 8px;"></i>
+                        Need a Copy of This Schedule?
+                      </h4>
+                      <p style="color: #6c757d; margin-bottom: 20px; font-size: 16px;">
+                        Download the complete schedule as a PDF for easy reference and offline viewing.
+                      </p>
+                      <a href="assets/LAI4BM_schedule.pdf" target="_blank" class="download-btn" style="background-color: #28a745; border: 2px solid #28a745; border-radius: 8px; padding: 15px 25px; text-decoration: none; display: inline-block;">
+                        <span style="color: white; font-size: 16px; font-weight: 600;">
+                          <i class="fa fa-download" style="margin-right: 8px;"></i>
+                          Download PDF Schedule
+                        </span>
+                      </a>
                     </div>
                   </div>
 
