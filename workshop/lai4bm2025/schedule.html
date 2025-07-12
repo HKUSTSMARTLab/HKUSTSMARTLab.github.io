@@ -288,6 +288,13 @@
         border-bottom: 1px solid #e6e7e8;
         min-width: auto;
         padding: 15px 20px;
+        text-align: center;
+      }
+
+      .time-badge {
+        width: auto;
+        min-width: 80px;
+        padding: 8px 12px;
       }
 
       .schedule-content {
@@ -302,10 +309,119 @@
         font-size: 20px;
       }
 
+      .session-type {
+        font-size: 14px;
+        line-height: 1.3;
+      }
+
+      .talk-type {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .talk-type::before {
+        margin-bottom: 5px;
+        margin-right: 0;
+      }
+
+      .talk-title {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .speaker-name {
+        font-size: 16px;
+        margin-bottom: 3px;
+      }
+
+      .speaker-affiliation {
+        font-size: 13px;
+      }
+
+      .remote-tag {
+        margin-left: 0;
+        margin-top: 3px;
+        display: inline-block;
+      }
+
       .calendar-btn, .location-btn {
         margin-bottom: 10px;
         width: 100%;
         text-align: center;
+        padding: 10px 15px;
+      }
+
+      .calendar-btn span, .location-btn span {
+        font-size: 16px !important;
+      }
+
+      .panel-details {
+        margin-top: 8px;
+      }
+
+      .moderator, .panelists {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .panelists ul {
+        margin: 3px 0 0 15px;
+      }
+
+      .panelists li {
+        font-size: 13px;
+        padding: 2px 0;
+        padding-left: 12px;
+      }
+
+      /* Fix for date/location buttons container */
+      .schedule-section:first-child .info-cards__content > div:first-child {
+        margin-bottom: 30px;
+      }
+
+      .schedule-section:first-child .info-cards__content > div:first-child > div:nth-child(2) {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    /* Additional mobile fixes for very small screens */
+    @media (max-width: 480px) {
+      .schedule-header {
+        padding: 12px 15px;
+      }
+
+      .schedule-header h3 {
+        font-size: 18px;
+      }
+
+      .schedule-content {
+        padding: 15px;
+      }
+
+      .session-type {
+        font-size: 13px;
+      }
+
+      .talk-title {
+        font-size: 13px;
+      }
+
+      .speaker-name {
+        font-size: 15px;
+      }
+
+      .speaker-affiliation {
+        font-size: 12px;
+      }
+
+      .time-badge {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+
+      .calendar-btn span, .location-btn span {
+        font-size: 14px !important;
       }
     }
   </style>
