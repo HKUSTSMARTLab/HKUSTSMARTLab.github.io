@@ -39,6 +39,16 @@ Key features include:
 - **Automated Medical Documentation:** SmartCare auto-generates over 30 types of medical documents—including referral letters, prescriptions, and medical certificates—and provides AI-powered post-visit follow-up, reducing administrative burden for clinicians.
 - **Virtual Patient Module:** This patent-pending feature enables simulated consultations with instant AI feedback, paving the way for innovative medical education and training.
 
+### Built on World-Class Team Research: MedDr2 and GSCo
+
+SmartCare is **powered by MedDr2**—the world’s largest open-source, generalist multimodal foundation model for medicine—**developed by the Smart Lab team based on the innovative [GSCo](https://arxiv.org/html/2404.15127v2) framework**. This foundational work was led by [Sunan He](https://sunanhe.github.io/) and [Yuxiang Nie](https://jerrrynie.github.io/), supervised by Prof. Hao Chen, with a team of outstanding collaborators, and sets a new paradigm for trustworthy AI in healthcare.
+
+<div align="center">
+<img src="/static/img/news/2025_hkust_smartcare_meddr.png" alt="Smart Lab SmartCare Introduction" style="width: 100%; max-width: 800px;"/>
+</div>
+
+**MedDr2** is built upon the **GSCo framework**, which enables seamless integration of both **generalist foundation models (GFMs)** and **specialist models**. This collaborative approach allows MedDr2 to deliver robust, precise, and scalable medical image analysis, demonstrating exceptional instruction-following, in-context learning, and generalization across diverse medical domains. GSCo introduces advanced collaborative mechanisms—including **Mixture-of-Expert Diagnosis (MoED)** and **Retrieval-Augmented Diagnosis (RAD)**—empowering MedDr2 to incorporate specialist knowledge for accurate diagnosis, even in out-of-domain or complex scenarios. This **team-driven innovation** is the scientific foundation of SmartCare’s advanced capabilities in clinical workflow optimization, intelligent triage, and automated documentation, ensuring the platform is both cutting-edge and clinically impactful.
+
 ### Leadership Voices
 
 Prof. Hao Chen, Director of Smart Lab and Assistant Professor at HKUST, remarked:  
