@@ -13,6 +13,221 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Add mobile theme color -->
     <meta name="theme-color" content="#1a3c5a">
+    <style>
+        /* Academic Guideline Card Styling - Matching survey and publication pages */
+        .guideline-card {
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .guideline-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .guideline-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #1a3c5a;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .guideline-meta {
+            font-size: 0.85rem;
+            color: #546e7a;
+            margin-bottom: 0.25rem;
+        }
+
+        .guideline-meta strong {
+            color: #1a3c5a;
+            font-weight: 600;
+        }
+
+        .publication-name {
+            color: #3498db;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .category-badge {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .system-badge {
+            background-color: #f8f9fa;
+            color: #546e7a;
+            border: 1px solid #e9ecef;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .organ-type {
+            color: #e74c3c;
+            font-weight: 600;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .guideline-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-academic {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-details {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn-details:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-guideline {
+            background-color: transparent;
+            color: #546e7a;
+            border-color: #e9ecef;
+        }
+
+        .btn-guideline:hover {
+            background-color: #f8f9fa;
+            color: #1a3c5a;
+            border-color: #dee2e6;
+        }
+
+        /* Filter Section Styling */
+        .filter-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .search-input {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .filter-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            background-color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3498db;
+            font-family: 'Lora', serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #546e7a;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .guideline-card {
+                margin-bottom: 0.75rem;
+            }
+
+            .guideline-title {
+                font-size: 0.95rem;
+            }
+
+            .guideline-meta {
+                font-size: 0.8rem;
+            }
+
+            .guideline-actions {
+                flex-direction: column;
+                gap: 0.3rem;
+                align-items: stretch;
+                margin-top: 0.5rem;
+            }
+
+            .btn-academic {
+                text-align: center;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .filter-section {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -61,83 +276,223 @@
     </div>
 
     <div class="container mt-4">
-        <header class="text-center mb-4">
-            <h1 class="display-4">Guidelines</h1>
-            <p class="lead px-2">Best practices and guidelines for clinical cytopathology and AI development and implementation</p>
-            <!-- Mobile-friendly quick navigation -->
-            <div class="d-md-none mt-3">
-                <div class="btn-group btn-group-sm w-100">
-                    <a href="#computational" class="btn btn-outline-primary">Computational</a>
-                    <a href="#clinical" class="btn btn-outline-primary">Clinical</a>
-                    <a href="#ai" class="btn btn-outline-primary">AI</a>
-                </div>
-            </div>
+        <!-- Header Section -->
+        <header class="text-center mb-5">
+            <h1 class="display-4" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 700;">Clinical Guidelines</h1>
+            <p class="lead" style="color: #546e7a; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                Comprehensive guidelines and best practices for cytopathology and AI implementation
+            </p>
         </header>
 
-        <section id="computational" class="mb-5">
-            <h2 class="section-title">Computational Cytopathology Guidelines</h2>
+        <!-- Statistics Section -->
+        <div class="stats-section">
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">Digital Cytopathology and Artificial Intelligence Guidelines</h3>
-                            <p class="card-text">A comprehensive set of guidelines for digital cytopathology implementation and artificial intelligence applications in cytopathology practice. This guideline includes three key publications that provide a roadmap for the future of digital cytopathology and AI integration.</p>
-                            <div class="mt-4">
-                                <h5>Key Publications:</h5>
-                                <div class="accordion" id="publicationsAccordion">
-                                    <!-- Publication 1 -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingPub1">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePub1" aria-expanded="false" aria-controls="collapsePub1">
-                                                The Future of Digital Cytology and Artificial Intelligence
-                                            </button>
-                                        </h2>
-                                        <div id="collapsePub1" class="accordion-collapse collapse" aria-labelledby="headingPub1" data-bs-parent="#publicationsAccordion">
-                                            <div class="accordion-body">
-                                                <p><strong>Full Citation:</strong> Levy J, Yao K. The future of digital cytology and artificial intelligence: an editorial commentary for Digital Cytology part 1 and 2[J]. Journal of the American Society of Cytopathology, 2023: S2213-2945 (23) 00261.</p>
-                                                <p><strong>Description:</strong> This editorial provides an overview of the current landscape and future directions for digital cytopathology and AI applications, serving as an introduction to the comprehensive guidelines presented in parts 1 and 2.</p>
-                                                <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.jasc.2023.12.002" target="_blank">10.1016/j.jasc.2023.12.002</a></p>
-                                                <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002612" target="_blank" class="btn btn-sm btn-outline-primary mt-2">View Publication</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalGuidelines">14</div>
+                        <div class="stat-label">Total Guidelines</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="organSystems">10</div>
+                        <div class="stat-label">Organ Systems</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="reportingSystems">8</div>
+                        <div class="stat-label">Reporting Systems</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="recentGuidelines">3</div>
+                        <div class="stat-label">Recent (2023-2024)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                    <!-- Publication 2 -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingPub2">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePub2" aria-expanded="false" aria-controls="collapsePub2">
-                                                Digital Cytology Part 1: Digital Cytology Implementation for Practice
-                                            </button>
-                                        </h2>
-                                        <div id="collapsePub2" class="accordion-collapse collapse" aria-labelledby="headingPub2" data-bs-parent="#publicationsAccordion">
-                                            <div class="accordion-body">
-                                                <p><strong>Full Citation:</strong> Kim D, Sundling K E, Virk R, et al. Digital cytology part 1: digital cytology implementation for practice: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force[J]. Journal of the American Society of Cytopathology, 2024, 13(2): 86-96.</p>
-                                                <p><strong>Description:</strong> This paper focuses on practical implementation strategies for digital cytopathology in clinical settings, providing detailed guidance on technology requirements, workflow integration, and quality assurance measures.</p>
-                                                <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.jasc.2023.11.006" target="_blank">10.1016/j.jasc.2023.11.006</a></p>
-                                                <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002065" target="_blank" class="btn btn-sm btn-outline-primary mt-2">View Publication</a>
-                                            </div>
-                                        </div>
-                                    </div>
+        <section id="computational" class="mb-5">
+            <h2 class="section-title" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 600; margin-bottom: 1.5rem;">
+                <i class="fas fa-microchip me-2" style="color: #3498db;"></i>Computational Cytopathology Guidelines
+            </h2>
 
-                                    <!-- Publication 3 -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingPub3">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePub3" aria-expanded="false" aria-controls="collapsePub3">
-                                                Digital Cytology Part 2: Artificial Intelligence in Cytology
-                                            </button>
-                                        </h2>
-                                        <div id="collapsePub3" class="accordion-collapse collapse" aria-labelledby="headingPub3" data-bs-parent="#publicationsAccordion">
-                                            <div class="accordion-body">
-                                                <p><strong>Full Citation:</strong> Kim D, Sundling K E, Virk R, et al. Digital cytology part 2: artificial intelligence in cytology: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force[J]. Journal of the American Society of Cytopathology, 2024, 13(2): 97-110.</p>
-                                                <p><strong>Description:</strong> This paper provides detailed recommendations for integrating AI technologies into cytopathology workflows, addressing algorithm development, validation, regulatory considerations, and ethical implications.</p>
-                                                <p><strong>DOI:</strong> <a href="https://doi.org/10.1016/j.jasc.2023.11.005" target="_blank">10.1016/j.jasc.2023.11.005</a></p>
-                                                <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002053" target="_blank" class="btn btn-sm btn-outline-primary mt-2">View Publication</a>
-                                            </div>
-                                        </div>
-                                    </div>
+            <!-- Filter and Search Section -->
+            <div class="filter-section">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-search me-1"></i>Search Guidelines
+                        </label>
+                        <input type="text" class="form-control search-input" placeholder="Search by title, organ system, or keywords..." id="searchInput">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-layer-group me-1"></i>Category
+                        </label>
+                        <select class="form-select filter-select" id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="Computational">Computational</option>
+                            <option value="Clinical">Clinical</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-heartbeat me-1"></i>Organ System
+                        </label>
+                        <select class="form-select filter-select" id="organFilter">
+                            <option value="">All Organs</option>
+                            <option value="General">General</option>
+                            <option value="Thyroid">Thyroid</option>
+                            <option value="Cervical">Cervical</option>
+                            <option value="Urinary">Urinary</option>
+                            <option value="Breast">Breast</option>
+                            <option value="Lung">Lung</option>
+                            <option value="Salivary">Salivary</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Cytopathology AI Guidelines Cards -->
+            <div class="guideline-card" data-category="Computational" data-organ="General">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">The Future of Digital Cytology and Artificial Intelligence</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publication:</strong>
+                                    <span class="publication-name">Journal of the American Society of Cytopathology</span>
+                                </div>
+                                <span class="category-badge">Computational</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">General</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">Digital Cytology Framework</span>
                                 </div>
                             </div>
-                            <p class="mt-4"><strong>Source:</strong> <a href="https://cytopathology.org/" target="_blank">American Society of Cytopathology</a></p>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Editorial overview of current landscape and future directions for digital cytopathology and AI applications</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(0)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002612" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guideline-card" data-category="Computational" data-organ="General">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">Digital Cytology Part 1: Implementation for Practice</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publication:</strong>
+                                    <span class="publication-name">Journal of the American Society of Cytopathology</span>
+                                </div>
+                                <span class="category-badge">Computational</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">General</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">Implementation Guidelines</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Practical implementation strategies for digital cytopathology in clinical settings with technology requirements and workflow integration</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(1)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002065" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="guideline-card" data-category="Computational" data-organ="General">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">Digital Cytology Part 2: Artificial Intelligence in Cytology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publication:</strong>
+                                    <span class="publication-name">Journal of the American Society of Cytopathology</span>
+                                </div>
+                                <span class="category-badge">Computational</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">General</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">AI Integration Framework</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Detailed recommendations for integrating AI technologies into cytopathology workflows, addressing development, validation, and regulatory considerations</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(2)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S2213294523002053" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -145,475 +500,390 @@
         </section>
 
         <section id="clinical" class="mb-5">
-            <h2 class="section-title">Clinical Cytopathology Guidelines</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">Standardized Reporting Systems in Cytopathology</h3>
-                            <p class="card-text">Internationally recognized standardized reporting systems for various cytopathology specimens. These guidelines provide structured frameworks for diagnostic categorization, improving communication between pathologists and clinicians, and enhancing patient care.</p>
+            <h2 class="section-title" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 600; margin-bottom: 1.5rem;">
+                <i class="fas fa-stethoscope me-2" style="color: #3498db;"></i>Clinical Cytopathology Guidelines
+            </h2>
 
-                            <div class="mt-4">
-                                <h5>Guidelines by Organ System:</h5>
-                                <div class="accordion" id="clinicalGuidelinesAccordion">
-                                    <!-- Thyroid Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingThyroid">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThyroid" aria-expanded="false" aria-controls="collapseThyroid">
-                                                Thyroid Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseThyroid" class="accordion-collapse collapse" aria-labelledby="headingThyroid" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <div class="d-flex align-items-center justify-content-center h-100">
-                                                            <img src="https://media.springernature.com/full/springer-static/cover-hires/book/978-3-031-28046-7" alt="Thyroid Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Ali, S. Z., & VanderLaan, P. A. (2023). <em>The Bethesda System for Reporting Thyroid Cytopathology: Definitions, Criteria, and Explanatory Notes</em>. Springer Nature.</p>
-                                                        <p><strong>Publisher:</strong> Springer Nature</p>
-                                                        <p><strong>Description:</strong> The Bethesda System for Reporting Thyroid Cytopathology (TBSRTC) provides a standardized, six-tiered diagnostic framework for reporting thyroid fine-needle aspiration (FNA) results. This system improves communication between pathologists and clinicians, facilitates cytologic-histologic correlation, and supports clinical management decisions.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>I: Nondiagnostic or Unsatisfactory</li>
-                                                            <li>II: Benign</li>
-                                                            <li>III: Atypia of Undetermined Significance (AUS) or Follicular Lesion of Undetermined Significance (FLUS)</li>
-                                                            <li>IV: Follicular Neoplasm or Suspicious for a Follicular Neoplasm</li>
-                                                            <li>V: Suspicious for Malignancy</li>
-                                                            <li>VI: Malignant</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://www.google.com/books?hl=zh-CN&lr=&id=--nIEAAAQBAJ&oi=fnd&pg=PR5&dq=The+Bethesda+System+for+Reporting+Thyroid+Cytopathology+Definitions,+Criteria,+and+Explanatory+Notes&ots=p-036tzJ-Y&sig=xbU2phNem9Db8wtjvie4TmSg9I8" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-3-031-28046-7</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+            <!-- Thyroid Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Thyroid">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">The Bethesda System for Reporting Thyroid Cytopathology</h5>
 
-                                    <!-- Cervical Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingCervical">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCervical" aria-expanded="false" aria-controls="collapseCervical">
-                                                Cervical Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseCervical" class="accordion-collapse collapse" aria-labelledby="headingCervical" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <div class="d-flex align-items-center justify-content-center h-100">
-                                                            <img src="https://books.google.com.hk/books/publisher/content?id=JPJICAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71CBYQZH_UkZJHDMS-MGNfNaCUIVEVbWrKfo32QqhQKl1ONEqinVwMSnWrSyW3k-xhc0n6o3SdeKK5lytymLcWCH4IGpdj5Qt5oH8mJg2vGilm5Vuhear9dUn0xEuZkU0-_ZYAm" alt="Cervical Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Nayar, R., & Wilbur, D. C. (2015). <em>The Bethesda System for Reporting Cervical Cytology: Definitions, Criteria, and Explanatory Notes</em>. Springer.</p>
-                                                        <p><strong>Publisher:</strong> Springer</p>
-                                                        <p><strong>Description:</strong> The Bethesda System for Reporting Cervical Cytology (TBS) provides a standardized framework for reporting cervical/vaginal cytologic diagnoses. This system facilitates clear communication between the laboratory and clinician, promoting effective patient management and monitoring disease trends in patient populations.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>Specimen Adequacy</li>
-                                                            <li>General Categorization</li>
-                                                            <li>Interpretation/Result (including Negative for Intraepithelial Lesion or Malignancy, Epithelial Cell Abnormalities, and Other)</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://www.google.com/books?hl=zh-CN&lr=&id=JPJICAAAQBAJ&oi=fnd&pg=PR5&dq=e+Bethesda+System+for+Reporting+Cervical+Cytology:+Definitions,+Criteria,+and+Explanatory+Notes+&ots=udI7zP6sO-&sig=jcuVpuZETV7QBQd6E5PR_YN0pvc" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-3-319-11074-5</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Urinary Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingUrinary">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUrinary" aria-expanded="false" aria-controls="collapseUrinary">
-                                                Urinary Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseUrinary" class="accordion-collapse collapse" aria-labelledby="headingUrinary" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center">
-                                                        <div class="d-flex align-items-center justify-content-center h-100">
-                                                            <img src="https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-030-88686-8?as=webp" alt="Urinary Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Wojcik, E. M., Kurtycz, D. F. I., & Rosenthal, D. L. (2022). <em>The Paris System for Reporting Urinary Cytology</em> (Vol. 2). Springer.</p>
-                                                        <p><strong>Publisher:</strong> Springer</p>
-                                                        <p><strong>Description:</strong> The Paris System for Reporting Urinary Cytology (TPS) provides a standardized international system for reporting urinary tract cytopathology with a focus on detecting high-grade urothelial carcinoma. This system improves the sensitivity and specificity of urinary cytology reporting and enhances communication between pathologists and urologists.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>I: Nondiagnostic/Unsatisfactory</li>
-                                                            <li>II: Negative for High-Grade Urothelial Carcinoma</li>
-                                                            <li>III: Atypical Urothelial Cells</li>
-                                                            <li>IV: Suspicious for High-Grade Urothelial Carcinoma</li>
-                                                            <li>V: High-Grade Urothelial Carcinoma</li>
-                                                            <li>VI: Other Malignancies, Primary and Metastatic, and Miscellaneous Lesions</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://link.springer.com/content/pdf/10.1007/978-3-030-88686-8.pdf" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-3-030-88686-8</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Serous Fluid Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingSerous">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSerous" aria-expanded="false" aria-controls="collapseSerous">
-                                                Serous Fluid Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseSerous" class="accordion-collapse collapse" aria-labelledby="headingSerous" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-030-53908-5?as=webp" alt="Serous Fluid Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Chandra, A., Crothers, B., Kurtycz, D., & Schmitt, F. (2019). <em>Announcement: the international system for reporting serous fluid cytopathology</em>. Acta cytologica, 63(5), 349-351. S. Karger AG.</p>
-                                                        <p><strong>Publisher:</strong> S. Karger AG</p>
-                                                        <p><strong>Description:</strong> The International System for Serous Fluid Cytopathology provides a standardized approach to the cytologic evaluation of pleural, pericardial, and peritoneal effusions. This system aims to improve diagnostic accuracy and communication between pathologists and clinicians.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>I: Nondiagnostic</li>
-                                                            <li>II: Negative for Malignancy</li>
-                                                            <li>III: Atypia of Undetermined Significance</li>
-                                                            <li>IV: Suspicious for Malignancy</li>
-                                                            <li>V: Malignant</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://link.springer.com/content/pdf/10.1007/978-3-030-53908-5.pdf" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">DOI: 10.1159/000500449</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Breast Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingBreast">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBreast" aria-expanded="false" aria-controls="collapseBreast">
-                                                Breast Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseBreast" class="accordion-collapse collapse" aria-labelledby="headingBreast" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://karger.silverchair-cdn.com/karger/content_public/journal/acy/issue/63/4/3/m_acy_63_n_4_cover.jpeg?Expires=1750302519&Signature=Wq0BZO~TiU2KlQgxhWl8UcxVNIZ8YAsZPYDGn2fLMFi65Xyqzde0mMHDQv3JYOP58WNXo6FP48BVOB7EAzO8NWjZZFJgmC4S-4-ZgGzFcncIUAxR77NWCPIhIHjA~r9BafQL3yUpWk2Gu8-dhfM4BQL~fK5LVT4rqd0VCRqdOIR75WwtaXxuxaqNNwKi-pU5nyQcB4ywSAHFOeH7EFFXTRyadxjZ5Dq4qXbm8CW8IGZVc6VMLPw7WlGjy6ZV0bCQmLv~-pMOAELsd7LqHbGVYI~jNJnxpi3weVKZ7ovjKAQD9K8hoF3RzOFJMmq3kTnqrlWSdmL22eP93hWxV8PHDQ__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA" alt="Breast Cytopathology Journal Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Field, A. S., Raymond, W. A., Rickard, M., Arnold, L., Brachtel, E. F., Chaiwun, B., Chen, L., Di Bonito, L., Kurtycz, D. F. I., Lee, A. H. S., et al. (2019). <em>The international academy of cytology Yokohama system for reporting breast fine-needle aspiration biopsy cytopathology</em>. Acta Cytologica, 63(4), 257-273.</p>
-                                                        <p><strong>Publisher:</strong> S. Karger AG</p>
-                                                        <p><strong>Description:</strong> The International Academy of Cytology Yokohama System provides a standardized approach to reporting breast fine-needle aspiration biopsy cytopathology. This system aims to improve diagnostic accuracy, reproducibility, and clinical utility of breast FNA.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>1: Insufficient Material</li>
-                                                            <li>2: Benign</li>
-                                                            <li>3: Atypical, Probably Benign</li>
-                                                            <li>4: Suspicious, Probably Malignant</li>
-                                                            <li>5: Malignant</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://doi.org/10.1159/000499509" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">DOI: 10.1159/000499509</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pancreaticobiliary Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingPancreatic">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePancreatic" aria-expanded="false" aria-controls="collapsePancreatic">
-                                                Pancreaticobiliary Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapsePancreatic" class="accordion-collapse collapse" aria-labelledby="headingPancreatic" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlCBdj9TWVS6JzZsTeJwcTUpq-V9iJMe8y9VCbrcb_-4lTsKHP" alt="Pancreaticobiliary Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Pitman, M. B., Centeno, B. A., Reid, M. D., Siddiqui, M. T., Layfield, L. J., Perez-Machado, M., Weynand, B., Stelow, E. B., Lozano, M. D., Fukushima, N., et al. (2023). <em>The World Health Organization reporting system for pancreaticobiliary cytopathology</em>. Acta Cytologica, 67(3), 304-320.</p>
-                                                        <p><strong>Publisher:</strong> S. Karger AG</p>
-                                                        <p><strong>Description:</strong> The World Health Organization (WHO) reporting system for pancreaticobiliary cytopathology provides a standardized terminology and nomenclature system for pancreaticobiliary cytology specimens. This system has been incorporated into the World Health Organization (WHO) classification and aims to improve communication and patient management.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>I: Nondiagnostic</li>
-                                                            <li>II: Negative (for Malignancy)</li>
-                                                            <li>III: Atypical</li>
-                                                            <li>IV: Neoplastic (Benign and Other)</li>
-                                                            <li>V: Suspicious (for Malignancy)</li>
-                                                            <li>VI: Positive/Malignant</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://doi.org/10.1159/000527912" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">DOI: 10.1159/000527912</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Lung Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingLung">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLung" aria-expanded="false" aria-controls="collapseLung">
-                                                Lung Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseLung" class="accordion-collapse collapse" aria-labelledby="headingLung" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://publications.iarc.fr/uploads/media/default/0001/07/thumb_6848_default_publication.jpeg" alt="Lung Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Schmitt, F. C., Bubendorf, L., Canberk, S., Chandra, A., Cree, I. A., Engels, M., Hiroshima, K., Jain, D., Kholová, I., Layfield, L., et al. (2023). <em>The World Health Organization reporting system for lung cytopathology</em>. Acta Cytologica, 67(1), 80-91.</p>
-                                                        <p><strong>Publisher:</strong> S. Karger AG</p>
-                                                        <p><strong>Description:</strong> The World Health Organization (WHO) reporting system for lung cytopathology provides a standardized approach to the cytologic evaluation of lung specimens. This system aims to improve diagnostic accuracy, reproducibility, and communication between pathologists and clinicians, incorporating the latest advances in molecular pathology.</p>
-                                                        <p><strong>Key Features:</strong></p>
-                                                        <ul>
-                                                            <li>Integration of cytomorphology with molecular findings</li>
-                                                            <li>Standardized reporting terminology</li>
-                                                            <li>Guidance on specimen adequacy and preparation</li>
-                                                            <li>Diagnostic criteria for major lung tumor types</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://doi.org/10.1159/000527580" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">DOI: 10.1159/000527580</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Lymph Node Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingLymph">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLymph" aria-expanded="false" aria-controls="collapseLymph">
-                                                Lymph Node Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseLymph" class="accordion-collapse collapse" aria-labelledby="headingLymph" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://publications.iarc.fr/uploads/media/default/0001/08/thumb_7313_default_publication.jpeg" alt="Lymph Node Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> IAC-IARC-WHO Joint Editorial Board. (2024). <em>WHO Reporting System for Lymph Node, Spleen, and Thymus Cytopathology</em>. IAC-IARC-WHO Cytopathology Reporting Systems, 1st Edition, Volume 3.</p>
-                                                        <p><strong>Publisher:</strong> International Agency for Research on Cancer (IARC)</p>
-                                                        <p><strong>Description:</strong> The WHO Reporting System for Lymph Node, Spleen, and Thymus Cytopathology provides a standardized approach to the cytologic evaluation of lymphoid tissues. This system aims to improve diagnostic accuracy, reproducibility, and communication between pathologists and clinicians in the diagnosis of lymphoid disorders.</p>
-                                                        <p><strong>Key Features:</strong></p>
-                                                        <ul>
-                                                            <li>Standardized terminology for lymph node cytopathology</li>
-                                                            <li>Integration with histopathologic and molecular classifications</li>
-                                                            <li>Guidance on specimen adequacy and preparation</li>
-                                                            <li>Diagnostic criteria for reactive and neoplastic lymphoid processes</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://publications.iarc.fr/Book-And-Report-Series/Iac-Iarc-Who-Cytopathology-Reporting-Systems/WHO-Reporting-System-For-Lymph-Node-Spleen-And-Thymus-Cytopathology-2024" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-92-832-0462-5</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Salivary Gland Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingSalivary">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSalivary" aria-expanded="false" aria-controls="collapseSalivary">
-                                                Salivary Gland Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseSalivary" class="accordion-collapse collapse" aria-labelledby="headingSalivary" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-031-26662-1?as=webp" alt="Salivary Gland Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Faquin, W. C., Rossi, E. D., Baloch, Z., Barkan, G. A., Foschini, M. P., Kurtycz, D. F. I., Pusztaszeri, M. P., & Vielh, P. (2023). <em>The Milan System for Reporting Salivary Gland Cytopathology</em>. Springer.</p>
-                                                        <p><strong>Publisher:</strong> Springer</p>
-                                                        <p><strong>Description:</strong> The Milan System for Reporting Salivary Gland Cytopathology (MSRSGC) provides a standardized, tiered approach to the cytologic evaluation of salivary gland lesions. This system aims to improve communication between pathologists and clinicians, enhance the diagnostic accuracy of salivary gland FNA, and guide clinical management.</p>
-                                                        <p><strong>Key Categories:</strong></p>
-                                                        <ul>
-                                                            <li>I: Non-diagnostic</li>
-                                                            <li>II: Non-neoplastic</li>
-                                                            <li>III: Atypia of Undetermined Significance (AUS)</li>
-                                                            <li>IVA: Benign Neoplasm</li>
-                                                            <li>IVB: Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)</li>
-                                                            <li>V: Suspicious for Malignancy</li>
-                                                            <li>VI: Malignant</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://link.springer.com/book/10.1007/978-3-031-26662-1" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-3-031-26662-1</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Respiratory Cytopathology -->
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="headingRespiratory">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRespiratory" aria-expanded="false" aria-controls="collapseRespiratory">
-                                                Respiratory Cytopathology
-                                            </button>
-                                        </h2>
-                                        <div id="collapseRespiratory" class="accordion-collapse collapse" aria-labelledby="headingRespiratory" data-bs-parent="#clinicalGuidelinesAccordion">
-                                            <div class="accordion-body">
-                                                <div class="row">
-                                                    <div class="col-md-3 text-center d-flex align-items-center justify-content-center">
-                                                        <img src="https://m.media-amazon.com/images/I/61lbPJqtrbL._SY466_.jpg" alt="Respiratory Cytopathology Book Cover" class="img-fluid rounded" style="max-height: 200px;">
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <p><strong>Full Citation:</strong> Layfield, L. J., & Baloch, Z. (2019). <em>The Papanicolaou Society of Cytopathology System for Reporting Respiratory Cytology</em>. Cham: Springer.</p>
-                                                        <p><strong>Publisher:</strong> Springer</p>
-                                                        <p><strong>Description:</strong> The Papanicolaou Society of Cytopathology System for Reporting Respiratory Cytology provides a standardized approach to the cytologic evaluation of respiratory tract specimens. This system aims to improve diagnostic accuracy, reproducibility, and communication between pathologists and clinicians in the diagnosis of respiratory tract lesions.</p>
-                                                        <p><strong>Key Features:</strong></p>
-                                                        <ul>
-                                                            <li>Standardized terminology for respiratory cytopathology</li>
-                                                            <li>Risk stratification for malignancy</li>
-                                                            <li>Guidance on specimen adequacy and preparation</li>
-                                                            <li>Integration with molecular testing recommendations</li>
-                                                            <li>Management recommendations based on cytologic diagnosis</li>
-                                                        </ul>
-                                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                                            <a href="https://link.springer.com/content/pdf/10.1007/978-3-319-97235-0.pdf" target="_blank" class="btn btn-outline-primary">Access Guideline</a>
-                                                            <span class="badge bg-secondary">ISBN: 978-3-319-97235-0</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p class="mt-4"><strong>Source:</strong> Various international cytopathology societies and the <a href="https://www.who.int/" target="_blank">World Health Organization</a></p>
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">Springer Nature</span>
                                 </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Thyroid</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">TBSRTC</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Six-tiered diagnostic framework for thyroid FNA results improving communication and clinical management decisions</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">I-VI: Nondiagnostic, Benign, AUS/FLUS, Follicular Neoplasm, Suspicious, Malignant</span>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div> <!-- This closes the div.row for Clinical Cytopathology Guidelines -->
-        </section> <!-- End of Clinical Cytopathology Guidelines section -->
 
-        <section id="ai" class="mb-5">
-            <h2 class="section-title">AI Implementation Guidelines</h2>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="card-title">AI Guidelines for Cytopathology</h3>
-                            <p class="card-text">Comprehensive guidelines for the development, validation, and implementation of artificial intelligence systems in cytopathology practice.</p>
-
-                            <h5 class="mt-4">Guidelines by Category:</h5>
-                            <div class="accordion" id="aiGuidelinesAccordion">
-                                <!-- Development Guidelines -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingDevelopment">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevelopment" aria-expanded="false" aria-controls="collapseDevelopment">
-                                            Development Guidelines
-                                        </button>
-                                    </h2>
-                                    <div id="collapseDevelopment" class="accordion-collapse collapse" aria-labelledby="headingDevelopment" data-bs-parent="#aiGuidelinesAccordion">
-                                        <div class="accordion-body">
-                                            <p><strong>Description:</strong> Best practices for developing AI algorithms for cytopathology image analysis, including data preparation, model selection, and training protocols.</p>
-                                            <p><strong>Key Components:</strong></p>
-                                            <ul>
-                                                <li>Data Collection & Annotation</li>
-                                                <li>Model Architecture Selection</li>
-                                                <li>Training & Validation Protocols</li>
-                                                <li>Performance Optimization</li>
-                                                <li>Explainability Considerations</li>
-                                            </ul>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <a href="#" class="btn btn-outline-primary">Access Guidelines</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Validation Guidelines -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingValidation">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseValidation" aria-expanded="false" aria-controls="collapseValidation">
-                                            Validation Guidelines
-                                        </button>
-                                    </h2>
-                                    <div id="collapseValidation" class="accordion-collapse collapse" aria-labelledby="headingValidation" data-bs-parent="#aiGuidelinesAccordion">
-                                        <div class="accordion-body">
-                                            <p><strong>Description:</strong> Standards and protocols for validating AI systems for cytopathology, including performance metrics, testing methodologies, and clinical validation approaches.</p>
-                                            <p><strong>Key Components:</strong></p>
-                                            <ul>
-                                                <li>Performance Metrics</li>
-                                                <li>Testing Methodologies</li>
-                                                <li>Clinical Validation Protocols</li>
-                                                <li>Bias Assessment</li>
-                                                <li>Regulatory Considerations</li>
-                                            </ul>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <a href="#" class="btn btn-outline-primary">Access Guidelines</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Implementation Guidelines -->
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingImplementation">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseImplementation" aria-expanded="false" aria-controls="collapseImplementation">
-                                            Implementation Guidelines
-                                        </button>
-                                    </h2>
-                                    <div id="collapseImplementation" class="accordion-collapse collapse" aria-labelledby="headingImplementation" data-bs-parent="#aiGuidelinesAccordion">
-                                        <div class="accordion-body">
-                                            <p><strong>Description:</strong> Guidelines for implementing AI systems in clinical cytopathology practice, including workflow integration, quality assurance, and monitoring protocols.</p>
-                                            <p><strong>Key Components:</strong></p>
-                                            <ul>
-                                                <li>Workflow Integration</li>
-                                                <li>Quality Assurance</li>
-                                                <li>Monitoring & Maintenance</li>
-                                                <li>User Training</li>
-                                                <li>Clinical Decision Support</li>
-                                            </ul>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <a href="#" class="btn btn-outline-primary">Access Guidelines</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(3)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://www.google.com/books?hl=zh-CN&lr=&id=--nIEAAAQBAJ&oi=fnd&pg=PR5&dq=The+Bethesda+System+for+Reporting+Thyroid+Cytopathology+Definitions,+Criteria,+and+Explanatory+Notes&ots=p-036tzJ-Y&sig=xbU2phNem9Db8wtjvie4TmSg9I8" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
                                 </div>
                             </div>
-                            <p class="mt-4"><strong>Source:</strong>International AI in Cytopathology Consortium</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Cervical Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Cervical">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">The Bethesda System for Reporting Cervical Cytology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">Springer</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Cervical</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">TBS</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Standardized framework for cervical/vaginal cytologic diagnoses facilitating laboratory-clinician communication</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">Specimen Adequacy, General Categorization, Interpretation/Result</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(4)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://www.google.com/books?hl=zh-CN&lr=&id=JPJICAAAQBAJ&oi=fnd&pg=PR5&dq=e+Bethesda+System+for+Reporting+Cervical+Cytology:+Definitions,+Criteria,+and+Explanatory+Notes+&ots=udI7zP6sO-&sig=jcuVpuZETV7QBQd6E5PR_YN0pvc" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Urinary Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Urinary">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">The Paris System for Reporting Urinary Cytology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">Springer</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Urinary</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">TPS</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">International system for urinary tract cytopathology focused on detecting high-grade urothelial carcinoma</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">I-VI: Nondiagnostic, Negative, Atypical, Suspicious, High-Grade Carcinoma, Other Malignancies</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(5)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://link.springer.com/content/pdf/10.1007/978-3-030-88686-8.pdf" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Serous Fluid Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Serous">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">International System for Reporting Serous Fluid Cytopathology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">S. Karger AG</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Serous</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">International System</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Standardized approach for cytologic evaluation of pleural, pericardial, and peritoneal effusions</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">I-V: Nondiagnostic, Negative, Atypia, Suspicious, Malignant</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(6)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://link.springer.com/content/pdf/10.1007/978-3-030-53908-5.pdf" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Breast Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Breast">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">IAC Yokohama System for Reporting Breast FNA Cytopathology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">S. Karger AG</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Breast</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">Yokohama System</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Standardized approach for breast fine-needle aspiration biopsy cytopathology improving diagnostic accuracy</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">1-5: Insufficient, Benign, Atypical/Probably Benign, Suspicious/Probably Malignant, Malignant</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(7)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://doi.org/10.1159/000499509" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pancreaticobiliary Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Pancreaticobiliary">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">WHO Reporting System for Pancreaticobiliary Cytopathology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">S. Karger AG</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Pancreaticobiliary</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">WHO System</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">WHO standardized terminology and nomenclature system for pancreaticobiliary cytology specimens</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">I-VI: Nondiagnostic, Negative, Atypical, Neoplastic, Suspicious, Positive/Malignant</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(8)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://doi.org/10.1159/000527912" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Salivary Gland Cytopathology -->
+            <div class="guideline-card" data-category="Clinical" data-organ="Salivary">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-8">
+                            <h5 class="guideline-title mb-2">The Milan System for Reporting Salivary Gland Cytopathology</h5>
+
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Publisher:</strong>
+                                    <span class="publication-name">Springer</span>
+                                </div>
+                                <span class="category-badge">Clinical</span>
+                            </div>
+
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                <div class="guideline-meta">
+                                    <strong>Organ System:</strong>
+                                    <span class="organ-type">Salivary</span>
+                                </div>
+                                <div class="guideline-meta">
+                                    <strong>System:</strong>
+                                    <span class="system-badge">MSRSGC</span>
+                                </div>
+                            </div>
+
+                            <div class="guideline-meta">
+                                <strong>Description:</strong>
+                                <span style="color: #546e7a;">Standardized tiered approach for cytologic evaluation of salivary gland lesions enhancing diagnostic accuracy</span>
+                            </div>
+
+                            <div class="guideline-meta mt-2">
+                                <strong>Key Categories:</strong>
+                                <span style="color: #546e7a; font-style: italic;">I-VI: Non-diagnostic, Non-neoplastic, AUS, Benign/SUMP, Suspicious, Malignant</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-4">
+                            <div class="d-flex flex-column align-items-end">
+                                <div class="guideline-actions mb-2">
+                                    <button class="btn btn-academic btn-details" onclick="showGuidelineDetails(9)">
+                                        <i class="fas fa-info-circle me-1"></i>Details
+                                    </button>
+                                    <a href="https://link.springer.com/book/10.1007/978-3-031-26662-1" target="_blank" class="btn btn-academic btn-guideline">
+                                        <i class="fas fa-external-link-alt me-1"></i>Access
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Guideline Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary btn-lg" id="addGuidelineBtn" data-bs-toggle="modal" data-bs-target="#addGuidelineModal" style="padding: 0.75rem 2rem; border-radius: 8px;">
+                    <i class="fas fa-plus me-2"></i>Contribute New Guideline
+                </button>
+            </div>
         </section>
+
+
     </div> <!-- This closes the main <div class="container mt-4"> -->
     <footer class="py-4 mt-5">
         <div class="container">
@@ -628,24 +898,480 @@
         </div>
     </footer>
 
-    <!-- Add a small script to improve mobile experience -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Close mobile navbar when clicking a link
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
+        // Guidelines data array
+        const guidelinesData = [
+            {
+                title: "The Future of Digital Cytology and Artificial Intelligence",
+                publication: "Journal of the American Society of Cytopathology",
+                category: "Computational",
+                organ: "General",
+                system: "Digital Cytology Framework",
+                description: "Editorial overview of current landscape and future directions for digital cytopathology and AI applications",
+                doi: "10.1016/j.jasc.2023.12.002",
+                url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002612",
+                authors: "Levy J, Yao K",
+                image: "https://ars.els-cdn.com/content/image/X22132945.jpg"
+            },
+            {
+                title: "Digital Cytology Part 1: Implementation for Practice",
+                publication: "Journal of the American Society of Cytopathology",
+                category: "Computational",
+                organ: "General",
+                system: "Implementation Guidelines",
+                description: "Practical implementation strategies for digital cytopathology in clinical settings with technology requirements and workflow integration",
+                doi: "10.1016/j.jasc.2023.11.006",
+                url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002065",
+                authors: "Kim D, Sundling KE, Virk R, et al.",
+                image: "https://ars.els-cdn.com/content/image/X22132945.jpg"
+            },
+            {
+                title: "Digital Cytology Part 2: Artificial Intelligence in Cytology",
+                publication: "Journal of the American Society of Cytopathology",
+                category: "Computational",
+                organ: "General",
+                system: "AI Integration Framework",
+                description: "Detailed recommendations for integrating AI technologies into cytopathology workflows, addressing development, validation, and regulatory considerations",
+                doi: "10.1016/j.jasc.2023.11.005",
+                url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002053",
+                authors: "Kim D, Sundling KE, Virk R, et al.",
+                image: "https://ars.els-cdn.com/content/image/X22132945.jpg"
+            },
+            {
+                title: "The Bethesda System for Reporting Thyroid Cytopathology",
+                publication: "Springer Nature",
+                category: "Clinical",
+                organ: "Thyroid",
+                system: "TBSRTC",
+                description: "Six-tiered diagnostic framework for thyroid FNA results improving communication and clinical management decisions",
+                isbn: "978-3-031-28046-7",
+                url: "https://www.google.com/books?hl=zh-CN&lr=&id=--nIEAAAQBAJ&oi=fnd&pg=PR5&dq=The+Bethesda+System+for+Reporting+Thyroid+Cytopathology+Definitions,+Criteria,+and+Explanatory+Notes&ots=p-036tzJ-Y&sig=xbU2phNem9Db8wtjvie4TmSg9I8",
+                authors: "Ali SZ, VanderLaan PA",
+                image: "https://media.springernature.com/full/springer-static/cover-hires/book/978-3-031-28046-7"
+            },
+            {
+                title: "The Bethesda System for Reporting Cervical Cytology",
+                publication: "Springer",
+                category: "Clinical",
+                organ: "Cervical",
+                system: "TBS",
+                description: "Standardized framework for cervical/vaginal cytologic diagnoses facilitating laboratory-clinician communication",
+                isbn: "978-3-319-11074-5",
+                url: "https://www.google.com/books?hl=zh-CN&lr=&id=JPJICAAAQBAJ&oi=fnd&pg=PR5&dq=e+Bethesda+System+for+Reporting+Cervical+Cytology:+Definitions,+Criteria,+and+Explanatory+Notes+&ots=udI7zP6sO-&sig=jcuVpuZETV7QBQd6E5PR_YN0pvc",
+                authors: "Nayar R, Wilbur DC",
+                image: "https://books.google.com.hk/books/publisher/content?id=JPJICAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE71CBYQZH_UkZJHDMS-MGNfNaCUIVEVbWrKfo32QqhQKl1ONEqinVwMSnWrSyW3k-xhc0n6o3SdeKK5lytymLcWCH4IGpdj5Qt5oH8mJg2vGilm5Vuhear9dUn0xEuZkU0-_ZYAm"
+            },
+            {
+                title: "The Paris System for Reporting Urinary Cytology",
+                publication: "Springer",
+                category: "Clinical",
+                organ: "Urinary",
+                system: "TPS",
+                description: "International system for urinary tract cytopathology focused on detecting high-grade urothelial carcinoma",
+                isbn: "978-3-030-88686-8",
+                url: "https://link.springer.com/content/pdf/10.1007/978-3-030-88686-8.pdf",
+                authors: "Wojcik EM, Kurtycz DFI, Rosenthal DL",
+                image: "https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-030-88686-8?as=webp"
+            },
+            {
+                title: "International System for Reporting Serous Fluid Cytopathology",
+                publication: "S. Karger AG",
+                category: "Clinical",
+                organ: "Serous",
+                system: "International System",
+                description: "Standardized approach for cytologic evaluation of pleural, pericardial, and peritoneal effusions",
+                doi: "10.1159/000500449",
+                url: "https://link.springer.com/content/pdf/10.1007/978-3-030-53908-5.pdf",
+                authors: "Chandra A, Crothers B, Kurtycz D, Schmitt F",
+                image: "https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-030-53908-5?as=webp"
+            },
+            {
+                title: "IAC Yokohama System for Reporting Breast FNA Cytopathology",
+                publication: "S. Karger AG",
+                category: "Clinical",
+                organ: "Breast",
+                system: "Yokohama System",
+                description: "Standardized approach for breast fine-needle aspiration biopsy cytopathology improving diagnostic accuracy",
+                doi: "10.1159/000499509",
+                url: "https://doi.org/10.1159/000499509",
+                authors: "Field AS, Raymond WA, Rickard M, et al.",
+                image: "https://karger.silverchair-cdn.com/karger/content_public/journal/acy/issue/63/4/3/m_acy_63_n_4_cover.jpeg?Expires=1750302519&Signature=Wq0BZO~TiU2KlQgxhWl8UcxVNIZ8YAsZPYDGn2fLMFi65Xyqzde0mMHDQv3JYOP58WNXo6FP48BVOB7EAzO8NWjZZFJgmC4S-4-ZgGzFcncIUAxR77NWCPIhIHjA~r9BafQL3yUpWk2Gu8-dhfM4BQL~fK5LVT4rqd0VCRqdOIR75WwtaXxuxaqNNwKi-pU5nyQcB4ywSAHFOeH7EFFXTRyadxjZ5Dq4qXbm8CW8IGZVc6VMLPw7WlGjy6ZV0bCQmLv~-pMOAELsd7LqHbGVYI~jNJnxpi3weVKZ7ovjKAQD9K8hoF3RzOFJMmq3kTnqrlWSdmL22eP93hWxV8PHDQ__&Key-Pair-Id=APKAIE5G5CRDK6RD3PGA"
+            },
+            {
+                title: "WHO Reporting System for Pancreaticobiliary Cytopathology",
+                publication: "S. Karger AG",
+                category: "Clinical",
+                organ: "Pancreaticobiliary",
+                system: "WHO System",
+                description: "WHO standardized terminology and nomenclature system for pancreaticobiliary cytology specimens",
+                doi: "10.1159/000527912",
+                url: "https://doi.org/10.1159/000527912",
+                authors: "Pitman MB, Centeno BA, Reid MD, et al.",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlCBdj9TWVS6JzZsTeJwcTUpq-V9iJMe8y9VCbrcb_-4lTsKHP"
+            },
+            {
+                title: "The Milan System for Reporting Salivary Gland Cytopathology",
+                publication: "Springer",
+                category: "Clinical",
+                organ: "Salivary",
+                system: "MSRSGC",
+                description: "Standardized tiered approach for cytologic evaluation of salivary gland lesions enhancing diagnostic accuracy",
+                isbn: "978-3-031-26662-1",
+                url: "https://link.springer.com/book/10.1007/978-3-031-26662-1",
+                authors: "Faquin WC, Rossi ED, Baloch Z, et al.",
+                image: "https://media.springernature.com/w158/springer-static/cover-hires/book/978-3-031-26662-1?as=webp"
+            }
+        ];
 
-            navLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth < 992) {
-                        bsCollapse.hide();
+        // Function to show guideline details in a modal
+        function showGuidelineDetails(index) {
+            const guideline = guidelinesData[index];
+            if (!guideline) return;
+
+            const modalHTML = `
+                <div class="modal fade" id="guidelineModal" tabindex="-1" aria-labelledby="guidelineModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0; padding: 1.5rem;">
+                                <div class="w-100">
+                                    <h4 class="modal-title mb-2" id="guidelineModalLabel" style="font-family: 'Lora', serif; font-weight: 600; line-height: 1.3;">${guideline.title}</h4>
+                                    ${guideline.authors ? `<p class="mb-0" style="opacity: 0.9; font-size: 0.95rem;"><i class="fas fa-users me-2"></i>${guideline.authors}</p>` : ''}
+                                </div>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 2rem;">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        ${guideline.image ? `
+                                        <div class="book-cover-section mb-4">
+                                            <div class="row">
+                                                <div class="col-md-3 text-center">
+                                                    <div class="d-flex align-items-center justify-content-center h-100">
+                                                        <img src="${guideline.image}" alt="${guideline.title} Book Cover" class="img-fluid rounded" style="max-height: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="publication-info">
+                                                        <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                            <i class="fas fa-book me-2" style="color: #3498db;"></i>Publication Details
+                                                        </h6>
+                                ` : `
+                                        <div class="publication-info mb-4">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-book me-2" style="color: #3498db;"></i>Publication Details
+                                            </h6>
+                                `}
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">PUBLISHER</label>
+                                                        <p class="mb-0" style="color: #3498db; font-weight: 500; font-style: italic;">${guideline.publication}</p>
+                                                    </div>
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">CATEGORY</label>
+                                                        <p class="mb-0"><span class="badge" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 0.4rem 0.8rem; border-radius: 8px;">${guideline.category}</span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">ORGAN SYSTEM</label>
+                                                        <p class="mb-0"><span style="color: #e74c3c; font-weight: 600; background-color: rgba(231, 76, 60, 0.1); padding: 0.3rem 0.6rem; border-radius: 6px;">${guideline.organ}</span></p>
+                                                    </div>
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">REPORTING SYSTEM</label>
+                                                        <p class="mb-0"><span style="background-color: #f8f9fa; color: #546e7a; border: 1px solid #e9ecef; padding: 0.3rem 0.6rem; border-radius: 6px; font-weight: 500;">${guideline.system}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        ${guideline.image ? `
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ` : `</div>`}
+
+                                        <div class="description-section mb-4">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-info-circle me-2" style="color: #3498db;"></i>Description
+                                            </h6>
+                                            <div class="p-3" style="background-color: #f0f8ff; border-radius: 8px; border-left: 4px solid #3498db;">
+                                                <p class="mb-0" style="color: #1a3c5a;">${guideline.description}</p>
+                                            </div>
+                                        </div>
+
+                                        ${guideline.doi ? `
+                                        <div class="doi-info">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-link me-2" style="color: #3498db;"></i>Digital Object Identifier
+                                            </h6>
+                                            <div class="d-flex align-items-center p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db;">
+                                                <code style="background: none; color: #1a3c5a; font-size: 0.9rem;">${guideline.doi}</code>
+                                                <button class="btn btn-sm btn-outline-primary ms-auto" onclick="copyDOI('${guideline.doi}')">
+                                                    <i class="fas fa-copy me-1"></i>Copy
+                                                </button>
+                                            </div>
+                                        </div>
+                                        ` : ''}
+
+                                        ${guideline.isbn ? `
+                                        <div class="isbn-info">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-barcode me-2" style="color: #3498db;"></i>ISBN
+                                            </h6>
+                                            <div class="d-flex align-items-center p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db;">
+                                                <code style="background: none; color: #1a3c5a; font-size: 0.9rem;">${guideline.isbn}</code>
+                                                <button class="btn btn-sm btn-outline-primary ms-auto" onclick="copyISBN('${guideline.isbn}')">
+                                                    <i class="fas fa-copy me-1"></i>Copy
+                                                </button>
+                                            </div>
+                                        </div>
+                                        ` : ''}
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="action-panel" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 1.5rem;">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                                                <i class="fas fa-external-link-alt me-2" style="color: #3498db;"></i>Access Guideline
+                                            </h6>
+
+                                            ${guideline.url ? `
+                                            <a href="${guideline.url}" target="_blank" class="btn btn-primary w-100 mb-3" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; padding: 0.75rem; border-radius: 8px; font-weight: 500;">
+                                                <i class="fas fa-external-link-alt me-2"></i>View Guideline
+                                            </a>
+                                            ` : ''}
+
+                                            <button class="btn btn-outline-secondary w-100 mb-3" onclick="generateGuidelineCitation(${index})" style="border-radius: 8px; padding: 0.75rem;">
+                                                <i class="fas fa-quote-right me-2"></i>Generate Citation
+                                            </button>
+
+                                            <div class="text-center">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-info-circle me-1"></i>
+                                                    Links may require institutional access
+                                                </small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 12px 12px;">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 0.5rem 1.5rem;">Close</button>
+                                ${guideline.url ? `<a href="${guideline.url}" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; border-radius: 8px; padding: 0.5rem 1.5rem;"><i class="fas fa-external-link-alt me-2"></i>Open Guideline</a>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('guidelineModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('guidelineModal'));
+            modal.show();
+        }
+
+        // Make showGuidelineDetails available globally
+        window.showGuidelineDetails = showGuidelineDetails;
+
+        // Function to copy DOI to clipboard
+        function copyDOI(doi) {
+            navigator.clipboard.writeText(doi).then(function() {
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+                button.classList.remove('btn-outline-primary');
+                button.classList.add('btn-success');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-outline-primary');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy DOI: ', err);
+            });
+        }
+
+        // Function to copy ISBN to clipboard
+        function copyISBN(isbn) {
+            navigator.clipboard.writeText(isbn).then(function() {
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+                button.classList.remove('btn-outline-primary');
+                button.classList.add('btn-success');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-outline-primary');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy ISBN: ', err);
+            });
+        }
+
+        // Function to generate citation
+        function generateGuidelineCitation(index) {
+            const guideline = guidelinesData[index];
+            if (!guideline) return;
+
+            // Generate APA style citation
+            const authors = guideline.authors || 'Author, A.';
+            const title = guideline.title;
+            const publisher = guideline.publication;
+            const identifier = guideline.doi ? `https://doi.org/${guideline.doi}` : (guideline.isbn ? `ISBN: ${guideline.isbn}` : guideline.url);
+
+            const citation = `${authors} ${title}. ${publisher}. ${identifier ? identifier : ''}`;
+
+            // Show citation in a modal
+            showCitationModal(citation, guideline.title);
+        }
+
+        // Function to show citation modal
+        function showCitationModal(citation, title) {
+            const modalHTML = `
+                <div class="modal fade" id="citationModal" tabindex="-1" aria-labelledby="citationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="border-radius: 12px;">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0;">
+                                <h5 class="modal-title" id="citationModalLabel">
+                                    <i class="fas fa-quote-right me-2"></i>Citation Generated
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 2rem;">
+                                <div class="alert alert-info">
+                                    <strong>Guideline:</strong> ${title}
+                                </div>
+                                <h6 class="mb-3">APA Style Citation:</h6>
+                                <div class="citation-box p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db; position: relative;">
+                                    <p class="mb-0" id="citationText" style="font-family: 'Times New Roman', serif; line-height: 1.6;">${citation}</p>
+                                    <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2" onclick="copyCitation()">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="copyCitation()">
+                                    <i class="fas fa-copy me-2"></i>Copy Citation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('citationModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('citationModal'));
+            modal.show();
+        }
+
+        // Function to copy citation to clipboard
+        function copyCitation() {
+            const citationText = document.getElementById('citationText').textContent;
+            navigator.clipboard.writeText(citationText).then(function() {
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                button.classList.remove('btn-primary', 'btn-outline-primary');
+                button.classList.add('btn-success');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('btn-success');
+                    button.classList.add(button.classList.contains('position-absolute') ? 'btn-outline-primary' : 'btn-primary');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy citation: ', err);
+            });
+        }
+
+        // Make functions available globally
+        window.copyDOI = copyDOI;
+        window.copyISBN = copyISBN;
+        window.generateGuidelineCitation = generateGuidelineCitation;
+        window.copyCitation = copyCitation;
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const organFilter = document.getElementById('organFilter');
+
+            // Add event listeners for filtering
+            if (searchInput) {
+                searchInput.addEventListener('input', filterGuidelines);
+            }
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', filterGuidelines);
+            }
+            if (organFilter) {
+                organFilter.addEventListener('change', filterGuidelines);
+            }
+
+            function filterGuidelines() {
+                const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+                const selectedCategory = categoryFilter ? categoryFilter.value : '';
+                const selectedOrgan = organFilter ? organFilter.value : '';
+                const guidelines = document.querySelectorAll('.guideline-card');
+
+                let visibleCount = 0;
+                guidelines.forEach(guideline => {
+                    const title = guideline.querySelector('.guideline-title').textContent.toLowerCase();
+                    const cardBody = guideline.querySelector('.card-body').textContent.toLowerCase();
+                    const category = guideline.getAttribute('data-category');
+                    const organ = guideline.getAttribute('data-organ');
+
+                    const matchesSearch = title.includes(searchTerm) || cardBody.includes(searchTerm);
+                    const matchesCategory = !selectedCategory || category === selectedCategory;
+                    const matchesOrgan = !selectedOrgan || organ === selectedOrgan;
+
+                    if (matchesSearch && matchesCategory && matchesOrgan) {
+                        guideline.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        guideline.style.display = 'none';
                     }
                 });
-            });
+            }
+
+            // Close mobile navbar when clicking a link
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            if (navbarCollapse) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {toggle: false});
+
+                navLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        if (window.innerWidth < 992) {
+                            bsCollapse.hide();
+                        }
+                    });
+                });
+            }
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -10,6 +10,221 @@
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
+    <style>
+        /* Academic Paper Card Styling - Same as surveys */
+        .paper-card {
+            border: 1px solid #e8ecef;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .paper-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .paper-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #1a3c5a;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .paper-meta {
+            font-size: 0.85rem;
+            color: #546e7a;
+            margin-bottom: 0.25rem;
+        }
+
+        .paper-meta strong {
+            color: #1a3c5a;
+            font-weight: 600;
+        }
+
+        .publication-name {
+            color: #3498db;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .year-badge {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .task-badge {
+            background-color: #f8f9fa;
+            color: #546e7a;
+            border: 1px solid #e9ecef;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .organ-type {
+            color: #e74c3c;
+            font-weight: 600;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .paper-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .btn-academic {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .btn-details {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .btn-details:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-paper {
+            background-color: transparent;
+            color: #546e7a;
+            border-color: #e9ecef;
+        }
+
+        .btn-paper:hover {
+            background-color: #f8f9fa;
+            color: #1a3c5a;
+            border-color: #dee2e6;
+        }
+
+        /* Filter Section Styling */
+        .filter-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .search-input {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .filter-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            background-color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3498db;
+            font-family: 'Lora', serif;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #546e7a;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .paper-card {
+                margin-bottom: 0.75rem;
+            }
+
+            .paper-title {
+                font-size: 0.95rem;
+            }
+
+            .paper-meta {
+                font-size: 0.8rem;
+            }
+
+            .paper-actions {
+                flex-direction: column;
+                gap: 0.3rem;
+                align-items: stretch;
+                margin-top: 0.5rem;
+            }
+
+            .btn-academic {
+                text-align: center;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .filter-section {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -45,9 +260,12 @@
     </nav>
 
     <div class="container mt-4">
+        <!-- Header Section -->
         <header class="text-center mb-5">
-            <h1 class="display-4">Research Papers</h1>
-            <p class="lead">Cutting-edge research publications in cytology AI</p>
+            <h1 class="display-4" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 700;">Research Papers</h1>
+            <p class="lead" style="color: #546e7a; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                Cutting-edge research publications in cytology AI and computational pathology
+            </p>
         </header>
 
         <!-- Overview Section -->
@@ -92,37 +310,31 @@
                 </div>
             </div>
 
-            <!-- Statistics Cards -->
-            <div class="row mt-4">
-                <div class="col-md-3">
-                    <div class="card text-center h-100">
-                        <div class="card-body">
-                            <h3 class="text-primary" id="totalPapers">5</h3>
-                            <p class="card-text">Published Papers</p>
+            <!-- Statistics Section -->
+            <div class="stats-section">
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalPapers">0</div>
+                            <div class="stat-label">Published Papers</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center h-100">
-                        <div class="card-body">
-                            <h3 class="text-primary" id="totalOrgans">5</h3>
-                            <p class="card-text">Organs</p>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalOrgans">0</div>
+                            <div class="stat-label">Organ Types</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center h-100">
-                        <div class="card-body">
-                            <h3 class="text-primary" id="totalTasks">4</h3>
-                            <p class="card-text">Tasks</p>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <div class="stat-number" id="totalTasks">0</div>
+                            <div class="stat-label">Task Categories</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card text-center h-100">
-                        <div class="card-body">
-                            <h3 class="text-primary">50+</h3>
-                            <p class="card-text">Applications</p>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-item">
+                            <div class="stat-number" id="recentPapers">0</div>
+                            <div class="stat-label">Recent (2024-2025)</div>
                         </div>
                     </div>
                 </div>
@@ -193,48 +405,58 @@
 
         <!-- Publication List Section -->
         <section class="mb-5">
-            <h2 class="section-title">Publication List</h2>
+            <h2 class="section-title" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 600; margin-bottom: 1.5rem;">
+                <i class="fas fa-file-alt me-2" style="color: #3498db;"></i>Latest Publications
+            </h2>
 
-            <!-- Filter and Search -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search publications..." id="searchInput">
+            <!-- Filter and Search Section -->
+            <div class="filter-section">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-search me-1"></i>Search Publications
+                        </label>
+                        <input type="text" class="form-control search-input" placeholder="Search by title, authors, or keywords..." id="searchInput">
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <select class="form-select" id="yearFilter">
-                        <option value="">All Years</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="taskFilter">
-                        <option value="">All Tasks</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="organFilter">
-                        <option value="">All Organs</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-calendar me-1"></i>Year
+                        </label>
+                        <select class="form-select filter-select" id="yearFilter">
+                            <option value="">All Years</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-tasks me-1"></i>Task Category
+                        </label>
+                        <select class="form-select filter-select" id="taskFilter">
+                            <option value="">All Tasks</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-heartbeat me-1"></i>Organ Type
+                        </label>
+                        <select class="form-select filter-select" id="organFilter">
+                            <option value="">All Organs</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <!-- Publication Cards -->
-            <div class="row" id="publicationList">
+            <div id="publicationList">
                 <!-- Publications will be loaded dynamically from publications_data.js -->
             </div>
 
 
             </div>
 
-            <!-- Load More Button -->
+            <!-- Add Publication Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-outline-primary" id="loadMoreBtn" data-bs-toggle="modal" data-bs-target="#addPublicationModal">
-                    <i class="fas fa-plus me-2"></i>Add New Publication
+                <button class="btn btn-outline-primary btn-lg" id="loadMoreBtn" data-bs-toggle="modal" data-bs-target="#addPublicationModal" style="padding: 0.75rem 2rem; border-radius: 8px;">
+                    <i class="fas fa-plus me-2"></i>Contribute New Publication
                 </button>
             </div>
         </section>
@@ -329,15 +551,121 @@
             let wordCloudInstance = null;
 
             // Load publications from data file
-            if (typeof loadPublications === 'function') {
+            if (typeof publicationsData !== 'undefined' && publicationsData.length > 0) {
+                // Load publications directly with academic styling
+                loadPublicationsDirectly();
+                // Populate filter options dynamically
+                populateFilterOptions();
+                // Initialize charts and statistics
+                initializeChartsAndStats();
+            } else if (typeof loadPublications === 'function') {
                 loadPublications();
+                // Populate filter options dynamically
+                populateFilterOptions();
+                // Initialize charts and statistics
+                initializeChartsAndStats();
+            } else {
+                console.error('No publication data available');
             }
 
-            // Populate filter options dynamically
-            populateFilterOptions();
+            // Function to load publications directly with academic styling
+            function loadPublicationsDirectly() {
+                const publicationList = document.getElementById('publicationList');
+                if (publicationList && typeof publicationsData !== 'undefined') {
+                    // Sort publications by year (descending) and then by title
+                    const sortedPublications = [...publicationsData].sort((a, b) => {
+                        const yearA = parseInt(a.year) || 0;
+                        const yearB = parseInt(b.year) || 0;
+                        if (yearB !== yearA) {
+                            return yearB - yearA; // Descending by year
+                        }
+                        return a.title.localeCompare(b.title); // Ascending by title if same year
+                    });
 
-            // Initialize charts and statistics
-            initializeChartsAndStats();
+                    publicationList.innerHTML = sortedPublications.map((paper, index) => generatePaperHTML(paper, index)).join('');
+
+                    // Update statistics
+                    updateStatistics();
+                }
+            }
+
+            // Function to generate academic-style paper card HTML
+            function generatePaperHTML(paper, index) {
+                return `
+                    <div class="paper-card" data-year="${paper.year}" data-task="${paper.tasks}" data-organ="${paper.organ}">
+                        <div class="card-body p-3">
+                            <div class="row align-items-center">
+                                <div class="col-lg-9 col-md-8">
+                                    <h5 class="paper-title mb-2">${paper.title}</h5>
+
+                                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                        <div class="paper-meta">
+                                            <strong>Publication:</strong>
+                                            <span class="publication-name">${paper.publication}</span>
+                                        </div>
+                                        <span class="year-badge">${paper.year}</span>
+                                    </div>
+
+                                    <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
+                                        <div class="paper-meta">
+                                            <strong>Organ:</strong>
+                                            <span class="organ-type">${paper.organ}</span>
+                                        </div>
+                                        <div class="paper-meta">
+                                            <strong>Task:</strong>
+                                            <span class="task-badge">${paper.tasks}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="paper-meta">
+                                        <strong>Application:</strong>
+                                        <span style="color: #546e7a;">${paper.application}</span>
+                                    </div>
+
+                                    ${paper.mainResults ? `
+                                    <div class="paper-meta mt-2">
+                                        <strong>Key Results:</strong>
+                                        <span style="color: #546e7a; font-style: italic;">${paper.mainResults.substring(0, 150)}${paper.mainResults.length > 150 ? '...' : ''}</span>
+                                    </div>
+                                    ` : ''}
+                                </div>
+
+                                <div class="col-lg-3 col-md-4">
+                                    <div class="d-flex flex-column align-items-end">
+                                        <div class="paper-actions mb-2">
+                                            <button class="btn btn-academic btn-details" onclick="showPaperDetails(${index})">
+                                                <i class="fas fa-info-circle me-1"></i>Details
+                                            </button>
+                                            ${paper.url ? `
+                                            <a href="${paper.url}" target="_blank" class="btn btn-academic btn-paper">
+                                                <i class="fas fa-external-link-alt me-1"></i>Paper
+                                            </a>
+                                            ` : `
+                                            <button class="btn btn-academic btn-paper" disabled title="Link not available">
+                                                <i class="fas fa-external-link-alt me-1"></i>Paper
+                                            </button>
+                                            `}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Function to update statistics
+            function updateStatistics() {
+                const totalPapers = publicationsData.length;
+                const recentPapers = publicationsData.filter(paper => parseInt(paper.year) >= 2024).length;
+                const organs = new Set(publicationsData.map(paper => paper.organ)).size;
+                const tasks = new Set(publicationsData.map(paper => paper.tasks)).size;
+
+                document.getElementById('totalPapers').textContent = totalPapers;
+                document.getElementById('recentPapers').textContent = recentPapers;
+                document.getElementById('totalOrgans').textContent = organs;
+                document.getElementById('totalTasks').textContent = tasks;
+            }
 
             // Handle window resize for responsive word cloud
             let resizeTimeout;
@@ -349,16 +677,251 @@
                 }, 300);
             });
 
+            // Function to show paper details in a modal
+            function showPaperDetails(index) {
+                if (typeof publicationsData === 'undefined' || !publicationsData[index]) {
+                    console.error('Paper data not available for index:', index);
+                    return;
+                }
+                const paper = publicationsData[index];
+
+                const modalHTML = `
+                    <div class="modal fade" id="paperModal" tabindex="-1" aria-labelledby="paperModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl">
+                            <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                                <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0; padding: 1.5rem;">
+                                    <div class="w-100">
+                                        <h4 class="modal-title mb-2" id="paperModalLabel" style="font-family: 'Lora', serif; font-weight: 600; line-height: 1.3;">${paper.title}</h4>
+                                        <p class="mb-0" style="opacity: 0.9; font-size: 0.95rem;"><i class="fas fa-calendar me-2"></i>Published in ${paper.year}</p>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="padding: 2rem;">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="publication-info mb-4">
+                                                <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                    <i class="fas fa-journal-whills me-2" style="color: #3498db;"></i>Publication Details
+                                                </h6>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="info-item mb-3">
+                                                            <label class="fw-semibold text-muted small">JOURNAL</label>
+                                                            <p class="mb-0" style="color: #3498db; font-weight: 500; font-style: italic;">${paper.publication}</p>
+                                                        </div>
+                                                        <div class="info-item mb-3">
+                                                            <label class="fw-semibold text-muted small">YEAR</label>
+                                                            <p class="mb-0"><span class="badge" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 0.4rem 0.8rem; border-radius: 8px;">${paper.year}</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="info-item mb-3">
+                                                            <label class="fw-semibold text-muted small">ORGAN TYPE</label>
+                                                            <p class="mb-0"><span style="color: #e74c3c; font-weight: 600; background-color: rgba(231, 76, 60, 0.1); padding: 0.3rem 0.6rem; border-radius: 6px;">${paper.organ}</span></p>
+                                                        </div>
+                                                        <div class="info-item mb-3">
+                                                            <label class="fw-semibold text-muted small">TASK CATEGORY</label>
+                                                            <p class="mb-0"><span style="background-color: #f8f9fa; color: #546e7a; border: 1px solid #e9ecef; padding: 0.3rem 0.6rem; border-radius: 6px; font-weight: 500;">${paper.tasks}</span></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="research-details mb-4">
+                                                <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                    <i class="fas fa-flask me-2" style="color: #3498db;"></i>Research Details
+                                                </h6>
+                                                <div class="row">
+                                                    <div class="col-12 mb-3">
+                                                        <label class="fw-semibold text-muted small">APPLICATION</label>
+                                                        <p class="mb-0" style="color: #546e7a;">${paper.application}</p>
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3">
+                                                        <label class="fw-semibold text-muted small">METHODOLOGY</label>
+                                                        <p class="mb-0" style="color: #546e7a;">${paper.methodology}</p>
+                                                    </div>
+                                                    <div class="col-sm-6 mb-3">
+                                                        <label class="fw-semibold text-muted small">DATA</label>
+                                                        <p class="mb-0" style="color: #546e7a;">${paper.data}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            ${paper.mainResults ? `
+                                            <div class="results-section">
+                                                <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                    <i class="fas fa-chart-line me-2" style="color: #3498db;"></i>Key Results
+                                                </h6>
+                                                <div class="p-3" style="background-color: #f0f8ff; border-radius: 8px; border-left: 4px solid #3498db;">
+                                                    <p class="mb-0" style="color: #1a3c5a;">${paper.mainResults}</p>
+                                                </div>
+                                            </div>
+                                            ` : ''}
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="action-panel" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 1.5rem;">
+                                                <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                                                    <i class="fas fa-external-link-alt me-2" style="color: #3498db;"></i>Access Paper
+                                                </h6>
+
+                                                ${paper.url ? `
+                                                <a href="${paper.url}" target="_blank" class="btn btn-primary w-100 mb-3" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; padding: 0.75rem; border-radius: 8px; font-weight: 500;">
+                                                    <i class="fas fa-external-link-alt me-2"></i>View Full Paper
+                                                </a>
+                                                ` : `
+                                                <button class="btn btn-secondary w-100 mb-3" disabled style="padding: 0.75rem; border-radius: 8px; font-weight: 500;">
+                                                    <i class="fas fa-external-link-alt me-2"></i>Paper Link Unavailable
+                                                </button>
+                                                `}
+
+                                                <button class="btn btn-outline-secondary w-100 mb-3" onclick="generatePaperCitation(${index})" style="border-radius: 8px; padding: 0.75rem;">
+                                                    <i class="fas fa-quote-right me-2"></i>Generate Citation
+                                                </button>
+
+                                                <div class="text-center">
+                                                    <small class="text-muted">
+                                                        <i class="fas fa-info-circle me-1"></i>
+                                                        Links may require institutional access
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 12px 12px;">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 0.5rem 1.5rem;">Close</button>
+                                    ${paper.url ? `
+                                    <a href="${paper.url}" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; border-radius: 8px; padding: 0.5rem 1.5rem;"><i class="fas fa-external-link-alt me-2"></i>Open Paper</a>
+                                    ` : `
+                                    <button class="btn btn-secondary" disabled style="border-radius: 8px; padding: 0.5rem 1.5rem;"><i class="fas fa-external-link-alt me-2"></i>Link Unavailable</button>
+                                    `}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Remove existing modal if any
+                const existingModal = document.getElementById('paperModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+
+                // Add modal to body
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('paperModal'));
+                modal.show();
+            }
+
+            // Make showPaperDetails available globally
+            window.showPaperDetails = showPaperDetails;
+
+            // Function to generate citation for papers
+            function generatePaperCitation(index) {
+                const paper = publicationsData[index];
+                if (!paper) return;
+
+                // Generate APA style citation
+                const year = paper.year;
+                const title = paper.title;
+                const journal = paper.publication;
+                const authors = paper.authors || "Authors";
+                const doi = paper.doi ? ` https://doi.org/${paper.doi}` : '';
+
+                const citation = `${authors} (${year}). ${title}. ${journal}.${doi}`;
+
+                // Show citation in a modal
+                showCitationModal(citation, paper.title);
+            }
+
+            // Function to show citation modal
+            function showCitationModal(citation, title) {
+                const modalHTML = `
+                    <div class="modal fade" id="citationModal" tabindex="-1" aria-labelledby="citationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="border-radius: 12px;">
+                                <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0;">
+                                    <h5 class="modal-title" id="citationModalLabel">
+                                        <i class="fas fa-quote-right me-2"></i>Citation Generated
+                                    </h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="padding: 2rem;">
+                                    <div class="alert alert-info">
+                                        <strong>Paper:</strong> ${title}
+                                    </div>
+                                    <h6 class="mb-3">APA Style Citation:</h6>
+                                    <div class="citation-box p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db; position: relative;">
+                                        <p class="mb-0" id="citationText" style="font-family: 'Times New Roman', serif; line-height: 1.6;">${citation}</p>
+                                        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2" onclick="copyPaperCitation()">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" onclick="copyPaperCitation()">
+                                        <i class="fas fa-copy me-2"></i>Copy Citation
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Remove existing modal if any
+                const existingModal = document.getElementById('citationModal');
+                if (existingModal) {
+                    existingModal.remove();
+                }
+
+                // Add modal to body
+                document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+                // Show modal
+                const modal = new bootstrap.Modal(document.getElementById('citationModal'));
+                modal.show();
+            }
+
+            // Function to copy citation to clipboard
+            function copyPaperCitation() {
+                const citationText = document.getElementById('citationText').textContent;
+                navigator.clipboard.writeText(citationText).then(function() {
+                    // Show success feedback
+                    const button = event.target.closest('button');
+                    const originalHTML = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                    button.classList.remove('btn-primary', 'btn-outline-primary');
+                    button.classList.add('btn-success');
+
+                    setTimeout(() => {
+                        button.innerHTML = originalHTML;
+                        button.classList.remove('btn-success');
+                        button.classList.add(button.classList.contains('position-absolute') ? 'btn-outline-primary' : 'btn-primary');
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Could not copy citation: ', err);
+                });
+            }
+
+            // Make functions available globally
+            window.generatePaperCitation = generatePaperCitation;
+            window.copyPaperCitation = copyPaperCitation;
+
             // Filter functionality
             function filterPublications() {
                 const searchTerm = searchInput.value.toLowerCase();
                 const selectedYear = yearFilter.value;
                 const selectedTask = taskFilter.value;
                 const selectedOrgan = organFilter.value;
-                const publications = publicationList.querySelectorAll('.card');
+                const publications = publicationList.querySelectorAll('.paper-card');
 
+                let visibleCount = 0;
                 publications.forEach(publication => {
-                    const title = publication.querySelector('.card-title').textContent.toLowerCase();
+                    const title = publication.querySelector('.paper-title').textContent.toLowerCase();
                     const cardBody = publication.querySelector('.card-body').textContent.toLowerCase();
                     const year = publication.getAttribute('data-year');
                     const task = publication.getAttribute('data-task');
@@ -370,11 +933,27 @@
                     const matchesOrgan = !selectedOrgan || organ === selectedOrgan;
 
                     if (matchesSearch && matchesYear && matchesTask && matchesOrgan) {
-                        publication.parentElement.style.display = 'block';
+                        publication.style.display = 'block';
+                        visibleCount++;
                     } else {
-                        publication.parentElement.style.display = 'none';
+                        publication.style.display = 'none';
                     }
                 });
+
+                // Update visible count
+                updateFilteredStatistics(visibleCount);
+            }
+
+            // Function to update statistics when filtering
+            function updateFilteredStatistics(visibleCount) {
+                const totalElement = document.getElementById('totalPapers');
+                if (visibleCount < publicationsData.length) {
+                    totalElement.textContent = `${visibleCount} / ${publicationsData.length}`;
+                    totalElement.style.color = '#e74c3c';
+                } else {
+                    totalElement.textContent = publicationsData.length;
+                    totalElement.style.color = '#3498db';
+                }
             }
 
             // Event listeners
@@ -416,18 +995,22 @@
                     organChart.destroy();
                 }
 
-                // Collect data from publication list
-                const publications = publicationList.querySelectorAll('.card');
+                // Use publicationsData directly instead of DOM elements
+                if (typeof publicationsData === 'undefined' || !publicationsData.length) {
+                    console.warn('No publication data available for charts');
+                    return;
+                }
+
                 const yearData = {};
                 const taskData = {};
                 const organData = {};
                 const keywordData = {};
 
-                publications.forEach(publication => {
-                    const year = publication.getAttribute('data-year');
-                    const task = publication.getAttribute('data-task');
-                    const organ = publication.getAttribute('data-organ');
-                    const title = publication.querySelector('.card-title').textContent;
+                publicationsData.forEach(paper => {
+                    const year = paper.year;
+                    const task = paper.tasks;
+                    const organ = paper.organ;
+                    const title = paper.title;
 
                     // Count years
                     yearData[year] = (yearData[year] || 0) + 1;
@@ -450,7 +1033,7 @@
                 });
 
                 // Update statistics cards
-                document.getElementById('totalPapers').textContent = publications.length;
+                document.getElementById('totalPapers').textContent = publicationsData.length;
                 document.getElementById('totalOrgans').textContent = Object.keys(organData).length;
                 document.getElementById('totalTasks').textContent = Object.keys(taskData).length;
 
@@ -717,6 +1300,11 @@
 
             // Function to populate filter options dynamically
             function populateFilterOptions() {
+                if (typeof publicationsData === 'undefined' || !publicationsData.length) {
+                    console.warn('No publication data available for filters');
+                    return;
+                }
+
                 const years = new Set();
                 const tasks = new Set();
                 const organs = new Set();

@@ -12,6 +12,7 @@
         .news-carousel {
             position: relative;
             overflow: hidden;
+            margin: 0 50px;
         }
         .news-container {
             display: flex;
@@ -26,7 +27,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border: 1px solid #ddd;
             border-radius: 50%;
             width: 40px;
@@ -35,24 +36,34 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            z-index: 10;
+            z-index: 1000;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         .carousel-btn:hover {
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         .carousel-btn.prev {
-            left: -20px;
+            left: -50px;
         }
         .carousel-btn.next {
-            right: -20px;
+            right: -50px;
         }
         .carousel-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
         @media (max-width: 768px) {
+            .news-carousel {
+                margin: 0 30px;
+            }
+            .carousel-btn.prev {
+                left: -30px;
+            }
+            .carousel-btn.next {
+                right: -30px;
+            }
             .news-item {
                 flex: 0 0 calc(100% - 1rem);
                 min-width: 280px;
@@ -258,7 +269,7 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h5 class="card-title">CARE Workshop 2025</h5>
-                                <p class="card-text">Join us for the annual CARE Workshop on Cytology AI advancements on June 15-17, 2025.</p>
+                                <p class="card-text">Join us for the annual CARE Workshop on Cytology AI advancements on September 6, 2025.</p>
                                 <p class="card-text"><small class="text-muted">April 28, 2025</small></p>
                             </div>
                         </div>
@@ -311,38 +322,38 @@
             <h2 class="section-title">Computational Cytology</h2>
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title">Survey</h5>
-                            <p class="card-text">Comprehensive surveys on cytopathology AI research and applications.</p>
-                            <a href="survey.html" class="btn btn-outline-primary">View Surveys</a>
+                            <p class="card-text flex-grow-1">Comprehensive surveys on cytopathology AI research and applications.</p>
+                            <a href="survey.html" class="btn btn-outline-primary mt-auto">View Surveys</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title">Literature</h5>
-                            <p class="card-text">Research publications from our team and collaborators.</p>
-                            <a href="paper.html" class="btn btn-outline-primary">Browse Papers</a>
+                            <p class="card-text flex-grow-1">Research publications from our team and collaborators.</p>
+                            <a href="paper.html" class="btn btn-outline-primary mt-auto">Browse Papers</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title">Guideline</h5>
-                            <p class="card-text">Best practices and guidelines for clinical cytopathology and AI development and implementation.</p>
-                            <a href="guideline.html" class="btn btn-outline-primary">Read Guidelines</a>
+                            <p class="card-text flex-grow-1">Best practices and guidelines for clinical cytopathology and AI development.</p>
+                            <a href="guideline.html" class="btn btn-outline-primary mt-auto">Read Guidelines</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body text-center">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body text-center d-flex flex-column">
                             <h5 class="card-title">Social Media</h5>
-                            <p class="card-text">Connect with cytopathology experts and institutions on Social Media.</p>
-                            <a href="social.html" class="btn btn-outline-primary">Explore Accounts</a>
+                            <p class="card-text flex-grow-1">Connect with cytopathology experts and institutions on Social Media.</p>
+                            <a href="social.html" class="btn btn-outline-primary mt-auto">Explore Accounts</a>
                         </div>
                     </div>
                 </div>
@@ -354,29 +365,29 @@
             <h2 class="section-title">CytoBench</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Overview</h5>
-                            <p class="card-text">A standardized benchmark for evaluating AI models on cytology image analysis tasks.</p>
-                            <a href="#" class="btn btn-primary">Explore</a>
+                            <p class="card-text flex-grow-1">A standardized benchmark for evaluating AI models on cytology image analysis tasks.</p>
+                            <a href="#" class="btn btn-primary mt-auto">Explore</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Public Datasets</h5>
-                            <p class="card-text">Comprehensive evaluation metrics for cytopathology AI models including sensitivity, specificity, and F1 scores.</p>
-                            <a href="#" class="btn btn-primary">View Metrics</a>
+                            <p class="card-text flex-grow-1">Comprehensive evaluation metrics for cytopathology AI models including sensitivity, specificity, and F1 scores.</p>
+                            <a href="#" class="btn btn-primary mt-auto">View Metrics</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">Model Leaderboard</h5>
-                            <p class="card-text">Current rankings of state-of-the-art models on our cytopathology benchmarks.</p>
-                            <a href="#" class="btn btn-primary">View Leaderboard</a>
+                            <p class="card-text flex-grow-1">Current rankings of state-of-the-art models on our cytopathology benchmarks.</p>
+                            <a href="#" class="btn btn-primary mt-auto">View Leaderboard</a>
                         </div>
                     </div>
                 </div>
@@ -406,7 +417,7 @@
                                     <div class="col-6">
                                         <div class="text-center p-3 bg-light rounded">
                                             <i class="fas fa-file-image text-success mb-2" style="font-size: 1.5rem;"></i>
-                                            <div class="fw-bold text-success">17</div>
+                                            <div class="fw-bold text-success">20</div>
                                             <small class="text-muted">WSI Formats</small>
                                         </div>
                                     </div>
@@ -460,56 +471,56 @@
             <h2 class="section-title">More</h2>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">
                                 <i class="fas fa-briefcase text-primary me-2"></i>
                                 Opportunities
                             </h5>
-                            <p class="card-text">Explore career opportunities, research collaborations, and funding opportunities in computational cytology and AI research.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-graduation-cap text-muted me-2"></i>PhD Positions</li>
-                                <li><i class="fas fa-users text-muted me-2"></i>Research Collaborations</li>
-                                <li><i class="fas fa-dollar-sign text-muted me-2"></i>Funding Opportunities</li>
-                                <li><i class="fas fa-handshake text-muted me-2"></i>Industry Partnerships</li>
+                            <p class="card-text mb-3" style="line-height: 1.6;">Explore career opportunities and research collaborations in computational cytology.</p>
+                            <ul class="list-unstyled flex-grow-1" style="line-height: 1.8;">
+                                <li class="mb-2"><i class="fas fa-graduation-cap text-muted me-3" style="width: 16px; text-align: center;"></i>PhD Positions</li>
+                                <li class="mb-2"><i class="fas fa-users text-muted me-3" style="width: 16px; text-align: center;"></i>Research Collaborations</li>
+                                <li class="mb-2"><i class="fas fa-dollar-sign text-muted me-3" style="width: 16px; text-align: center;"></i>Funding Opportunities</li>
+                                <li class="mb-2"><i class="fas fa-handshake text-muted me-3" style="width: 16px; text-align: center;"></i>Industry Partnerships</li>
                             </ul>
-                            <a href="#" class="btn btn-outline-primary">View Opportunities</a>
+                            <a href="#" class="btn btn-outline-primary mt-auto">View Opportunities</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">
                                 <i class="fas fa-heart text-primary me-2"></i>
                                 Acknowledgment
                             </h5>
-                            <p class="card-text">We gratefully acknowledge the support and contributions from our collaborators, funding agencies, and the global cytopathology community.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-university text-muted me-2"></i>HKUST Smart Lab</li>
-                                <li><i class="fas fa-flask text-muted me-2"></i>Research Institutions</li>
-                                <li><i class="fas fa-money-bill-wave text-muted me-2"></i>Funding Agencies</li>
-                                <li><i class="fas fa-globe text-muted me-2"></i>Global Community</li>
+                            <p class="card-text mb-3" style="line-height: 1.6;">We acknowledge support from collaborators, funding agencies, and the global community.</p>
+                            <ul class="list-unstyled flex-grow-1" style="line-height: 1.8;">
+                                <li class="mb-2"><i class="fas fa-university text-muted me-3" style="width: 16px; text-align: center;"></i>HKUST Smart Lab</li>
+                                <li class="mb-2"><i class="fas fa-flask text-muted me-3" style="width: 16px; text-align: center;"></i>Research Institutions</li>
+                                <li class="mb-2"><i class="fas fa-money-bill-wave text-muted me-3" style="width: 16px; text-align: center;"></i>Funding Agencies</li>
+                                <li class="mb-2"><i class="fas fa-globe text-muted me-3" style="width: 16px; text-align: center;"></i>Global Community</li>
                             </ul>
-                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card h-100">
-                        <div class="card-body">
+                    <div class="card h-100 d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
                             <h5 class="card-title">
                                 <i class="fas fa-external-link-alt text-primary me-2"></i>
                                 Other Sources
                             </h5>
-                            <p class="card-text">Discover additional resources, external databases, tools, and platforms related to cytopathology and AI research.</p>
-                            <ul class="list-unstyled">
-                                <li><i class="fas fa-database text-muted me-2"></i>External Databases</li>
-                                <li><i class="fas fa-tools text-muted me-2"></i>Research Tools</li>
-                                <li><i class="fas fa-link text-muted me-2"></i>Related Platforms</li>
-                                <li><i class="fas fa-book text-muted me-2"></i>Educational Resources</li>
+                            <p class="card-text mb-3" style="line-height: 1.6;">Discover additional resources and platforms related to cytopathology and AI research.</p>
+                            <ul class="list-unstyled flex-grow-1" style="line-height: 1.8;">
+                                <li class="mb-2"><i class="fas fa-database text-muted me-3" style="width: 16px; text-align: center;"></i>External Databases</li>
+                                <li class="mb-2"><i class="fas fa-tools text-muted me-3" style="width: 16px; text-align: center;"></i>Research Tools</li>
+                                <li class="mb-2"><i class="fas fa-link text-muted me-3" style="width: 16px; text-align: center;"></i>Related Platforms</li>
+                                <li class="mb-2"><i class="fas fa-book text-muted me-3" style="width: 16px; text-align: center;"></i>Educational Resources</li>
                             </ul>
-                            <a href="#" class="btn btn-outline-primary">Explore Sources</a>
+                            <a href="#" class="btn btn-outline-primary mt-auto">Explore Sources</a>
                         </div>
                     </div>
                 </div>

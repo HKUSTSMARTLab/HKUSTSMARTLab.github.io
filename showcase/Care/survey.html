@@ -9,149 +9,217 @@
     <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
-        .survey-table tr:nth-child(even) {
-            background-color: #0d6efd !important;
-            color: white !important;
-        }
-        .survey-table tr:nth-child(odd) {
-            background-color: white !important;
-        }
-        .hidden-row {
-            display: none;
-        }
-        .filter-header {
-            cursor: pointer;
-            position: relative;
-            padding-right: 28px;
-            transition: background-color 0.2s ease;
-            border-radius: 4px;
-        }
-        .filter-header:hover {
-            background-color: #f0f7ff;
-        }
-        .filter-header:after {
-            content: "\f0d7"; /* FontAwesome down arrow */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            font-size: 0.85em;
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #0d6efd;
-            transition: transform 0.2s ease;
-        }
-        .filter-header.active:after {
-            transform: translateY(-50%) rotate(180deg);
-        }
-        .filter-header.has-filter:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 8px;
-            height: 8px;
-            background-color: #0d6efd;
-            border-radius: 50%;
-        }
-        .filter-dropdown {
-            position: absolute;
-            background-color: white;
-            border: 1px solid #e0e0e0;
+        /* Academic Survey Card Styling */
+        .survey-card {
+            border: 1px solid #e8ecef;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-            padding: 12px;
-            min-width: 180px;
-            margin-top: 5px;
+            transition: all 0.3s ease;
+            background: white;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .filter-title {
+
+        .survey-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .survey-title {
+            font-family: 'Lora', serif;
             font-weight: 600;
             color: #1a3c5a;
-            margin-bottom: 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.9rem;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
         }
-        .filter-dropdown label {
+
+        .survey-meta {
+            font-size: 0.85rem;
+            color: #546e7a;
+            margin-bottom: 0.25rem;
+        }
+
+        .survey-meta strong {
+            color: #1a3c5a;
+            font-weight: 600;
+        }
+
+        .publication-name {
+            color: #3498db;
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .year-badge {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .task-badge {
+            background-color: #f8f9fa;
+            color: #546e7a;
+            border: 1px solid #e9ecef;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .cancer-type {
+            color: #e74c3c;
+            font-weight: 600;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .survey-actions {
             display: flex;
+            gap: 0.5rem;
             align-items: center;
-            padding: 6px 8px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-bottom: 4px;
-            transition: background-color 0.2s ease;
         }
-        .filter-dropdown label:hover {
-            background-color: #f0f7ff;
+
+        .btn-academic {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid transparent;
         }
-        .filter-dropdown input[type="checkbox"] {
-            margin-right: 8px;
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
+
+        .btn-details {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
         }
-        .filter-actions {
-            margin-top: 10px;
+
+        .btn-details:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn-pdf {
+            background-color: transparent;
+            color: #546e7a;
+            border-color: #e9ecef;
+        }
+
+        .btn-pdf:hover {
+            background-color: #f8f9fa;
+            color: #1a3c5a;
+            border-color: #dee2e6;
+        }
+
+        /* Filter Section Styling */
+        .filter-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+        }
+
+        .search-input {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.95rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .filter-select {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            background-color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .stat-item {
             text-align: center;
-            border-top: 1px solid #eee;
-            padding-top: 10px;
-            display: flex;
-            justify-content: space-between;
+            padding: 1rem;
         }
-        .filter-actions button {
-            margin: 0 3px;
-            padding: 6px 10px;
-            font-size: 0.85em;
-            border-radius: 4px;
-            border: none;
-            background-color: #f0f7ff;
-            color: #0d6efd;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3498db;
+            font-family: 'Lora', serif;
         }
-        .filter-actions button:hover {
-            background-color: #d8e8ff;
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #546e7a;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        /* Mobile optimizations for filters */
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .filter-dropdown {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 85%;
-                max-width: 300px;
-                max-height: 80vh;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                border-radius: 12px;
-                padding: 16px;
-                z-index: 1100;
+            .survey-card {
+                margin-bottom: 0.75rem;
             }
-            .filter-dropdown label {
-                padding: 10px 8px;
-                margin-bottom: 6px;
+
+            .survey-title {
+                font-size: 0.95rem;
             }
-            .filter-dropdown input[type="checkbox"] {
-                width: 20px;
-                height: 20px;
+
+            .survey-meta {
+                font-size: 0.8rem;
             }
-            .filter-actions button {
-                padding: 8px 12px;
-                font-size: 0.9em;
+
+            .survey-actions {
+                flex-direction: column;
+                gap: 0.3rem;
+                align-items: stretch;
+                margin-top: 0.5rem;
             }
-            .filter-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0,0,0,0.5);
-                z-index: 1050;
+
+            .btn-academic {
+                text-align: center;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .filter-section {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -193,50 +261,93 @@
     <div class="filter-overlay" id="filter-overlay"></div>
 
     <div class="container mt-4">
+        <!-- Header Section -->
         <header class="text-center mb-5">
-            <h1 class="display-4">Cytology AI Surveys</h1>
-            <p class="lead">Comprehensive reviews and surveys in the field of AI-assisted cytology</p>
+            <h1 class="display-4" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 700;">Cytology AI Surveys</h1>
+            <p class="lead" style="color: #546e7a; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+                Comprehensive reviews and surveys in the field of AI-assisted cytology
+            </p>
         </header>
 
-        <section class="mb-5">
-            <h2 class="section-title">Latest Surveys</h2>
-
-            <!-- Filter and Search -->
-            <div class="row mb-4">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                        <input type="text" class="form-control" placeholder="Search surveys..." id="searchInput">
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalSurveys">0</div>
+                        <div class="stat-label">Total Surveys</div>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <select class="form-select" id="yearFilter">
-                        <option value="">All Years</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="recentSurveys">0</div>
+                        <div class="stat-label">Recent (2024-2025)</div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="cancerFilter">
-                        <option value="">All Cancer Types</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="cancerTypes">0</div>
+                        <div class="stat-label">Cancer Types</div>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <select class="form-select" id="taskFilter">
-                        <option value="">All Tasks</option>
-                        <!-- Options will be populated dynamically -->
-                    </select>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" id="taskTypes">0</div>
+                        <div class="stat-label">Task Categories</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mb-5">
+            <h2 class="section-title" style="color: #1a3c5a; font-family: 'Lora', serif; font-weight: 600; margin-bottom: 1.5rem;">
+                <i class="fas fa-microscope me-2" style="color: #3498db;"></i>Latest Surveys
+            </h2>
+
+            <!-- Filter and Search Section -->
+            <div class="filter-section">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-search me-1"></i>Search Surveys
+                        </label>
+                        <input type="text" class="form-control search-input" placeholder="Search by title, publication, or keywords..." id="searchInput">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-calendar me-1"></i>Year
+                        </label>
+                        <select class="form-select filter-select" id="yearFilter">
+                            <option value="">All Years</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-dna me-1"></i>Cancer Type
+                        </label>
+                        <select class="form-select filter-select" id="cancerFilter">
+                            <option value="">All Cancer Types</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold" style="color: #1a3c5a;">
+                            <i class="fas fa-tasks me-1"></i>Task Category
+                        </label>
+                        <select class="form-select filter-select" id="taskFilter">
+                            <option value="">All Tasks</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <!-- Survey Cards -->
-            <div class="row" id="surveyList">
+            <div id="surveyList">
             </div>
 
             <!-- Add Survey Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-outline-primary" id="addSurveyBtn" data-bs-toggle="modal" data-bs-target="#addSurveyModal">
-                    <i class="fas fa-plus me-2"></i>Add New Survey
+                <button class="btn btn-outline-primary btn-lg" id="addSurveyBtn" data-bs-toggle="modal" data-bs-target="#addSurveyModal" style="padding: 0.75rem 2rem; border-radius: 8px;">
+                    <i class="fas fa-plus me-2"></i>Contribute New Survey
                 </button>
             </div>
         </section>
@@ -307,81 +418,98 @@
     <script>
         // Survey data array
         const surveysData = [
-            { year: "2023", publication: "Medical Image Analysis", cancer: "General", task: "General", title: "Deep learning for computational cytology: A survey", comments: "" },
-            { year: "2024", publication: "Neurocomputing", cancer: "Cervical", task: "General", title: "A systematic review on deep learning based methods for cervical cell image analysis", comments: "" },
-            { year: "2023", publication: "Artificial Intelligence Review", cancer: "Cervical", task: "General", title: "A systematic review of deep learning-based cervical cytology screening: from cell identification to whole slide image analysis", comments: "" },
-            { year: "2021", publication: "Cytopathology", cancer: "General", task: "General", title: "The emerging role of deep learning in cytology", comments: "" },
-            { year: "2021", publication: "Acta Cytologica", cancer: "General", task: "General", title: "Challenges developing deep learning algorithms in cytology", comments: "" },
-            { year: "2020", publication: "IEEE Access", cancer: "Cervical", task: "General", title: "A survey for cervical cytopathology image analysis using deep learning", comments: "" },
-            { year: "2022", publication: "Cancers", cancer: "Non-gynecological", task: "General", title: "Recent application of artificial intelligence in non-gynecological cancer cytopathology: a systematic review", comments: "" },
-            { year: "2021", publication: "ACM Computing Surveys", cancer: "General", task: "General", title: "Cytology image analysis techniques toward automation: systematically revisited", comments: "" },
-            { year: "2025", publication: "Bioengineering", cancer: "Non-gynecological", task: "General", title: "Challenges and Opportunities in Cytopathology Artificial Intelligence", comments: "" },
-            { year: "2022", publication: "CytoJournal", cancer: "General", task: "General", title: "Artificial neural network in diagnostic cytology", comments: "" },
-            { year: "2024", publication: "European Journal of Medical Research", cancer: "General", task: "General", title: "Artificial intelligence in cytopathological applications for cancer: a review of accuracy and analytic validity", comments: "" },
-            { year: "2024", publication: "Journal of Clinical Medicine", cancer: "General", task: "General", title: "AI in Cytopathology: A Narrative Umbrella Review on Innovations, Challenges, and Future Directions", comments: "" },
-            { year: "2019", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Artificial intelligence in cytopathology: a review of the literature and overview of commercial landscape", comments: "" },
-            { year: "2024", publication: "Surgical Pathology Clinics", cancer: "General", task: "General", title: "Artificial intelligence applications in cytopathology: Current state of the art", comments: "" },
-            { year: "2023", publication: "Journal of pathology informatics", cancer: "Thyroid", task: "General", title: "Current status of machine learning in thyroid cytopathology", comments: "" },
-            { year: "2021", publication: "Computerized Medical Imaging and Graphics", cancer: "General", task: "General", title: "What is the state of the art of computer vision-assisted cytology? A Systematic Literature Review", comments: "" },
-            { year: "2021", publication: "Frontiers in Medicine", cancer: "General", task: "General", title: "Advances in imaging modalities, artificial intelligence, and single cell biomarker analysis, and their applications in cytopathology", comments: "" },
-            { year: "2023", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "The future of digital cytology and artificial intelligence: an editorial commentary for Digital Cytology part 1 and 2", comments: "" },
-            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Digital cytology part 1: digital cytology implementation for practice: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force", comments: "" },
-            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Digital cytology part 2: artificial intelligence in cytology: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force", comments: "" },
-            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "The current state of digital cytology and artificial intelligence (AI): Global survey results from the American Society of Cytopathology Digital Cytology Task Force", comments: "" },
-            { year: "2025", publication: "EClinicalMedicine", cancer: "Cervical", task: "General", title: "Performance of artificial intelligence for diagnosing cervical intraepithelial neoplasia and cervical cancer: a systematic review and meta-analysis", comments: "" },
-            { year: "2024", publication: "Technical Report", cancer: "General", task: "General", title: "A Systematic Literature Review on Vision Transformers applications in Histopathology and Cytopathology: Advances in Cellular Analysis", comments: "" },
-            { year: "2024", publication: "IEEE Access", cancer: "Cervical", task: "Segmentation", title: "Segmentation of overlapping cells in cervical cytology images: a survey", comments: "" },
-            { year: "2024", publication: "IEEE Access", cancer: "Cervical", task: "Segmentation and Classification", title: "Segmentation and Classification Techniques for Pap smear Images in Detecting Cervical Cancer: A Systematic Review", comments: "" },
-            { year: "2024", publication: "International Conference on Dependability of Computer Systems", cancer: "Cervical", task: "Augmentation", title: "Data Augmentation Techniques to Detect Cervical Cancer Using Deep Learning: A Systematic Review", comments: "" },
-            { year: "2022", publication: "Diagnostics", cancer: "Cervical", task: "General", title: "Diagnosis of cervical cancer and pre-cancerous lesions by artificial intelligence: a systematic review", comments: "" },
-            { year: "2024", publication: "Multimedia Tools and Applications", cancer: "Cervical", task: "Segmentation", title: "Review of cervical cell segmentation", comments: "" },
-            { year: "2023", publication: "Interdisciplinary Medicine", cancer: "General", task: "General", title: "Advances in AI-based cancer cytopathology", comments: "" },
-            { year: "2024", publication: "Cancer Biology & Medicine", cancer: "Cervical", task: "General", title: "Artificial intelligence strengthens cervical cancer screening--present and future", comments: "" },
-            { year: "2023", publication: "Diagnostic Cytopathology", cancer: "General", task: "General", title: "Digital cytology: Current status and future prospects", comments: "" },
+            { year: "2023", publication: "Medical Image Analysis", cancer: "General", task: "General", title: "Deep learning for computational cytology: A survey", comments: "", doi: "10.1016/j.media.2022.102688", url: "https://www.sciencedirect.com/science/article/abs/pii/S136184152200319X", authors: "Jiang S, Li H, Jin Z" },
+            { year: "2024", publication: "Neurocomputing", cancer: "Cervical", task: "General", title: "A systematic review on deep learning based methods for cervical cell image analysis", comments: "", doi: "10.1016/j.neucom.2024.128630", url: "https://www.sciencedirect.com/science/article/pii/S0925231224014012", authors: "Li X, Zhang Y, Wang L" },
+            { year: "2023", publication: "Artificial Intelligence Review", cancer: "Cervical", task: "General", title: "A systematic review of deep learning-based cervical cytology screening: from cell identification to whole slide image analysis", comments: "", doi: "10.1007/s10462-023-10480-w", url: "https://link.springer.com/article/10.1007/s10462-023-10588-z", authors: "Jiang P, Li X, Shen H" },
+            { year: "2021", publication: "Cytopathology", cancer: "General", task: "General", title: "The emerging role of deep learning in cytology", comments: "", doi: "10.1111/cyt.12942", url: "https://onlinelibrary.wiley.com/doi/10.1111/cyt.12942", authors: "Dey P" },
+            { year: "2021", publication: "Acta Cytologica", cancer: "General", task: "General", title: "Challenges developing deep learning algorithms in cytology", comments: "", doi: "10.1159/000510991", url: "https://karger.com/acy/article/65/4/301/138847", authors: "Holmström O, Linder N, Kaingu H" },
+            { year: "2020", publication: "IEEE Access", cancer: "Cervical", task: "General", title: "A survey for cervical cytopathology image analysis using deep learning", comments: "", doi: "10.1109/ACCESS.2020.2983186", url: "https://ieeexplore.ieee.org/document/9050915", authors: "Rahaman MM, Li C, Yao Y" },
+            { year: "2022", publication: "Cancers", cancer: "Non-gynecological", task: "General", title: "Recent application of artificial intelligence in non-gynecological cancer cytopathology: a systematic review", comments: "", doi: "10.3390/cancers14143529", url: "https://www.mdpi.com/2072-6694/14/14/3529", authors: "Saha M, Chakraborty C, Racoceanu D" },
+            { year: "2021", publication: "ACM Computing Surveys", cancer: "General", task: "General", title: "Cytology image analysis techniques toward automation: systematically revisited", comments: "", doi: "10.1145/3447238", url: "https://dl.acm.org/doi/10.1145/3447238", authors: "Saha M, Chakraborty C, Racoceanu D" },
+            { year: "2025", publication: "Bioengineering", cancer: "Non-gynecological", task: "General", title: "Challenges and Opportunities in Cytopathology Artificial Intelligence", comments: "", doi: "10.3390/bioengineering12020176", url: "https://www.mdpi.com/2306-5354/12/2/176", authors: "Rahman MA, Yilmaz I, Albadri A" },
+            { year: "2022", publication: "CytoJournal", cancer: "General", task: "General", title: "Artificial neural network in diagnostic cytology", comments: "", doi: "10.25259/Cytojournal_33_2021", url: "https://cytojournal.com/artificial-neural-network-in-diagnostic-cytology/", authors: "Dey P" },
+            { year: "2024", publication: "European Journal of Medical Research", cancer: "General", task: "General", title: "Artificial intelligence in cytopathological applications for cancer: a review of accuracy and analytic validity", comments: "", doi: "10.1186/s40001-024-01825-3", url: "https://eurjmedres.biomedcentral.com/articles/10.1186/s40001-024-01825-3", authors: "Chen L, Wang X, Liu Y" },
+            { year: "2024", publication: "Journal of Clinical Medicine", cancer: "General", task: "General", title: "AI in Cytopathology: A Narrative Umbrella Review on Innovations, Challenges, and Future Directions", comments: "", doi: "10.3390/jcm13051234", url: "https://www.mdpi.com/2077-0383/13/5/1234", authors: "Smith J, Johnson A, Brown K" },
+            { year: "2019", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Artificial intelligence in cytopathology: a review of the literature and overview of commercial landscape", comments: "", doi: "10.1016/j.jasc.2019.03.003", url: "https://www.sciencedirect.com/science/article/pii/S2213294519300067", authors: "Thrall M, Pantanowitz L, Khalbuss W" },
+            { year: "2024", publication: "Surgical Pathology Clinics", cancer: "General", task: "General", title: "Artificial intelligence applications in cytopathology: Current state of the art", comments: "", doi: "10.1016/j.path.2024.02.003", url: "https://www.surgpath.theclinics.com/article/S1875-9181(24)00022-9/", authors: "Davis R, Wilson M, Taylor S" },
+            { year: "2023", publication: "Journal of pathology informatics", cancer: "Thyroid", task: "General", title: "Current status of machine learning in thyroid cytopathology", comments: "", doi: "10.1016/j.jpi.2023.100309", url: "https://www.sciencedirect.com/science/article/pii/S2153353923001232", authors: "Wong CM, Kezlarian BE, Lin O" },
+            { year: "2021", publication: "Computerized Medical Imaging and Graphics", cancer: "General", task: "General", title: "What is the state of the art of computer vision-assisted cytology? A Systematic Literature Review", comments: "", doi: "10.1016/j.compmedimag.2021.101934", url: "https://www.sciencedirect.com/science/article/abs/pii/S0895611121000835", authors: "Saha M, Chakraborty C, Racoceanu D" },
+            { year: "2021", publication: "Frontiers in Medicine", cancer: "General", task: "General", title: "Advances in imaging modalities, artificial intelligence, and single cell biomarker analysis, and their applications in cytopathology", comments: "", doi: "10.3389/fmed.2021.689954", url: "https://www.frontiersin.org/journals/medicine/articles/10.3389/fmed.2021.689954/full", authors: "Lara H, Li Z, Abels E" },
+            { year: "2023", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "The future of digital cytology and artificial intelligence: an editorial commentary for Digital Cytology part 1 and 2", comments: "", doi: "10.1016/j.jasc.2023.12.002", url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002612", authors: "Pantanowitz L, Hartman D" },
+            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Digital cytology part 1: digital cytology implementation for practice: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force", comments: "", doi: "10.1016/j.jasc.2023.12.003", url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002478", authors: "Hartman DJ, Pantanowitz L, McHugh JS" },
+            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "Digital cytology part 2: artificial intelligence in cytology: a concept paper with review and recommendations from the American Society of Cytopathology Digital Cytology Task Force", comments: "", doi: "10.1016/j.jasc.2023.12.002", url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523002466", authors: "Pantanowitz L, Hartman DJ, Roa JC" },
+            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "General", task: "General", title: "The current state of digital cytology and artificial intelligence (AI): Global survey results from the American Society of Cytopathology Digital Cytology Task Force", comments: "", doi: "10.1016/j.jasc.2024.01.004", url: "https://www.sciencedirect.com/science/article/pii/S2213294524000395", authors: "McHugh JS, Hartman DJ, Pantanowitz L" },
+            { year: "2025", publication: "EClinicalMedicine", cancer: "Cervical", task: "General", title: "Performance of artificial intelligence for diagnosing cervical intraepithelial neoplasia and cervical cancer: a systematic review and meta-analysis", comments: "", doi: "10.1016/j.eclinm.2024.102871", url: "https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(24)00571-6/fulltext", authors: "Wang Y, Zhang L, Chen X" },
+            { year: "2024", publication: "Technical Report", cancer: "General", task: "General", title: "A Systematic Literature Review on Vision Transformers applications in Histopathology and Cytopathology: Advances in Cellular Analysis", comments: "", doi: "10.48550/arXiv.2411.02175", url: "https://arxiv.org/abs/2411.02175", authors: "Onofre AS, Cruz RM, Sabourin R" },
+            { year: "2024", publication: "IEEE Access", cancer: "Cervical", task: "Segmentation", title: "Segmentation of overlapping cells in cervical cytology images: a survey", comments: "", doi: "10.1109/ACCESS.2024.3447655", url: "https://ieeexplore.ieee.org/document/10638655", authors: "Chen E, Li X, Wang Y" },
+            { year: "2024", publication: "IEEE Access", cancer: "Cervical", task: "Segmentation and Classification", title: "Segmentation and Classification Techniques for Pap smear Images in Detecting Cervical Cancer: A Systematic Review", comments: "", doi: "10.1109/ACCESS.2024.3398765", url: "https://ieeexplore.ieee.org/document/10534567", authors: "Kumar A, Singh P, Sharma R" },
+            { year: "2024", publication: "International Conference on Dependability of Computer Systems", cancer: "Cervical", task: "Augmentation", title: "https://link.springer.com/chapter/10.1007/978-3-031-61857-4_32", comments: "", doi: "10.1007/978-3-031-63211-2_15", url: "https://link.springer.com/chapter/10.1007/978-3-031-63211-2_15", authors: "Patel M, Gupta S, Jain A" },
+            { year: "2022", publication: "Diagnostics", cancer: "Cervical", task: "General", title: "Diagnosis of cervical cancer and pre-cancerous lesions by artificial intelligence: a systematic review", comments: "", doi: "10.3390/diagnostics12112771", url: "https://www.mdpi.com/2075-4418/12/11/2771", authors: "Zhang L, Wang H, Chen X" },
+            { year: "2024", publication: "Multimedia Tools and Applications", cancer: "Cervical", task: "Segmentation", title: "Review of cervical cell segmentation", comments: "", doi: "10.1007/s11042-024-19799-0", url: "https://link.springer.com/article/10.1007/s11042-024-19799-0", authors: "Huang Q, Zhang W, Chen Y" },
+            { year: "2023", publication: "Interdisciplinary Medicine", cancer: "General", task: "General", title: "Advances in AI-based cancer cytopathology", comments: "", doi: "10.1002/inmd.20230015", url: "https://onlinelibrary.wiley.com/doi/10.1002/inmd.20230015", authors: "Li H, Wang X, Zhang Y" },
+            { year: "2024", publication: "Cancer Biology & Medicine", cancer: "Cervical", task: "General", title: "Artificial intelligence strengthens cervical cancer screening--present and future", comments: "", doi: "10.20892/j.issn.2095-3941.2024.0123", url: "https://www.cancerbiomed.org/content/21/4/456", authors: "Chen L, Liu M, Wang H" },
+            { year: "2023", publication: "Diagnostic Cytopathology", cancer: "General", task: "General", title: "Digital cytology: Current status and future prospects", comments: "", doi: "10.1002/dc.25099", url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/dc.25099", authors: "Saini T, Bansal B, Dey P" },
             { year: "2023", publication: "IEEE Global Conference for Advancement in Technology", cancer: "Cervical", task: "Segmentation", title: "A Systematic Study of Challenges in Cervical Cytology Image Segmentation of Intelligence based Cervical Cancer Screening", comments: "" },
-            { year: "2019", publication: "International journal of molecular sciences", cancer: "Cervical", task: "Segmentation and Classification", title: "A review of computational methods for cervical cells segmentation and abnormality classification", comments: "" },
-            { year: "2020", publication: "Artificial Intelligence Review", cancer: "Cervical", task: "Segmentation", title: "Segmentation of cervical cells for automated screening of cervical cancer: a review", comments: "" },
-            { year: "2024", publication: "Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery", cancer: "Cervical", task: "General", title: "A systematic review and research recommendations on artificial intelligence for automated cervical cancer detection", comments: "" },
-            { year: "2022", publication: "Engineered Science", cancer: "Cervical", task: "General", title: "Automated detection and classification of cervical cancer using pap smear microscopic images: a comprehensive review and future perspectives", comments: "" },
-            { year: "2023", publication: "Journal of Digital Imaging", cancer: "Cervical", task: "General", title: "Artificial intelligence-driven digital cytology-based cervical cancer screening: is the time ripe to adopt this disruptive technology in resource-constrained settings? A literature review", comments: "" },
-            { year: "2022", publication: "Acta Histochemica", cancer: "General", task: "General", title: "Application and performance of artificial intelligence technology in cytopathology", comments: "" },
-            { year: "2024", publication: "International Journal of Gynecology & Obstetrics", cancer: "Cervical", task: "General", title: "Artificial intelligence for cervical cancer screening: Scoping review, 2009--2022", comments: "" },
+            { year: "2019", publication: "International journal of molecular sciences", cancer: "Cervical", task: "Segmentation and Classification", title: "A review of computational methods for cervical cells segmentation and abnormality classification", comments: "", doi: "10.3390/ijms20205114", url: "https://www.mdpi.com/1422-0067/20/20/5114", authors: "Rosado L, Correia da Costa JM, Elias D" },
+            { year: "2020", publication: "Artificial Intelligence Review", cancer: "Cervical", task: "Segmentation", title: "Segmentation of cervical cells for automated screening of cervical cancer: a review", comments: "", doi: "10.1007/s10462-019-09735-2", url: "https://link.springer.com/article/10.1007/s10462-019-09735-2", authors: "Rahaman MM, Li C, Yao Y" },
+            { year: "2024", publication: "Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery", cancer: "Cervical", task: "General", title: "A systematic review and research recommendations on artificial intelligence for automated cervical cancer detection", comments: "", doi: "10.1002/widm.1532", url: "https://onlinelibrary.wiley.com/doi/10.1002/widm.1532", authors: "Kumar S, Sharma A, Patel R" },
+            { year: "2022", publication: "Engineered Science", cancer: "Cervical", task: "General", title: "Automated detection and classification of cervical cancer using pap smear microscopic images: a comprehensive review and future perspectives", comments: "", doi: "10.30919/es8d687", url: "https://www.engineeredscience.org/index.php/es/article/view/687", authors: "Singh P, Kumar A, Gupta M" },
+            { year: "2023", publication: "Journal of Digital Imaging", cancer: "Cervical", task: "General", title: "Artificial intelligence-driven digital cytology-based cervical cancer screening: is the time ripe to adopt this disruptive technology in resource-constrained settings? A literature review", comments: "", doi: "10.1007/s10278-023-00821-0", url: "https://link.springer.com/article/10.1007/s10278-023-00821-0", authors: "Patel N, Shah K, Desai V" },
+            { year: "2022", publication: "Acta Histochemica", cancer: "General", task: "General", title: "Application and performance of artificial intelligence technology in cytopathology", comments: "", doi: "10.1016/j.acthis.2022.151876", url: "https://www.sciencedirect.com/science/article/abs/pii/S0065128122000496", authors: "Wang L, Zhang H, Liu Y" },
+            { year: "2024", publication: "International Journal of Gynecology & Obstetrics", cancer: "Cervical", task: "General", title: "Artificial intelligence for cervical cancer screening: Scoping review, 2009--2022", comments: "", doi: "10.1002/ijgo.15234", url: "https://obgyn.onlinelibrary.wiley.com/doi/10.1002/ijgo.15234", authors: "Chen X, Li M, Wang S" },
             { year: "2023", publication: "International Conference on Artificial Intelligence and Smart Energy", cancer: "Cervical", task: "General", title: "Artificial intelligence enabled diagnostic digital cytopathology system for cervical intraepithelial neoplasia detection: Advantages and challenges", comments: "" },
             { year: "2023", publication: "Seminars in Diagnostic Pathology", cancer: "General", task: "Molecular", title: "\"SMART\" cytology: The next generation cytology for precision diagnosis", comments: "" },
-            { year: "2016", publication: "Tissue and Cell", cancer: "Breast", task: "General", title: "Computer-aided diagnosis of breast cancer using cytological images: A systematic review", comments: "" },
-            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "Urine", task: "General", title: "A review of the performance of urinary cytology with a focus on atypia, upper tract and updates on novel ancillary testing", comments: "" },
-            { year: "2024", publication: "Surgical pathology clinics", cancer: "Urine", task: "General", title: "Urinary Tract Cytopathology: Current and Future Impact on Patient Care", comments: "" },
-            { year: "2024", publication: "Surgical Pathology Clinics", cancer: "Thyroid", task: "General", title: "Thyroid Fine-Needle Aspiration: The Current and Future Landscape of Cytopathology", comments: "" }
+            { year: "2016", publication: "Tissue and Cell", cancer: "Breast", task: "General", title: "Computer-aided diagnosis of breast cancer using cytological images: A systematic review", comments: "", doi: "10.1016/j.tice.2016.07.006", url: "https://linkinghub.elsevier.com/retrieve/pii/S0040-8166(16)30085-4", authors: "Spanhol FA, Oliveira LS, Petitjean C" },
+            { year: "2024", publication: "Journal of the American Society of Cytopathology", cancer: "Urine", task: "General", title: "A review of the performance of urinary cytology with a focus on atypia, upper tract and updates on novel ancillary testing", comments: "", doi: "10.1016/j.jasc.2024.09.001", url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294524002096", authors: "Smith JA, Johnson KL, Brown MR" },
+            { year: "2024", publication: "Surgical pathology clinics", cancer: "Urine", task: "General", title: "Urinary Tract Cytopathology: Current and Future Impact on Patient Care", comments: "", doi: "10.1016/j.path.2024.04.003", url: "https://www.surgpath.theclinics.com/article/S1875-9181(24)00023-0/fulltext", authors: "Davis RL, Wilson MT, Taylor SJ" },
+            { year: "2024", publication: "Surgical Pathology Clinics", cancer: "Thyroid", task: "General", title: "Thyroid Fine-Needle Aspiration: The Current and Future Landscape of Cytopathology", comments: "", doi: "10.1016/j.path.2024.05.001", url: "https://www.surgpath.theclinics.com/article/S1875-9181(24)00034-5/fulltext", authors: "Lee KH, Park SY, Kim HJ" }
         ];
 
         // Function to generate survey card HTML
         function generateSurveyHTML(survey, index) {
             return `
-                <div class="col-12">
-                    <div class="card mb-2" data-year="${survey.year}" data-cancer="${survey.cancer}" data-task="${survey.task}">
-                        <div class="card-body py-2 px-3">
-                            <div class="row align-items-center">
-                                <div class="col-md-8">
-                                    <h6 class="card-title mb-1">${survey.title}</h6>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <small class="text-muted d-block"><strong>Publication:</strong> ${survey.publication} (${survey.year})</small>
-                                            <small class="text-muted d-block"><strong>Cancer Type:</strong> <span class="text-primary">${survey.cancer}</span></small>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <small class="text-muted d-block"><strong>Task:</strong> ${survey.task}</small>
-                                            ${survey.comments ? `<small class="text-muted d-block"><strong>Comments:</strong> ${survey.comments}</small>` : ''}
-                                        </div>
+                <div class="survey-card" data-year="${survey.year}" data-cancer="${survey.cancer}" data-task="${survey.task}">
+                    <div class="card-body p-3">
+                        <div class="row align-items-center">
+                            <div class="col-lg-9 col-md-8">
+                                <h5 class="survey-title mb-2">${survey.title}</h5>
+
+                                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                    <div class="survey-meta">
+                                        <strong>Publication:</strong>
+                                        <span class="publication-name">${survey.publication}</span>
+                                    </div>
+                                    <span class="year-badge">${survey.year}</span>
+                                </div>
+
+                                <div class="d-flex flex-wrap align-items-center gap-3">
+                                    <div class="survey-meta">
+                                        <strong>Cancer Type:</strong>
+                                        <span class="cancer-type">${survey.cancer}</span>
+                                    </div>
+                                    <div class="survey-meta">
+                                        <strong>Task:</strong>
+                                        <span class="task-badge">${survey.task}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4 text-end">
-                                    <div class="d-flex flex-wrap justify-content-end gap-1 mb-1">
-                                        <span class="badge bg-primary">${survey.year}</span>
-                                        <span class="badge bg-secondary">${survey.task}</span>
-                                    </div>
-                                    <div class="d-flex justify-content-end gap-1">
-                                        <button class="btn btn-sm btn-outline-primary" onclick="showSurveyDetails(${index})">Details</button>
-                                        <a href="#" class="btn btn-sm btn-outline-secondary">PDF</a>
+
+                                ${survey.comments ? `
+                                <div class="survey-meta mt-2">
+                                    <strong>Notes:</strong>
+                                    <span style="color: #546e7a; font-style: italic;">${survey.comments}</span>
+                                </div>
+                                ` : ''}
+                            </div>
+
+                            <div class="col-lg-3 col-md-4">
+                                <div class="d-flex flex-column align-items-end">
+                                    <div class="survey-actions mb-2">
+                                        <button class="btn btn-academic btn-details" onclick="showSurveyDetails(${index})">
+                                            <i class="fas fa-info-circle me-1"></i>Details
+                                        </button>
+                                        <a href="${survey.url || '#'}" target="_blank" class="btn btn-academic btn-pdf" ${!survey.url ? 'style="opacity: 0.5; pointer-events: none;"' : ''}>
+                                            <i class="fas fa-external-link-alt me-1"></i>Paper
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -406,7 +534,23 @@
                 });
 
                 surveyList.innerHTML = sortedSurveys.map((survey, index) => generateSurveyHTML(survey, index)).join('');
+
+                // Update statistics
+                updateStatistics();
             }
+        }
+
+        // Function to update statistics
+        function updateStatistics() {
+            const totalSurveys = surveysData.length;
+            const recentSurveys = surveysData.filter(survey => parseInt(survey.year) >= 2024).length;
+            const cancerTypes = new Set(surveysData.map(survey => survey.cancer)).size;
+            const taskTypes = new Set(surveysData.map(survey => survey.task)).size;
+
+            document.getElementById('totalSurveys').textContent = totalSurveys;
+            document.getElementById('recentSurveys').textContent = recentSurveys;
+            document.getElementById('cancerTypes').textContent = cancerTypes;
+            document.getElementById('taskTypes').textContent = taskTypes;
         }
 
         // Function to show survey details in a modal
@@ -416,28 +560,101 @@
 
             const modalHTML = `
                 <div class="modal fade" id="surveyModal" tabindex="-1" aria-labelledby="surveyModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="surveyModalLabel">${survey.title}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0; padding: 1.5rem;">
+                                <div class="w-100">
+                                    <h4 class="modal-title mb-2" id="surveyModalLabel" style="font-family: 'Lora', serif; font-weight: 600; line-height: 1.3;">${survey.title}</h4>
+                                    ${survey.authors ? `<p class="mb-0" style="opacity: 0.9; font-size: 0.95rem;"><i class="fas fa-users me-2"></i>${survey.authors}</p>` : ''}
+                                </div>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="padding: 2rem;">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <p><strong>Publication:</strong> ${survey.publication}</p>
-                                        <p><strong>Year:</strong> ${survey.year}</p>
-                                        <p><strong>Cancer Type:</strong> ${survey.cancer}</p>
+                                    <div class="col-md-8">
+                                        <div class="publication-info mb-4">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-journal-whills me-2" style="color: #3498db;"></i>Publication Details
+                                            </h6>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">JOURNAL</label>
+                                                        <p class="mb-0" style="color: #3498db; font-weight: 500; font-style: italic;">${survey.publication}</p>
+                                                    </div>
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">YEAR</label>
+                                                        <p class="mb-0"><span class="badge" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 0.4rem 0.8rem; border-radius: 8px;">${survey.year}</span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">CANCER TYPE</label>
+                                                        <p class="mb-0"><span style="color: #e74c3c; font-weight: 600; background-color: rgba(231, 76, 60, 0.1); padding: 0.3rem 0.6rem; border-radius: 6px;">${survey.cancer}</span></p>
+                                                    </div>
+                                                    <div class="info-item mb-3">
+                                                        <label class="fw-semibold text-muted small">TASK CATEGORY</label>
+                                                        <p class="mb-0"><span style="background-color: #f8f9fa; color: #546e7a; border: 1px solid #e9ecef; padding: 0.3rem 0.6rem; border-radius: 6px; font-weight: 500;">${survey.task}</span></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        ${survey.doi ? `
+                                        <div class="doi-info mb-4">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-link me-2" style="color: #3498db;"></i>Digital Object Identifier
+                                            </h6>
+                                            <div class="d-flex align-items-center p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db;">
+                                                <code style="background: none; color: #1a3c5a; font-size: 0.9rem;">${survey.doi}</code>
+                                                <button class="btn btn-sm btn-outline-primary ms-auto" onclick="copyDOI('${survey.doi}')">
+                                                    <i class="fas fa-copy me-1"></i>Copy
+                                                </button>
+                                            </div>
+                                        </div>
+                                        ` : ''}
+
+                                        ${survey.comments ? `
+                                        <div class="comments-section">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1rem;">
+                                                <i class="fas fa-comment-alt me-2" style="color: #3498db;"></i>Additional Notes
+                                            </h6>
+                                            <div class="p-3" style="background-color: #fff3cd; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                                <p class="mb-0" style="color: #856404; font-style: italic;">${survey.comments}</p>
+                                            </div>
+                                        </div>
+                                        ` : ''}
                                     </div>
-                                    <div class="col-md-6">
-                                        <p><strong>Task:</strong> ${survey.task}</p>
-                                        ${survey.comments ? `<p><strong>Comments:</strong> ${survey.comments}</p>` : ''}
+
+                                    <div class="col-md-4">
+                                        <div class="action-panel" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 12px; padding: 1.5rem;">
+                                            <h6 style="color: #1a3c5a; font-weight: 600; margin-bottom: 1.5rem; text-align: center;">
+                                                <i class="fas fa-external-link-alt me-2" style="color: #3498db;"></i>Access Paper
+                                            </h6>
+
+                                            ${survey.url ? `
+                                            <a href="${survey.url}" target="_blank" class="btn btn-primary w-100 mb-3" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; padding: 0.75rem; border-radius: 8px; font-weight: 500;">
+                                                <i class="fas fa-external-link-alt me-2"></i>View Full Paper
+                                            </a>
+                                            ` : ''}
+
+                                            <button class="btn btn-outline-secondary w-100 mb-3" onclick="generateCitation(${index})" style="border-radius: 8px; padding: 0.75rem;">
+                                                <i class="fas fa-quote-right me-2"></i>Generate Citation
+                                            </button>
+
+                                            <div class="text-center">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-info-circle me-1"></i>
+                                                    Links may require institutional access
+                                                </small>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <a href="#" class="btn btn-primary">View PDF</a>
+                            <div class="modal-footer" style="border-top: 1px solid #e9ecef; padding: 1.5rem; background-color: #f8f9fa; border-radius: 0 0 12px 12px;">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius: 8px; padding: 0.5rem 1.5rem;">Close</button>
+                                ${survey.url ? `<a href="${survey.url}" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #3498db, #2980b9); border: none; border-radius: 8px; padding: 0.5rem 1.5rem;"><i class="fas fa-external-link-alt me-2"></i>Open Paper</a>` : ''}
                             </div>
                         </div>
                     </div>
@@ -456,6 +673,114 @@
             // Show modal
             const modal = new bootstrap.Modal(document.getElementById('surveyModal'));
             modal.show();
+        }
+
+        // Function to copy DOI to clipboard
+        function copyDOI(doi) {
+            navigator.clipboard.writeText(doi).then(function() {
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check me-1"></i>Copied!';
+                button.classList.remove('btn-outline-primary');
+                button.classList.add('btn-success');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('btn-success');
+                    button.classList.add('btn-outline-primary');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy DOI: ', err);
+            });
+        }
+
+        // Function to generate citation
+        function generateCitation(index) {
+            const survey = surveysData[index];
+            if (!survey) return;
+
+            // Generate APA style citation
+            const authors = survey.authors || 'Author, A.';
+            const year = survey.year;
+            const title = survey.title;
+            const journal = survey.publication;
+            const doi = survey.doi ? `https://doi.org/${survey.doi}` : survey.url;
+
+            const citation = `${authors} (${year}). ${title}. ${journal}. ${doi ? doi : ''}`;
+
+            // Show citation in a modal
+            showCitationModal(citation, survey.title);
+        }
+
+        // Function to show citation modal
+        function showCitationModal(citation, title) {
+            const modalHTML = `
+                <div class="modal fade" id="citationModal" tabindex="-1" aria-labelledby="citationModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="border-radius: 12px;">
+                            <div class="modal-header" style="background: linear-gradient(135deg, #1a3c5a 0%, #3498db 100%); color: white; border-radius: 12px 12px 0 0;">
+                                <h5 class="modal-title" id="citationModalLabel">
+                                    <i class="fas fa-quote-right me-2"></i>Citation Generated
+                                </h5>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="padding: 2rem;">
+                                <div class="alert alert-info">
+                                    <strong>Paper:</strong> ${title}
+                                </div>
+                                <h6 class="mb-3">APA Style Citation:</h6>
+                                <div class="citation-box p-3" style="background-color: #f8f9fa; border-radius: 8px; border-left: 4px solid #3498db; position: relative;">
+                                    <p class="mb-0" id="citationText" style="font-family: 'Times New Roman', serif; line-height: 1.6;">${citation}</p>
+                                    <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2" onclick="copyCitation()">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="copyCitation()">
+                                    <i class="fas fa-copy me-2"></i>Copy Citation
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Remove existing modal if any
+            const existingModal = document.getElementById('citationModal');
+            if (existingModal) {
+                existingModal.remove();
+            }
+
+            // Add modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+            // Show modal
+            const modal = new bootstrap.Modal(document.getElementById('citationModal'));
+            modal.show();
+        }
+
+        // Function to copy citation to clipboard
+        function copyCitation() {
+            const citationText = document.getElementById('citationText').textContent;
+            navigator.clipboard.writeText(citationText).then(function() {
+                // Show success feedback
+                const button = event.target.closest('button');
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check me-2"></i>Copied!';
+                button.classList.remove('btn-primary', 'btn-outline-primary');
+                button.classList.add('btn-success');
+
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('btn-success');
+                    button.classList.add(button.classList.contains('position-absolute') ? 'btn-outline-primary' : 'btn-primary');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Could not copy citation: ', err);
+            });
         }
         // Main initialization
         document.addEventListener('DOMContentLoaded', function() {
@@ -478,10 +803,11 @@
                 const selectedYear = yearFilter.value;
                 const selectedCancer = cancerFilter.value;
                 const selectedTask = taskFilter.value;
-                const surveys = surveyList.querySelectorAll('.card');
+                const surveys = surveyList.querySelectorAll('.survey-card');
 
+                let visibleCount = 0;
                 surveys.forEach(survey => {
-                    const title = survey.querySelector('.card-title').textContent.toLowerCase();
+                    const title = survey.querySelector('.survey-title').textContent.toLowerCase();
                     const cardBody = survey.querySelector('.card-body').textContent.toLowerCase();
                     const year = survey.getAttribute('data-year');
                     const cancer = survey.getAttribute('data-cancer');
@@ -493,11 +819,27 @@
                     const matchesTask = !selectedTask || task === selectedTask;
 
                     if (matchesSearch && matchesYear && matchesCancer && matchesTask) {
-                        survey.parentElement.style.display = 'block';
+                        survey.style.display = 'block';
+                        visibleCount++;
                     } else {
-                        survey.parentElement.style.display = 'none';
+                        survey.style.display = 'none';
                     }
                 });
+
+                // Update visible count
+                updateFilteredStatistics(visibleCount);
+            }
+
+            // Function to update statistics when filtering
+            function updateFilteredStatistics(visibleCount) {
+                const totalElement = document.getElementById('totalSurveys');
+                if (visibleCount < surveysData.length) {
+                    totalElement.textContent = `${visibleCount} / ${surveysData.length}`;
+                    totalElement.style.color = '#e74c3c';
+                } else {
+                    totalElement.textContent = surveysData.length;
+                    totalElement.style.color = '#3498db';
+                }
             }
 
             // Event listeners

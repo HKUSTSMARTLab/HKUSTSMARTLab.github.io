@@ -9,7 +9,9 @@ const publicationsData = [
         methodology: "Bias-Agnostic and Bias-Mitigating approach",
         data: "CRIC",
         mainResults: "demonnstrated feature bias: high variability in the representation of various features across classes.",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://sites.google.com/wimlworkshop.org/wiml-2024/program",
+        authors: "Sahu S, Ojha S"
     },
     {
         title: "Point-of-care digital cytology with artificial intelligence for cervical cancer screening in a resource-limited setting",
@@ -20,7 +22,10 @@ const publicationsData = [
         methodology: "CNN",
         data: "740 cervical smears",
         mainResults: "a AUC of 0.94, a sensitivity of 95.7% (95% CI, 85.5%-99.5%), and a specificity of 84.7% (95% CI, 80.2%-88.5%)",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        doi: "10.1001/jamanetworkopen.2021.2740",
+        url: "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2777600",
+        authors: "Hu L, Bell D, Antani S, Xue Z, Yu K, Horning MP, Gachuhi N, Wilson B, Jaiswal MS, Befano B, Rodriguez AC, Morales J, Herrero R, Befano B, Gage JC, Wentzensen N, Schiffman M"
     },
     {
         title: "Accuracy and efficiency of deep-learning–based automation of dual stain cytology in cervical cancer screening",
@@ -31,7 +36,10 @@ const publicationsData = [
         methodology: "CNN, Inception-v3",
         data: "4253 p16/Ki-67 dual-stained slides",
         mainResults: "Compared with Pap, AI-based DS reduced referral to colposcopy by one-third (41.9% vs 60.1%, P < .001).",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        doi: "10.1093/jnci/djaa066",
+        url: "https://academic.oup.com/jnci/article/113/1/72/5862008",
+        authors: "Wentzensen N, Lahrmann B, Clarke MA, Kinney W, Tokugawa D, Poitras N, Locke A, Bartels HC, Kraemer B, Tran V, Graubard BI, Fetterman B, Lorey T, Castle PE, Schiffman M"
     },
     {
         title: "Deep learning based cervical screening by the cross-modal integration of colposcopy, cytology, and hpv test",
@@ -42,7 +50,10 @@ const publicationsData = [
         methodology: "Cross-modal integration of colposcopy (saline image, acetic acid image, and iodine image), cytology, and HPV test:\nVGG-16;\nMultivariable logistic regression",
         data: "2160 cases",
         mainResults: "colposcopy(AUC of 0.760 saline, 0.791 acetic acid, and 0.840 iodine, 0.845 combine):\nvisual inspection (AUC= 0.751);\ncytology (AUC=0.749);\nHPV (AUC=0.742);\nCytology-HPV (AUC = 0.837);\nCross-modal (AUC = 0.921)",
-        tasks: "Multi-modal"
+        tasks: "Multi-modal",
+        doi: "10.1016/j.ijmedinf.2021.104675",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S1386505621003014",
+        authors: "Zhang X, Wang Y, Li H, Chen M, Liu J"
     },
     {
         title: "Cost-effectiveness of artificial intelligence-assisted liquid-based cytology testing for cervical cancer screening in china",
@@ -52,6 +63,9 @@ const publicationsData = [
         organ: "Cervix",
         methodology: "Markov modela",
         data: "100,000 cases",
+        doi: "10.1016/j.lanwpc.2023.100744",
+        url: "https://www.thelancet.com/journals/lanwpc/article/PIIS2666-6065(23)00044-5/fulltext",
+        authors: "Zhang L, Wang H, Chen X",
         mainResults: "AI-assisted LBC screening once every 5 years could be more cost-effective than manually-read LBC.",
         tasks: "Comprihensive Anlysis"
     },
