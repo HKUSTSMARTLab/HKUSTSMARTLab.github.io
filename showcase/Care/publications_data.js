@@ -188,7 +188,10 @@ const publicationsData = [
         methodology: "Transformer",
         data: "1,500 labeled images",
         mainResults: "The challenge produced a top-performing Transformer-based deep learning model that outperformed existing methods and generalized well across over 50 diverse microscopy datasets without manual tuning, advancing universal cell segmentation solutions",
-        tasks: "Multi-modal"
+        tasks: "Multi-modal",
+        doi: "10.1038/s41592-024-02233-6",
+        url: "https://www.nature.com/articles/s41592-024-02233-6",
+        authors: "Ma J, Xie R, Ayyadhury S, Ge C, Gupta A, Gupta R, et al."
     },
     {
         title: "Weakly supervised myeloma cells segmentation based on point annotation",
@@ -287,7 +290,10 @@ const publicationsData = [
         methodology: "ViT and CNN",
         data: "88 specimens",
         mainResults: "0.8056 and 0.8009 AUC;\nViT is better than Kaplan-meier;\nObservation: Intraperitoneal neutrophils may be a novel prognostic marker and therapeutic target for CY-positive patients with pancreatic cancer.",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        doi: "10.1038/s41598-024-67757-5",
+        url: "https://www.nature.com/articles/s41598-024-67757-5",
+        authors: "Takahashi H, Akita H, Tomokuni A, Kobayashi S, Eguchi H, et al."
     },
     {
         title: "A deep learning framework for predicting endometrial cancer from cytopathologic images with different staining styles",
@@ -2333,7 +2339,10 @@ const publicationsData = [
         methodology: "ResNet50+TensorRT+RNN",
         data: "3,545 WSI，79,911 label",
         mainResults: "1,170 WSI test: Specificity = 0.935, Sensitivity = 0.951, AUC = 0.979.\n447 positive WSIs: TPR(top10) = 0.885, TPR(top20) = 0.850",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        doi: "10.1038/s41467-021-25296-x",
+        url: "https://www.nature.com/articles/s41467-021-25296-x",
+        authors: "Yu L, Chen H, Dou Q, Qin J, Heng PA"
     },
     {
         title: "Whole slide cervical cancer screening using graph attention network and supervised contrastive learning",
@@ -2454,7 +2463,10 @@ const publicationsData = [
         methodology: "Retina and Faster-R-CNN algorithms + random forest and DNN",
         data: "The datasets are governed by data usage policies specified by the data controller (Sun Yat-sen Memorial Hospital, Sun Yat-sen University).",
         mainResults: "an AUC of 0.922 (95% CI 0.904–0.940) and a sensitivity of 0.906 (95% CI 0.875–0.932)",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        doi: "10.1038/s41467-024-48705-3",
+        url: "https://www.nature.com/articles/s41467-024-48705-3",
+        authors: "Wang J, Yu Y, Tan Y, Wan H, Zheng N, He Z, Mao L, Ren W, Chen K, Lin Z, et al."
     },
     {
         title: "Clinical evaluation of an artificial intelligenceassisted cytological system among screening strategies for a cervical cancer high-risk population",
@@ -2806,7 +2818,10 @@ const publicationsData = [
         methodology: "Deep learning method (TORCH) developed for tumor origin classification in cytological samples",
         data: "Dataset of 57,220 cytological images from 43,688 patients across four tertiary hospitals, with three internal and two external test sets",
         mainResults: "TORCH achieved AUCs 0.953–0.991 for cancer detection and 0.953–0.979 for tumor origin; improved survival with treatment guided by TORCH predictions",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        doi: "10.1038/s41591-024-02915-w",
+        url: "https://www.nature.com/articles/s41591-024-02915-w",
+        authors: "Tian F, Liu D, Wei N, Fu Q, Sun L, Liu W, Sui X, Tian K, Nemeth G, Feng J, et al."
     },
     {
         title: "A new paradigm for cytology-based artificial intelligence-assisted prediction for cancers of unknown primary origins",
