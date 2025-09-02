@@ -1044,7 +1044,8 @@ const publicationsData = [
         methodology: "Self-supervised learning",
         data: "CytoImageNet, Cell Image Library (CIL), Cell Tracking Benchmark (CTB), Human Protein Atlas (HPA), LIVECell, EVICAN, CEM500K",
         mainResults: "The model achieved an accuracy of 97.63%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S026322412402298X"
     },
     {
         title: "Exploring foundation models fine-tuning for cytology classification",
@@ -1264,7 +1265,8 @@ const publicationsData = [
         methodology: "MobileNet, ShuffleNet and ResNet-18",
         data: "Mendeley LBC Pap Smear Slides Dataset",
         mainResults: "The best configuration achieved 100% accuracy.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2076-3417/13/3/1916"
     },
     {
         title: "Automated bone marrow cytology using deep learning to generate a histogram of cell types",
@@ -1297,7 +1299,8 @@ const publicationsData = [
         methodology: "Label credibility correction (LCC-Net)",
         data: "Herlev and a private dataset with 58,326 images in 5 classes",
         mainResults: "The method achieved 92.41% accuracy in 2-class and 85.98% in 5-class tasks.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.nature.com/articles/s41598-024-84899-8"
     },
     {
         title: "Classification of cervical cancer using Dense CapsNet with Seg-UNet and denoising autoencoders",
@@ -1484,7 +1487,8 @@ const publicationsData = [
         methodology: "Mean and Standard Deviation-based Ensemble Network (MSENet)",
         data: "SIPaKMeD",
         mainResults: "Using 5-fold cross-validation, the model achieved 97.21% accuracy.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0952197623005201"
     },
     {
         title: "DCGAN-based cytology image augmentation for cervical cancer cell classification using transfer learning",
@@ -1528,7 +1532,8 @@ const publicationsData = [
         methodology: "RCNN",
         data: "Kaggle public dataset with 12,500 augmented microscopic images of different types of blood cells in JPEG format",
         mainResults: "Training accuracy reaching 99.06% and testing accuracy at 91.21%",
-        tasks: "Detection"
+        tasks: "Detection",
+        url: "https://www.sciencedirect.com/science/article/pii/S2405844024021807"
     },
     {
         title: "WBC YOLO-ViT: 2 Way - 2 stage white blood cell detection and classification with a combination of YOLOv5 and vision transformer",
@@ -1605,7 +1610,8 @@ const publicationsData = [
         methodology: "CNNs with Balanced Pre-training Model (BPM), Score Correction Loss (SCL) and Patch Correlation Consistency (PCC)",
         data: "ComparisonDetector dataset and a private dataset called DST with 3807 images",
         mainResults: "ComparisonDetector achieves APs of 24.6, 44.7, and 23.6, with an AR of 46.6; DST achieves APs of 15.4, 26.3, and 16.5, with an AR of 45.1.",
-        tasks: "Detection"
+        tasks: "Detection",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0893608024003290"
     },
     {
         title: "Scac: A semi-supervised learning approach for cervical abnormal cell detection",
@@ -1726,7 +1732,8 @@ const publicationsData = [
         methodology: "FPN, Patch Correction Network(PCN), Classification Ranking Loss",
         data: "A private dataset with 3761 images",
         mainResults: "AP=51.1, AP.5=86.6, AP.75=54.3, AR=62.5",
-        tasks: "Detection"
+        tasks: "Detection",
+        url: "https://dl.acm.org/doi/10.1007/978-3-031-43987-2_63"
     },
     {
         title: "LFANet: Lightweight feature attention network for abnormal cell segmentation in cervical cytology images",
@@ -2701,7 +2708,8 @@ const publicationsData = [
         methodology: "GAT + SSL",
         data: "TCGA-CESC Extended (public, 9,500 WSIs)",
         mainResults: "AUC: 0.968, Accuracy: 94.7%, F1: 94.5%",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0925231224015583"
     },
     {
         title: "Automated reporting of cervical biopsies using artificial intelligence",
@@ -2745,7 +2753,8 @@ const publicationsData = [
         methodology: "SSL with limited data",
         data: "Kenya HPV+ Study (private, 2,500 slides)",
         mainResults: "Sensitivity: 88.9%, Specificity: 90.2%, AUC: 0.924",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S001048252301274X"
     },
     {
         title: "A precise machine learning model: detecting cervical cancer using feature selection and explainable ai",
