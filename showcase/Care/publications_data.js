@@ -8,9 +8,9 @@ const publicationsData = [
         organ: "Cervix",
         methodology: "Bias-Agnostic and Bias-Mitigating approach",
         data: "CRIC",
-        mainResults: "demonnstrated feature bias: high variability in the representation of various features across classes.",
+        mainResults: "Demonstrated feature bias: high variability in the representation of various features across classes.",
         tasks: "Comprihensive Anlysis",
-        url: "https://sites.google.com/wimlworkshop.org/wiml-2024/program",
+        url: "https://neurips.cc/virtual/2024/affinity-event/105022",
         authors: "Sahu S, Ojha S"
     },
     {
@@ -76,9 +76,10 @@ const publicationsData = [
         application: "Screening of oesophageal squamous cell carcinoma and adenocarcinoma of the oesophagogastric junction",
         organ: "Gastrointestinal",
         methodology: "logistic regression, adaptive boosting, light-gradient boosting machine, extreme gradient boosting, random forest,and support vector machine;\n105 cytological and 15 epidemiological features",
-        data: "multicohort prospective study (17 498 from 39 tertiary or secondary hospitals in China)",
+        data: "multicohort prospective study (17498 from 39 tertiary or secondary hospitals in China)",
         mainResults: "AUC=0.960 (95% CI 0.937 to 0.977) and average precision=0.482 (0.470 to 0.494);\nThe model achieved similar performance to consensus of cytologists with AI assistance;\nsensitivity = 94.5% (95% CI 88.8 to 97.5), specificity = 91.9% (91.2 to 92.5);\n90.3% of endoscopies could be avoided",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S2468125323000043"
     },
     {
         title: "Context-aware text-assisted multimodal framework for cervical cytology cell diagnosis and chatting",
@@ -89,7 +90,8 @@ const publicationsData = [
         methodology: "Multimodal Transformer, Context-aware, Large\nLanguage Model, Vicuna-7b",
         data: "39239 cell samples, and 15020 instruction-tuning data",
         mainResults: "F1=87.52， Accuracy=88.40",
-        tasks: "Multi-modal"
+        tasks: "Multi-modal",
+        url: "https://ieeexplore.ieee.org/document/10688120/"
     },
     {
         title: "Automated report generation for lung cytological images using a cnn vision classifier and multiple-transformer text decoders: preliminary study",
@@ -100,7 +102,8 @@ const publicationsData = [
         methodology: "Vision encoder:CNN\nText Decoder:Transformer",
         data: "71 benign and 135 malignant pulmonary cytology specimens",
         mainResults: "sensitivity and specificity were\n100% and 96.4% for classification",
-        tasks: "Report Generation"
+        tasks: "Report Generation",
+        url: "https://arxiv.org/abs/2403.18151"
     },
     {
         title: "Effectiveness of data-augmentation on deep learning in evaluating rapid on-site cytopathology at endoscopic ultrasound-guided fine needle aspiration",
@@ -111,7 +114,8 @@ const publicationsData = [
         methodology: "ViT with augmentation (geometric transformation, color space transformation, and kernel fltering)",
         data: "4059  EUS-FNA images with\nDif-Quik stained",
         mainResults: "accuracy=88.2%;\ngeometric transformation was most efective",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.nature.com/articles/s41598-024-72312-3"
     },
     {
         title: "Towards the mobile detection of cervical lesions: a region-based approach for the analysis of microscopic images.",
@@ -122,7 +126,8 @@ const publicationsData = [
         methodology: "Resnet50 and Mobilenet v2.",
         data: "mobile HFF regions dataset (21 LBC samples) and SIPAKMED",
         mainResults: "mAP of 0.37798, AR of 0.63651",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://ieeexplore.ieee.org/document/9606873/"
     },
     {
         title: "Assessing the robustness of deep learning-assisted pathological image analysis under practical variables of imaging system",
@@ -133,7 +138,8 @@ const publicationsData = [
         methodology: "8 convolutional-based structures and  6 transformer-based structures",
         data: "4200 WSIs",
         mainResults: "the deep learning models are sensitive to luminancerelated scanner parameters",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://ieeexplore.ieee.org/document/10095887/"
     },
     {
         title: "Global-local attention network for weakly supervised cervical cytology roi analysis",
@@ -144,7 +150,8 @@ const publicationsData = [
         methodology: "YOLOv4, LSTM, ViT",
         data: "900 ROIs",
         mainResults: "Acc=73.33",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://ieeexplore.ieee.org/xpl/conhome/1000677/all-proceedings"
     },
     {
         title: "Is the aspect ratio of cells important in deep learning? a robust comparison of deep learning methods for multi-scale cytopathology cell image classification: from convolutional neural networks to visual transformers",
@@ -155,7 +162,8 @@ const publicationsData = [
         methodology: "18 CNN and 4 Transformers",
         data: "SIPaKMeD\nHerlev",
         mainResults: "-0.33% accuracy change using scaled SIPaKMeD data;\n+0.33% accuracy change using scaled Herlev data;\ndeep learning models are robust to changes in the aspect ratio of cells in cervical cytopathological images",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482521008209"
     },
     {
         title: "Decentralized health: federated deep learning for cervical cytology image segmentation",
@@ -166,7 +174,8 @@ const publicationsData = [
         methodology: "UNet, UNet++, UNet3+",
         data: "Cx22",
         mainResults: "Dice = 0.95",
-        tasks: "Segmentation"
+        tasks: "Segmentation",
+        url: "https://ic-cocole.in/accepted_papers.php"
     },
     {
         title: "Digital/computational technology for molecular cytology testing: a short technical note with literature review",
@@ -177,7 +186,8 @@ const publicationsData = [
         methodology: "U-Net",
         data: "6 cases",
         mainResults: "the system can be connected to full automation by combining digital cytopathology with AI application to detect target cancer cells and to perform molecular analysis",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://karger.com/acy/article-abstract/65/4/342/819697"
     },
     {
         title: "The multimodality cell segmentation challenge: toward universal solutions",
@@ -202,7 +212,8 @@ const publicationsData = [
         methodology: "Transformer",
         data: "SegPC",
         mainResults: "achieves 98% of its fully-supervised performance with only 10 annotated random points per instance",
-        tasks: "Segmentation"
+        tasks: "Segmentation",
+        url: "https://www.computer.org/csdl/proceedings-article/bibm/2023/10385927/1TObQiajpGE"
     },
     {
         title: "Few-shot cervical cell images instance segmentation based on adversarial training",
@@ -213,7 +224,8 @@ const publicationsData = [
         methodology: "U-Net, GAN",
         data: "CCEDD",
         mainResults: "Dice=0.92",
-        tasks: "Segmentation"
+        tasks: "Segmentation",
+        url: "https://ieeexplore.ieee.org/document/10587497/"
     },
     {
         title: "Examining longitudinal markers of bladder cancer recurrence through a semiautonomous machine learning system for quantifying specimen atypia from urine cytology",
@@ -224,7 +236,8 @@ const publicationsData = [
         methodology: "AutoParis‐X",
         data: "1259 specimens",
         mainResults: "imaging predictors extracted using AutoParis‐X can predict recurrence",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.1002/cncy.22725"
     },
     {
         title: "Optimizing z-stack plane selection within urothelial clusters in 3d urine cytology via ai to improve bladder cancer screening and surveillance: ongoing multicenter study",
@@ -235,7 +248,8 @@ const publicationsData = [
         methodology: "AutoParis‐X",
         data: "44 WSI",
         mainResults: "AI-assisted optimization of Z-stack focal planes in 3D urine cytology enhances diagnostic accuracy for urothelial atypia, potentially improving bladder cancer screening and surveillance.",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294524000966"
     },
     {
         title: "Accurate and rapid detection of peritoneal metastasis from gastric cancer by ai-assisted stimulated raman molecular cytology",
@@ -257,7 +271,8 @@ const publicationsData = [
         methodology: "CyleGAN",
         data: "7319 exfoliated cells of 32 ascites specimens",
         mainResults: "structural similarity of 0.820 ± 0.041;\nclasification:  0.938 accuracy,  0.924 mean average precision, 0.906 AUC",
-        tasks: "Virtual Staining"
+        tasks: "Virtual Staining",
+        url: "https://www.nature.com/articles/s41598-024-60265-1"
     },
     {
         title: "Accurate and rapid molecular cytology with transformer-based stimulated raman microscopy",
@@ -268,7 +283,8 @@ const publicationsData = [
         methodology: "Transformer",
         data: "816 stimulated Raman cytology images from 80 locally advanced gastric cancer patients",
         mainResults: "88.89% sensitivity, 86.36% specificity, and an AUC of 0.903",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.spiedigitallibrary.org/conference-proceedings-of-spie/13242/132421I/Accurate-and-rapid-molecular-cytology-with-transformer-based-stimulated-Raman/10.1117/12.3032353.short"
     },
     {
         title: "Improving mobile-based cervical cytology screening: a deep learning nucleus-based approach for lesion detection",
@@ -370,7 +386,8 @@ const publicationsData = [
         methodology: "PCR, NGS, FISH, and methylation analysis on urine samples.",
         data: "Urine samples from bladder cancer patients analyzed with molecular tools.",
         mainResults: "Improved detection of high-grade bladder cancer using key genetic markers.",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S1078143925000377"
     },
     {
         title: "Current role of cytopathology in the molecular and computational era: the perspective of young pathologists",
@@ -381,7 +398,8 @@ const publicationsData = [
         methodology: "The paper reviews the integration of next-generation sequencing, digital pathology, and AI into cytopathology to improve diagnostic precision and efficiency.",
         data: "No dataset; it\'s a review based on expert opinions and literature.",
         mainResults: "Cytopathology, when combined with molecular and computational advances, significantly boosts diagnostic accuracy, especially in ambiguous cases, and supports the shift toward precision medicine.",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.1002/cncy.22832"
     },
     {
         title: "Interpretable pap-smear image retrieval for cervical cancer detection with rotation invariance mask generation deep hashing",
@@ -392,7 +410,8 @@ const publicationsData = [
         methodology: "spatial attention, rotational invariance deep hashing network",
         data: "SIPaKMeD and Mendeley LBC",
         mainResults: "64.85(SIPaKMeD) and 69.81(Mendeley LBC)",
-        tasks: "Retrival"
+        tasks: "Retrival",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482523000392"
     },
     {
         title: "Diagnostic agreement in whole slide digital images of cervical cytology and cell blocks",
@@ -403,7 +422,8 @@ const publicationsData = [
         methodology: "",
         data: "82 specimens (41 LBC and 41 Cell block) were evaluated independently by three observers.",
         mainResults: "The overall agreement was 0.463 for all 82 cases including both LBC and cell block;\nAgreement was highest for HSIL, NILM, cancers and lower for borderline (ASC-US, ASC-H)",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://onlinelibrary.wiley.com/doi/full/10.1002/dc.25411"
     },
     {
         title: "Are synthetic cytology images ready for prime time? a comparative assessment of real and synthetic urine cytology images",
@@ -414,7 +434,8 @@ const publicationsData = [
         methodology: "conditional StyleGAN3;\nA total of 12 participants were recruited to answer the 60-image survey",
         data: "13,746 images",
         mainResults: "There was no significant difference in diagnostic error rates between real and synthetic images",
-        tasks: "Generation"
+        tasks: "Generation",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294522002514"
     },
     {
         title: "Artificial intelligence-driven morphology-based enrichment of malignant cells from body fluid",
@@ -425,7 +446,8 @@ const publicationsData = [
         methodology: "InceptionV3",
         data: "2,597,910 images",
         mainResults: "a higher sensitivity for detection of tumor fractions and critical somatic variant mutations that were initially at low levels or undetectable in presort patient samples",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.modernpathology.org/article/S0893-3952(23)00100-X/fulltext"
     },
     {
         title: "Validation of ai-assisted thinprep® pap test screening using the geniustm digital diagnostics system",
@@ -447,7 +469,8 @@ const publicationsData = [
         methodology: "Fused Faster R-CNN",
         data: "colposcopic (i.e., acetic and iodine) images and other\nclinical (i.e., Pap and HPV) test results. 995 positive cases\n(HSIL+) and 939 negative cases (normal/LSIL).",
         mainResults: "an average accuracy of 87.4% (88.6% sensitivity and 86.1% specificity)",
-        tasks: "Multi-modal"
+        tasks: "Multi-modal",
+        url: "https://ieeexplore.ieee.org/document/8759569"
     },
     {
         title: "Digital cytology combined with artificial intelligence compared to conventional microscopy for anal cytology: a preliminary study",
@@ -458,7 +481,8 @@ const publicationsData = [
         methodology: "Genius Cervical AI, HOLOGIC Inc., USA",
         data: "124 consecutive anal cytology specimens",
         mainResults: "The AI system detected more cases of\nhigher severity compared to the conventional cytology",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://onlinelibrary.wiley.com/doi/abs/10.1111/cyt.13482"
     },
     {
         title: "Computational technology with artificial intelligence and machine learning: what should a cytologist do with it?",
@@ -469,7 +493,8 @@ const publicationsData = [
         methodology: "A perspective-based editorial reviewing historical and current computational tools in cytology, highlighting the evolution from early digital imaging to modern AI-driven systems.",
         data: "No dataset",
         mainResults: "AI and ML offer transformative potential for cytology, but their success depends on thoughtful integration, standardization, and collaboration between technologists and cytologists.",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://karger.com/acy/article/65/4/279/834449/Computational-Technology-with-Artificial"
     },
     {
         title: "Is it real or not? toward artificial intelligence-based realistic synthetic cytology image generation to augment teaching and quality assurance in pathology",
@@ -480,7 +505,8 @@ const publicationsData = [
         methodology: "StyleGAN3",
         data: "1000 malignant urothelial\ncytology image",
         mainResults: "Generate realistic, morphologically diverse examples of malignant urine cytology images",
-        tasks: "Generation"
+        tasks: "Generation",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294522000096"
     },
     {
         title: "Evaluating image quality and reproducibility of digital scanners for whole-slide imaging in urine cytology slides for artificial intelligence applications",
@@ -491,7 +517,8 @@ const publicationsData = [
         methodology: "Each resulting WSI was evaluated by a senior cytologist for image quality",
         data: "20 urine cytology slides",
         mainResults: "Cytopreparation: Cytospin, ThinPrep-non-GYN, ThinPrep-UroCyte, and SurePath;\nScanners:Roche DP200, DP600, and Hamamatsu Nanozoomer S360;\nScan mode: default, manual, and advanced manual",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294523001989"
     },
     {
         title: "Development of an artificial intelligence model for classifying major cell types in peritoneal washings from patients with ovarian high-grade serous carcinoma",
@@ -502,7 +529,8 @@ const publicationsData = [
         methodology: "Trained a deep learning model on labeled peritoneal washing images to classify key cell types.",
         data: "31,066 cell annotations",
         mainResults: "The AI model accurately classified major cell types in peritoneal washings from ovarian cancer patients, achieving high performance and demonstrating potential to assist cytologists in diagnosis.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294522001514"
     },
     {
         title: "Developing a deep learning approach for label-free isolation and enrichment of cancer cells in body fluids for cytological and molecular analysis",
@@ -513,7 +541,8 @@ const publicationsData = [
         methodology: "ConvNet",
         data: "20 body fluid samples",
         mainResults: "achieving purities of 60-85% in the final sorted sample",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294521002076"
     },
     {
         title: "An evaluation of cell-type specific artificial intelligence algorithms in adenocarcinoma in situ in papanicolaou tests",
@@ -535,7 +564,8 @@ const publicationsData = [
         methodology: "Trained a deep learning model to detect fungi in lavage cytology images.",
         data: "12 silver-stained CytoSpin slide",
         mainResults: "accuracy is 64.58%",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294524000668"
     },
     {
         title: "Total abnormal cells in bladder cancer screening: the role of artificial intelligence-based logistic models in urine cytology",
@@ -568,7 +598,8 @@ const publicationsData = [
         methodology: "Inception ResNet v2",
         data: "583 WSIs",
         mainResults: "The AI model, using YOLOv11, accurately classified mesothelial and adenocarcinoma cells in pleural fluid cytology with an IoU score of 0.72, outperforming earlier models and supporting improved diagnostic precision in malignant pleural effusions",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294522000989"
     },
     {
         title: "Validation of a deep-learning-based algorithm for risk stratification and diagnosis of bladder cancer in digital urine cytology",
@@ -579,7 +610,8 @@ const publicationsData = [
         methodology: "Trained AI on urine cytology images; applied logistic regression.",
         data: "104 WSIs",
         mainResults: "sensitivity=91.2%\naccuracy=97.1%",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294522000849"
     },
     {
         title: "Diagnostic performance of the hologic genius digital diagnostics system for low-grade squamous intraepithelial lesion (lsil) thinprep papanicolaou tests",
@@ -590,7 +622,8 @@ const publicationsData = [
         methodology: "Hologic Genius Digital Diagnostic System",
         data: "146 LSIL cases",
         mainResults: "Kendall’s W coefficient was 0.792 with strong agrement among cytopathologists",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294525000031"
     },
     {
         title: "Implications of chatgpt for cytopathology and recommendations for updating jasc guidelines on the responsible use of artificial intelligence",
@@ -601,7 +634,8 @@ const publicationsData = [
         methodology: "A perspective and policy-focused review analyzing current AI tools and proposing updates to professional guidelines.",
         data: "No formal dataset",
         mainResults: "Recommends cautious, transparent, and ethical use of generative AI in cytopathology, emphasizing human oversight and the need to update JASC guidelines accordingly",
-        tasks: "LLM"
+        tasks: "LLM",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S2213294523000625"
     },
     {
         title: "Usage of artificial intelligence in understanding gynecologic cytopathology reports: an exploratory study",
@@ -612,7 +646,8 @@ const publicationsData = [
         methodology: "Six board-certified pathologists",
         data: "180 evaluations",
         mainResults: "ChatGPT",
-        tasks: "LLM"
+        tasks: "LLM",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294523001990"
     },
     {
         title: "Whole slide level ai classification for bladder cancer in urine cytology with largest dataset yields high accuracy results",
@@ -623,7 +658,8 @@ const publicationsData = [
         methodology: "CLAM",
         data: "4,711 whole slide images from 200 institutes",
         mainResults: "0.99 AUC, 0.97 Accuracy",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S2213294523000704"
     },
     {
         title: "Let it shine: autofluorescence of papanicolaou-stain improves AI-based cytological oral cancer detection",
@@ -634,7 +670,8 @@ const publicationsData = [
         methodology: "Co-Attention Fusion Network(CAFNet)",
         data: "Public dataset: 766565 images in 4 classes",
         mainResults: "CAFNet achieved an accuracy of 91.79% and an F1-score of 83.34%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S0010482524014793"
     },
     {
         title: "A lightweight xAI approach to cervical cancer classification",
@@ -645,7 +682,8 @@ const publicationsData = [
         methodology: "CNN",
         data: "Public dataset: 963 images in 4 classes",
         mainResults: "The model reached an accuracy of 97.50%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://link.springer.com/article/10.1007/s11517-024-03063-6"
     },
     {
         title: "Cervical cancer classification from pap smear images using deep convolutional neural network models",
@@ -656,7 +694,8 @@ const publicationsData = [
         methodology: "13 pre-trained CNN",
         data: "Herlev",
         mainResults: "DenseNet-201 obtained an accuracy of 87.02% and a recall of 63.41%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://link.springer.com/article/10.1007/s12539-023-00589-5"
     },
     {
         title: "An attention-based deep learning for acute lymphoblastic leukemia classification",
@@ -667,7 +706,8 @@ const publicationsData = [
         methodology: "Deep Dilated Residual Convolutional Neural Network (DDRNet)",
         data: "Blood Cell Images (From Kaggle)",
         mainResults: "The model achieved an accuracy of 91.98% and an F1-score of 96.00%",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.nature.com/articles/s41598-024-67826-9"
     },
     {
         title: "Deep integrated fusion of local and global features for cervical cell classification",
@@ -678,7 +718,8 @@ const publicationsData = [
         methodology: "CNN + Transformer blocks + DIFF blocks",
         data: "Sipakmed, CRIC, Herlev",
         mainResults: "Accuracy results across datasets: SIPaKMeD – 96.02%, CRIC – 85.06%, Herlev – 94.55%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S0010482524002373"
     },
     {
         title: "Classification of acute myeloid leukemia by pre-trained deep neural networks: A comparison with different activation functions",
@@ -689,7 +730,8 @@ const publicationsData = [
         methodology: "VGG16, Inception V3, ResNet50v2 (With different activation functions)",
         data: "ASH Image Bank",
         mainResults: "VGG16 with SELU activation achieved 92.83% accuracy; InceptionV3 with GELU reached 94.02%; ResNet50v2 with GELU attained 92.53%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S1350453324001778"
     },
     {
         title: "Engineered feature embeddings meet deep learning: A novel strategy to improve bone marrow cell classification and model transparency",
@@ -700,7 +742,8 @@ const publicationsData = [
         methodology: "Xception and ResNet50 (With region-attention embedding )",
         data: "An Expert-Annotated Dataset of Bone Marrow Cytology in Hematologic Malignancies (Bone-Marrow-Cytomorphology MLL Helmholtz Fraunhofer)",
         mainResults: "Xception with region-attention embedding achieved an F1-score of 0.56, while ResNet50 with the same embedding scored 0.54.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S2153353924000294"
     },
     {
         title: "Transferable automatic hematological cell classification: Overcoming data limitations with self-supervised learning",
@@ -711,7 +754,8 @@ const publicationsData = [
         methodology: "XCiT: cross-covariance image transformer",
         data: "One punlic bone marrow dataset: Matek bone marrow (BM) dataset; three peripheral blood datasets: Matek, Acevedo, and Raabin blood datasets",
         mainResults: "Transfer learning achieved 64–63% accuracy from bone marrow to blood smears, and 42% in reverse.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S0169260724005534"
     },
     {
         title: "Improving the generalizability of white blood cell classification with few-shot domain adaptation",
@@ -722,7 +766,8 @@ const publicationsData = [
         methodology: "EfficientNet",
         data: "10 public datasets: Barcelona, Jiangxi Tecom, Jin Woo Choi, BCCD, LISC, Munich 2021, Munich 2019, Raabin, JSLH, Tianjin",
         mainResults: "After fine tune, accuracy is higher than 0.8 for each target dataset",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S2153353924000440"
     },
     {
         title: "Enhancing advanced cervical cell categorization with cluster-based intelligent systems by a novel integrated CNN approach with skip mechanisms and GAN-based augmentation",
@@ -733,7 +778,8 @@ const publicationsData = [
         methodology: "CNN",
         data: "SIPaKMeD (with Generative Adversarial Networks augmentation)",
         mainResults: "The model achieved an accuracy of 98.08%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.nature.com/articles/s41598-024-80260-1"
     },
     {
         title: "A hybrid approach based on multipath Swin transformer and ConvMixer for white blood cells classification",
@@ -744,7 +790,8 @@ const publicationsData = [
         methodology: "Swin Transformer and ConvMixer based Multipath mixer (SC-MP-Mixer)",
         data: "3 public datasets: BCCD, PBC, Raabin",
         mainResults: "On the BCCD, PBC, and Raabin datasets, the model achieved accuracies of 95.66%, 99.65%, and 98.68%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://link.springer.com/article/10.1007/s13755-024-00291-w"
     },
     {
         title: "Efficient leukocytes detection and classification in microscopic blood images using convolutional neural network coupled with a dual attention network",
@@ -2441,7 +2488,8 @@ const publicationsData = [
         methodology: "ResNet50 and VGG19",
         data: "Multi-national dataset (32,000 WSIs)",
         mainResults: "Generalization: 94.3% across 15 sites",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S1746809425003702"
     },
     {
         title: "Large-scale cervical precancerous screening via ai-assisted cytology whole slide image analysis",
@@ -2774,7 +2822,8 @@ const publicationsData = [
         methodology: "DenseNet-121 DCNN trained on liquid-based cytology images using AdamW optimizer and 5-fold cross-validation",
         data: "45 Papanicolaou-stained slides scanned into 9,141 image patches (2,737 normal, 4,756 adenocarcinoma, and 1,648 squamous cell carcinoma).",
         mainResults: "Model achieved patch-level sensitivity 0.97, specificity 0.85, accuracy 0.94; case-level accuracy 0.91; strong performance in malignancy and SCC prediction",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://doi.org/10.1159/000541148"
     },
     {
         title: "An automated pipeline for differential cell counts on whole-slide bone marrow aspirate smears",
@@ -3008,7 +3057,8 @@ const publicationsData = [
         methodology: "MIL with ensemble learning to predict gene mutations without patch-level labels",
         data: "572 whole slide images (WSIs) of AML bone marrow aspirates with genetic mutation data",
         mainResults: "Model predicted AML mutations with AUCs of 0.90 (NPM1) and 0.80 (FLT3-ITD)",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41698-025-00804-0"
     },
     {
         title: "Machine-learning-based diagnosis of thyroid fine-needle aspiration biopsy synergistically by papanicolaou staining and refractive index distribution",
