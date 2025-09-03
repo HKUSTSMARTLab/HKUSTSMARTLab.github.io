@@ -811,7 +811,8 @@ const publicationsData = [
         methodology: "DCGAN based data augmentation; MobileNetV2 with dual attention technique followed by region proposed network",
         data: "3 public datasets: PBC, LISC, Raabin",
         mainResults: "On the PBC, Raabin, and LISC datasets, the model achieved accuracies of 99.83%, 99.60%, and 99.35%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S0010482524002300"
     },
     {
         title: "Comprehensive data analysis of white blood cells with classification and segmentation by using deep learning approaches",
@@ -822,7 +823,8 @@ const publicationsData = [
         methodology: "CNN",
         data: "CellaVision, Raabin, Kaggle blood cell images dataset, LISC, Blood cell detection (BCD) dataset",
         mainResults: "The model achieved an accuracy of 97.27%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://onlinelibrary.wiley.com/doi/10.1002/cyto.a.24839"
     },
     {
         title: "Evaluation of deep learning training strategies for the classification of bone marrow cell images",
@@ -833,7 +835,8 @@ const publicationsData = [
         methodology: "VGG, ResNet, RegNet, VisionTransformer (ViT)",
         data: "3 public datasets: Bone marrow cell dataset,Comparison detector (CD) dataset, PatchCamelyon (PCam) dataset",
         mainResults: "RegNet achieved its best performance with an accuracy of 78.7% ± 6.0%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S0169260723005904"
     },
     {
         title: "Deep learning model for differentiating acute myeloid and lymphoblastic leukemia in peripheral blood cell images via myeloblast and lymphoblast classification",
@@ -844,7 +847,8 @@ const publicationsData = [
         methodology: "EfficientNet",
         data: "Private dataset: 42386 images in 12 classes",
         mainResults: "The model achieved an accuracy of 88.58% and an F1-score of 73.61%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://journals.sagepub.com/doi/abs/10.1177/20552076241258079"
     },
     {
         title: "An efficient fusion-purification network for cervical pap-smear image classification",
@@ -855,7 +859,8 @@ const publicationsData = [
         methodology: "End-to-end fusion-purification model termed FPNC",
         data: "SIPaKMeD and CCID (private dataset with 148762 images in 15 classes)",
         mainResults: "On SIPaKMeD and CCID datasets, the model achieved accuracies of 95.90% and 99.38%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0169260724001950"
     },
     {
         title: "ReRNet: A Deep Learning Network for Classifying Blood Cells",
@@ -866,7 +871,8 @@ const publicationsData = [
         methodology: "ResNet50-based ensemble of randomized neural networks (ReRNet)",
         data: "Public Kaggle dataset: Blood Cell Images",
         mainResults: "The model achieved an accuracy of 99.97%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10061646/"
     },
     {
         title: "Developing a Tuned Three-Layer Perceptron Fed with Trained Deep Convolutional Neural Networks for Cervical Cancer Diagnosis",
@@ -877,7 +883,8 @@ const publicationsData = [
         methodology: "VGG, ResNet and a multi-layer perceptron neural (MLP) network",
         data: "Herlev, SIPaKMeD",
         mainResults: "On the Herlev and SIPaKMeD datasets, the model achieved accuracies of 97.65% and 99.71%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2075-4418/13/4/686"
     },
     {
         title: "White Blood Cells Classification Using Entropy-Controlled Deep Features Optimization",
@@ -888,7 +895,8 @@ const publicationsData = [
         methodology: "DarkNet53, DenseNet201",
         data: "WBC",
         mainResults: "The model achieved an accuracy of 99.60%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2075-4418/13/3/352"
     },
     {
         title: "Equilibrium Optimization Algorithm with Ensemble Learning Based Cervical Precancerous Lesion Classification Model",
@@ -2796,7 +2804,8 @@ const publicationsData = [
         methodology: "Hierarchical MIL",
         data: "CAMELYON16 (public) + Cervix WSIs (private, 11,000)",
         mainResults: "Accuracy: 95.2%, F1: 94.8%, AUC: 0.974",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://ieeexplore.ieee.org/document/10810475/"
     },
     {
         title: "Deep learning predicts the 1-year prognosis of pancreatic cancer patients using positive peritoneal washing cytology",
@@ -2818,7 +2827,8 @@ const publicationsData = [
         methodology: "Systematic review of AI in thyroid pathology WSIs; study quality assessed using modified QUADAS-2",
         data: "19 studies included out of 919 retrieved articles.",
         mainResults: "Automated models showed strong correlation (>0.76) with pathologists and comparable diagnostic accuracy; challenges included large WSI sizes",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://onlinelibrary.wiley.com/doi/10.1111/cyt.12828"
     },
     {
         title: "Automating the paris system for urine cytopathology—a hybrid deep-learning and morphometric approach",
@@ -2829,7 +2839,8 @@ const publicationsData = [
         methodology: "Morphometric algorithms calculated N:C ratios and deep learning assessed qualitative features in urine cytology WSIs; RIMs created",
         data: "217 urine cytology specimens (51 negative, 60 atypical, 52 suspicious, 54 positive cases).",
         mainResults: "Hybrid system automated Paris System by calculating N:C ratios, classifying cell types, and generating pancellular stats; improved WSI efficiency",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://pubmed.ncbi.nlm.nih.gov/30702803/"
     },
     {
         title: "Artificial intelligence recognition model using liquid-based cytology images to discriminate malignancy and histological types of non-small-cell lung cancer",
@@ -2852,7 +2863,8 @@ const publicationsData = [
         methodology: "ML pipeline developed to identify BMA regions, detect cells, and classify into 11 DCC components using CNNs trained on annotated data",
         data: "Training: 396,048 BMA regions, 28,914 cell boundary images, and 1,510,976 cell class annotations. Testing: heterogeneous BMA slides with varying pathologies and cellularities.",
         mainResults: "Automated pipeline generated 11-component DCCs with high concordance; outperformed manual methods in region and cell classification",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S0893395222000035"
     },
     {
         title: "Automated identification of glomeruli and synchronised review of special stains in renal biopsies by machine learning and slide registration: a cross-institutional study",
@@ -2863,7 +2875,8 @@ const publicationsData = [
         methodology: "CNNs trained on renal biopsy slides with multiple stains to detect glomeruli; evaluated on intra- and inter-institutional datasets",
         data: "71 renal biopsy cases from 3 institutions (52 cases for training/validation, 19 for testing).",
         mainResults: "Intra-institutional sensitivity 90–93%, specificity 86–98%; inter-institutional sensitivity 77%, specificity 97%; multi-site training improved generalizability",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://onlinelibrary.wiley.com/doi/abs/10.1111/his.14376"
     },
     {
         title: "A convolutional neural network-based model for assisting pathological diagnoses on thyroid liquid-based cytology",
@@ -2910,7 +2923,8 @@ const publicationsData = [
         methodology: "PUCAS: Three-stage AI model for urine cytology WSIs (patch extraction, feature extraction, classification)",
         data: "Data from 2641 patients (training cohort), 2335 patients (retrospective validation), and 400 patients (prospective validation)",
         mainResults: "Sensitivity up to 1.0; NPV 96.4%; reduced endoscopy use by 57.5%",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://pubmed.ncbi.nlm.nih.gov/38686219/"
     },
     {
         title: "Multiple serous cavity efusion screening based on smear images using vision transformer",
