@@ -3070,7 +3070,8 @@ const publicationsData = [
         methodology: "ResNet50 CNN trained with probabilistic labels from multiple pathologists",
         data: "Six whole-slide oral cytology images segmented into 14,535 patches; annotations from 3 pathologists",
         mainResults: "Probabilistic model achieved AUC up to 0.991 and accuracy up to 0.988, outperforming pathologists",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41598-024-67879-w"
     },
     {
         title: "Efective deep learning for oral exfoliative cytology classifcation",
@@ -3081,7 +3082,8 @@ const publicationsData = [
         methodology: "VGG16 CNN trained with SAM and SGD, with and without learning rate scheduler",
         data: "Oral exfoliative cytology slides, segmented into tiles; labeled as positive/negative by an oral pathologist",
         mainResults: "SAM with scheduler achieved AUC 0.9328, reduced overfitting, and improved robustness",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41598-022-17602-4"
     },
     {
         title: "Annotation-free deep learning for predicting gene mutations from whole slide images of acute myeloid leukemia",
@@ -3104,7 +3106,8 @@ const publicationsData = [
         methodology: "MLA using Pap-stained and RI images for synergistic classification",
         data: "1,535 thyroid cell clusters (1,128 benign, 407 malignant) from 124 patients",
         mainResults: "MLA achieved 100% accuracy using color and RI images for benign/malignant classification",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41598-023-36951-2"
     },
     {
         title: "Multiple serous cavity effusion screening based on smear images using vision transformer",
@@ -3126,7 +3129,8 @@ const publicationsData = [
         methodology: "CNNs with EfficientNetB1 trained on 786 WSIs and tested on 750 WSIs using FS, WS, and hybrid approaches with transfer learning and tile mining",
         data: "Training set: 786 WSIs (62 annotated neoplastic, 724 negative). Test sets: 750 WSIs (equal balance: 50% neoplastic, clinical balance: 10:1 ratio of negative to neoplastic). Annotation: ~180 cells per neoplastic WSI using OpenSeadragon-based tools.",
         mainResults: "ENB1-UC-FS+WS model achieved AUCs 0.984–0.990 with accurate heatmaps and clinical potential",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9818219/"
     },
     {
         title: "A novel transformer-based pipeline for lung cytopathological whole slide image classification",
@@ -3159,7 +3163,8 @@ const publicationsData = [
         methodology: "Comparison of WSI and LM slides for 480 axillary SLNs; evaluated diagnostic accuracy, concordance, and review time",
         data: "480 SLN touch imprint cytology slides; 4320 diagnoses analyzed.",
         mainResults: "WSI showed strong intra/interobserver agreement; practical alternative to LM",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://onlinelibrary.wiley.com/doi/full/10.1002/dc.25401"
     },
     {
         title: "Weakly supervised multiple instance learning model with generalization ability for clinical adenocarcinoma screening on serous cavity effusion pathology",
@@ -3170,7 +3175,8 @@ const publicationsData = [
         methodology: "Weakly supervised MIL model with cell block analysis for serous effusion; trained on two real-world WSI datasets with 5-fold cross-validation",
         data: "Two real-world datasets of whole-slide images (WSIs) of serous cavity effusion with adenocarcinoma based on cell block sections, publicly available for research.",
         mainResults: "Weakly supervised model reduced workload and generalized well for clinical use",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S089339522400228X"
     },
     {
         title: "An artificial intelligence-assisted diagnostic system improves upper urine tract cytology diagnosis",
@@ -3202,6 +3208,7 @@ const publicationsData = [
         organ: "Thyroid",
         methodology: "TNT-Net dual-channel model using transverse and longitudinal ultrasound images of thyroid nodules; compared with CNN and Swin Transformer",
         data: "9649 nodules (8455 patients) from five hospitals, divided into training, internal test, and external test datasets.",
+        url: "https://www.sciencedirect.com/science/article/pii/S2352047724000649",
         mainResults: "TNT-Net outperformed CNNs and Swin Transformer in thyroid nodule classification",
         tasks: "WSI Analysis"
     },
@@ -3225,7 +3232,8 @@ const publicationsData = [
         methodology: "AIxURO compared with microscopy and WSI review for bladder cancer diagnosis per TPS; evaluated diagnostic metrics and observer agreement",
         data: "116 deidentified urine cytology slides (NHGUC: 86, AUC: 12, SHGUC: 11, HGUC: 7) from urology patients between 2021 and 2022, stained with Papanicolaou stain and digitized at 40× magnification.",
         mainResults: "AIxURO improved sensitivity and reduced screening time vs. microscopy and WSI",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.1002/cncy.22884"
     },
     {
         title: "Quel apport de l’intelligence artificielle en cytologie urinaire ?what contribution can make artificial intelligence to urinary cytology?",
@@ -3247,7 +3255,8 @@ const publicationsData = [
         methodology: "569 Pap-stained WSIs processed with z-stacking and color normalization; Inception-ResNet-V2 trained on patches for binary classification",
         data: "569 WSIs collected from AI-Hub\'s Open AI Dataset project, including 5506 WSIs for various cancer types and benign cases.",
         mainResults: "AI model outperformed pathologists in accuracy, sensitivity, and specificity",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.mdpi.com/2073-4409/12/14/1847"
     },
     {
         title: "Breaking barriers in thyroid cytopathology: harnessing deep learning for accurate diagnosis",
@@ -3258,7 +3267,8 @@ const publicationsData = [
         methodology: "TCS-CNN and AD-MIL frameworks for thyroid malignancy classification; achieved high accuracy and interpretable predictions",
         data: "151 whole-slide images (WSIs) of thyroid cancer cases, analyzed at both patch and bag levels.",
         mainResults: "TCS-CNN and AD-MIL achieved 96–97% accuracy with interpretable predictions",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.mdpi.com/2306-5354/12/3/293"
     },
     {
         title: "An ensemble deep learning for automatic prediction of papillary thyroid carcinoma using fine needle aspiration cytology",
@@ -3291,7 +3301,8 @@ const publicationsData = [
         methodology: "Quality control module using nuclei feature distributions to validate WSI preparation protocols with weighted distance metrics",
         data: "Empirical analysis was conducted on WSIs from seven distinct preparation protocols. Additional validation was performed on a larger dataset from routine laboratory workflows.",
         mainResults: "Quality control module detected prep protocol issues with minimal data",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S2153353925000021"
     },
     {
         title: "A preliminary study of morphogo, a digital artificial intelligence (ai) tool for urine cytology analysis",
