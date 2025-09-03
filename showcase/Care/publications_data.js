@@ -1036,7 +1036,8 @@ const publicationsData = [
         methodology: "ALNett",
         data: "ISBI 2019 dataset",
         mainResults: "Training accuracy was 99.73%, testing accuracy was 91.13%, and F1-score was 96.00%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482522006400"
     },
     {
         title: "A content-based image retrieval system for the diagnosis of lymphoma using blood micrographs: An incorporation of deep learning with a traditional learning approach",
@@ -1047,7 +1048,8 @@ const publicationsData = [
         methodology: "ResNet-101",
         data: "A pubilc dataset: 1326 images in 4 classes",
         mainResults: "The model achieved an overall accuracy of 98.25% and an average precision of 98.74%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482522002554"
     },
     {
         title: "HiCervix: An extensive hierarchical dataset and benchmark for cervical cytology classification",
@@ -1081,7 +1083,8 @@ const publicationsData = [
         methodology: "CLIP,  QUILT, BiomedCLIP, UNI, ViT",
         data: "Body Cavity Fluid Cytology (BCFC), Mendeley LBC Cervical Cancer (MLCC), SIPaKMeD, HiCervix",
         mainResults: "Average accuracy across four datasets: CLIP – 83.59%, QUILT – 86.15%, BiomedCLIP – 81.32%, UNI – 88.91%, ViT – 85.72%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://arxiv.org/abs/2411.14975"
     },
     {
         title: "Computer-aided diagnosis tool for cervical cancer screening with weakly supervised localization and detection of abnormalities using adaptable and explainable classifier",
@@ -1092,7 +1095,8 @@ const publicationsData = [
         methodology: "CNN with a loss called classification under regression constraint",
         data: "Herlev",
         mainResults: "The model achieved 66.8% accuracy in severity classification, 95.2% in normal/abnormal classification, 87.0% KAPPA score, 80.4% in weakly supervised localization, and 66.1% in general abnormal cell detection.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/pii/S1361841521002139"
     },
     {
         title: "SCKansformer: Fine-grained classification of bone marrow cells via Kansformer backbone and hierarchical attention mechanisms",
@@ -1103,7 +1107,8 @@ const publicationsData = [
         methodology: "SCKansformer",
         data: "A private dataset called BMCD-FGCD with 92335 images in 39 classes",
         mainResults: "The model achieved an accuracy of 83.23% and an F1-score of 84.34%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://arxiv.org/abs/2406.09931"
     },
     {
         title: "Cervical cell classification using multi-scale feature fusion and channel-wise cross-attention",
@@ -1114,7 +1119,8 @@ const publicationsData = [
         methodology: "Multi-head channelwise cross-attention",
         data: "SIPaKMeD, Herlev and Motic,",
         mainResults: "SIPaKMeD: 97.46%±0.30 accuracy, Herlev: 97.67% ± 0.20 accuracy, Motic: 93.01 accuracy.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://ieeexplore.ieee.org/document/10230475/"
     },
     {
         title: "CervixFuzzyFusion for cervical cancer cell image classification",
@@ -1125,7 +1131,8 @@ const publicationsData = [
         methodology: "A novel cervix feature fusion method (CFF) that fuses the features of the pre-trained DenseNet201 and vision transformer",
         data: "SIPaKMeD",
         mainResults: "The model achieved an accuracy of 96.13%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S1746809423003531"
     },
     {
         title: "CAM-VT: A Weakly supervised cervical cancer nest image identification approach using conjugated attention mechanism and visual transformer",
@@ -1136,7 +1143,8 @@ const publicationsData = [
         methodology: "Conjugated Attention Mechanism and Visual Transformer (CAM-VT)",
         data: "A private dataset with 3931 images in 5 classes and 2 pubilc datasets: Hematoxylin, Eosin",
         mainResults: "The top 5 and top 10 positive probability values for cervical nests were 97.36% and 96.84%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482523005358"
     },
     {
         title: "Improving cervical cancer classification with imbalanced datasets combining taming transformers with T2T-ViT",
@@ -1147,7 +1155,8 @@ const publicationsData = [
         methodology: "Tokens-to-Token Vision Transformers (T2T-ViT)",
         data: "The liquid-based cytology Pap smear dataset, SIPaKMeD, Herlev",
         mainResults: "On the liquid-based cytology Pap smear dataset, SIPaKMeD, and Herlev, the model achieved accuracies of 98.79%, 99.58%, and 99.88%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://link.springer.com/article/10.1007/s11042-022-12670-0"
     },
     {
         title: "A comparative analysis of deep learning models for automated cross-preparation diagnosis of multi-cell liquid Pap smear images",
@@ -1158,7 +1167,8 @@ const publicationsData = [
         methodology: "CNNs, CNN with autoencoder (AE)",
         data: "A private dataset ThinPrep Pap dataset with 230 images in 4 classes and a public dataset SurePath dataset",
         mainResults: "AE-CNN achieved 96.54% accuracy on the SurePath dataset; ResNet101 achieved 92.65% on the ThinPrep Pap dataset.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2075-4418/12/8/1838"
     },
     {
         title: "BO-ALLCNN: Bayesian-based optimized CNN for acute lymphoblastic leukemia detection in microscopic blood smear images",
