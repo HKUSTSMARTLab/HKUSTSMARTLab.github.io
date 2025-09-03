@@ -2887,7 +2887,8 @@ const publicationsData = [
         methodology: "700 thyroid TCT WSIs processed into patches at 10× and 40×; YOLO for detection and ResNet50 for classification",
         data: "Training set: 560 WSIs with 4,926 cell clusters (11,164 patches). Test set: 140 WSIs with 977 cell clusters (1,402 patches).",
         mainResults: "At 10×, model accuracy 90.01%, AUC 0.97, PPV 97.70%, NPV 70.82%; 40× improved sensitivity but reduced specificity; diagnosis time <1s per case",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://europepmc.org/article/med/33831995"
     },
     {
         title: "Prediction of tumor origin in cancers of unknown primary origin with cytology-based deep learning",
@@ -2912,7 +2913,8 @@ const publicationsData = [
         methodology: "TORCH model used multitask neural networks with attention and transformer-based MIL",
         data: "Cytological histology images analyzed by the TORCH model",
         mainResults: "TORCH accurately predicted tumor origin in serous effusions, supporting AI use in cytology",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.the-innovation.org/article/doi/10.59717/j.xinn-life.2024.100086"
     },
     {
         title: "Development and validation of an artificial intelligence-based model for detecting urothelial carcinoma using urine cytology images: a multicentre, diagnostic study with prospective validation",
@@ -2946,7 +2948,8 @@ const publicationsData = [
         methodology: "MIL model with Hopfield attention pooling used to generate slide-level vectors from individual cell features",
         data: "Dataset of 556 WSIs annotated with hematological diagnostic categories, split into training (278 cases) and test (278 cases) sets",
         mainResults: "MIL model with Hopfield pooling improved WSI classification and interpretability",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S0010482523009952"
     },
     {
         title: "Pyramid multi-loss vision transformer for thyroid cancer classification using cytological smear",
@@ -2969,7 +2972,8 @@ const publicationsData = [
         methodology: "Two-stage fusion model (LESS) combining VPU learning and CrossViT for WSI screening",
         data: "Urine cytology dataset (130 WSIs, 13,000 patches) and breast cytology dataset FNAC 2019 (212 WSIs, 21,200 patches)",
         mainResults: "LESS achieved 84.79–96.88% accuracy, outperforming other MIL methods on small datasets",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://doi.org/10.1016/j.media.2024.103109"
     },
     {
         title: "A deep learning model to triage and predict adenocarcinoma on pancreas cytology whole slide imaging",
@@ -2980,7 +2984,8 @@ const publicationsData = [
         methodology: "MIPCL model compared with ABMIL and CLAM for pancreatic cancer slide classification",
         data: "Pancreatic FNAC dataset with Diff-Quik and Pap smear WSIs (average resolution: 15,000 × 15,000 pixels)",
         mainResults: "MIPCL achieved F1-score 91.07%, AUROC 0.9435, outperforming ABMIL and CLAM",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41598-023-42045-w"
     },
     {
         title: "A novel transformer-based pipeline for lung cytopathological whole slide image classification",
@@ -3002,7 +3007,8 @@ const publicationsData = [
         methodology: "Attention-based MIL using CNNs for weakly supervised classification",
         data: "322 lung cytology cases (108 benign, 214 malignant) with 1252 benign and 1805 malignant patch images",
         mainResults: "AD MIL with AlexNet-like CNN achieved 91.6% accuracy, better than supervised and MIL baselines",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.nature.com/articles/s41598-021-99246-4"
     },
     {
         title: "Shuffle instances-based vision transformer for pancreatic cancer rose image classification",
@@ -3013,7 +3019,8 @@ const publicationsData = [
         methodology: "SI-ViT model using shuffled bags and dual-head MIL for regression and classification",
         data: "ROSE cytology images of pancreatic cancer from multiple clinical sources, with diverse staining and imaging conditions to reflect real-world variability.",
         mainResults: "SI-ViT outperformed SOTA in ROSE image classification with better accuracy and attention",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://arxiv.org/abs/2208.06833"
     },
     {
         title: "Large‐scale validation study of an improved semiautonomous urine cytology assessment tool: autoparis‐x",
@@ -3059,7 +3066,8 @@ const publicationsData = [
         methodology: "TshFNA-Examiner for nuclei segmentation, patch classification, and cancer risk assessment",
         data: "A cohort of 333 thyroid FNA cases (2019–2022) with pixel-wise and image-wise annotations",
         mainResults: "TshFNA-Examiner achieved Dice 0.931 and macro-F1 0.970 for cancer risk classification",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://link.springer.com/article/10.1007/s12204-024-2743-y"
     },
     {
         title: "Training high‑performance deep learning classifer for diagnosis in oral cytology using diverse annotations",
