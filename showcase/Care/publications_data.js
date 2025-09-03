@@ -260,7 +260,8 @@ const publicationsData = [
         methodology: "Stardist cell segmentation",
         data: "53 951 exfoliated cells",
         mainResults: "81.5% sensitivity, 84.9% specificity, and the AUC of 0.85, within 20 minutes for each patient",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://onlinelibrary.wiley.com/doi/full/10.1002/advs.202300961"
     },
     {
         title: "Label‐free virtual peritoneal lavage cytology via deep‐learning‐assisted single‐color stimulated raman scattering microscopy",
@@ -295,7 +296,8 @@ const publicationsData = [
         methodology: "SSD",
         data: "nucleus annotations of 31,698 normal squamous cells and 1395 lesions",
         mainResults: "A deep learning model using mobile-acquired cytology images significantly improved lesion detection accuracy in cervical cancer screening, achieving up to 22.9% higher recall and 16.0% higher F1 scores compared to previous methods",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.mdpi.com/2076-3417/13/17/9850"
     },
     {
         title: "Deep learning predicts the 1-year prognosis of pancreatic cancer patients using positive peritoneal washing cytology",
@@ -320,7 +322,8 @@ const publicationsData = [
         methodology: "channel attention,\nmulti-level semantic supervision",
         data: "H&E-stained and papanicolaou-stained 3,620 positive images and 2,380 negative images",
         mainResults: "an accuracy of 98.50%, a precision of 99.32% and a sensitivity of 97.67%",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0306549"
     },
     {
         title: "Cytopathology image super-resolution of portable microscope based on convolutional window-integration transformer",
@@ -331,7 +334,8 @@ const publicationsData = [
         methodology: "Transformer",
         data: "239,100 paired portable microscope\nimages and standard microscope images",
         mainResults: "PSNR=30.67, SSIM=0.8372, LPIPS=0.3980",
-        tasks: "Super Resolution"
+        tasks: "Super Resolution",
+        url: "https://ieeexplore.ieee.org/document/10819978/"
     },
     {
         title: "Predicting tumour origin with cytology-based deep learning: hype or hope?",
@@ -342,7 +346,8 @@ const publicationsData = [
         methodology: "Researchers developed TORCH",
         data: "90,572 cytological smear images from 76,183 patients across four hospitals in China (2010–2023),4,520 patients from Tianjin Cancer Hospital  12,467 from Yantai Hospital 496 images used to assess pathologist performance with and without AI assistance",
         mainResults: "Achieved AUC scores of 0.953–0.991 for cancer diagnosis.AUC of 0.953–0.979 for tumour origin localization. TORCH significantly improved diagnostic accuracy, especially for junior pathologists",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.nature.com/articles/s41591-024-02915-w"
     },
     {
         title: "Deep learning‑based cell segmentation for rapid optical cytopathology of thyroid cancer",
@@ -353,7 +358,8 @@ const publicationsData = [
         methodology: "U-Net",
         data: "train: 90 images with 850 cells\ntest: 34 images with 601 cells",
         mainResults: "the model segmented 15.8% more cells than the human operator",
-        tasks: "Frontier Discussion"
+        tasks: "Frontier Discussion",
+        url: "https://www.nature.com/articles/s41598-024-64855-2"
     },
     {
         title: "Automated adequacy assessment of cervical cytology samples using deep learning",
@@ -364,7 +370,8 @@ const publicationsData = [
         methodology: "EfficientDet",
         data: "41 samples with a total of 42387 nuclei annotation",
         mainResults: "AP of 82.4%, Accuracy of 79.8%, Recall of\n73.8% and F1 score of 81.5%",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://dl.acm.org/doi/10.1007/978-3-031-04881-4_13"
     },
     {
         title: "Assessing artificial intelligence enabled liquid-based cytology for triaging hpv-positive women: a population-based cross-sectional study",
@@ -375,7 +382,8 @@ const publicationsData = [
         methodology: "multiple instance learning",
         data: "3514 cases",
         mainResults: "sensitivity=86.49%, substantially higher than HPV16/18 typing at detecting CIN2+ (86.49%\nvs 54.05%, P= 0.002).",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://obgyn.onlinelibrary.wiley.com/doi/abs/10.1111/aogs.14611"
     },
     {
         title: "Molecular testing in urinary cytology specimens: current status and future directions",
@@ -458,7 +466,8 @@ const publicationsData = [
         methodology: "validated the Genius™ Digital Diagnostics System (Hologic) by comparing the performance to traditional manual light microscopic diagnosis of ThinPrep® Pap test slides.",
         data: "319 ThinPrep® Pap test cases",
         mainResults: "62.1% vs 55.8%(TBS) \n76.8% vs 71.5%(condensed diagnostic categories)",
-        tasks: "Comprihensive Anlysis"
+        tasks: "Comprihensive Anlysis",
+        url: "https://pubmed.ncbi.nlm.nih.gov/39114431/"
     },
     {
         title: "Multi-modal fusion learning for cervical dysplasia diagnosis",
