@@ -504,6 +504,38 @@ blockquote {
         font-size: 0.9rem;
     }
 
+    /* Papers, Surveys, Guidelines mobile optimizations */
+    .paper-actions, .survey-actions, .guideline-actions {
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .btn-academic {
+        text-align: center;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        width: auto;
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Improve card layout on tablets */
+    .paper-card, .survey-card, .guideline-card {
+        margin-bottom: 1rem;
+    }
+
+    .paper-card .row, .survey-card .row, .guideline-card .row {
+        align-items: flex-start;
+    }
+
+    .paper-card .col-lg-3, .survey-card .col-lg-3, .guideline-card .col-lg-3,
+    .paper-card .col-md-4, .survey-card .col-md-4, .guideline-card .col-md-4 {
+        margin-top: 1rem;
+    }
+
     .nav-pills .nav-link {
         padding: 0.3rem 0.8rem;
         font-size: 0.85rem;
@@ -572,6 +604,140 @@ blockquote {
     .tweet-stat {
         padding: 3px 6px;
         font-size: 0.8rem;
+    }
+
+    /* Enhanced mobile optimizations for Papers, Surveys, Guidelines */
+    .paper-card, .survey-card, .guideline-card {
+        margin-bottom: 0.75rem;
+        border-radius: 8px;
+    }
+
+    .paper-card .card-body, .survey-card .card-body, .guideline-card .card-body {
+        padding: 1rem;
+    }
+
+    .paper-title, .survey-title, .guideline-title {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 0.5rem;
+    }
+
+    .paper-meta, .survey-meta, .guideline-meta {
+        font-size: 0.8rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .paper-actions, .survey-actions, .guideline-actions {
+        flex-direction: row;
+        gap: 0.4rem;
+        align-items: center;
+        margin-top: 0.75rem;
+        justify-content: flex-end;
+    }
+
+    .btn-academic {
+        text-align: center;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        width: auto;
+        flex: 1;
+        justify-content: center;
+        border-radius: 6px;
+    }
+
+    /* Mobile modal optimizations */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100vw - 1rem);
+    }
+
+    .modal-xl {
+        max-width: calc(100vw - 1rem);
+    }
+
+    .modal-lg {
+        max-width: calc(100vw - 1rem);
+    }
+
+    .modal-content {
+        border-radius: 8px !important;
+        max-height: calc(100vh - 1rem);
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 1rem;
+        border-radius: 8px 8px 0 0 !important;
+    }
+
+    .modal-body {
+        padding: 1rem !important;
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+    }
+
+    .modal-footer {
+        padding: 1rem;
+        border-radius: 0 0 8px 8px !important;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+        margin: 0;
+    }
+
+    .modal-title {
+        font-size: 1.1rem !important;
+        line-height: 1.3;
+    }
+
+    /* Improve modal content layout on mobile */
+    .modal-body .row {
+        margin: 0;
+    }
+
+    .modal-body .col-md-8, .modal-body .col-md-4 {
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+
+    .modal-body .info-item {
+        margin-bottom: 0.75rem;
+    }
+
+    .modal-body .info-item label {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .modal-body .info-item p {
+        font-size: 0.85rem;
+        margin-bottom: 0;
+    }
+
+    /* Better image display in modals */
+    .modal-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+    }
+
+    /* Improve citation box on mobile */
+    .citation-box {
+        font-size: 0.85rem;
+        padding: 0.75rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .citation-box .btn {
+        position: static !important;
+        width: auto;
+        margin-top: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
     }
 
     .tweet-stat i {
@@ -748,57 +914,535 @@ blockquote {
     transform: translateY(-1px);
 }
 
-/* Additional mobile optimizations */
-@media (max-width: 576px) {
-    /* Extra small devices */
+/* Additional mobile optimizations for very small screens */
+@media (max-width: 480px) {
+    /* Extra small devices - enhanced mobile experience */
     .container {
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     header h1 {
-        font-size: 1.6rem;
-    }
-
-    header p.lead {
-        font-size: 0.9rem;
-    }
-
-    .section-title {
         font-size: 1.5rem;
     }
 
+    header p.lead {
+        font-size: 0.85rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
     .card-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .card-text {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     /* Improve image display on very small screens */
     .col-md-3 img {
-        max-height: 120px !important;
+        max-height: 100px !important;
+        width: auto;
+        margin: 0 auto 0.75rem auto;
     }
 
     /* Make accordion buttons more touch-friendly */
     .accordion-button {
         padding: 0.6rem 0.8rem;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     /* Adjust footer for small screens */
     footer p {
+        font-size: 0.75rem;
+        padding: 0 0.5rem;
+    }
+
+    /* Ultra-mobile optimizations for Papers, Surveys, Guidelines */
+    .paper-card, .survey-card, .guideline-card {
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+    }
+
+    .paper-card .card-body, .survey-card .card-body, .guideline-card .card-body {
+        padding: 0.75rem;
+    }
+
+    .paper-title, .survey-title, .guideline-title {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        margin-bottom: 0.4rem;
+    }
+
+    .paper-meta, .survey-meta, .guideline-meta {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .year-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .paper-actions, .survey-actions, .guideline-actions {
+        flex-direction: row;
+        gap: 0.3rem;
+        margin-top: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .btn-academic {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+        border-radius: 5px;
+        flex: 1;
+        width: auto;
+    }
+
+    /* Ultra-mobile modal optimizations */
+    .modal-dialog {
+        margin: 0.25rem;
+        max-width: calc(100vw - 0.5rem);
+    }
+
+    .modal-content {
+        border-radius: 6px !important;
+        max-height: calc(100vh - 0.5rem);
+    }
+
+    .modal-header {
+        padding: 0.75rem;
+        border-radius: 6px 6px 0 0 !important;
+    }
+
+    .modal-body {
+        padding: 0.75rem !important;
+        max-height: calc(100vh - 150px);
+    }
+
+    .modal-footer {
+        padding: 0.75rem;
+        border-radius: 0 0 6px 6px !important;
+    }
+
+    .modal-title {
+        font-size: 1rem !important;
+        line-height: 1.2;
+    }
+
+    .modal-body .info-item label {
+        font-size: 0.7rem;
+    }
+
+    .modal-body .info-item p {
         font-size: 0.8rem;
     }
 
-    /* Vertical centering for all guideline images */
-    .accordion-body .row .col-md-3 {
+    /* Better touch targets */
+    .btn-close {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+
+    /* Improve filter section on mobile */
+    .filter-section {
+        padding: 0.75rem;
+    }
+
+    .filter-section .form-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .form-select {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.75rem;
+    }
+
+    /* Statistics display optimization */
+    .stat-number {
+        font-size: 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+}
+
+/* Mobile-specific touch optimizations for Papers, Surveys, Guidelines */
+@media (max-width: 768px) {
+    /* Enhanced touch targets and interactions */
+    .paper-card, .survey-card, .guideline-card {
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    .paper-card:active, .survey-card:active, .guideline-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Better button spacing and sizing for touch */
+    .btn-academic {
+        min-height: 44px; /* iOS recommended touch target size */
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        flex: 1;
+        width: auto;
+    }
+
+    .btn-academic:active {
+        transform: scale(0.95);
+    }
+
+    /* Improve card content layout on mobile */
+    .paper-card .row, .survey-card .row, .guideline-card .row {
+        margin: 0;
+    }
+
+    .paper-card .col-lg-9, .survey-card .col-lg-9, .guideline-card .col-lg-9,
+    .paper-card .col-md-8, .survey-card .col-md-8, .guideline-card .col-md-8 {
+        padding-right: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .paper-card .col-lg-3, .survey-card .col-lg-3, .guideline-card .col-lg-3,
+    .paper-card .col-md-4, .survey-card .col-md-4, .guideline-card .col-md-4 {
+        padding-left: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* Better badge and meta information display */
+    .year-badge {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .publication-name {
+        display: block;
+        margin-top: 0.25rem;
+    }
+
+    /* Improve filter section mobile experience */
+    .filter-section .row {
+        gap: 0.5rem;
+    }
+
+    .filter-section .col-md-3 {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Better modal scroll behavior */
+    .modal-body {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Improve citation and code display */
+    .citation-box, .code-box {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        word-break: break-word;
+    }
+
+    /* Optimize Copy buttons and DOI display */
+    .modal-body .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        min-width: auto;
+        width: auto;
+    }
+
+    .modal-body .position-absolute.top-0.end-0 {
+        position: static !important;
+        margin-top: 0.5rem;
+        width: auto;
+        display: inline-block;
+    }
+
+    /* Mobile modal content optimizations */
+    .modal-body .publication-info, .modal-body .research-details {
         margin-bottom: 1rem;
     }
+
+    .modal-body .publication-info h6, .modal-body .research-details h6 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    .modal-body .row .col-sm-6, .modal-body .row .col-12 {
+        margin-bottom: 0.5rem;
+    }
+
+    /* Better image display in modals on mobile */
+    .modal-body .book-cover-section img {
+        max-width: 100px;
+        height: auto;
+        margin: 0 auto 0.75rem auto;
+        display: block;
+    }
+
+    /* Improve form elements in modals */
+    .modal-body .form-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+    }
+
+    .modal-body .form-control, .modal-body .form-select {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    /* Better alert display */
+    .modal-body .alert {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Improve code display in modals */
+    .modal-body pre, .modal-body code {
+        font-size: 0.75rem;
+        line-height: 1.3;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    /* Better spacing for modal sections */
+    .modal-body .info-item:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Improve button layout in modal footer */
+    .modal-footer .btn:first-child {
+        order: 2;
+    }
+
+    .modal-footer .btn:last-child {
+        order: 1;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Ultra-mobile optimizations for very small screens */
+@media (max-width: 400px) {
+    /* Extreme mobile optimizations */
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .paper-card .card-body, .survey-card .card-body, .guideline-card .card-body {
+        padding: 0.5rem;
+    }
+
+    .paper-actions, .survey-actions, .guideline-actions {
+        flex-direction: row;
+        gap: 0.25rem;
+        margin-top: 0.5rem;
+        justify-content: flex-end;
+    }
+
+    .paper-title, .survey-title, .guideline-title {
+        font-size: 0.85rem;
+        line-height: 1.2;
+    }
+
+    .paper-meta, .survey-meta, .guideline-meta {
+        font-size: 0.7rem;
+    }
+
+    .btn-academic {
+        padding: 0.35rem 0.5rem;
+        font-size: 0.75rem;
+        min-height: 40px;
+        flex: 1;
+        width: auto;
+    }
+
+    /* Ultra-compact modal */
+    .modal-dialog {
+        margin: 0.125rem;
+        max-width: calc(100vw - 0.25rem);
+    }
+
+    .modal-header, .modal-body, .modal-footer {
+        padding: 0.5rem;
+    }
+
+    .modal-title {
+        font-size: 0.9rem !important;
+    }
+
+    .modal-body .info-item label {
+        font-size: 0.65rem;
+    }
+
+    .modal-body .info-item p {
+        font-size: 0.75rem;
+    }
+
+    /* Compact filter section */
+    .filter-section {
+        padding: 0.5rem;
+    }
+
+    .filter-section .form-label {
+        font-size: 0.8rem;
+    }
+
+    .form-select, .form-control {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.6rem;
+    }
+
+    /* Compact statistics */
+    .stat-number {
+        font-size: 1.1rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    /* Better year badge display */
+    .year-badge {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
+    }
+
+    /* Optimize all Copy buttons in modals */
+    .modal-body .btn-outline-primary.btn-sm,
+    .modal-body .btn-sm {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+        min-width: auto;
+        width: auto;
+        border-radius: 4px;
+    }
+
+    /* Better DOI and identifier display */
+    .modal-body .info-item {
+        position: relative;
+    }
+
+    .modal-body .info-item .btn {
+        margin-top: 0.25rem;
+        display: inline-block;
+    }
+}
+
+/* Desktop optimizations for button spacing */
+@media (min-width: 769px) {
+    .paper-actions, .survey-actions, .guideline-actions {
+        gap: 0.5rem;
+    }
+
+    .btn-academic {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    /* Better Copy button sizing on desktop */
+    .modal-body .btn-outline-primary.btn-sm,
+    .modal-body .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Vertical centering for all guideline images */
+.accordion-body .row .col-md-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Ensure images in cards are properly centered */
+.paper-card img, .survey-card img, .guideline-card img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile image optimizations */
+@media (max-width: 768px) {
+    .accordion-body .row .col-md-3 img {
+        max-height: 150px;
+        width: auto;
+        object-fit: contain;
+    }
+}
+
+@media (max-width: 576px) {
+    .accordion-body .row .col-md-3 img {
+        max-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-body .row .col-md-3 img {
+        max-height: 100px;
+    }
+}
+
+/* General modal content optimizations */
+.modal-body .info-item {
+    margin-bottom: 0.75rem;
+}
+
+.modal-body .info-item:last-child {
+    margin-bottom: 0;
+}
+
+.modal-body .info-item label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.modal-body .info-item p {
+    font-size: 0.9rem;
+    color: #495057;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+/* Better spacing for publication details sections */
+.modal-body .publication-info,
+.modal-body .research-details {
+    margin-bottom: 1.5rem;
+}
+
+.modal-body .publication-info:last-child,
+.modal-body .research-details:last-child {
+    margin-bottom: 0;
+}
+
+/* Optimize DOI and identifier sections */
+.modal-body .info-item .d-flex {
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.modal-body .info-item .flex-grow-1 {
+    min-width: 0;
+    word-break: break-all;
 }
 
 /* Twitter Account Specific Styles */

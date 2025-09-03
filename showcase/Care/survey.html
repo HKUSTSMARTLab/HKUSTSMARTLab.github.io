@@ -6,7 +6,6 @@
     <title>Surveys | CARE: Cytology AI and Research Education</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
     <style>
         /* Academic Survey Card Styling */
@@ -202,16 +201,19 @@
             }
 
             .survey-actions {
-                flex-direction: column;
-                gap: 0.3rem;
-                align-items: stretch;
+                flex-direction: row;
+                gap: 0.4rem;
+                align-items: center;
                 margin-top: 0.5rem;
+                justify-content: flex-end;
             }
 
             .btn-academic {
                 text-align: center;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.8rem;
+                width: auto;
+                flex: 1;
             }
 
             .filter-section {

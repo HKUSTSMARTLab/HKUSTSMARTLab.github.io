@@ -6,7 +6,6 @@
     <title>Guidelines | CARE: Cytology AI and Research Education</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/custom.css">
     <link rel="stylesheet" href="css/styles.css">
     <!-- Add preconnect for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -207,16 +206,19 @@
             }
 
             .guideline-actions {
-                flex-direction: column;
-                gap: 0.3rem;
-                align-items: stretch;
+                flex-direction: row;
+                gap: 0.4rem;
+                align-items: center;
                 margin-top: 0.5rem;
+                justify-content: flex-end;
             }
 
             .btn-academic {
                 text-align: center;
                 padding: 0.4rem 0.8rem;
                 font-size: 0.8rem;
+                width: auto;
+                flex: 1;
             }
 
             .filter-section {
@@ -877,12 +879,85 @@
 
             <!-- Add Guideline Button -->
             <div class="text-center mt-4">
-                <button class="btn btn-outline-primary btn-lg" id="addGuidelineBtn" data-bs-toggle="modal" data-bs-target="#addGuidelineModal" style="padding: 0.75rem 2rem; border-radius: 8px;">
+                <button class="btn btn-outline-primary btn-lg" id="addGuidelineBtn" data-bs-toggle="modal" data-bs-target="#addGuidelineModal" style="padding: 0.75rem 2rem; border-radius: 8px; border: 2px solid #3498db; color: #3498db; background-color: transparent;">
                     <i class="fas fa-plus me-2"></i>Contribute New Guideline
                 </button>
             </div>
         </section>
 
+        <!-- Add Guideline Modal -->
+        <div class="modal fade" id="addGuidelineModal" tabindex="-1" aria-labelledby="addGuidelineModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addGuidelineModalLabel">Add New Guideline</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addGuidelineForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineTitle" class="form-label">Title *</label>
+                                        <textarea class="form-control" id="guidelineTitle" rows="2" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineAuthors" class="form-label">Authors *</label>
+                                        <textarea class="form-control" id="guidelineAuthors" rows="2" required placeholder="e.g., Smith J, Johnson A, Brown K"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineYear" class="form-label">Year *</label>
+                                        <input type="number" class="form-control" id="guidelineYear" min="1900" max="2030" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineUrl" class="form-label">URL</label>
+                                        <input type="url" class="form-control" id="guidelineUrl" placeholder="https://...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="guidelineDescription" class="form-label">Description *</label>
+                                <textarea class="form-control" id="guidelineDescription" rows="3" required placeholder="Brief description of the guideline..."></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineCategory" class="form-label">Category</label>
+                                        <select class="form-select" id="guidelineCategory">
+                                            <option value="">Select Category</option>
+                                            <option value="Cervical">Cervical Cytology</option>
+                                            <option value="Thyroid">Thyroid Cytology</option>
+                                            <option value="General">General Cytology</option>
+                                            <option value="Respiratory">Respiratory Cytology</option>
+                                            <option value="Urinary">Urinary Cytology</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="guidelineOrganization" class="form-label">Organization</label>
+                                        <input type="text" class="form-control" id="guidelineOrganization" placeholder="e.g., American Society of Cytopathology">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="saveGuidelineBtn">Add Guideline</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div> <!-- This closes the main <div class="container mt-4"> -->
     <footer class="py-4 mt-5">
@@ -1371,6 +1446,57 @@
                     });
                 });
             }
+        });
+
+        // Handle Add Guideline form submission
+        document.getElementById('saveGuidelineBtn').addEventListener('click', function() {
+            const form = document.getElementById('addGuidelineForm');
+            const formData = new FormData(form);
+
+            // Get form values
+            const title = document.getElementById('guidelineTitle').value.trim();
+            const authors = document.getElementById('guidelineAuthors').value.trim();
+            const year = document.getElementById('guidelineYear').value;
+            const url = document.getElementById('guidelineUrl').value.trim();
+            const description = document.getElementById('guidelineDescription').value.trim();
+            const category = document.getElementById('guidelineCategory').value;
+            const organization = document.getElementById('guidelineOrganization').value.trim();
+
+            // Basic validation
+            if (!title || !authors || !year || !description) {
+                alert('Please fill in all required fields (marked with *)');
+                return;
+            }
+
+            // Create new guideline object
+            const newGuideline = {
+                title: title,
+                authors: authors,
+                year: parseInt(year),
+                url: url || null,
+                description: description,
+                category: category || 'General',
+                organization: organization || 'Unknown'
+            };
+
+            // Add to guidelines array
+            guidelines.unshift(newGuideline);
+
+            // Show success message
+            alert('Thank you for your contribution! The guideline has been added successfully.');
+
+            // Reset form
+            form.reset();
+
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('addGuidelineModal'));
+            modal.hide();
+
+            // Refresh the display
+            displayGuidelines(guidelines);
+
+            // Scroll to top to show the new guideline
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
