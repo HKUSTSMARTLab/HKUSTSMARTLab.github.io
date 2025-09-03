@@ -907,7 +907,8 @@ const publicationsData = [
         methodology: "The EOEL-PCLCCI, uses a DenseNet-264 feature extractor, EO hyperparameter optimizer, and weighted voting classifier.",
         data: "Herlev",
         mainResults: "The model achieved an accuracy of 98.94%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2227-9032/11/1/55"
     },
     {
         title: "Cervical cell multi-classification algorithm using global context information and attention mechanism",
@@ -918,6 +919,7 @@ const publicationsData = [
         methodology: "L-PCNN: ResNet-50 with a pyramid pooling layer and a long short-term memory module (LSTM)",
         data: "SIPaKMeD",
         mainResults: "The model achieved an accuracy of 98.89%, with sensitivity of 99.90%, specificity of 99.80%, and F-measure of 99.89%.",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0040816621001932",
         tasks: "Cell Classification"
     },
     {
@@ -940,7 +942,8 @@ const publicationsData = [
         methodology: "DenseNet-161 with cyclical learning rate",
         data: "BCCD",
         mainResults: "The model achieved an accuracy of 99.80%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2023.1230434/full"
     },
     {
         title: "A new weighted deep learning feature using particle swarm and ant lion optimization for cervical cancer diagnosis on Pap smear images",
@@ -951,7 +954,8 @@ const publicationsData = [
         methodology: "Support Vector Machine",
         data: "Herlev",
         mainResults: "The model achieved an accuracy of 98.90%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2075-4418/13/17/2762"
     },
     {
         title: "Explainable CAD system for classification of acute lymphoblastic leukemia based on a robust white blood cell segmentation",
@@ -962,7 +966,8 @@ const publicationsData = [
         methodology: "ResNet-50",
         data: "Leukemia Dataset, CellaVision , JTSC , SMC_ID (Blood_Seg), Raabin, ALL_IDB2",
         mainResults: "The model achieved an accuracy of 99.90%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/2072-6694/15/13/3376"
     },
     {
         title: "Accurate deep learning model using semi-supervised learning and Noisy Student for cervical cancer screening in low magnification images",
@@ -973,7 +978,8 @@ const publicationsData = [
         methodology: "EfficientNet",
         data: "Private dataset: 56996 in 2 classes",
         mainResults: "The model achieved an accuracy of 87.3%, F1-score of 83.3%, and AUC of 0.908.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0285996"
     },
     {
         title: "Leukocytes classification for leukemia detection using quantum inspired deep feature selection",
@@ -1006,7 +1012,8 @@ const publicationsData = [
         methodology: "CNNs with a hybrid loss function",
         data: "SIPaKMeD",
         mainResults: "ShuffleNetV2, DenseNet-121, and GhostNet achieved accuracies of 96.18%, 96.79%, and 96.39%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.mdpi.com/1424-8220/22/9/3272"
     },
     {
         title: "A multi-task feature fusion model for cervical cell classification",
@@ -1017,7 +1024,8 @@ const publicationsData = [
         methodology: "Neural Discriminative Dimensionality Reduction-CNN",
         data: "SIPaKMeD and a private dataset called HUSTC with 70197 in 5 classes",
         mainResults: "In the HUSTC dataset, the model achieved 99.82% sensitivity and 98.12% specificity.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://ieeexplore.ieee.org/document/9789725/"
     },
     {
         title: "ALNett: A cluster layer deep convolutional neural network for acute lymphoblastic leukemia classification",
@@ -3288,6 +3296,7 @@ const publicationsData = [
         application: "AI boosts confidence and accuracy in PTC diagnosis using FNAC images.",
         organ: "Thyroid gland",
         methodology: "High-res FNAC images segmented into ROIs; CNNs fine-tuned; ensemble learning and certainty computation used for patient-level prediction",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0957417421012811",
         data: "Digital FNAC images of papillary thyroid carcinoma (PTC), segmented into non-overlapping patches for training, validation, and testing.",
         mainResults: "DenseNet161 + ensemble achieved 99.71% accuracy; Reinhard normalization helped",
         tasks: "WSI Analysis"
