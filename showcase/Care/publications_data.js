@@ -3160,7 +3160,8 @@ const publicationsData = [
         methodology: "BS2CL framework clusters thyroid patches and uses balanced feature space with bag-level augmentation for MIL without patch labels",
         data: "Thyroid cytology WSI dataset",
         mainResults: "BS2CL outperformed SOTA in thyroid WSI classification with clearer class boundaries",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://dl.acm.org/doi/10.1007/978-981-97-5600-1_4"
     },
     {
         title: "Viability of whole‐slide imaging for intraoperative touch imprint cytological diagnosis of axillary sentinel lymph nodes in breast cancer patients",
