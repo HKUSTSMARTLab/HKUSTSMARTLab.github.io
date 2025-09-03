@@ -3196,7 +3196,8 @@ const publicationsData = [
         methodology: "AIxURO trained on annotated urine cytology images; evaluated against TPS categories with expert validation and discrepancy analysis",
         data: "185 cytology samples categorized as NHGUC (168), AUC (14), SHGUC (2), and HGUC (1) according to TPS.",
         mainResults: "AIxURO improved accuracy and consistency, especially for atypical urothelial cells",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11535956/"
     },
     {
         title: "Cellular spatial-semantic embedding for multi-label classification of cell clusters in thyroid fine needle aspiration biopsy whole slide images",
@@ -3207,7 +3208,8 @@ const publicationsData = [
         methodology: "Cellular spatial-semantic embedding using wCvT encoder and Transformer decoder with category masking and ASL for FNAB-WSI classification",
         data: "Self-built FNAB-WSI cell cluster dataset",
         mainResults: "Achieved 90.26% accuracy with low parameter count and strong generalization",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S0167865524003660"
     },
     {
         title: "Deep learning model for diagnosis of thyroid nodules with size less than 1 cm: a multicenter, retrospective study",
