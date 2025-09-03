@@ -225,6 +225,45 @@
             .stat-number {
                 font-size: 1.5rem;
             }
+
+            /* Mobile button groups in publication cards */
+            .d-flex.gap-2 {
+                flex-wrap: wrap;
+                gap: 0.3rem !important;
+            }
+
+            .d-flex.gap-2 .btn {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.6rem;
+                flex: 1;
+                min-width: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            /* Ensure 4 buttons fit in 2 rows on mobile */
+            .d-flex.gap-2 .btn:nth-child(1),
+            .d-flex.gap-2 .btn:nth-child(2) {
+                flex-basis: calc(50% - 0.15rem);
+            }
+
+            .d-flex.gap-2 .btn:nth-child(3),
+            .d-flex.gap-2 .btn:nth-child(4) {
+                flex-basis: calc(50% - 0.15rem);
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 480px) {
+            .d-flex.gap-2 .btn {
+                font-size: 0.7rem;
+                padding: 0.35rem 0.5rem;
+            }
+
+            .d-flex.gap-2 .btn i {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
