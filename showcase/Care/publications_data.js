@@ -1190,7 +1190,8 @@ const publicationsData = [
         methodology: "XceptionNet, VGG16, VGG19, ResNet50 with 2 proposed workflows",
         data: "Herlev, Sipakmed, LBC",
         mainResults: "Best performance in 20 epochs: Herlev – 97.95%, SIPaKMeD – 99.71%, LBC – 100%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://pubmed.ncbi.nlm.nih.gov/35730264/"
     },
     {
         title: "Comparison of fine-tuned deep convolutional neural networks for the automated classification of lung cancer cytology images with integration of additional classifiers",
@@ -1201,7 +1202,8 @@ const publicationsData = [
         methodology: "AlexNet, GoogLeNet, VGG16 and ResNet50 with different machine learning classifiers",
         data: "A private dataset with 298 images in 3 classes",
         mainResults: "Classification accuracies: AlexNet – 74.0%, GoogLeNet – 66.8%, VGG16 – 76.8%, ResNet50 – 74.0%.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9375620/"
     },
     {
         title: "Deep learning-based classification of cancer cells in leptomeningeal metastasis using cytomorphologic features of cerebrospinal fluid",
@@ -1212,7 +1214,8 @@ const publicationsData = [
         methodology: "CNN",
         data: "A private dataset with 53255 images in 5 classes (used to train CNN1) and a private dataset with 8499 images in 4 classes(Used to train CNN2)",
         mainResults: "CNN1 matched expert-level accuracy; CNN2 exceeded expert accuracy by 10% and was three times faster.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2022.821594/full"
     },
     {
         title: "LeuFeatx: Deep learning–based feature extractor for the diagnosis of acute leukemia from microscopic images of peripheral blood smear",
@@ -1223,7 +1226,8 @@ const publicationsData = [
         methodology: "VGG16",
         data: "AML Morphology Dataset, PBS-HCB, ALL_IDB2",
         mainResults: "The model achieved 96.15% accuracy on the ALL_IDB2 dataset.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482522000282"
     },
     {
         title: "Deep convolutional neural network-based classification of cancer cells on cytological pleural effusion images",
@@ -1234,7 +1238,8 @@ const publicationsData = [
         methodology: "Deep convolutional neural network (DCNN) with weakly supervised learning",
         data: "A private dataset with 2465606 images in 2 classes",
         mainResults: "The model achieved 91.67% accuracy, 87.50% sensitivity, and 94.44% specificity.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.nature.com/articles/s41379-021-00987-4"
     },
     {
         title: "A screening assistance system for cervical cytology of squamous cell atypia based on a two-step combined CNN algorithm with label smoothing",
@@ -1245,7 +1250,8 @@ const publicationsData = [
         methodology: "YOLOv4 and ResNeSt",
         data: "Randomly selected from cases of Pap tests performed at Sapporo Medical University between 2015 and 2018",
         mainResults: "The model achieved average accuracy and F-measure of 90.5% and 70.5%, respectively.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/cam4.4460"
     },
     {
         title: "Is the aspect ratio of cells important in deep learning? A robust comparison of deep learning methods for multi-scale cytopathology cell image classification: From convolutional neural networks to visual transformers",
@@ -1256,7 +1262,8 @@ const publicationsData = [
         methodology: "CNNs",
         data: "SIPaKMeD, Herlev",
         mainResults: "The study evaluated 22 different model performances.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://www.sciencedirect.com/science/article/abs/pii/S0010482521008209"
     },
     {
         title: "Urine cell image recognition using a deep-learning model for an automated slide evaluation system",
@@ -1267,7 +1274,8 @@ const publicationsData = [
         methodology: "EfficientNetB6, Arcface",
         data: "A private dataset with 4637 images in 2 classes",
         mainResults: "The ROC AUC was 0.99 (95% CI: 0.98–0.99), with 95% accuracy, 97% sensitivity, and 95% specificity.",
-        tasks: "Cell Classification"
+        tasks: "Cell Classification",
+        url: "https://bjui-journals.onlinelibrary.wiley.com/doi/full/10.1111/bju.15518"
     },
     {
         title: "CytoNet: an efficient dual attention based automatic prediction of cancer sub-types in cytology studies",
