@@ -2957,7 +2957,8 @@ const publicationsData = [
         methodology: "PyMLViT model developed with pyramid token extraction and multi-loss fusion for cytology image analysis",
         data: "Real-world dataset of cytological smears for thyroid cancer diagnosis",
         mainResults: "PyMLViT outperformed CNNs and other ViTs in thyroid cancer classification with fewer parameters",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.sciencedirect.com/science/article/pii/S0950705123004719"
     },
     {
         title: "Less: label-efficient multi-scale learning for cytological whole slide image screening",
@@ -3023,7 +3024,8 @@ const publicationsData = [
         methodology: "AutoParis-X developed to assess urothelial atypia and predict Paris system categories",
         data: "Large-scale retrospective dataset of urine cytology slides",
         mainResults: "AutoParis-X accurately assessed atypia and matched Paris system categories",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://acsjournals.onlinelibrary.wiley.com/doi/full/10.1002/cncy.22732"
     },
     {
         title: "Examining longitudinal markers of bladder cancer recurrence through a semiautonomous machine learning system for quantifying specimen atypia from urine cytology",
@@ -3045,7 +3047,8 @@ const publicationsData = [
         methodology: "DCNN used for segmentation and cancer cell detection in cytology slides",
         data: "5345 cytological slide images from 194 patients across four hospitals in China",
         mainResults: "DCNN achieved F1-scores up to 0.938 and AUCs up to 0.976, outperforming endoscopists",
-        tasks: "WSI Analysis"
+        tasks: "WSI Analysis",
+        url: "https://www.thelancet.com/journals/ebiom/article/PIIS2352-3964(22)00206-7/fulltext"
     },
     {
         title: "Tshfna-examiner: a nuclei segmentation and cancer assessment framework for thyroid cytology image",
