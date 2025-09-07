@@ -500,11 +500,212 @@
     }
 }
 
+/* Mobile blog post optimizations - Simplified and effective */
+@media (max-width: 768px) {
+    /* Navigation optimizations */
+    .navbar-brand {
+        font-size: 1.4rem !important;
+    }
+
+    .nav-link {
+        font-size: 1rem !important;
+        padding: 0.4rem 0.8rem;
+    }
+
+    /* Blog post title - simple but effective */
+    h1 {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Blog post content - universal selectors */
+    p {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Blog post headings - universal selectors */
+    h2 {
+        font-size: 1.3rem !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    h3 {
+        font-size: 1.1rem !important;
+        margin-top: 1.2rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    /* Blog post lists - universal selectors */
+    ul, ol {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* Blog post blockquotes - universal selectors */
+    blockquote {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* Blog post images */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0.8rem 0 !important;
+    }
+
+    /* Blog post code blocks */
+    pre, code {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Blog post tables */
+    table {
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Navigation for small devices */
+    .navbar-brand {
+        font-size: 1.2rem !important;
+    }
+
+    .nav-link {
+        font-size: 0.9rem !important;
+        padding: 0.3rem 0.6rem;
+    }
+
+    /* Extra small devices - further reduce font sizes */
+    h1 {
+        font-size: 1.3rem !important;
+        line-height: 1.2 !important;
+    }
+
+    p {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+
+    h2 {
+        font-size: 1.2rem !important;
+        margin-top: 1.2rem !important;
+        margin-bottom: 0.6rem !important;
+    }
+
+    h3 {
+        font-size: 1rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    ul, ol {
+        font-size: 0.85rem !important;
+        line-height: 1.4 !important;
+    }
+
+    blockquote {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+
+    pre, code {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+    }
+
+    table {
+        font-size: 0.8rem !important;
+    }
+
+    /* Adjust container padding for mobile */
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Navigation for very small devices */
+    .navbar-brand {
+        font-size: 1.1rem !important;
+    }
+
+    .nav-link {
+        font-size: 0.85rem !important;
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Very small devices - minimal font sizes */
+    h1 {
+        font-size: 1.1rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    p {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.1rem !important;
+        margin-top: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    h3 {
+        font-size: 0.95rem !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    ul, ol {
+        font-size: 0.8rem !important;
+        line-height: 1.3 !important;
+    }
+
+    blockquote {
+        font-size: 0.75rem !important;
+        line-height: 1.2 !important;
+    }
+
+    pre, code {
+        font-size: 0.7rem !important;
+        line-height: 1.1 !important;
+    }
+
+    table {
+        font-size: 0.75rem !important;
+    }
+
+    /* Optimize strong/bold text */
+    strong, b {
+        font-size: inherit !important;
+        font-weight: 600 !important;
+    }
+
+    /* Reduce container padding further */
+    .container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
+
 @media screen and (max-device-width: 31.25em) {
     body {
         -webkit-text-size-adjust: 100%;
     }
 }
+
+
+
 @media (prefers-reduced-motion: reduce) {
     [data-respect-reduced-motion] [data-reduce-motion] {
         transition: none;
