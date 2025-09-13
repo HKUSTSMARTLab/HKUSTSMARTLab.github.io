@@ -1,6 +1,6 @@
 ---
 name: Juyoung Bae
-startdate: []
+startdate: [2024-09-01]
 enddate: []
 image: /static/img/members/Juyoung Bae.jpg
 position: PhD Student
