@@ -507,6 +507,10 @@
         font-size: 1.4rem !important;
     }
 
+    .navb-icon {
+        height: 1.4em !important;
+    }
+
     .nav-link {
         font-size: 1rem !important;
         padding: 0.4rem 0.8rem;
@@ -576,6 +580,10 @@
         font-size: 1.2rem !important;
     }
 
+    .navb-icon {
+        height: 1.2em !important;
+    }
+
     .nav-link {
         font-size: 0.9rem !important;
         padding: 0.3rem 0.6rem;
@@ -634,6 +642,10 @@
     /* Navigation for very small devices */
     .navbar-brand {
         font-size: 1.1rem !important;
+    }
+
+    .navb-icon {
+        height: 1.0em !important;
     }
 
     .nav-link {
