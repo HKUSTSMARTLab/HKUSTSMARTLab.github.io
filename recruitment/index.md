@@ -6,7 +6,7 @@ group: join
 
 # Join the Smart Lab
 
-The [HKUST Smart Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is actively recruiting **PhD/Mphil students, postdoctoral fellows, research assistants** and **visiting interns**. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the group members.
+The [HKUST Smart Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is actively recruiting **PhD/Mphil students, postdoctoral fellows, research assistants, visiting interns** and **software engineers**. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the group members.
 
 ## Who Are We
 
@@ -27,6 +27,15 @@ The [Hong Kong University of Science and Technology (HKUST)](https://www.hkust.e
 - For undergraduate and master students, research positions such as visiting intern and research assistant are also available. A minimum of 3 months is required (remote mode is also acceptable).
 
 More details can be found in this [link](/static/media/20240531Recruitment_english.pdf).
+
+**Software engineers** with strong programming skills in the development of deep learning frameworks, e.g., PyTorch, TensorFlow, etc. are welcome. The requirements are as follows:
+
+- Strong programming skills in deep learning frameworks, e.g., PyTorch, TensorFlow, etc.
+- Familiarity with full-stack application development, e.g., React, Node.js, etc.
+- Contributions to high-performance deployment of deep learning models (e.g., via software packages vLLM, etc.) are preferred.
+- Experience in medical image analysis or machine learning projects is preferred.
+
+More details can be found in this [link](/static/media/20251001SoftwareEnginnerRecuritment_English.pdf).
 
 ## How to Apply
 
