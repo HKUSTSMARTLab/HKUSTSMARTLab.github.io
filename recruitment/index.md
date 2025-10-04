@@ -39,6 +39,6 @@ More details can be found in this [link](/static/media/20251001SoftwareEnginnerR
 
 ## How to Apply
 
-Interested candidates are welcome to send their **resumes, transcripts, published papers** and other relevant materials to Prof. Chen’s email: **jhc(at)ust.hk**. _Please indicate the application position in the subject of email_.
+Interested candidates are welcome to send their **resumes, transcripts, published papers** and other relevant materials to Prof. Chen’s email: **jhc@ust.hk**. _Please indicate the application position in the subject of email_.
 
 <br>

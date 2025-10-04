@@ -6,7 +6,7 @@ image: /static/img/members/jhc.jpg
 # altimage: /static/img/members/Fraser_pb.jpg
 position: Principal Investigator
 #current:
-email: jhc (at) ust.hk
+email: jhc@ust.hk
 scholar: Z_t5DjwAAAAJ
 website: https://cse.hkust.edu.hk/~jhc/
 HKUST: hao-chen-jhc
