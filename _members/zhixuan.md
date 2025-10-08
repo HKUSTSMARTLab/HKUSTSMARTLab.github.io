@@ -1,7 +1,7 @@
 ---
 name: Zhi-xuan Chen
-position: MPhil Student
-startdate: [2024-09-01]
+position: PhD Student
+startdate: [2025-09-01]
 enddate: []
 image: /static/img/members/zhixuan.jpg
 email: zchenhi (at) connect.ust.hk
