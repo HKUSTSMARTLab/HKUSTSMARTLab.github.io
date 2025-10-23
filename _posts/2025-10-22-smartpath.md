@@ -1,11 +1,11 @@
 ---
 published: True
-title: '[Press Release] HKUST Launches SmartPath: An AI Pathology Platform Transforming End-to-End Cancer Care'
+title: '[Press Release] SmartLab Introduces SmartPath: An AI Pathology Platform Transforming End-to-End Cancer Care'
 author: Cheng Jin
 layout: post
 group: news
 cover: /static/img/news/2025_hkust_smartpath_cover.png
-oneline_description: 'HKUST unveils SmartPath, an AI-powered pathology system that transforms cancer care workflows through accurate diagnosis, subtyping, biomarker quantification, treatment response assessment, and prognostic follow-up.'
+oneline_description: 'SmartLab unveils SmartPath, an AI-powered pathology system that transforms cancer care workflows through accurate diagnosis, subtyping, biomarker quantification, treatment response assessment, and prognostic follow-up.'
 last_updated: 2025/10/20
 ---
 
@@ -13,7 +13,7 @@ last_updated: 2025/10/20
 <img src="/static/img/news/2025_hkust_smartpath_cover.png" alt="SmartPath AI Pathology Platform Banner" style="width: 100%;"/>
 </div>
 
-The Hong Kong University of Science and Technology (HKUST) today launched **SmartPath**, a comprehensive artificial intelligence (AI) system designed to transform the entire pathology workflow for cancer care. Led by Assistant Professor **Hao Chen**, Director of the Collaboration Center for Medical and Engineering Innovation, SmartPath provides integrated support for clinical diagnosis, subtyping, biomarker quantification, treatment response assessment, and prognostic follow-up across a wide spectrum of cancers—accelerating turnaround times and enhancing personalized treatment.
+**SmartLab** at The Hong Kong University of Science and Technology (HKUST) today launched **SmartPath**, a comprehensive artificial intelligence (AI) system designed to transform the entire pathology workflow for cancer care. Led by Assistant Professor **Hao Chen**, Director of the Collaboration Center for Medical and Engineering Innovation, SmartPath provides integrated support for clinical diagnosis, subtyping, biomarker quantification, treatment response assessment, and prognostic follow-up across a wide spectrum of cancers—accelerating turnaround times and enhancing personalized treatment.
 
 ### Groundbreaking Features for End-to-End Clinical Support
 
