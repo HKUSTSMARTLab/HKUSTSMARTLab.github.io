@@ -8,5 +8,5 @@ email: csfuxiangh (at) ust.hk
 scholar: 4BvQU00AAAAJ
 github: fuxianghuang1
 orcid: 0000-0003-0399-9932
-destination: Research Associate at Lingnan University
+destination: Research Assistant Professor at Lingnan University
 ---
