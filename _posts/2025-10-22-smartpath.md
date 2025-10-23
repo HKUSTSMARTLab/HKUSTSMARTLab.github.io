@@ -66,6 +66,10 @@ SmartPath is being deployed with **over a dozen leading hospitals** across Hong 
 
 ---
 
+### About Smart Lab
+
+**Smart Lab**, led by Prof. Hao Chen at HKUST, is dedicated to advancing trustworthy AI technologies for healthcare and science. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics. Our mission is to drive a transformative revolution in medical practice and scientific discovery, shaping a healthier future.
+
 ### About The Hong Kong University of Science and Technology
 
 [The Hong Kong University of Science and Technology (HKUST)](https://hkust.edu.hk/news/hkust-ai-system-delivers-comprehensive-cancer-diagnosis) is a world-class university that excels in innovative education, research excellence, and impactful knowledge transfer. With a holistic and interdisciplinary approach, HKUST was ranked 3rd in THE’s Young University Rankings 2024, and 19th worldwide and No.1 in Hong Kong in THE Impact Rankings 2025. Thirteen HKUST subjects were ranked among the world’s top 50 in the QS World University Rankings by Subject 2025, with Data Science and Artificial Intelligence ranked 17th globally and first in Hong Kong. Over 80% of HKUST research was rated “internationally excellent” or “world leading” in Hong Kong’s latest Research Assessment Exercise. As of July 2025, HKUST members have founded over 1,900 active start-ups, including 10 unicorns and 17 exits (IPO or M&A).
