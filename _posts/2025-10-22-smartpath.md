@@ -72,10 +72,10 @@ SmartPath is being deployed with **over a dozen leading hospitals** across Hong 
 
 ### Sources and Further Reading
 
-- HKUST Official News: https://hkust.edu.hk/news/hkust-ai-system-delivers-comprehensive-cancer-diagnosis  
-- Medical Xpress coverage: https://medicalxpress.com/news/2025-10-ai-comprehensive-cancer-diagnosis.html  
-- China Daily (HK) report: https://www.chinadailyhk.com/hk/article/622161
-- Dot News (HK) report: https://english.dotdotnews.com/a/202510/21/AP68f76420e4b08d29053ae77d.html
-- The Standard (HK) report: https://www.thestandard.com.hk/hong-kong-news/article/314639/HKUST-develops-AI-pathology-analysis-system-with-over-95-accuracy  
-- GPFM (Nature Biomedical Engineering): https://www.nature.com/articles/s41551-025-01488-4
-- mSTAR (arXiv): https://arxiv.org/abs/2407.15362  
+- [HKUST Official News](https://hkust.edu.hk/news/hkust-ai-system-delivers-comprehensive-cancer-diagnosis)
+- [Medical Xpress coverage](https://medicalxpress.com/news/2025-10-ai-comprehensive-cancer-diagnosis.html)
+- [China Daily (HK) report](https://www.chinadailyhk.com/hk/article/622161)
+- [Dot News (HK) report](https://english.dotdotnews.com/a/202510/21/AP68f76420e4b08d29053ae77d.html)
+- [The Standard (HK) report](https://www.thestandard.com.hk/hong-kong-news/article/314639/HKUST-develops-AI-pathology-analysis-system-with-over-95-accuracy)
+- [GPFM (Nature Biomedical Engineering)](https://www.nature.com/articles/s41551-025-01488-4)
+- [mSTAR (arXiv)](https://arxiv.org/abs/2407.15362)
