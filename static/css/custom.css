@@ -24,6 +24,36 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dbd7d7' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
 }
 
+/* Carousel improvements to prevent image truncation */
+.carousel-inner {
+    background-color: #f8f9fa;
+}
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-item a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive carousel height */
+@media (max-width: 768px) {
+    .carousel-inner {
+        height: 250px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-inner {
+        height: 200px !important;
+    }
+}
+
 .jumbotron {
     padding: 1rem 1rem;
     background-color: #edf3fc;
