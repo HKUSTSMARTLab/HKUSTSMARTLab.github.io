@@ -8,5 +8,5 @@ github: Xuefeng-Ni
 email: csexuefeng (at) ust.hk
 orcid: 0000-0002-6424-7593
 scholar: MI4zF2IAAAAJ
-destination: Faculty Member at Hunan University
+destination: Assistant Professor at Hunan University
 ---
