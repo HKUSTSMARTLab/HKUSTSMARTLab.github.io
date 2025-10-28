@@ -3,7 +3,6 @@ title: Join the Smart Lab
 layout: default
 group: join
 ---
-
 # Join the Smart Lab
 
 The [HKUST Smart Lab](/contact) led by Dr. Hao Chen from The Hong Kong University of Science and Technology is actively recruiting **PhD/Mphil students, postdoctoral fellows, research assistants, visiting interns** and **software engineers**. Dr. Chen is committed to the research and application of cutting-edge technologies in the interdisciplinary field of artificial intelligence and medicine. He has rich academic as well as industrial experience and provides sufficient resources for the group members.
@@ -36,6 +35,13 @@ More details can be found in this [link](/static/media/20240531Recruitment_engli
 - Experience in medical image analysis or machine learning projects is preferred.
 
 More details can be found in this [link](/static/media/20251001SoftwareEnginnerRecuritment_English.pdf).
+
+**Research assistant** with medical background are welcome. The requirements are as follows:
+
+-	Medical Imaging/Slide Digitization: Coordinate acquisition and digitization of diverse materials (pathology slides/WSI, immunohistochemistry slides, cytology smears, radiology studies—DICOM CT/MRI/Ultrasound, intraoperative/macroscopic photos, related attachments). Handle equipment scheduling/operation and basic QC.
+-	Archiving & Data Management: Implement standardized file naming, directory structure, and metadata recording (case ID, collection date, device parameters, staining type). Maintain inventories and logs; ensure orderly storage, backup, and access control.
+
+More details can be found in this [link](/static/media/20251028ResearchAssistantRecuritment_English.pdf).
 
 ## How to Apply
 
