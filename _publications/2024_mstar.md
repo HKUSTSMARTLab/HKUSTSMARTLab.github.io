@@ -5,7 +5,7 @@ pub_date: '2025-09-20' #Date of publication. Change from Biorxiv date to Journal
 image: '/static/img/pub/2024_mstar.png'
 journal:
     - name: 'Nature Communications'
-      url: 'https://arxiv.org/abs/2407.15362'
+      url: 'https://www.nature.com/articles/s41467-025-66220-x'
 github:
     - url: 'Innse/mSTAR'
 ---
