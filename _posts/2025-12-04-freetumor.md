@@ -5,7 +5,7 @@ author: Cheng Jin
 layout: post
 group: news
 cover: /static/img/news/2025_freetumor_cover.png
-oneline_description: 'HKUST Smart Lab presents our latest work, a Generative AI (GAI) model for tumor synthesis that is published in Nature Communications.'
+oneline_description: 'A new study from HKUST Smart Lab introduces FreeTumor, a Generative AI (GAI) model for tumor synthesis that is now published in Nature Communications.'
 last_updated: 2025/12/04
 ---
 
