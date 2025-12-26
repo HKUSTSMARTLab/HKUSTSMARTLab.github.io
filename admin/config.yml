@@ -8,13 +8,13 @@ backend:
 
 media_folder: "static/img"
 public_folder: "/static/img"
-media_library:
-  folder_support: true
 
 collections:
   - name: "posts"
     label: "News/Posts"
     folder: "_posts"
+    media_folder: "/static/img/news"
+    public_folder: "/static/img/news"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
@@ -31,6 +31,8 @@ collections:
   - name: "members"
     label: "Members"
     folder: "_members"
+    media_folder: "/static/img/members"
+    public_folder: "/static/img/members"
     create: true
     slug: "{{slug}}"
     filter: {field: "name", pattern: ".+"}
@@ -48,6 +50,8 @@ collections:
   - name: "publications"
     label: "Publications"
     folder: "_publications"
+    media_folder: "/static/img/pub"
+    public_folder: "/static/img/pub"
     create: true
     slug: "{{slug}}"
     filter: {field: "title", pattern: "^(?!.*template).*$"}
