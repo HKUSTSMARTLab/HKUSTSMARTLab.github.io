@@ -1,5 +1,5 @@
 ---
-name: Jia-yi Zhu
+name: Jia-yi Zhu (Co-supervision)
 startdate: [2024-09-01]
 enddate: []
 image: /static/img/members/jiayi.jpg
