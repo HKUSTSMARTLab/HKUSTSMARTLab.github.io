@@ -1,5 +1,5 @@
 ---
-name: Zhen-xiao Cao
+name: Zhen-xiao Cao (Co-supervision)
 startdate: [2025-09-01]
 enddate: []
 image: /static/img/members/zhenxiao.jpg
