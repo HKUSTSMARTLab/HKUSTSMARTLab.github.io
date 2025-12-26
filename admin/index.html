@@ -4,7 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
-  <!-- Note: Netlify Identity widget is NOT needed when using GitHub OAuth -->
+  <!-- Redirect to Netlify-hosted admin for OAuth compatibility -->
+  <script>
+    // Redirect to Netlify admin if not already on Netlify domain
+    if (window.location.hostname !== 'hkustsmartlaboratory.netlify.app') {
+      window.location.href = 'https://hkustsmartlaboratory.netlify.app/admin/';
+    }
+  </script>
 </head>
 <body>
   <!-- Include the script that builds the page and powers Decap CMS -->
