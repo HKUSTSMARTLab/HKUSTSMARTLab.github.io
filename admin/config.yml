@@ -8,6 +8,8 @@ backend:
 
 media_folder: "static/img"
 public_folder: "/static/img"
+media_library:
+  folder_support: true
 
 collections:
   - name: "posts"
@@ -31,6 +33,7 @@ collections:
     folder: "_members"
     create: true
     slug: "{{slug}}"
+    filter: {field: "name", pattern: ".+"}
     fields:
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Position", name: "position", widget: "string"}
@@ -47,6 +50,23 @@ collections:
     folder: "_publications"
     create: true
     slug: "{{slug}}"
+    filter: {field: "title", pattern: "^(?!.*template).*$"}
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Authors", name: "authors", widget: "string"}
+      - {label: "Publication Date", name: "pub_date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - label: "Journal"
+        name: "journal"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "URL", name: "url", widget: "string"}
+      - label: "GitHub"
+        name: "github"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "URL", name: "url", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
