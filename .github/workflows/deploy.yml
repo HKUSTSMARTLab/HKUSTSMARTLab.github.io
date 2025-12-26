@@ -23,6 +23,8 @@ jobs:
           proxy_key: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
           proxy_port: 22
           script: |
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/id_rsa || ssh-add ~/.ssh/id_ed25519
             cd /home/amax/Public/HKUSTSMARTLab.github.io
             git pull origin main
             bundle exec jekyll build
