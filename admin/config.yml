@@ -35,7 +35,6 @@ collections:
     public_folder: "/static/img/members"
     create: true
     slug: "{{slug}}"
-    filter: {field: "name", pattern: ".+"}
     fields:
       - {label: "Name", name: "name", widget: "string"}
       - {label: "Position", name: "position", widget: "string"}
@@ -54,7 +53,6 @@ collections:
     public_folder: "/static/img/pub"
     create: true
     slug: "{{slug}}"
-    filter: {field: "title", pattern: "^(?!.*template).*$"}
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Authors", name: "authors", widget: "string"}
