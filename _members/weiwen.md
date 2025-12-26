@@ -1,5 +1,5 @@
 ---
-name: Wei-wen Zhang
+name: Wei-wen Zhang (Co-supervision)
 startdate: [2023-09-01]
 enddate: []
 image: /static/img/members/zhangweiwen.jpeg
