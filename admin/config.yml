@@ -37,8 +37,8 @@ collections:
       - {label: "Email", name: "email", widget: "string"}
       - {label: "GitHub Username", name: "github", widget: "string", required: false}
       - {label: "Google Scholar ID", name: "scholar", widget: "string", required: false}
-      - {label: "Start Date", name: "startdate", widget: "list", field: {widget: "string"}} # Using list of strings to match current format [2025-09-01]
-      - {label: "End Date", name: "enddate", widget: "list", field: {widget: "string"}, required: false}
+      - {label: "Start Date", name: "startdate", widget: "list", field: {name: "date", widget: "string"}}
+      - {label: "End Date", name: "enddate", widget: "list", field: {name: "date", widget: "string"}, required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
   - name: "publications"
