@@ -1,0 +1,51 @@
+backend:
+  name: github
+  repo: HKUSTSMARTLab/HKUSTSMARTLab.github.io
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: "static/img"
+public_folder: "/static/img"
+
+collections:
+  - name: "posts"
+    label: "News/Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Group", name: "group", widget: "hidden", default: "news"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+      - {label: "Author", name: "author", widget: "string"}
+      - {label: "Cover Image", name: "cover", widget: "image", required: false}
+      - {label: "One-line Description", name: "oneline_description", widget: "text"}
+      - {label: "Last Updated", name: "last_updated", widget: "datetime", format: "YYYY/MM/DD"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "members"
+    label: "Members"
+    folder: "_members"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Position", name: "position", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Email", name: "email", widget: "string"}
+      - {label: "GitHub Username", name: "github", widget: "string", required: false}
+      - {label: "Google Scholar ID", name: "scholar", widget: "string", required: false}
+      - {label: "Start Date", name: "startdate", widget: "list", field: {widget: "string"}} # Using list of strings to match current format [2025-09-01]
+      - {label: "End Date", name: "enddate", widget: "list", field: {widget: "string"}, required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+  - name: "publications"
+    label: "Publications"
+    folder: "_publications"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}

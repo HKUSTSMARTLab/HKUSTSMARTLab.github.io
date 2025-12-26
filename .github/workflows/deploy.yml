@@ -1,0 +1,28 @@
+name: Deploy to Lab Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Remote Build via Jump Host
+        uses: appleboy/ssh-action@v1
+        with:
+          # 目标服务器（amax）
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          # 跳板机（ras.cse.ust.hk）
+          proxy_host: ${{ secrets.PROXY_HOST }}
+          proxy_username: ${{ secrets.PROXY_USER }}
+          proxy_key: ${{ secrets.PROXY_SSH_PRIVATE_KEY }}
+          proxy_port: 22
+          script: |
+            cd /home/amax/Public/HKUSTSMARTLab.github.io
+            git pull origin main
+            bundle exec jekyll build
