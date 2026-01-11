@@ -1,0 +1,54 @@
+{
+  "name": "LitePath - Client-Side Pathology AI",
+  "short_name": "LitePath",
+  "description": "Client-side foundation model for whole slide image analysis. Analyze WSI files privately in your browser.",
+  "start_url": "/showcase/LitePath/",
+  "id": "/showcase/LitePath/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#020617",
+  "theme_color": "#00bcd4",
+  "icons": [
+    {
+      "src": "logo.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "logo.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "LitePath WSI Viewer"
+    }
+  ],
+  "categories": ["medical", "productivity", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/showcase/LitePath/",
+  "prefer_related_applications": false,
+  "file_handlers": [
+    {
+      "action": "/showcase/LitePath/",
+      "accept": {
+        "image/tiff": [".tif", ".tiff", ".svs", ".ndpi"]
+      }
+    }
+  ]
+}
+

@@ -1,0 +1,1014 @@
+---
+title: LitePath Demo
+layout: litepath
+group: showcase
+---
+
+<!-- Custom Styles for LitePath -->
+<style>
+    :root {
+        --lite-primary: #00bcd4;
+        /* Cyan */
+        --lite-primary-dark: #008ba3;
+        --lite-secondary: #0f172a;
+        /* Slate 900 */
+        --lite-surface: #ffffff;
+        --lite-bg: #f1f5f9;
+        /* Slate 100 */
+        --lite-border: #e2e8f0;
+        --lite-text: #334155;
+        --lite-text-muted: #64748b;
+    }
+
+    body {
+        background-color: var(--lite-bg);
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        color: var(--lite-text);
+        overflow-x: hidden;
+    }
+
+    /* Layout Structure */
+    .lite-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 76px);
+        /* Adjust for navbar height approx */
+        min-height: 800px;
+    }
+
+    .lite-main-row {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+    }
+
+    /* Sidebar Controls */
+    .lite-sidebar {
+        width: 360px;
+        background: var(--lite-surface);
+        border-right: 1px solid var(--lite-border);
+        display: flex;
+        flex-direction: column;
+        z-index: 20;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.04);
+        flex-shrink: 0;
+    }
+
+    .sidebar-header {
+        padding: 24px;
+        border-bottom: 1px solid var(--lite-border);
+    }
+
+    .lite-brand {
+        font-size: 1.5rem;
+        font-weight: 300;
+        letter-spacing: -0.5px;
+        color: var(--lite-secondary);
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .lite-brand strong {
+        font-weight: 700;
+        color: var(--lite-primary);
+    }
+
+    .lite-tagline {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--lite-text-muted);
+        font-weight: 500;
+    }
+
+    .sidebar-content {
+        flex: 1;
+        padding: 24px;
+        overflow-y: auto;
+    }
+
+    .sidebar-footer {
+        padding: 20px 24px;
+        border-top: 1px solid var(--lite-border);
+        background: #f8fafc;
+        font-size: 0.75rem;
+        color: var(--lite-text-muted);
+        text-align: center;
+    }
+
+    /* Control Cards (Minimalist) */
+    .control-group {
+        margin-bottom: 32px;
+    }
+
+    .group-label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        font-weight: 700;
+        color: #94a3b8;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+    }
+
+    .group-label::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: #e2e8f0;
+        margin-left: 10px;
+    }
+
+    /* File Input Styling */
+    .drop-zone {
+        border: 2px dashed #cbd5e1;
+        border-radius: 12px;
+        padding: 30px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: #f8fafc;
+        position: relative;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.dragover {
+        border-color: var(--lite-primary);
+        background: #ecfeff;
+        /* Cyan 50 */
+    }
+
+    .drop-zone i {
+        font-size: 2rem;
+        color: var(--lite-text-muted);
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .drop-text {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--lite-text);
+    }
+
+    .drop-sub {
+        font-size: 0.75rem;
+        color: var(--lite-text-muted);
+        margin-top: 4px;
+    }
+
+    .file-input-hidden {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Buttons */
+    .btn-tech {
+        background: var(--lite-secondary);
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 14px;
+        border-radius: 8px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transition: all 0.2s;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    .btn-tech:hover:not(:disabled) {
+        background: #1e293b;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
+        color: white;
+        /* Ensure text stays white */
+        text-decoration: none;
+    }
+
+    .btn-tech:disabled {
+        background: #cbd5e1;
+        color: #94a3b8;
+        cursor: not-allowed;
+        box-shadow: none;
+    }
+
+    .btn-tech i {
+        color: var(--lite-primary);
+    }
+
+    /* Status Indicators */
+    .status-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px;
+        background: white;
+        border: 1px solid var(--lite-border);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+
+    .status-dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background-color: #cbd5e1;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+    .status-dot.active {
+        background-color: #10b981;
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+
+    .status-dot.busy {
+        background-color: #f59e0b;
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.5;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Viewer Area */
+    .viewer-area {
+        flex: 1;
+        position: relative;
+        background: #000;
+    }
+
+    #openseadragon-viewer {
+        width: 100%;
+        height: 100%;
+        background-color: #020617;
+        /* Very dark slate */
+    }
+
+    /* Tech Overlays */
+    .viewer-overlay-info {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(8px);
+        padding: 10px 15px;
+        border-radius: 6px;
+        color: #94a3b8;
+        font-size: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+    }
+
+    .feature-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .tag {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+        background: #eff6ff;
+        color: #3b82f6;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+
+    /* Spinner */
+    .loading-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(4px);
+        display: none;
+        /* Flex when active */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 50;
+        color: white;
+    }
+
+    .tech-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(0, 188, 212, 0.3);
+        border-top-color: var(--lite-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 16px;
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Tablet Layout */
+    @media (max-width: 992px) {
+        .lite-wrapper {
+            height: auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lite-main-row {
+            flex-direction: column;
+        }
+
+        .lite-sidebar {
+            width: 100%;
+            height: auto;
+            border-right: none;
+            border-bottom: 1px solid var(--lite-border);
+            order: 2; /* Sidebar below viewer on mobile */
+        }
+
+        .viewer-area {
+            height: 50vh;
+            min-height: 300px;
+            order: 1; /* Viewer on top */
+        }
+
+        .sidebar-content {
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 576px) {
+        .lite-wrapper {
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            min-height: unset;
+        }
+
+        .lite-sidebar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            max-height: 50vh;
+            z-index: 100;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(calc(100% - 60px));
+            transition: transform 0.3s ease;
+        }
+
+        .lite-sidebar.expanded {
+            transform: translateY(0);
+        }
+
+        .lite-sidebar::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 4px;
+            background: #cbd5e1;
+            border-radius: 2px;
+            margin: 12px auto 8px;
+        }
+
+        .sidebar-header {
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+
+        .sidebar-content {
+            padding: 16px 20px;
+            max-height: calc(50vh - 100px);
+        }
+
+        .sidebar-footer {
+            padding: 12px 20px;
+            font-size: 0.65rem;
+        }
+
+        .viewer-area {
+            height: calc(100vh - 60px);
+            height: calc(100dvh - 60px);
+        }
+
+        .lite-brand {
+            font-size: 1.2rem;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .group-label {
+            font-size: 0.65rem;
+        }
+
+        .drop-zone {
+            padding: 20px 15px;
+        }
+
+        .drop-zone i {
+            font-size: 1.5rem;
+        }
+
+        .drop-text {
+            font-size: 0.8rem;
+        }
+
+        .btn-tech {
+            padding: 12px;
+            font-size: 0.85rem;
+        }
+
+        .feature-tags {
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            font-size: 0.6rem;
+            padding: 3px 8px;
+        }
+
+        #inference-log {
+            height: 60px;
+            font-size: 0.6rem;
+        }
+
+        .viewer-overlay-info {
+            bottom: 70px;
+            right: 10px;
+            padding: 6px 10px;
+            font-size: 0.65rem;
+        }
+
+        /* Hide navbar on mobile for full-screen experience */
+        body.pwa-standalone .navbar {
+            display: none;
+        }
+
+        body.pwa-standalone .lite-wrapper {
+            height: 100vh;
+            height: 100dvh;
+        }
+    }
+
+    /* Touch-friendly enhancements */
+    @media (pointer: coarse) {
+        .drop-zone {
+            min-height: 100px;
+        }
+
+        .btn-tech {
+            min-height: 48px;
+        }
+
+        .status-row {
+            min-height: 44px;
+        }
+    }
+
+    /* Safe area insets for notched devices */
+    @supports (padding: env(safe-area-inset-bottom)) {
+        .lite-sidebar {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    }
+</style>
+
+<div class="lite-wrapper">
+    <div class="lite-main-row">
+
+        <!-- Sidebar -->
+        <div class="lite-sidebar">
+            <div class="sidebar-header">
+                <div class="lite-brand">
+                    <i class="fas fa-leaf text-success me-2" style="font-size: 0.8em; opacity:0.8;"></i>
+                    LITE<strong>PATH</strong>
+                </div>
+                <div class="lite-tagline">Client-Side Foundation Model</div>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="feature-tags">
+                    <span class="tag">WebGPU</span>
+                    <span class="tag">Private</span>
+                    <span class="tag">Zero-Install</span>
+                </div>
+
+                <!-- Input Section -->
+                <div class="control-group">
+                    <div class="group-label">
+                        1. Data Source
+                        <button id="btn-reset" class="btn-reset"
+                            style="display:none; margin-left: auto; background: none; border: none; color: #ef4444; font-size: 0.7rem; cursor: pointer; text-transform: uppercase; font-weight: 700;">
+                            <i class="fas fa-trash-alt"></i> Reset
+                        </button>
+                    </div>
+                    <div class="drop-zone" id="drop-zone">
+                        <i class="fas fa-microscope"></i>
+                        <div class="drop-text" id="drop-text">Select Slide File</div>
+                        <div class="drop-sub">Drag & Drop .svs, .tiff, .ndpi</div>
+                        <input class="file-input-hidden" type="file" id="wsiSingleFile" accept=".svs,.tiff,.tif,.ndpi">
+                    </div>
+                    <div id="file-info" class="mt-2 text-center"
+                        style="font-size: 0.75rem; color: var(--lite-primary);"></div>
+                </div>
+
+                <!-- Analysis Section -->
+                <div class="control-group">
+                    <div class="group-label">2. Semantic Analysis</div>
+                    <button id="btn-run-inference" class="btn-tech" disabled>
+                        <i class="fas fa-play"></i> RUN MODEL
+                    </button>
+
+                    <div class="status-row">
+                        <span>Engine Status</span>
+                        <span id="model-status-text"><span class="status-dot active"></span>Ready</span>
+                    </div>
+                </div>
+
+                <!-- Debug / Log -->
+                <div class="control-group">
+                    <div class="group-label">System Log</div>
+                    <div id="inference-log"
+                        style="font-family: monospace; font-size: 0.7rem; color: #64748b; height: 100px; overflow-y: auto; background: #f8fafc; padding: 8px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                        > System initialized.<br>
+                        > Waiting for input...
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                HKUST SMART Lab © 2026
+            </div>
+        </div>
+
+        <!-- Viewer -->
+        <div class="viewer-area">
+            <div id="openseadragon-viewer"></div>
+
+            <div id="loading-overlay" class="loading-overlay">
+                <div class="tech-spinner"></div>
+                <div style="letter-spacing: 2px; font-size: 0.8rem; font-weight: 600;">PROCESSING</div>
+            </div>
+
+            <div class="viewer-overlay-info">
+                <i class="fas fa-cube me-1"></i> WebGPU Enabled
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Dependencies -->
+<!-- OpenSeadragon -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/openseadragon.min.js"></script>
+<!-- GeoTIFF -->
+<script src="https://cdn.jsdelivr.net/npm/geotiff"></script>
+<!-- ONNX Runtime Web -->
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
+<script>
+    // Configuration
+    const useWebGPU = true;
+
+    // Viewer State
+    let viewer;
+    let tiff;
+    let tiffImages = []; // Pyramid: { index, image, width, height }
+    let tiffPool;
+
+    function log(msg) {
+        const logDiv = document.getElementById('inference-log');
+        const line = document.createElement('div');
+        line.innerText = `> ${msg}`;
+        logDiv.appendChild(line);
+        logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    // Initialize OpenSeadragon
+    function initViewer() {
+        if (viewer) viewer.destroy();
+
+        viewer = OpenSeadragon({
+            id: "openseadragon-viewer",
+            prefixUrl: "https://cdnjs.cloudflare.com/ajax/libs/openseadragon/4.1.0/images/",
+            showNavigator: true,
+            animationTime: 0.4,
+            maxZoomPixelRatio: 2,
+            minZoomLevel: 0.1,
+            visibilityRatio: 0.1,
+            zoomPerScroll: 1.5,
+            crossOriginPolicy: "Anonymous",
+            constrainDuringPan: true,
+            placeholderFillStyle: "#020617"
+        });
+    }
+
+    // File Handling
+    const dropZone = document.getElementById('drop-zone');
+    const fileInput = document.getElementById('wsiSingleFile');
+    const resetBtn = document.getElementById('btn-reset');
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) {
+            fileInput.files = e.dataTransfer.files;
+            handleFile(e.dataTransfer.files[0]);
+        }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length) handleFile(e.target.files[0]);
+    });
+
+    resetBtn.addEventListener('click', () => {
+        // Reset State
+        if (viewer) viewer.forceRedraw(); // Clear?
+        initViewer(); // Re-init to clear canvas
+
+        tiffImages = [];
+        window.litePathTiffImages = [];
+
+        // Reset UI
+        document.getElementById('drop-text').innerText = "Select Slide File";
+        document.getElementById('file-info').innerHTML = "";
+        dropZone.style.display = "block";
+        resetBtn.style.display = "none";
+        document.getElementById('btn-run-inference').disabled = true;
+
+        // Reset Input
+        fileInput.value = "";
+
+        log("System reset.");
+    });
+
+    async function handleFile(file) {
+        if (!file) return;
+
+        // Reset
+        tiffImages = [];
+
+        document.getElementById('drop-text').innerText = file.name;
+        document.getElementById('file-info').innerHTML = `<i class="fas fa-spinner fa-spin"></i> Analyzing pyramid...`;
+
+        // Show Reset
+        resetBtn.style.display = "inline-block";
+
+        log(`Reading file: ${file.name} (${(file.size / 1024 / 1024).toFixed(1)}MB)`);
+
+        try {
+            if (!tiffPool) tiffPool = new GeoTIFF.Pool();
+            tiff = await GeoTIFF.fromBlob(file);
+
+            // 1. Discover all images (levels)
+            const count = await tiff.getImageCount();
+            log(`Found ${count} internal images (IFDs).`);
+
+            // First pass: collect all images
+            const allImages = [];
+            for (let i = 0; i < count; i++) {
+                const img = await tiff.getImage(i);
+                allImages.push({
+                    index: i,
+                    image: img,
+                    width: img.getWidth(),
+                    height: img.getHeight()
+                });
+            }
+
+            // Find the largest image (main pyramid base)
+            allImages.sort((a, b) => b.width - a.width);
+            const mainImage = allImages[0];
+            const mainAspectRatio = mainImage.width / mainImage.height;
+
+            // Filter: only keep images that are part of the pyramid
+            // Pyramid images should have similar aspect ratio to the main image
+            // and be smaller or equal in size
+            const aspectTolerance = 0.1; // 10% tolerance
+            for (const img of allImages) {
+                const aspectRatio = img.width / img.height;
+                const aspectDiff = Math.abs(aspectRatio - mainAspectRatio) / mainAspectRatio;
+
+                // Only include if aspect ratio matches (within tolerance)
+                // This filters out Label, Macro, and Thumbnail images
+                if (aspectDiff <= aspectTolerance) {
+                    tiffImages.push(img);
+                } else {
+                    log(`Skipping non-pyramid image: ${img.width}x${img.height} (aspect ratio mismatch)`);
+                }
+            }
+
+            // Sort pyramid levels: Largest to Smallest
+            tiffImages.sort((a, b) => b.width - a.width);
+
+            // Expose globally for loader
+            window.litePathTiffImages = tiffImages;
+
+            const mainImg = tiffImages[0];
+            const levelsInfo = tiffImages.map(d => `${d.width}x${d.height}`).join(', ');
+            log(`Pyramid Levels: [${levelsInfo}]`);
+
+            document.getElementById('file-info').innerHTML =
+                `<i class="fas fa-check-circle"></i> Loaded (${mainImg.width}x${mainImg.height})`;
+
+            // 2. Open in Viewer with custom TileSource that loads from memory
+            const maxLevel = Math.ceil(Math.log2(Math.max(mainImg.width, mainImg.height)));
+
+            const tileSource = {
+                width: mainImg.width,
+                height: mainImg.height,
+                tileSize: 256,
+                tileOverlap: 0,
+                minLevel: 0,
+                maxLevel: maxLevel,
+
+                // getTileUrl is required but we use it only for cache key generation
+                getTileUrl: function (level, x, y) {
+                    return `litepath://tile/${level}/${x}/${y}`;
+                },
+
+                // Pass tile coordinates to downloadTileStart
+                getTilePostData: function(level, x, y) {
+                    return { level, x, y };
+                },
+
+                // Custom tile loading - no HTTP request, load from memory
+                downloadTileStart: function(imageJob) {
+                    const tiffImages = window.litePathTiffImages;
+                    if (!tiffImages || tiffImages.length === 0) {
+                        imageJob.finish(null, null, "TIFF images not loaded");
+                        return;
+                    }
+
+                    const { level, x, y } = imageJob.postData;
+                    const nativeImg = tiffImages[0];
+                    const sourceMaxLevel = maxLevel;
+                    const tileSize = 256;
+
+                    (async () => {
+                        try {
+                            // In OSD: level 0 = smallest (1 tile covers whole image)
+                            // level maxLevel = native resolution
+                            // Scale factor: how many native pixels per tile pixel at this level
+                            const scale = Math.pow(2, sourceMaxLevel - level);
+
+                            // Calculate tile bounds in NATIVE image coordinates
+                            // Each tile at this level covers (tileSize * scale) native pixels
+                            const nativeTileSize = tileSize * scale;
+                            const srcX = x * nativeTileSize;
+                            const srcY = y * nativeTileSize;
+                            const srcW = Math.min(nativeTileSize, nativeImg.width - srcX);
+                            const srcH = Math.min(nativeTileSize, nativeImg.height - srcY);
+
+                            // Safety checks
+                            if (srcW <= 0 || srcH <= 0 || srcX >= nativeImg.width || srcY >= nativeImg.height) {
+                                imageJob.finish(null, null, "Tile out of bounds");
+                                return;
+                            }
+
+                            // Calculate output tile size (may be smaller at edges)
+                            const outW = Math.ceil(srcW / scale);
+                            const outH = Math.ceil(srcH / scale);
+
+                            // Find best pyramid level in TIFF that has enough resolution
+                            let bestImg = tiffImages[0];
+                            for (let i = 0; i < tiffImages.length; i++) {
+                                const pyramidScale = nativeImg.width / tiffImages[i].width;
+                                const regionWidthInPyramid = srcW / pyramidScale;
+                                if (regionWidthInPyramid >= outW * 0.5) {
+                                    bestImg = tiffImages[i];
+                                } else {
+                                    break;
+                                }
+                            }
+
+                            // Map source coordinates to the selected pyramid level
+                            const pyramidScale = nativeImg.width / bestImg.width;
+                            const pX = Math.floor(srcX / pyramidScale);
+                            const pY = Math.floor(srcY / pyramidScale);
+                            const pW = Math.max(1, Math.ceil(srcW / pyramidScale));
+                            const pH = Math.max(1, Math.ceil(srcH / pyramidScale));
+
+                            // Clamp to image bounds
+                            const clampedX = Math.max(0, Math.min(pX, bestImg.width - 1));
+                            const clampedY = Math.max(0, Math.min(pY, bestImg.height - 1));
+                            const clampedW = Math.max(1, Math.min(pW, bestImg.width - clampedX));
+                            const clampedH = Math.max(1, Math.min(pH, bestImg.height - clampedY));
+
+                            // Read rasters from TIFF - output size matches the actual tile content
+                            const rasters = await bestImg.image.readRasters({
+                                window: [clampedX, clampedY, clampedX + clampedW, clampedY + clampedH],
+                                width: outW,
+                                height: outH,
+                                pool: tiffPool,
+                                interleave: false
+                            });
+
+                            // Convert to canvas - use actual output size
+                            const canvas = document.createElement('canvas');
+                            canvas.width = outW;
+                            canvas.height = outH;
+                            const ctx = canvas.getContext('2d');
+                            const imgData = ctx.createImageData(outW, outH);
+                            const data = imgData.data;
+
+                            // Handle channels (RGB vs Grayscale)
+                            let r = rasters[0];
+                            let g = rasters[1];
+                            let b = rasters[2];
+
+                            if (!g || !b) {
+                                g = r; b = r;
+                            }
+
+                            for (let i = 0; i < r.length; i++) {
+                                data[i * 4] = r[i];
+                                data[i * 4 + 1] = g[i];
+                                data[i * 4 + 2] = b[i];
+                                data[i * 4 + 3] = 255;
+                            }
+
+                            ctx.putImageData(imgData, 0, 0);
+
+                            // Convert canvas to Image and finish the job
+                            canvas.toBlob((blob) => {
+                                const url = URL.createObjectURL(blob);
+                                const img = new Image();
+                                img.onload = () => {
+                                    imageJob.finish(img);
+                                    URL.revokeObjectURL(url);
+                                };
+                                img.onerror = (e) => {
+                                    imageJob.finish(null, null, "Failed to create image from canvas");
+                                };
+                                img.src = url;
+                            });
+
+                        } catch (e) {
+                            console.error("Tile loading error:", e);
+                            imageJob.finish(null, null, e.message);
+                        }
+                    })();
+                },
+
+                downloadTileAbort: function(imageJob) {
+                    // Nothing to abort for memory-based loading
+                }
+            };
+
+            viewer.open(tileSource);
+
+            // Enable analysis button
+            document.getElementById('btn-run-inference').disabled = false;
+
+        } catch (err) {
+            console.error(err);
+            log(`Error: ${err.message}`);
+            document.getElementById('file-info').innerHTML = `<span style="color:ef4444"><i class="fas fa-times"></i> Error</span>`;
+        }
+    }
+
+    // Inference Mock
+    document.getElementById('btn-run-inference').addEventListener('click', async function () {
+        const overlay = document.getElementById('loading-overlay');
+        overlay.style.display = "flex";
+        log("Running inference on viewport...");
+
+        await new Promise(r => setTimeout(r, 1500));
+
+        overlay.style.display = "none";
+        log("Inference complete.");
+
+        // Add a demo heatmap
+        const d = document.createElement('div');
+        d.style.position = 'absolute';
+        d.style.left = '40%';
+        d.style.top = '40%';
+        d.style.width = '200px';
+        d.style.height = '200px';
+        d.style.border = '2px solid var(--lite-primary)';
+        d.style.boxShadow = '0 0 20px rgba(0, 188, 212, 0.5)';
+        d.style.background = 'rgba(0, 188, 212, 0.1)';
+        d.style.pointerEvents = 'none';
+
+        const label = document.createElement('div');
+        label.innerText = 'TUMOR: 98%';
+        label.style.background = 'var(--lite-primary)';
+        label.style.color = 'white';
+        label.style.position = 'absolute';
+        label.style.top = '-25px';
+        label.style.left = '-2px';
+        label.style.padding = '2px 8px';
+        label.style.fontSize = '12px';
+        label.style.fontWeight = 'bold';
+
+        d.appendChild(label);
+        viewer.canvas.appendChild(d);
+    });
+
+    // Mobile sidebar toggle
+    function initMobileSidebar() {
+        const sidebar = document.querySelector('.lite-sidebar');
+        const header = document.querySelector('.sidebar-header');
+
+        if (!sidebar || !header) return;
+
+        // Check if mobile
+        const isMobile = () => window.innerWidth <= 576;
+
+        // Toggle sidebar on header click (mobile only)
+        header.addEventListener('click', (e) => {
+            if (isMobile()) {
+                sidebar.classList.toggle('expanded');
+            }
+        });
+
+        // Close sidebar when clicking on viewer (mobile only)
+        document.querySelector('.viewer-area')?.addEventListener('click', () => {
+            if (isMobile() && sidebar.classList.contains('expanded')) {
+                sidebar.classList.remove('expanded');
+            }
+        });
+
+        // Swipe gesture support
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        sidebar.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        sidebar.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            if (!isMobile()) return;
+
+            const swipeDistance = touchStartY - touchEndY;
+            const threshold = 50;
+
+            if (swipeDistance > threshold) {
+                // Swipe up - expand
+                sidebar.classList.add('expanded');
+            } else if (swipeDistance < -threshold) {
+                // Swipe down - collapse
+                sidebar.classList.remove('expanded');
+            }
+        }
+    }
+
+    // Detect standalone PWA mode
+    function checkPWAMode() {
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+            || window.navigator.standalone
+            || document.referrer.includes('android-app://');
+
+        if (isStandalone) {
+            document.body.classList.add('pwa-standalone');
+        }
+    }
+
+    initViewer();
+    initMobileSidebar();
+    checkPWAMode();
+</script>
