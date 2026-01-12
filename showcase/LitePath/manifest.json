@@ -1,12 +1,12 @@
 {
-  "name": "LitePath - Client-Side Pathology AI",
+  "name": "LitePath",
   "short_name": "LitePath",
   "description": "Client-side foundation model for whole slide image analysis. Analyze WSI files privately in your browser.",
   "start_url": "/showcase/LitePath/",
   "id": "/showcase/LitePath/",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#020617",
+  "background_color": "#ffffff",
   "theme_color": "#00bcd4",
   "icons": [
     {

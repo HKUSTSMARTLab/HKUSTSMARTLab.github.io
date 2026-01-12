@@ -1,8 +1,57 @@
----
-title: LitePath Demo
-layout: litepath
-group: showcase
----
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>LitePath Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="LitePath - Client-side foundation model for whole slide image analysis" />
+    <meta name="theme-color" content="#00bcd4" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="LitePath" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/showcase/LitePath/manifest.json" />
+
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="/showcase/LitePath/icons/icon-192.png" />
+
+    <!-- CSS Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/logo/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #052049;">
+        <div class="container-fluid">
+            <a href="http://www.hkust.edu.hk">
+                <img class="inline-block navb-icon" src="/static/img/logo/hkust_logo_white.png" alt="HKUST Logo" style="height: 30px;" />
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="navbar-brand" href="/">HKUST SMART Lab</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/team/">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/publications/">Publications</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="/showcase/">Showcase</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
 <!-- Custom Styles for LitePath -->
 <style>
@@ -541,9 +590,20 @@ group: showcase
                         style="font-size: 0.75rem; color: var(--lite-primary);"></div>
                 </div>
 
+                <!-- Task Selection -->
+                <div class="control-group">
+                    <div class="group-label">2. Analysis Task</div>
+                    <select id="task-selector" style="width: 100%; padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 13px; cursor: pointer; background: white;">
+                        <!-- Options populated by JS -->
+                    </select>
+                    <div id="task-info" style="font-size: 11px; color: #64748b; margin-top: 8px;">
+                        <!-- Task description populated by JS -->
+                    </div>
+                </div>
+
                 <!-- Analysis Section -->
                 <div class="control-group">
-                    <div class="group-label">2. Semantic Analysis</div>
+                    <div class="group-label">3. Run Analysis</div>
                     <button id="btn-run-inference" class="btn-tech" disabled>
                         <i class="fas fa-play"></i> RUN MODEL
                     </button>
@@ -596,14 +656,54 @@ group: showcase
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
 
 <script>
-    // Configuration
-    const useWebGPU = true;
+    const _T = {
+        'lung-nsclc': {
+            id: 'lung-nsclc', n: 'Lung Cancer Subtyping', d: 'Classify NSCLC into LUAD vs LUSC',
+            _c: 'subtyping', _s: 0x76c, _k: 0x64, _f: 1, l: ['LUAD', 'LUSC'],
+            m: { a: 'MIL/Lung-NSCLC_APS.onnx', c: 'MIL/Lung-NSCLC.onnx' }
+        },
+        'gastric-grade': {
+            id: 'gastric-grade', n: 'Gastric Cancer Grading', d: 'Classify gastric cancer grade (Low vs High)',
+            _c: 'grading', _s: 0x76c, _k: 0x64, _f: 1, l: ['Low Grade', 'High Grade'],
+            m: { a: 'MIL/Gastric-Grade_APS.onnx', c: 'MIL/Gastric-Grade.onnx' }
+        }
+    };
 
-    // Viewer State
-    let viewer;
-    let tiff;
-    let tiffImages = []; // Pyramid: { index, image, width, height }
-    let tiffPool;
+    const _M = { p: 'FM/LiteFM_pre.onnx', q: 'FM/LiteFM_post.onnx', i: 224, e: 384, t: 197, f: 1024, a: 768 };
+    const _B = 'ckpts/';
+    let _cT = 'gastric-grade';
+
+    let viewer, tiff, tiffImages = [], tiffPool;
+
+    function initTaskSelector() {
+        const select = document.getElementById('task-selector');
+        if (!select) return;
+        for (const tid in _T) {
+            const t = _T[tid];
+            const opt = document.createElement('option');
+            opt.value = tid;
+            opt.innerText = t.n;
+            if (tid === _cT) opt.selected = true;
+            select.appendChild(opt);
+        }
+        select.addEventListener('change', async (e) => {
+            _cT = e.target.value;
+            const t = _T[_cT];
+            log(`Switched to: ${t.n}`);
+            updateTaskInfo(t);
+            await loadTaskModels(_cT);
+        });
+        updateTaskInfo(_T[_cT]);
+    }
+
+    function updateTaskInfo(t) {
+        const infoDiv = document.getElementById('task-info');
+        if (!infoDiv) return;
+        infoDiv.innerHTML = `<div style="margin-bottom: 4px;">${t.d}</div><div><strong>Classes:</strong> ${t.l.join(' vs ')}</div>`;
+    }
+
+    window.addEventListener('load', initTaskSelector);
+
 
     function log(msg) {
         const logDiv = document.getElementById('inference-log');
@@ -611,6 +711,20 @@ group: showcase
         line.innerText = `> ${msg}`;
         logDiv.appendChild(line);
         logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function logUpdatable(msg) {
+        const logDiv = document.getElementById('inference-log');
+        const line = document.createElement('div');
+        line.innerText = `> ${msg}`;
+        logDiv.appendChild(line);
+        logDiv.scrollTop = logDiv.scrollHeight;
+        return {
+            update: (newMsg) => {
+                line.innerText = `> ${newMsg}`;
+                logDiv.scrollTop = logDiv.scrollHeight;
+            }
+        };
     }
 
     // Initialize OpenSeadragon
@@ -698,11 +812,8 @@ group: showcase
             if (!tiffPool) tiffPool = new GeoTIFF.Pool();
             tiff = await GeoTIFF.fromBlob(file);
 
-            // 1. Discover all images (levels)
             const count = await tiff.getImageCount();
-            log(`Found ${count} internal images (IFDs).`);
 
-            // First pass: collect all images
             const allImages = [];
             for (let i = 0; i < count; i++) {
                 const img = await tiff.getImage(i);
@@ -714,32 +825,22 @@ group: showcase
                 });
             }
 
-            // Find the largest image (main pyramid base)
             allImages.sort((a, b) => b.width - a.width);
             const mainImage = allImages[0];
             const mainAspectRatio = mainImage.width / mainImage.height;
 
-            // Filter: only keep images that are part of the pyramid
-            // Pyramid images should have similar aspect ratio to the main image
-            // and be smaller or equal in size
-            const aspectTolerance = 0.1; // 10% tolerance
+            const aspectTolerance = 0.1;
             for (const img of allImages) {
                 const aspectRatio = img.width / img.height;
                 const aspectDiff = Math.abs(aspectRatio - mainAspectRatio) / mainAspectRatio;
 
-                // Only include if aspect ratio matches (within tolerance)
-                // This filters out Label, Macro, and Thumbnail images
                 if (aspectDiff <= aspectTolerance) {
                     tiffImages.push(img);
-                } else {
-                    log(`Skipping non-pyramid image: ${img.width}x${img.height} (aspect ratio mismatch)`);
                 }
             }
 
-            // Sort pyramid levels: Largest to Smallest
             tiffImages.sort((a, b) => b.width - a.width);
 
-            // Expose globally for loader
             window.litePathTiffImages = tiffImages;
 
             const mainImg = tiffImages[0];
@@ -749,7 +850,6 @@ group: showcase
             document.getElementById('file-info').innerHTML =
                 `<i class="fas fa-check-circle"></i> Loaded (${mainImg.width}x${mainImg.height})`;
 
-            // 2. Open in Viewer with custom TileSource that loads from memory
             const maxLevel = Math.ceil(Math.log2(Math.max(mainImg.width, mainImg.height)));
 
             const tileSource = {
@@ -760,17 +860,14 @@ group: showcase
                 minLevel: 0,
                 maxLevel: maxLevel,
 
-                // getTileUrl is required but we use it only for cache key generation
                 getTileUrl: function (level, x, y) {
                     return `litepath://tile/${level}/${x}/${y}`;
                 },
 
-                // Pass tile coordinates to downloadTileStart
                 getTilePostData: function(level, x, y) {
                     return { level, x, y };
                 },
 
-                // Custom tile loading - no HTTP request, load from memory
                 downloadTileStart: function(imageJob) {
                     const tiffImages = window.litePathTiffImages;
                     if (!tiffImages || tiffImages.length === 0) {
@@ -785,30 +882,22 @@ group: showcase
 
                     (async () => {
                         try {
-                            // In OSD: level 0 = smallest (1 tile covers whole image)
-                            // level maxLevel = native resolution
-                            // Scale factor: how many native pixels per tile pixel at this level
                             const scale = Math.pow(2, sourceMaxLevel - level);
 
-                            // Calculate tile bounds in NATIVE image coordinates
-                            // Each tile at this level covers (tileSize * scale) native pixels
                             const nativeTileSize = tileSize * scale;
                             const srcX = x * nativeTileSize;
                             const srcY = y * nativeTileSize;
                             const srcW = Math.min(nativeTileSize, nativeImg.width - srcX);
                             const srcH = Math.min(nativeTileSize, nativeImg.height - srcY);
 
-                            // Safety checks
                             if (srcW <= 0 || srcH <= 0 || srcX >= nativeImg.width || srcY >= nativeImg.height) {
                                 imageJob.finish(null, null, "Tile out of bounds");
                                 return;
                             }
 
-                            // Calculate output tile size (may be smaller at edges)
                             const outW = Math.ceil(srcW / scale);
                             const outH = Math.ceil(srcH / scale);
 
-                            // Find best pyramid level in TIFF that has enough resolution
                             let bestImg = tiffImages[0];
                             for (let i = 0; i < tiffImages.length; i++) {
                                 const pyramidScale = nativeImg.width / tiffImages[i].width;
@@ -820,20 +909,17 @@ group: showcase
                                 }
                             }
 
-                            // Map source coordinates to the selected pyramid level
                             const pyramidScale = nativeImg.width / bestImg.width;
                             const pX = Math.floor(srcX / pyramidScale);
                             const pY = Math.floor(srcY / pyramidScale);
                             const pW = Math.max(1, Math.ceil(srcW / pyramidScale));
                             const pH = Math.max(1, Math.ceil(srcH / pyramidScale));
 
-                            // Clamp to image bounds
                             const clampedX = Math.max(0, Math.min(pX, bestImg.width - 1));
                             const clampedY = Math.max(0, Math.min(pY, bestImg.height - 1));
                             const clampedW = Math.max(1, Math.min(pW, bestImg.width - clampedX));
                             const clampedH = Math.max(1, Math.min(pH, bestImg.height - clampedY));
 
-                            // Read rasters from TIFF - output size matches the actual tile content
                             const rasters = await bestImg.image.readRasters({
                                 window: [clampedX, clampedY, clampedX + clampedW, clampedY + clampedH],
                                 width: outW,
@@ -842,7 +928,6 @@ group: showcase
                                 interleave: false
                             });
 
-                            // Convert to canvas - use actual output size
                             const canvas = document.createElement('canvas');
                             canvas.width = outW;
                             canvas.height = outH;
@@ -850,7 +935,6 @@ group: showcase
                             const imgData = ctx.createImageData(outW, outH);
                             const data = imgData.data;
 
-                            // Handle channels (RGB vs Grayscale)
                             let r = rasters[0];
                             let g = rasters[1];
                             let b = rasters[2];
@@ -868,7 +952,6 @@ group: showcase
 
                             ctx.putImageData(imgData, 0, 0);
 
-                            // Convert canvas to Image and finish the job
                             canvas.toBlob((blob) => {
                                 const url = URL.createObjectURL(blob);
                                 const img = new Image();
@@ -896,7 +979,6 @@ group: showcase
 
             viewer.open(tileSource);
 
-            // Enable analysis button
             document.getElementById('btn-run-inference').disabled = false;
 
         } catch (err) {
@@ -906,42 +988,583 @@ group: showcase
         }
     }
 
-    // Inference Mock
+    // ============================================================================
+    // Model Sessions
+    // ============================================================================
+    let liteFMPreSession = null;
+    let liteFMPostSession = null;
+    let milSession = null;
+    let apsSession = null;
+
+    /**
+     * Load feature extraction models (LiteFM_pre, LiteFM_post)
+     * These are shared across all tasks
+     */
+    async function loadFeatureModels() {
+        if (liteFMPreSession && liteFMPostSession) return;
+
+        log("Loading LiteFM feature models (WebGPU)...");
+        try {
+            const gpuOptions = {
+                executionProviders: ['webgpu', 'wasm'],
+                graphOptimizationLevel: 'all'
+            };
+
+            const prePath = _B + _M.p;
+            liteFMPreSession = await ort.InferenceSession.create(prePath, gpuOptions);
+            log("LiteFM_pre loaded.");
+
+            const postPath = _B + _M.q;
+            liteFMPostSession = await ort.InferenceSession.create(postPath, gpuOptions);
+            log("LiteFM_post loaded.");
+
+            await loadTaskModels(_cT);
+
+        } catch (e) {
+            console.error(e);
+            log(`Feature model load failed: ${e.message}`);
+        }
+    }
+
+    async function loadTaskModels(tid) {
+        const t = _T[tid];
+        if (!t) { log(`Unknown task: ${tid}`); return; }
+
+        log(`Loading models for ${t.n}...`);
+
+        try {
+            const wasmOpts = { executionProviders: ['wasm'] };
+
+            if (milSession) { await milSession.release(); milSession = null; }
+            if (apsSession) { await apsSession.release(); apsSession = null; }
+
+            if (t._f && t.m.a) {
+                apsSession = await ort.InferenceSession.create(_B + t.m.a, wasmOpts);
+                log(`APS loaded for ${t.n}.`);
+            }
+
+            milSession = await ort.InferenceSession.create(_B + t.m.c, wasmOpts);
+            log(`MIL loaded for ${t.n}.`);
+
+            document.getElementById('model-status-text').innerHTML =
+                `<span class="status-dot active"></span>${t.n} Ready`;
+
+        } catch (e) {
+            console.error(e);
+            log(`Task model load failed: ${e.message}`);
+            document.getElementById('model-status-text').innerHTML =
+                `<span class="status-dot"></span>Load Failed`;
+        }
+    }
+
+    // Load models on init
+    loadFeatureModels();
+
+    // ============================================================================
+    // WSI Processing Functions
+    // ============================================================================
+
+    /**
+     * Convert RGB to HSV
+     * Returns H: 0-180, S: 0-255, V: 0-255 (OpenCV convention)
+     */
+    function rgbToHsv(r, g, b) {
+        r /= 255; g /= 255; b /= 255;
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const d = max - min;
+
+        let h = 0;
+        const s = max === 0 ? 0 : d / max;
+        const v = max;
+
+        if (d !== 0) {
+            switch (max) {
+                case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                case g: h = ((b - r) / d + 2) / 6; break;
+                case b: h = ((r - g) / d + 4) / 6; break;
+            }
+        }
+        return [h * 180, s * 255, v * 255];
+    }
+
+    /**
+     * Tissue segmentation using HSV color space
+     * Returns binary mask (Uint8Array) where 1 = tissue, 0 = background
+     */
+    function segmentTissue(imageData) {
+        const { width, height, data } = imageData;
+        const mask = new Uint8Array(width * height);
+
+        // HSV thresholds for tissue detection
+        const satMin = 15, satMax = 255;
+        const valMin = 25, valMax = 220;
+
+        for (let i = 0; i < width * height; i++) {
+            const r = data[i * 4];
+            const g = data[i * 4 + 1];
+            const b = data[i * 4 + 2];
+            const [, s, v] = rgbToHsv(r, g, b);
+            mask[i] = (s >= satMin && s <= satMax && v >= valMin && v <= valMax) ? 1 : 0;
+        }
+
+        return { mask, width, height };
+    }
+
+    /**
+     * Extract patch coordinates from tissue mask
+     * Returns array of {x, y} coordinates in native image space
+     */
+    function extractPatchCoords(mask, maskWidth, maskHeight, nativeWidth, nativeHeight, patchSize = 512, tissueThreshold = 0.3) {
+        const scaleX = nativeWidth / maskWidth;
+        const scaleY = nativeHeight / maskHeight;
+        const coords = [];
+
+        // Grid-based extraction
+        for (let y = 0; y < nativeHeight - patchSize; y += patchSize) {
+            for (let x = 0; x < nativeWidth - patchSize; x += patchSize) {
+                // Map to mask coordinates
+                const maskX = Math.floor(x / scaleX);
+                const maskY = Math.floor(y / scaleY);
+                const maskPatchW = Math.ceil(patchSize / scaleX);
+                const maskPatchH = Math.ceil(patchSize / scaleY);
+
+                // Count tissue pixels
+                let tissueCount = 0, totalCount = 0;
+                for (let my = maskY; my < Math.min(maskY + maskPatchH, maskHeight); my++) {
+                    for (let mx = maskX; mx < Math.min(maskX + maskPatchW, maskWidth); mx++) {
+                        if (mask[my * maskWidth + mx] === 1) tissueCount++;
+                        totalCount++;
+                    }
+                }
+
+                if (totalCount > 0 && tissueCount / totalCount >= tissueThreshold) {
+                    coords.push({ x, y });
+                }
+            }
+        }
+        return coords;
+    }
+
+    /**
+     * Uniform sampling of indices
+     */
+    function uniformSample(total, count) {
+        if (total <= count) return Array.from({ length: total }, (_, i) => i);
+        const step = total / count;
+        return Array.from({ length: count }, (_, i) => Math.floor(i * step));
+    }
+
+    /**
+     * Read a single patch from TIFF at native coordinates
+     * Returns ImageData (patchSize x patchSize)
+     */
+    async function readPatch(x, y, patchSize, targetSize) {
+        const nativeImg = tiffImages[0];
+        if (!nativeImg) throw new Error("TIFF not loaded");
+
+        // Find best pyramid level
+        let bestImg = nativeImg;
+        const scale = patchSize / targetSize;  // e.g., 512/224 ≈ 2.3
+
+        for (let i = 0; i < tiffImages.length; i++) {
+            const pyramidScale = nativeImg.width / tiffImages[i].width;
+            if (pyramidScale <= scale * 1.5) {
+                bestImg = tiffImages[i];
+            } else {
+                break;
+            }
+        }
+
+        // Map coordinates to pyramid level
+        const pyramidScale = nativeImg.width / bestImg.width;
+        const pX = Math.floor(x / pyramidScale);
+        const pY = Math.floor(y / pyramidScale);
+        const pW = Math.ceil(patchSize / pyramidScale);
+        const pH = Math.ceil(patchSize / pyramidScale);
+
+        // Clamp to bounds
+        const clampedX = Math.max(0, Math.min(pX, bestImg.width - 1));
+        const clampedY = Math.max(0, Math.min(pY, bestImg.height - 1));
+        const clampedW = Math.max(1, Math.min(pW, bestImg.width - clampedX));
+        const clampedH = Math.max(1, Math.min(pH, bestImg.height - clampedY));
+
+        // Read from TIFF and resize to targetSize
+        const rasters = await bestImg.image.readRasters({
+            window: [clampedX, clampedY, clampedX + clampedW, clampedY + clampedH],
+            width: targetSize,
+            height: targetSize,
+            pool: tiffPool,
+            interleave: false
+        });
+
+        // Convert to ImageData
+        const imgData = new ImageData(targetSize, targetSize);
+        const pixels = imgData.data;
+        let r = rasters[0], g = rasters[1] || r, b = rasters[2] || r;
+
+        for (let i = 0; i < r.length; i++) {
+            pixels[i * 4] = r[i];
+            pixels[i * 4 + 1] = g[i];
+            pixels[i * 4 + 2] = b[i];
+            pixels[i * 4 + 3] = 255;
+        }
+
+        return imgData;
+    }
+
+    /**
+     * Get thumbnail from TIFF (smallest pyramid level)
+     */
+    async function getThumbnail(maxSize = 1024) {
+        if (!tiffImages || tiffImages.length === 0) throw new Error("TIFF not loaded");
+
+        // Find smallest level that's still >= maxSize, or just the smallest
+        let bestImg = tiffImages[tiffImages.length - 1];
+        for (let i = tiffImages.length - 1; i >= 0; i--) {
+            if (tiffImages[i].width >= maxSize || tiffImages[i].height >= maxSize) {
+                bestImg = tiffImages[i];
+                break;
+            }
+        }
+
+        // Calculate output size maintaining aspect ratio
+        const scale = Math.min(maxSize / bestImg.width, maxSize / bestImg.height);
+        const outW = Math.floor(bestImg.width * scale);
+        const outH = Math.floor(bestImg.height * scale);
+
+        const rasters = await bestImg.image.readRasters({
+            width: outW,
+            height: outH,
+            pool: tiffPool,
+            interleave: false
+        });
+
+        const imgData = new ImageData(outW, outH);
+        const pixels = imgData.data;
+        let r = rasters[0], g = rasters[1] || r, b = rasters[2] || r;
+
+        for (let i = 0; i < r.length; i++) {
+            pixels[i * 4] = r[i];
+            pixels[i * 4 + 1] = g[i];
+            pixels[i * 4 + 2] = b[i];
+            pixels[i * 4 + 3] = 255;
+        }
+
+        return imgData;
+    }
+
+    // ============================================================================
+    // Inference Logic
+    // ============================================================================
+
+    /**
+     * Preprocess image data for model input
+     * Converts RGBA ImageData to CHW Float32Array with ImageNet normalization
+     */
+    function preprocessImage(imgData, targetSize) {
+        const { data } = imgData;
+        const tensorData = new Float32Array(1 * 3 * targetSize * targetSize);
+        const mean = [0.485, 0.456, 0.406];
+        const std = [0.229, 0.224, 0.225];
+
+        let rPtr = 0;
+        let gPtr = targetSize * targetSize;
+        let bPtr = 2 * targetSize * targetSize;
+
+        for (let i = 0; i < targetSize * targetSize; i++) {
+            const r = data[i * 4] / 255.0;
+            const g = data[i * 4 + 1] / 255.0;
+            const b = data[i * 4 + 2] / 255.0;
+
+            tensorData[rPtr++] = (r - mean[0]) / std[0];
+            tensorData[gPtr++] = (g - mean[1]) / std[1];
+            tensorData[bPtr++] = (b - mean[2]) / std[2];
+        }
+
+        return tensorData;
+    }
+
+    /**
+     * Preprocess a batch of patches for model input
+     * Returns Float32Array [batchSize, 3, 224, 224]
+     */
+    function preprocessBatch(patches, targetSize) {
+        const batchSize = patches.length;
+        const output = new Float32Array(batchSize * 3 * targetSize * targetSize);
+        const mean = [0.485, 0.456, 0.406];
+        const std = [0.229, 0.224, 0.225];
+
+        for (let b = 0; b < batchSize; b++) {
+            const data = patches[b].data;
+            const offset = b * 3 * targetSize * targetSize;
+
+            for (let i = 0; i < targetSize * targetSize; i++) {
+                const r = data[i * 4] / 255.0;
+                const g = data[i * 4 + 1] / 255.0;
+                const b_val = data[i * 4 + 2] / 255.0;
+
+                output[offset + i] = (r - mean[0]) / std[0];
+                output[offset + targetSize * targetSize + i] = (g - mean[1]) / std[1];
+                output[offset + 2 * targetSize * targetSize + i] = (b_val - mean[2]) / std[2];
+            }
+        }
+
+        return output;
+    }
+
+    function computeAPSInput(embeddings, numPatches) {
+        const ed = _M.e, nt = _M.t;
+        const apsInput = new Float32Array(numPatches * ed * 2);
+
+        for (let i = 0; i < numPatches; i++) {
+            const offset = i * nt * ed;
+            for (let j = 0; j < ed; j++) {
+                apsInput[i * ed * 2 + j] = embeddings[offset + j];
+            }
+            const pt = nt - 1;
+            for (let j = 0; j < ed; j++) {
+                let sum = 0;
+                for (let k = 1; k < nt; k++) { sum += embeddings[offset + k * ed + j]; }
+                apsInput[i * ed * 2 + ed + j] = sum / pt;
+            }
+        }
+
+        return apsInput;
+    }
+
+    /**
+     * Get top K indices from scores
+     */
+    function getTopKIndices(scores, k) {
+        const indexed = Array.from(scores).map((score, idx) => ({ score, idx }));
+        indexed.sort((a, b) => b.score - a.score);
+        return indexed.slice(0, k).map(item => item.idx);
+    }
+
+    /**
+     * Softmax function
+     */
+    function softmax(logits) {
+        const maxLogit = Math.max(...Array.from(logits));
+        const expLogits = Array.from(logits).map(l => Math.exp(l - maxLogit));
+        const sumExp = expLogits.reduce((a, b) => a + b, 0);
+        return expLogits.map(e => e / sumExp);
+    }
+
+    /**
+     * Update progress display in loading overlay
+     */
+    function updateProgress(stage, current, total, detail = '') {
+        const progressText = document.querySelector('#loading-overlay span');
+        if (progressText) {
+            const pct = total > 0 ? Math.round(current / total * 100) : 0;
+            progressText.textContent = `${stage}: ${pct}% ${detail}`;
+        }
+    }
+
     document.getElementById('btn-run-inference').addEventListener('click', async function () {
         const overlay = document.getElementById('loading-overlay');
         overlay.style.display = "flex";
-        log("Running inference on viewport...");
 
-        await new Promise(r => setTimeout(r, 1500));
+        const t = _T[_cT];
+        const startTime = performance.now();
+        const inputSize = _M.i, numTokens = _M.t, embeddingDim = _M.e, featureDim = _M.f, apsInputDim = _M.a;
 
-        overlay.style.display = "none";
-        log("Inference complete.");
+        try {
+            if (!liteFMPreSession || !liteFMPostSession) await loadFeatureModels();
+            if (!liteFMPreSession || !liteFMPostSession) throw new Error("Feature models not ready");
+            if (!milSession) await loadTaskModels(_cT);
+            if (!milSession) throw new Error("Task models not ready");
 
-        // Add a demo heatmap
-        const d = document.createElement('div');
-        d.style.position = 'absolute';
-        d.style.left = '40%';
-        d.style.top = '40%';
-        d.style.width = '200px';
-        d.style.height = '200px';
-        d.style.border = '2px solid var(--lite-primary)';
-        d.style.boxShadow = '0 0 20px rgba(0, 188, 212, 0.5)';
-        d.style.background = 'rgba(0, 188, 212, 0.1)';
-        d.style.pointerEvents = 'none';
+            log(`Starting ${t.n} analysis...`);
 
-        const label = document.createElement('div');
-        label.innerText = 'TUMOR: 98%';
-        label.style.background = 'var(--lite-primary)';
-        label.style.color = 'white';
-        label.style.position = 'absolute';
-        label.style.top = '-25px';
-        label.style.left = '-2px';
-        label.style.padding = '2px 8px';
-        label.style.fontSize = '12px';
-        label.style.fontWeight = 'bold';
+            // Check if TIFF is loaded
+            if (!tiffImages || tiffImages.length === 0) {
+                throw new Error("No WSI loaded. Please load a TIFF file first.");
+            }
 
-        d.appendChild(label);
-        viewer.canvas.appendChild(d);
+            const nativeWidth = tiffImages[0].width;
+            const nativeHeight = tiffImages[0].height;
+            log(`WSI size: ${nativeWidth} x ${nativeHeight}`);
+
+            // ================================================================
+            // Step 1: Tissue Segmentation
+            // ================================================================
+            updateProgress('Segmentation', 0, 100);
+            log("Step 1: Tissue segmentation...");
+
+            const thumbnail = await getThumbnail(1024);
+            const { mask, width: maskW, height: maskH } = segmentTissue(thumbnail);
+            const tissuePixels = mask.reduce((a, b) => a + b, 0);
+            const tissueRatio = (tissuePixels / mask.length * 100).toFixed(1);
+            log(`Segmentation: ${maskW}x${maskH}, tissue=${tissueRatio}%`);
+
+            // ================================================================
+            // Step 2: Extract Patch Coordinates
+            // ================================================================
+            updateProgress('Extracting patches', 0, 100);
+            log("Step 2: Extracting patch coordinates...");
+
+            const patchSize = 512;
+            const allCoords = extractPatchCoords(mask, maskW, maskH, nativeWidth, nativeHeight, patchSize, 0.3);
+
+            if (allCoords.length === 0) {
+                throw new Error("No tissue patches found. Check the image.");
+            }
+
+            const sampleIndices = uniformSample(allCoords.length, t._s);
+            const sampledCoords = sampleIndices.map(i => allCoords[i]);
+
+            // ================================================================
+            // Step 3: Read Patches & Extract Embeddings (LiteFM_pre)
+            // ================================================================
+            const step3Log = logUpdatable("Step 3: Feature extraction... 0%");
+
+            const allEmbeddings = [];  // [N, 197, 384]
+            const batchSize = 8;  // Process 8 patches at a time
+
+            for (let i = 0; i < sampledCoords.length; i += batchSize) {
+                const batchEnd = Math.min(i + batchSize, sampledCoords.length);
+                const batchCoords = sampledCoords.slice(i, batchEnd);
+
+                const pct = Math.round(i / sampledCoords.length * 100);
+                step3Log.update(`Step 3: Feature extraction... ${pct}%`);
+                updateProgress('Feature extraction', pct, 100);
+
+                // Read batch of patches
+                const patches = [];
+                for (const coord of batchCoords) {
+                    const patch = await readPatch(coord.x, coord.y, patchSize, inputSize);
+                    patches.push(patch);
+                }
+
+                // Preprocess and run LiteFM_pre for each patch
+                for (const patch of patches) {
+                    const tensorData = preprocessImage(patch, inputSize);
+                    const inputTensor = new ort.Tensor('float32', tensorData, [1, 3, inputSize, inputSize]);
+                    const results = await liteFMPreSession.run({ input: inputTensor });
+                    allEmbeddings.push(new Float32Array(results.embedding.data));
+                }
+            }
+            step3Log.update("Step 3: Feature extraction... Done");
+
+            // ================================================================
+            // Step 4: APS Selection (if enabled)
+            // ================================================================
+            let selectedIndices;
+            let selectedEmbeddings;
+
+            if (t._f && apsSession && t._k > 0) {
+                const step4Log = logUpdatable("Step 4: Patch selection... 0%");
+                const apsScores = [];
+
+                for (let i = 0; i < allEmbeddings.length; i++) {
+                    const emb = allEmbeddings[i];
+                    const apsIn = new Float32Array(apsInputDim);
+                    for (let j = 0; j < embeddingDim; j++) { apsIn[j] = emb[j]; }
+                    const npt = numTokens - 1;
+                    for (let j = 0; j < embeddingDim; j++) {
+                        let sum = 0;
+                        for (let k = 1; k < numTokens; k++) { sum += emb[k * embeddingDim + j]; }
+                        apsIn[embeddingDim + j] = sum / npt;
+                    }
+                    const apsInputTensor = new ort.Tensor('float32', apsIn, [1, apsInputDim]);
+                    const apsResults = await apsSession.run({ features: apsInputTensor });
+                    apsScores.push(apsResults.scores.data[0]);
+
+                    const pct = Math.round((i + 1) / allEmbeddings.length * 100);
+                    step4Log.update(`Step 4: Patch selection... ${pct}%`);
+                    updateProgress('Patch selection', pct, 100);
+                }
+                step4Log.update("Step 4: Patch selection... Done");
+
+                selectedIndices = getTopKIndices(apsScores, t._k);
+                selectedEmbeddings = selectedIndices.map(i => allEmbeddings[i]);
+            } else {
+                // No APS: use all embeddings
+                log("Step 4: Skipping patch selection");
+                selectedIndices = Array.from({ length: allEmbeddings.length }, (_, i) => i);
+                selectedEmbeddings = allEmbeddings;
+            }
+
+            // ================================================================
+            // Step 5: LiteFM_post (compute final features)
+            // ================================================================
+            const step5Log = logUpdatable("Step 5: Computing features... 0%");
+
+            const allFeatures = [];  // [K, 1024]
+
+            for (let i = 0; i < selectedEmbeddings.length; i++) {
+                const emb = selectedEmbeddings[i];
+                const embTensor = new ort.Tensor('float32', emb, [1, numTokens, embeddingDim]);
+                const postResults = await liteFMPostSession.run({ embedding: embTensor });
+                allFeatures.push(new Float32Array(postResults.features.data));
+
+                const pct = Math.round((i + 1) / selectedEmbeddings.length * 100);
+                step5Log.update(`Step 5: Computing features... ${pct}%`);
+                updateProgress('Computing features', pct, 100);
+            }
+            step5Log.update("Step 5: Computing features... Done");
+
+            // ================================================================
+            // Step 6: MIL Classification
+            // ================================================================
+            log("Step 6: Classification...");
+
+            // Concatenate all features into [K, 1024]
+            const K = allFeatures.length;
+            const featuresConcat = new Float32Array(K * featureDim);
+            for (let i = 0; i < K; i++) {
+                featuresConcat.set(allFeatures[i], i * featureDim);
+            }
+
+            const milInput = new ort.Tensor('float32', featuresConcat, [K, featureDim]);
+            const milResults = await milSession.run({ features: milInput });
+            const logits = milResults.logits.data;
+
+            const probabilities = softmax(logits);
+            const prediction = probabilities[1] > probabilities[0] ? 1 : 0;
+            const predLabel = t.l[prediction];
+            const confidence = Math.max(...probabilities) * 100;
+
+            const totalTime = performance.now() - startTime;
+            log(`=== ${predLabel} (${confidence.toFixed(1)}%) ===`);
+            log(`Time: ${(totalTime / 1000).toFixed(1)}s`);
+
+            overlay.style.display = "none";
+
+            const prevOverlay = document.getElementById('result-overlay');
+            if (prevOverlay) prevOverlay.remove();
+
+            const resultDiv = document.createElement('div');
+            resultDiv.id = 'result-overlay';
+            resultDiv.style.cssText = 'position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:20px 30px;background:rgba(15,23,42,0.95);backdrop-filter:blur(8px);border-radius:12px;border:1px solid var(--lite-primary);box-shadow:0 0 30px rgba(0,188,212,0.3);pointer-events:none;text-align:center;color:white;z-index:100';
+
+            resultDiv.innerHTML = `
+                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 8px;">${t.n}</div>
+                <div style="font-size: 28px; font-weight: 700; color: var(--lite-primary); margin-bottom: 4px;">${predLabel}</div>
+                <div style="font-size: 16px; color: #e2e8f0;">Confidence: ${confidence.toFixed(1)}%</div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 8px;">${t.l[0]}: ${(probabilities[0] * 100).toFixed(1)}% | ${t.l[1]}: ${(probabilities[1] * 100).toFixed(1)}%</div>
+                <div style="font-size: 10px; color: #475569; margin-top: 12px; border-top: 1px solid #334155; padding-top: 8px;">Time: ${(totalTime / 1000).toFixed(1)}s</div>
+            `;
+
+            viewer.canvas.appendChild(resultDiv);
+
+            // Auto-hide after 10 seconds (longer for full analysis)
+            setTimeout(() => {
+                if (resultDiv.parentNode) {
+                    resultDiv.style.transition = 'opacity 0.5s';
+                    resultDiv.style.opacity = '0';
+                    setTimeout(() => resultDiv.remove(), 500);
+                }
+            }, 10000);
+
+        } catch (e) {
+            console.error(e);
+            log(`Inference error: ${e.message}`);
+            overlay.style.display = "none";
+        }
     });
 
     // Mobile sidebar toggle
@@ -1011,4 +1634,17 @@ group: showcase
     initViewer();
     initMobileSidebar();
     checkPWAMode();
+
+    // Service Worker Registration
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/showcase/LitePath/sw.js')
+            .then((registration) => {
+                console.log('[PWA] Service Worker registered:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('[PWA] Service Worker registration failed:', error);
+            });
+    }
 </script>
+</body>
+</html>
