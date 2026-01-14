@@ -514,11 +514,7 @@
             font-size: 0.65rem;
         }
 
-        /* Hide navbar on mobile for full-screen experience */
-        body.pwa-standalone .navbar {
-            display: none;
-        }
-
+        /* PWA standalone mode adjustments */
         body.pwa-standalone .lite-wrapper {
             height: 100vh;
             height: 100dvh;
@@ -668,7 +664,7 @@
 
     const _M = { p: 'FM/LiteFM_pre.onnx', q: 'FM/LiteFM_post.onnx', i: 224, e: 384, t: 197, f: 1024, a: 768 };
     const _B = 'ckpts/';
-    let _cT = 'gastric-grade';
+    let _cT = 'lung-nsclc';
 
     let viewer, tiff, tiffImages = [], tiffPool;
 
@@ -992,6 +988,7 @@
     let liteFMPostSession = null;
     let milSession = null;
     let apsSession = null;
+    const INFERENCE_BATCH_SIZE = 128;
 
     /**
      * Load feature extraction models (LiteFM_pre, LiteFM_post)
@@ -1002,9 +999,26 @@
 
         log("Loading LiteFM feature models (WebGPU)...");
         try {
+            // Check for WebGPU adapter capabilities
+            let gpuAdapter = null;
+            let supportsF16 = false;
+            if (navigator.gpu) {
+                gpuAdapter = await navigator.gpu.requestAdapter();
+                if (gpuAdapter) {
+                    supportsF16 = gpuAdapter.features.has('shader-f16');
+                    log(`WebGPU adapter: ${gpuAdapter.name || 'default'}, FP16: ${supportsF16}`);
+                }
+            }
+
             const gpuOptions = {
                 executionProviders: ['webgpu', 'wasm'],
-                graphOptimizationLevel: 'all'
+                graphOptimizationLevel: 'all',
+                // Free Dimension Override - fix batch size for better optimization
+                freeDimensionOverrides: {
+                    batch: INFERENCE_BATCH_SIZE
+                },
+                // IO Binding - keep output on GPU to reduce CPU-GPU transfers
+                preferredOutputLocation: 'gpu-buffer'
             };
 
             const prePath = _B + _M.p;
@@ -1020,6 +1034,26 @@
         } catch (e) {
             console.error(e);
             log(`Feature model load failed: ${e.message}`);
+            // Fallback: try without IO Binding
+            log("Retrying without IO Binding...");
+            try {
+                const fallbackOptions = {
+                    executionProviders: ['webgpu', 'wasm'],
+                    graphOptimizationLevel: 'all'
+                };
+                const prePath = _B + _M.p;
+                liteFMPreSession = await ort.InferenceSession.create(prePath, fallbackOptions);
+                log("LiteFM_pre loaded (fallback mode).");
+
+                const postPath = _B + _M.q;
+                liteFMPostSession = await ort.InferenceSession.create(postPath, fallbackOptions);
+                log("LiteFM_post loaded (fallback mode).");
+
+                await loadTaskModels(_cT);
+            } catch (e2) {
+                console.error(e2);
+                log(`Fallback load also failed: ${e2.message}`);
+            }
         }
     }
 
@@ -1419,9 +1453,66 @@
             const step3Log = logUpdatable("Step 3: Feature extraction... 0%");
 
             const allEmbeddings = [];  // [N, 197, 384]
-            const batchSize = 8;  // Process 8 patches at a time
+            const batchSize = INFERENCE_BATCH_SIZE;  // Use global constant for Graph Capture compatibility
 
-            for (let i = 0; i < sampledCoords.length; i += batchSize) {
+            // Helper: read a batch of patches
+            async function readBatchPatches(coords) {
+                const patches = await Promise.all(
+                    coords.map(coord => readPatch(coord.x, coord.y, patchSize, inputSize))
+                );
+                return patches;
+            }
+
+            // Helper: run batch inference with LiteFM_pre
+            // Handles IO Binding and padding for fixed batch size
+            async function runBatchInference(patches) {
+                if (patches.length === 0) return [];
+                const actualBatchSize = patches.length;
+
+                // Pad to fixed batch size if freeDimensionOverrides is used
+                let paddedPatches = patches;
+                if (actualBatchSize < INFERENCE_BATCH_SIZE) {
+                    // Pad with copies of the last patch (will be discarded)
+                    paddedPatches = [...patches];
+                    const lastPatch = patches[patches.length - 1];
+                    while (paddedPatches.length < INFERENCE_BATCH_SIZE) {
+                        paddedPatches.push(lastPatch);
+                    }
+                }
+
+                const batchData = preprocessBatch(paddedPatches, inputSize);
+                const inputTensor = new ort.Tensor('float32', batchData, [INFERENCE_BATCH_SIZE, 3, inputSize, inputSize]);
+                const results = await liteFMPreSession.run({ input: inputTensor });
+
+                // IO Binding: output may be GPU tensor, need to use getData()
+                const outputTensor = results.embedding;
+                let outputData;
+                if (outputTensor.location === 'gpu-buffer') {
+                    outputData = await outputTensor.getData();
+                    outputTensor.dispose();
+                } else {
+                    outputData = outputTensor.data;
+                }
+
+                // Split batch output into individual embeddings (only take actualBatchSize)
+                const embeddings = [];
+                const embSize = numTokens * embeddingDim;  // 197 * 384
+                for (let i = 0; i < actualBatchSize; i++) {
+                    const emb = new Float32Array(embSize);
+                    for (let j = 0; j < embSize; j++) {
+                        emb[j] = outputData[i * embSize + j];
+                    }
+                    embeddings.push(emb);
+                }
+                return embeddings;
+            }
+
+            // Pipeline: prefetch next batch while processing current batch
+            let nextBatchPromise = null;
+            const totalBatches = Math.ceil(sampledCoords.length / batchSize);
+
+            for (let batchIdx = 0; batchIdx < totalBatches; batchIdx++) {
+                const i = batchIdx * batchSize;
                 const batchEnd = Math.min(i + batchSize, sampledCoords.length);
                 const batchCoords = sampledCoords.slice(i, batchEnd);
 
@@ -1429,20 +1520,28 @@
                 step3Log.update(`Step 3: Feature extraction... ${pct}%`);
                 updateProgress('Feature extraction', pct, 100);
 
-                // Read batch of patches
-                const patches = [];
-                for (const coord of batchCoords) {
-                    const patch = await readPatch(coord.x, coord.y, patchSize, inputSize);
-                    patches.push(patch);
+                // Get current batch patches (from prefetch or read now)
+                let patches;
+                if (nextBatchPromise) {
+                    patches = await nextBatchPromise;
+                } else {
+                    patches = await readBatchPatches(batchCoords);
                 }
 
-                // Preprocess and run LiteFM_pre for each patch
-                for (const patch of patches) {
-                    const tensorData = preprocessImage(patch, inputSize);
-                    const inputTensor = new ort.Tensor('float32', tensorData, [1, 3, inputSize, inputSize]);
-                    const results = await liteFMPreSession.run({ input: inputTensor });
-                    allEmbeddings.push(new Float32Array(results.embedding.data));
+                // Start prefetching next batch while we process current batch
+                const nextBatchIdx = batchIdx + 1;
+                if (nextBatchIdx < totalBatches) {
+                    const nextI = nextBatchIdx * batchSize;
+                    const nextEnd = Math.min(nextI + batchSize, sampledCoords.length);
+                    const nextCoords = sampledCoords.slice(nextI, nextEnd);
+                    nextBatchPromise = readBatchPatches(nextCoords);
+                } else {
+                    nextBatchPromise = null;
                 }
+
+                // Run batch inference
+                const batchEmbeddings = await runBatchInference(patches);
+                allEmbeddings.push(...batchEmbeddings);
             }
             step3Log.update("Step 3: Feature extraction... Done");
 
@@ -1487,18 +1586,60 @@
 
             // ================================================================
             // Step 5: LiteFM_post (compute final features)
+            // Optimized with batch inference
             // ================================================================
             const step5Log = logUpdatable("Step 5: Computing features... 0%");
 
             const allFeatures = [];  // [K, 1024]
+            const postBatchSize = INFERENCE_BATCH_SIZE;  // Use global constant for Graph Capture compatibility
+            const totalPostBatches = Math.ceil(selectedEmbeddings.length / postBatchSize);
 
-            for (let i = 0; i < selectedEmbeddings.length; i++) {
-                const emb = selectedEmbeddings[i];
-                const embTensor = new ort.Tensor('float32', emb, [1, numTokens, embeddingDim]);
+            for (let batchIdx = 0; batchIdx < totalPostBatches; batchIdx++) {
+                const i = batchIdx * postBatchSize;
+                const batchEnd = Math.min(i + postBatchSize, selectedEmbeddings.length);
+                const batchEmbeddings = selectedEmbeddings.slice(i, batchEnd);
+                const actualBatchSize = batchEmbeddings.length;
+
+                // Pad to fixed batch size if needed
+                let paddedEmbeddings = batchEmbeddings;
+                if (actualBatchSize < INFERENCE_BATCH_SIZE) {
+                    paddedEmbeddings = [...batchEmbeddings];
+                    const lastEmb = batchEmbeddings[batchEmbeddings.length - 1];
+                    while (paddedEmbeddings.length < INFERENCE_BATCH_SIZE) {
+                        paddedEmbeddings.push(lastEmb);
+                    }
+                }
+
+                // Concatenate embeddings into batch tensor [INFERENCE_BATCH_SIZE, 197, 384]
+                const embSize = numTokens * embeddingDim;
+                const batchData = new Float32Array(INFERENCE_BATCH_SIZE * embSize);
+                for (let b = 0; b < INFERENCE_BATCH_SIZE; b++) {
+                    batchData.set(paddedEmbeddings[b], b * embSize);
+                }
+
+                const embTensor = new ort.Tensor('float32', batchData, [INFERENCE_BATCH_SIZE, numTokens, embeddingDim]);
                 const postResults = await liteFMPostSession.run({ embedding: embTensor });
-                allFeatures.push(new Float32Array(postResults.features.data));
 
-                const pct = Math.round((i + 1) / selectedEmbeddings.length * 100);
+                // IO Binding: output may be GPU tensor, need to use getData()
+                const outputTensor = postResults.features;
+                let outputData;
+                if (outputTensor.location === 'gpu-buffer') {
+                    outputData = await outputTensor.getData();
+                    outputTensor.dispose();
+                } else {
+                    outputData = outputTensor.data;
+                }
+
+                // Split batch output into individual features (only take actualBatchSize)
+                for (let b = 0; b < actualBatchSize; b++) {
+                    const feat = new Float32Array(featureDim);
+                    for (let j = 0; j < featureDim; j++) {
+                        feat[j] = outputData[b * featureDim + j];
+                    }
+                    allFeatures.push(feat);
+                }
+
+                const pct = Math.round(batchEnd / selectedEmbeddings.length * 100);
                 step5Log.update(`Step 5: Computing features... ${pct}%`);
                 updateProgress('Computing features', pct, 100);
             }
@@ -1542,7 +1683,10 @@
                 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #94a3b8; margin-bottom: 8px;">${t.n}</div>
                 <div style="font-size: 28px; font-weight: 700; color: var(--lite-primary); margin-bottom: 4px;">${predLabel}</div>
                 <div style="font-size: 16px; color: #e2e8f0;">Confidence: ${confidence.toFixed(1)}%</div>
-                <div style="font-size: 12px; color: #64748b; margin-top: 8px;">${t.l[0]}: ${(probabilities[0] * 100).toFixed(1)}% | ${t.l[1]}: ${(probabilities[1] * 100).toFixed(1)}%</div>
+                <div style="font-size: 12px; color: #64748b; margin-top: 8px;">
+                    <div>${t.l[0]}: ${(probabilities[0] * 100).toFixed(1)}%</div>
+                    <div>${t.l[1]}: ${(probabilities[1] * 100).toFixed(1)}%</div>
+                </div>
                 <div style="font-size: 10px; color: #475569; margin-top: 12px; border-top: 1px solid #334155; padding-top: 8px;">Time: ${(totalTime / 1000).toFixed(1)}s</div>
             `;
 
