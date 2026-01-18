@@ -577,7 +577,7 @@
                         <i class="fas fa-microscope"></i>
                         <div class="drop-text" id="drop-text">Select Slide File</div>
                         <div class="drop-sub">Drag & Drop .svs, .tiff, .ndpi</div>
-                        <input class="file-input-hidden" type="file" id="wsiSingleFile" accept=".svs,.tiff,.tif,.ndpi">
+                        <input class="file-input-hidden" type="file" id="wsiSingleFile">
                     </div>
                     <div id="file-info" class="mt-2 text-center"
                         style="font-size: 0.75rem; color: var(--lite-primary);"></div>
@@ -789,6 +789,18 @@
 
     async function handleFile(file) {
         if (!file) return;
+
+        // Validate file extension (iOS Safari doesn't respect accept attribute for custom extensions)
+        const validExtensions = ['.svs', '.tiff', '.tif', '.ndpi'];
+        const fileName = file.name.toLowerCase();
+        const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+
+        if (!hasValidExtension) {
+            document.getElementById('file-info').innerHTML =
+                `<i class="fas fa-exclamation-circle" style="color: #e53e3e;"></i> <span style="color: #e53e3e;">Unsupported format. Please select .svs, .tiff, or .ndpi file.</span>`;
+            log(`Error: Unsupported file format: ${file.name}`);
+            return;
+        }
 
         // Reset
         tiffImages = [];
@@ -1065,14 +1077,24 @@
         log(`Loading models for ${t.n}...`);
 
         try {
+            const gpuOpts = {
+                executionProviders: ['webgpu', 'wasm'],
+                graphOptimizationLevel: 'all'
+            };
             const wasmOpts = { executionProviders: ['wasm'] };
 
             if (milSession) { await milSession.release(); milSession = null; }
             if (apsSession) { await apsSession.release(); apsSession = null; }
 
             if (t._f && t.m.a) {
-                apsSession = await ort.InferenceSession.create(_B + t.m.a, wasmOpts);
-                log(`APS loaded for ${t.n}.`);
+                try {
+                    apsSession = await ort.InferenceSession.create(_B + t.m.a, gpuOpts);
+                    log(`APS loaded for ${t.n} (WebGPU).`);
+                } catch (e) {
+                    log(`APS WebGPU failed, falling back to WASM: ${e.message}`);
+                    apsSession = await ort.InferenceSession.create(_B + t.m.a, wasmOpts);
+                    log(`APS loaded for ${t.n} (WASM fallback).`);
+                }
             }
 
             milSession = await ort.InferenceSession.create(_B + t.m.c, wasmOpts);
@@ -1505,24 +1527,51 @@
                 return embeddings;
             }
 
-            // Helper: compute APS scores for embeddings sequentially
-            // Note: ONNX session doesn't support concurrent run() calls
+            const APS_BATCH_SIZE = 64; // Process 64 embeddings per GPU call
             async function computeAPSScoresBatch(embeddings) {
-                const scores = [];
-                for (const emb of embeddings) {
-                    const apsIn = new Float32Array(apsInputDim);
-                    for (let j = 0; j < embeddingDim; j++) { apsIn[j] = emb[j]; }
-                    const npt = numTokens - 1;
-                    for (let j = 0; j < embeddingDim; j++) {
-                        let sum = 0;
-                        for (let k = 1; k < numTokens; k++) { sum += emb[k * embeddingDim + j]; }
-                        apsIn[embeddingDim + j] = sum / npt;
+                if (embeddings.length === 0) return [];
+
+                const allScores = [];
+                const npt = numTokens - 1;
+
+                // Process in batches of APS_BATCH_SIZE
+                for (let batchStart = 0; batchStart < embeddings.length; batchStart += APS_BATCH_SIZE) {
+                    const batchEnd = Math.min(batchStart + APS_BATCH_SIZE, embeddings.length);
+                    const batchLen = batchEnd - batchStart;
+
+                    // Prepare batched input: [batchLen, apsInputDim]
+                    const batchInput = new Float32Array(batchLen * apsInputDim);
+
+                    for (let i = 0; i < batchLen; i++) {
+                        const emb = embeddings[batchStart + i];
+                        const offset = i * apsInputDim;
+
+                        // CLS token
+                        for (let j = 0; j < embeddingDim; j++) {
+                            batchInput[offset + j] = emb[j];
+                        }
+                        // Mean of patch tokens
+                        for (let j = 0; j < embeddingDim; j++) {
+                            let sum = 0;
+                            for (let k = 1; k < numTokens; k++) {
+                                sum += emb[k * embeddingDim + j];
+                            }
+                            batchInput[offset + embeddingDim + j] = sum / npt;
+                        }
                     }
-                    const apsInputTensor = new ort.Tensor('float32', apsIn, [1, apsInputDim]);
+
+                    // Run batched inference
+                    const apsInputTensor = new ort.Tensor('float32', batchInput, [batchLen, apsInputDim]);
                     const apsResults = await apsSession.run({ features: apsInputTensor });
-                    scores.push(apsResults.scores.data[0]);
+
+                    // Extract scores from batch output
+                    const scoresData = apsResults.scores.data;
+                    for (let i = 0; i < batchLen; i++) {
+                        allScores.push(scoresData[i]);
+                    }
                 }
-                return scores;
+
+                return allScores;
             }
 
             let selectedEmbeddings;
