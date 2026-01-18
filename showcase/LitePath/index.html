@@ -802,7 +802,8 @@
         log(`Reading file: ${file.name} (${(file.size / 1024 / 1024).toFixed(1)}MB)`);
 
         try {
-            if (!tiffPool) tiffPool = new GeoTIFF.Pool();
+            // Create pool with more workers for parallel decode (default is 4, increase to 8)
+            if (!tiffPool) tiffPool = new GeoTIFF.Pool(8);
             tiff = await GeoTIFF.fromBlob(file);
 
             const count = await tiff.getImageCount();
@@ -1448,31 +1449,31 @@
             const sampledCoords = sampleIndices.map(i => allCoords[i]);
 
             // ================================================================
-            // Step 3: Read Patches & Extract Embeddings (LiteFM_pre)
+            // Step 3: Feature Extraction + APS Selection
+            // Optimizations: Multi-batch prefetch, Batch APS inference, Pipeline
             // ================================================================
             const step3Log = logUpdatable("Step 3: Feature extraction... 0%");
 
-            const allEmbeddings = [];  // [N, 197, 384]
-            const batchSize = INFERENCE_BATCH_SIZE;  // Use global constant for Graph Capture compatibility
+            const batchSize = INFERENCE_BATCH_SIZE;
+            const embSize = numTokens * embeddingDim;  // 197 * 384
+            const bufferThreshold = 2500;  // Trigger selection when buffer reaches this size
+            const k_a = t._k;  // Top-K to keep (e.g., 100)
+            const PREFETCH_QUEUE_SIZE = 3;  // Number of batches to prefetch ahead
 
             // Helper: read a batch of patches
             async function readBatchPatches(coords) {
-                const patches = await Promise.all(
+                return await Promise.all(
                     coords.map(coord => readPatch(coord.x, coord.y, patchSize, inputSize))
                 );
-                return patches;
             }
 
             // Helper: run batch inference with LiteFM_pre
-            // Handles IO Binding and padding for fixed batch size
             async function runBatchInference(patches) {
                 if (patches.length === 0) return [];
                 const actualBatchSize = patches.length;
 
-                // Pad to fixed batch size if freeDimensionOverrides is used
                 let paddedPatches = patches;
                 if (actualBatchSize < INFERENCE_BATCH_SIZE) {
-                    // Pad with copies of the last patch (will be discarded)
                     paddedPatches = [...patches];
                     const lastPatch = patches[patches.length - 1];
                     while (paddedPatches.length < INFERENCE_BATCH_SIZE) {
@@ -1484,7 +1485,6 @@
                 const inputTensor = new ort.Tensor('float32', batchData, [INFERENCE_BATCH_SIZE, 3, inputSize, inputSize]);
                 const results = await liteFMPreSession.run({ input: inputTensor });
 
-                // IO Binding: output may be GPU tensor, need to use getData()
                 const outputTensor = results.embedding;
                 let outputData;
                 if (outputTensor.location === 'gpu-buffer') {
@@ -1494,9 +1494,7 @@
                     outputData = outputTensor.data;
                 }
 
-                // Split batch output into individual embeddings (only take actualBatchSize)
                 const embeddings = [];
-                const embSize = numTokens * embeddingDim;  // 197 * 384
                 for (let i = 0; i < actualBatchSize; i++) {
                     const emb = new Float32Array(embSize);
                     for (let j = 0; j < embSize; j++) {
@@ -1507,56 +1505,11 @@
                 return embeddings;
             }
 
-            // Pipeline: prefetch next batch while processing current batch
-            let nextBatchPromise = null;
-            const totalBatches = Math.ceil(sampledCoords.length / batchSize);
-
-            for (let batchIdx = 0; batchIdx < totalBatches; batchIdx++) {
-                const i = batchIdx * batchSize;
-                const batchEnd = Math.min(i + batchSize, sampledCoords.length);
-                const batchCoords = sampledCoords.slice(i, batchEnd);
-
-                const pct = Math.round(i / sampledCoords.length * 100);
-                step3Log.update(`Step 3: Feature extraction... ${pct}%`);
-                updateProgress('Feature extraction', pct, 100);
-
-                // Get current batch patches (from prefetch or read now)
-                let patches;
-                if (nextBatchPromise) {
-                    patches = await nextBatchPromise;
-                } else {
-                    patches = await readBatchPatches(batchCoords);
-                }
-
-                // Start prefetching next batch while we process current batch
-                const nextBatchIdx = batchIdx + 1;
-                if (nextBatchIdx < totalBatches) {
-                    const nextI = nextBatchIdx * batchSize;
-                    const nextEnd = Math.min(nextI + batchSize, sampledCoords.length);
-                    const nextCoords = sampledCoords.slice(nextI, nextEnd);
-                    nextBatchPromise = readBatchPatches(nextCoords);
-                } else {
-                    nextBatchPromise = null;
-                }
-
-                // Run batch inference
-                const batchEmbeddings = await runBatchInference(patches);
-                allEmbeddings.push(...batchEmbeddings);
-            }
-            step3Log.update("Step 3: Feature extraction... Done");
-
-            // ================================================================
-            // Step 4: APS Selection (if enabled)
-            // ================================================================
-            let selectedIndices;
-            let selectedEmbeddings;
-
-            if (t._f && apsSession && t._k > 0) {
-                const step4Log = logUpdatable("Step 4: Patch selection... 0%");
-                const apsScores = [];
-
-                for (let i = 0; i < allEmbeddings.length; i++) {
-                    const emb = allEmbeddings[i];
+            // Helper: compute APS scores for embeddings sequentially
+            // Note: ONNX session doesn't support concurrent run() calls
+            async function computeAPSScoresBatch(embeddings) {
+                const scores = [];
+                for (const emb of embeddings) {
                     const apsIn = new Float32Array(apsInputDim);
                     for (let j = 0; j < embeddingDim; j++) { apsIn[j] = emb[j]; }
                     const npt = numTokens - 1;
@@ -1567,28 +1520,148 @@
                     }
                     const apsInputTensor = new ort.Tensor('float32', apsIn, [1, apsInputDim]);
                     const apsResults = await apsSession.run({ features: apsInputTensor });
-                    apsScores.push(apsResults.scores.data[0]);
-
-                    const pct = Math.round((i + 1) / allEmbeddings.length * 100);
-                    step4Log.update(`Step 4: Patch selection... ${pct}%`);
-                    updateProgress('Patch selection', pct, 100);
+                    scores.push(apsResults.scores.data[0]);
                 }
-                step4Log.update("Step 4: Patch selection... Done");
+                return scores;
+            }
 
-                selectedIndices = getTopKIndices(apsScores, t._k);
-                selectedEmbeddings = selectedIndices.map(i => allEmbeddings[i]);
+            let selectedEmbeddings;
+
+            if (t._f && apsSession && k_a > 0) {
+                // Streaming Top-K with buffer + multi-batch prefetch
+                const embBuffer = [];    // Array of embeddings
+                const scoreBuffer = [];  // Corresponding scores
+                let firstFlag = true;
+
+                const totalBatches = Math.ceil(sampledCoords.length / batchSize);
+
+                // Initialize prefetch queue with first N batches
+                const prefetchQueue = [];
+                for (let i = 0; i < Math.min(PREFETCH_QUEUE_SIZE, totalBatches); i++) {
+                    const startIdx = i * batchSize;
+                    const endIdx = Math.min(startIdx + batchSize, sampledCoords.length);
+                    prefetchQueue.push(readBatchPatches(sampledCoords.slice(startIdx, endIdx)));
+                }
+
+                for (let batchIdx = 0; batchIdx < totalBatches; batchIdx++) {
+                    const pct = Math.round(batchIdx / totalBatches * 100);
+                    step3Log.update(`Step 3: Feature extraction... ${pct}%`);
+                    updateProgress('Feature extraction', pct, 100);
+
+                    // Get patches from prefetch queue
+                    const patches = await prefetchQueue.shift();
+
+                    // Refill prefetch queue
+                    const nextPrefetchIdx = batchIdx + PREFETCH_QUEUE_SIZE;
+                    if (nextPrefetchIdx < totalBatches) {
+                        const startIdx = nextPrefetchIdx * batchSize;
+                        const endIdx = Math.min(startIdx + batchSize, sampledCoords.length);
+                        prefetchQueue.push(readBatchPatches(sampledCoords.slice(startIdx, endIdx)));
+                    }
+
+                    // Run LiteFM_pre
+                    const batchEmbeddings = await runBatchInference(patches);
+
+                    // Add to buffer (scores will be computed when buffer is full)
+                    for (const emb of batchEmbeddings) {
+                        embBuffer.push(emb);
+                        scoreBuffer.push(-Infinity);  // Placeholder
+                    }
+
+                    // Check if buffer threshold reached
+                    if (embBuffer.length >= bufferThreshold) {
+                        const startIdx = firstFlag ? 0 : k_a;
+                        firstFlag = false;
+
+                        // Batch compute APS scores for new entries only
+                        const newEmbeddings = embBuffer.slice(startIdx);
+                        const newScores = await computeAPSScoresBatch(newEmbeddings);
+                        for (let idx = 0; idx < newScores.length; idx++) {
+                            scoreBuffer[startIdx + idx] = newScores[idx];
+                        }
+
+                        // Get top-K indices
+                        const indexed = scoreBuffer.map((score, idx) => ({ score, idx }));
+                        indexed.sort((a, b) => b.score - a.score);
+                        const topKIndices = indexed.slice(0, k_a).map(item => item.idx);
+
+                        // Keep only top-K in buffer
+                        const newEmbBuffer = topKIndices.map(idx => embBuffer[idx]);
+                        const newScoreBuffer = topKIndices.map(idx => scoreBuffer[idx]);
+                        embBuffer.length = 0;
+                        scoreBuffer.length = 0;
+                        embBuffer.push(...newEmbBuffer);
+                        scoreBuffer.push(...newScoreBuffer);
+                    }
+                }
+
+                // Final selection if buffer still has more than k_a
+                if (embBuffer.length > k_a) {
+                    // Batch score remaining unscored entries
+                    const unscoredIndices = [];
+                    const unscoredEmbs = [];
+                    for (let idx = 0; idx < embBuffer.length; idx++) {
+                        if (scoreBuffer[idx] === -Infinity) {
+                            unscoredIndices.push(idx);
+                            unscoredEmbs.push(embBuffer[idx]);
+                        }
+                    }
+                    if (unscoredEmbs.length > 0) {
+                        const newScores = await computeAPSScoresBatch(unscoredEmbs);
+                        for (let i = 0; i < unscoredIndices.length; i++) {
+                            scoreBuffer[unscoredIndices[i]] = newScores[i];
+                        }
+                    }
+
+                    const indexed = scoreBuffer.map((score, idx) => ({ score, idx }));
+                    indexed.sort((a, b) => b.score - a.score);
+                    const topKIndices = indexed.slice(0, k_a).map(item => item.idx);
+                    selectedEmbeddings = topKIndices.map(idx => embBuffer[idx]);
+                } else {
+                    selectedEmbeddings = embBuffer;
+                }
+
+                step3Log.update("Step 3: Feature extraction... Done");
             } else {
-                // No APS: use all embeddings
-                log("Step 4: Skipping patch selection");
-                selectedIndices = Array.from({ length: allEmbeddings.length }, (_, i) => i);
+                // No APS: extract all embeddings with multi-batch prefetch
+                const allEmbeddings = [];
+                const totalBatches = Math.ceil(sampledCoords.length / batchSize);
+
+                // Initialize prefetch queue
+                const prefetchQueue = [];
+                for (let i = 0; i < Math.min(PREFETCH_QUEUE_SIZE, totalBatches); i++) {
+                    const startIdx = i * batchSize;
+                    const endIdx = Math.min(startIdx + batchSize, sampledCoords.length);
+                    prefetchQueue.push(readBatchPatches(sampledCoords.slice(startIdx, endIdx)));
+                }
+
+                for (let batchIdx = 0; batchIdx < totalBatches; batchIdx++) {
+                    const pct = Math.round(batchIdx / totalBatches * 100);
+                    step3Log.update(`Step 3: Feature extraction... ${pct}%`);
+                    updateProgress('Feature extraction', pct, 100);
+
+                    const patches = await prefetchQueue.shift();
+
+                    // Refill prefetch queue
+                    const nextPrefetchIdx = batchIdx + PREFETCH_QUEUE_SIZE;
+                    if (nextPrefetchIdx < totalBatches) {
+                        const startIdx = nextPrefetchIdx * batchSize;
+                        const endIdx = Math.min(startIdx + batchSize, sampledCoords.length);
+                        prefetchQueue.push(readBatchPatches(sampledCoords.slice(startIdx, endIdx)));
+                    }
+
+                    const batchEmbeddings = await runBatchInference(patches);
+                    allEmbeddings.push(...batchEmbeddings);
+                }
+                step3Log.update("Step 3: Feature extraction... Done");
                 selectedEmbeddings = allEmbeddings;
             }
 
             // ================================================================
-            // Step 5: LiteFM_post (compute final features)
+            // Step 4: LiteFM_post (compute final features)
             // Optimized with batch inference
             // ================================================================
-            const step5Log = logUpdatable("Step 5: Computing features... 0%");
+            const step5Log = logUpdatable("Step 4: Computing features... 0%");
 
             const allFeatures = [];  // [K, 1024]
             const postBatchSize = INFERENCE_BATCH_SIZE;  // Use global constant for Graph Capture compatibility
@@ -1640,15 +1713,15 @@
                 }
 
                 const pct = Math.round(batchEnd / selectedEmbeddings.length * 100);
-                step5Log.update(`Step 5: Computing features... ${pct}%`);
+                step5Log.update(`Step 4: Computing features... ${pct}%`);
                 updateProgress('Computing features', pct, 100);
             }
-            step5Log.update("Step 5: Computing features... Done");
+            step5Log.update("Step 4: Computing features... Done");
 
             // ================================================================
-            // Step 6: MIL Classification
+            // Step 5: MIL Classification
             // ================================================================
-            log("Step 6: Classification...");
+            log("Step 5: Classification...");
 
             // Concatenate all features into [K, 1024]
             const K = allFeatures.length;
