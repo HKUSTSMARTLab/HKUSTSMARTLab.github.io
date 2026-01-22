@@ -652,12 +652,12 @@
     const _T = {
         'lung-nsclc': {
             id: 'lung-nsclc', n: 'Lung Cancer Subtyping', d: 'Classify NSCLC into LUAD vs LUSC',
-            _c: 'subtyping', _s: 0x76c, _k: 0x64, _f: 1, l: ['LUAD', 'LUSC'],
+            _c: 'subtyping', _s: 2000, _k: 0, _f: 0, l: ['LUSC', 'LUAD'],
             m: { a: 'MIL/Lung-NSCLC_APS.onnx', c: 'MIL/Lung-NSCLC.onnx' }
         },
         'gastric-grade': {
             id: 'gastric-grade', n: 'Gastric Cancer Grading', d: 'Classify gastric cancer grade (Low vs High)',
-            _c: 'grading', _s: 0x76c, _k: 0x64, _f: 1, l: ['Low Grade', 'High Grade'],
+            _c: 'grading', _s: 2000, _k: 0, _f: 0, l: ['Low Grade', 'High Grade'],
             m: { a: 'MIL/Gastric-Grade_APS.onnx', c: 'MIL/Gastric-Grade.onnx' }
         }
     };
@@ -665,6 +665,90 @@
     const _M = { p: 'FM/LiteFM_pre.onnx', q: 'FM/LiteFM_post.onnx', i: 224, e: 384, t: 197, f: 1024, a: 768 };
     const _B = 'ckpts/';
     let _cT = 'lung-nsclc';
+
+    // ============================================================================
+    // Mobile Detection & Adaptive Configuration
+    // ============================================================================
+
+    /**
+     * Detect if running on mobile device
+     */
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+            || window.innerWidth <= 768
+            || ('ontouchstart' in window && navigator.maxTouchPoints > 0);
+    }
+
+    /**
+     * Get adaptive configuration based on device type
+     */
+    function getConfig() {
+        const mobile = isMobile();
+        return {
+            isMobile: mobile,
+            BATCH_SIZE: mobile ? 32 : 128,          // Smaller batch for mobile GPU memory
+            WORKERS: mobile ? 2 : 8,                // Fewer workers to reduce CPU contention
+            PREFETCH: mobile ? 2 : 3,               // Smaller prefetch queue
+            YIELD_INTERVAL: mobile ? 1 : 0,         // Yield every batch on mobile
+            USE_GPU_BUFFER: !mobile                 // Disable IO binding on mobile (can cause issues)
+        };
+    }
+
+    // Cache config at page load
+    const _CONFIG = getConfig();
+    console.log('[LitePath] Device config:', _CONFIG);
+
+    /**
+     * Buffer Pool for Float32Array reuse (reduces GC pressure)
+     */
+    class BufferPool {
+        constructor(maxBuffersPerSize = 4) {
+            this.pools = new Map();
+            this.maxBuffersPerSize = maxBuffersPerSize;
+        }
+
+        get(size) {
+            const pool = this.pools.get(size);
+            if (pool && pool.length > 0) {
+                return pool.pop();
+            }
+            return new Float32Array(size);
+        }
+
+        release(buffer) {
+            if (!buffer) return;
+            const size = buffer.length;
+            if (!this.pools.has(size)) {
+                this.pools.set(size, []);
+            }
+            if (this.pools.get(size).length < this.maxBuffersPerSize) {
+                this.pools.get(size).push(buffer);
+            }
+        }
+
+        clear() {
+            this.pools.clear();
+        }
+    }
+
+    const bufferPool = new BufferPool();
+
+    /**
+     * Yield to main thread to prevent UI blocking and watchdog kills
+     */
+    async function yieldToMain() {
+        return new Promise(resolve => setTimeout(resolve, 0));
+    }
+
+    // Pre-computed constants for preprocessing optimization
+    const PREPROCESS_CONST = {
+        INV_255: 1 / 255,
+        MEAN: [0.485, 0.456, 0.406],
+        STD: [0.229, 0.224, 0.225],
+        // Combined: (pixel/255 - mean) / std = pixel * (1/255/std) + (-mean/std)
+        INV_STD_DIV_255: [1 / (0.229 * 255), 1 / (0.224 * 255), 1 / (0.225 * 255)],
+        NEG_MEAN_DIV_STD: [-0.485 / 0.229, -0.456 / 0.224, -0.406 / 0.225]
+    };
 
     let viewer, tiff, tiffImages = [], tiffPool;
 
@@ -814,8 +898,14 @@
         log(`Reading file: ${file.name} (${(file.size / 1024 / 1024).toFixed(1)}MB)`);
 
         try {
-            // Create pool with more workers for parallel decode (default is 4, increase to 8)
-            if (!tiffPool) tiffPool = new GeoTIFF.Pool(8);
+            // Create pool with adaptive worker count based on device
+            // Mobile: 2 workers to reduce CPU contention and heat
+            // Desktop: 8 workers for parallel decode
+            if (!tiffPool) {
+                const workerCount = _CONFIG.WORKERS;
+                tiffPool = new GeoTIFF.Pool(workerCount);
+                log(`TIFF pool initialized (${workerCount} workers)`);
+            }
             tiff = await GeoTIFF.fromBlob(file);
 
             const count = await tiff.getImageCount();
@@ -1001,16 +1091,24 @@
     let liteFMPostSession = null;
     let milSession = null;
     let apsSession = null;
-    const INFERENCE_BATCH_SIZE = 128;
+
+    // Adaptive batch size based on device
+    // Mobile: 32 (smaller GPU memory, prevents overheating)
+    // Desktop: 128 (maximize throughput)
+    const INFERENCE_BATCH_SIZE = _CONFIG.BATCH_SIZE;
 
     /**
      * Load feature extraction models (LiteFM_pre, LiteFM_post)
      * These are shared across all tasks
+     *
+     * OPTIMIZED for mobile:
+     * - Uses adaptive batch size
+     * - Disables gpu-buffer on mobile (can cause issues on some devices)
      */
     async function loadFeatureModels() {
         if (liteFMPreSession && liteFMPostSession) return;
 
-        log("Loading LiteFM feature models (WebGPU)...");
+        log(`Loading LiteFM feature models (WebGPU, batch=${INFERENCE_BATCH_SIZE})...`);
         try {
             // Check for WebGPU adapter capabilities
             let gpuAdapter = null;
@@ -1029,10 +1127,17 @@
                 // Free Dimension Override - fix batch size for better optimization
                 freeDimensionOverrides: {
                     batch: INFERENCE_BATCH_SIZE
-                },
-                // IO Binding - keep output on GPU to reduce CPU-GPU transfers
-                preferredOutputLocation: 'gpu-buffer'
+                }
             };
+
+            // IO Binding - keep output on GPU to reduce CPU-GPU transfers
+            // Disabled on mobile as it can cause issues on some devices
+            if (_CONFIG.USE_GPU_BUFFER) {
+                gpuOptions.preferredOutputLocation = 'gpu-buffer';
+                log("Using GPU buffer IO binding (desktop mode)");
+            } else {
+                log("GPU buffer disabled (mobile mode)");
+            }
 
             const prePath = _B + _M.p;
             liteFMPreSession = await ort.InferenceSession.create(prePath, gpuOptions);
@@ -1047,7 +1152,7 @@
         } catch (e) {
             console.error(e);
             log(`Feature model load failed: ${e.message}`);
-            // Fallback: try without IO Binding
+            // Fallback: try without IO Binding and with smaller batch
             log("Retrying without IO Binding...");
             try {
                 const fallbackOptions = {
@@ -1313,27 +1418,28 @@
     // ============================================================================
 
     /**
-     * Preprocess image data for model input
+     * Preprocess image data for model input (single image)
      * Converts RGBA ImageData to CHW Float32Array with ImageNet normalization
+     * OPTIMIZED: Uses pre-computed constants to reduce arithmetic operations
      */
     function preprocessImage(imgData, targetSize) {
         const { data } = imgData;
-        const tensorData = new Float32Array(1 * 3 * targetSize * targetSize);
-        const mean = [0.485, 0.456, 0.406];
-        const std = [0.229, 0.224, 0.225];
+        const pixelCount = targetSize * targetSize;
+        const tensorData = bufferPool.get(3 * pixelCount);
 
-        let rPtr = 0;
-        let gPtr = targetSize * targetSize;
-        let bPtr = 2 * targetSize * targetSize;
+        // Use pre-computed constants
+        const invStd0 = PREPROCESS_CONST.INV_STD_DIV_255[0];
+        const invStd1 = PREPROCESS_CONST.INV_STD_DIV_255[1];
+        const invStd2 = PREPROCESS_CONST.INV_STD_DIV_255[2];
+        const bias0 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[0];
+        const bias1 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[1];
+        const bias2 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[2];
 
-        for (let i = 0; i < targetSize * targetSize; i++) {
-            const r = data[i * 4] / 255.0;
-            const g = data[i * 4 + 1] / 255.0;
-            const b = data[i * 4 + 2] / 255.0;
-
-            tensorData[rPtr++] = (r - mean[0]) / std[0];
-            tensorData[gPtr++] = (g - mean[1]) / std[1];
-            tensorData[bPtr++] = (b - mean[2]) / std[2];
+        for (let i = 0; i < pixelCount; i++) {
+            const i4 = i << 2;  // i * 4 using bit shift
+            tensorData[i] = data[i4] * invStd0 + bias0;
+            tensorData[pixelCount + i] = data[i4 + 1] * invStd1 + bias1;
+            tensorData[2 * pixelCount + i] = data[i4 + 2] * invStd2 + bias2;
         }
 
         return tensorData;
@@ -1342,25 +1448,47 @@
     /**
      * Preprocess a batch of patches for model input
      * Returns Float32Array [batchSize, 3, 224, 224]
+     *
+     * OPTIMIZED for mobile:
+     * - Pre-computed normalization constants (avoids division per pixel)
+     * - Combined formula: (pixel/255 - mean) / std = pixel * (1/255/std) + (-mean/std)
+     * - Buffer reuse via BufferPool (reduces GC pressure)
+     * - Bit shift for multiplication by 4
      */
-    function preprocessBatch(patches, targetSize) {
+    function preprocessBatch(patches, targetSize, reuseBuffer = null) {
         const batchSize = patches.length;
-        const output = new Float32Array(batchSize * 3 * targetSize * targetSize);
-        const mean = [0.485, 0.456, 0.406];
-        const std = [0.229, 0.224, 0.225];
+        const pixelCount = targetSize * targetSize;
+        const totalSize = batchSize * 3 * pixelCount;
+
+        // Reuse provided buffer or get from pool
+        const output = (reuseBuffer && reuseBuffer.length >= totalSize)
+            ? reuseBuffer
+            : bufferPool.get(totalSize);
+
+        // Pre-load constants to local variables (faster access)
+        const invStd0 = PREPROCESS_CONST.INV_STD_DIV_255[0];
+        const invStd1 = PREPROCESS_CONST.INV_STD_DIV_255[1];
+        const invStd2 = PREPROCESS_CONST.INV_STD_DIV_255[2];
+        const bias0 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[0];
+        const bias1 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[1];
+        const bias2 = PREPROCESS_CONST.NEG_MEAN_DIV_STD[2];
+
+        const channelSize = pixelCount;
+        const patchSize3 = 3 * pixelCount;
 
         for (let b = 0; b < batchSize; b++) {
             const data = patches[b].data;
-            const offset = b * 3 * targetSize * targetSize;
+            const offset = b * patchSize3;
+            const rOff = offset;
+            const gOff = offset + channelSize;
+            const bOff = offset + 2 * channelSize;
 
-            for (let i = 0; i < targetSize * targetSize; i++) {
-                const r = data[i * 4] / 255.0;
-                const g = data[i * 4 + 1] / 255.0;
-                const b_val = data[i * 4 + 2] / 255.0;
-
-                output[offset + i] = (r - mean[0]) / std[0];
-                output[offset + targetSize * targetSize + i] = (g - mean[1]) / std[1];
-                output[offset + 2 * targetSize * targetSize + i] = (b_val - mean[2]) / std[2];
+            for (let i = 0; i < pixelCount; i++) {
+                const i4 = i << 2;  // i * 4 using bit shift (faster)
+                // Combined normalize: pixel * (1/255/std) + (-mean/std)
+                output[rOff + i] = data[i4] * invStd0 + bias0;
+                output[gOff + i] = data[i4 + 1] * invStd1 + bias1;
+                output[bOff + i] = data[i4 + 2] * invStd2 + bias2;
             }
         }
 
@@ -1460,7 +1588,7 @@
             updateProgress('Extracting patches', 0, 100);
             log("Step 2: Extracting patch coordinates...");
 
-            const patchSize = 512;
+            const patchSize = 256;
             const allCoords = extractPatchCoords(mask, maskW, maskH, nativeWidth, nativeHeight, patchSize, 0.3);
 
             if (allCoords.length === 0) {
@@ -1473,6 +1601,10 @@
             // ================================================================
             // Step 3: Feature Extraction + APS Selection
             // Optimizations: Multi-batch prefetch, Batch APS inference, Pipeline
+            // MOBILE OPTIMIZATIONS:
+            // - Adaptive prefetch queue size (2 for mobile, 3 for desktop)
+            // - Main thread yield every batch on mobile (prevents watchdog kills)
+            // - Buffer reuse to reduce GC pressure
             // ================================================================
             const step3Log = logUpdatable("Step 3: Feature extraction... 0%");
 
@@ -1480,7 +1612,13 @@
             const embSize = numTokens * embeddingDim;  // 197 * 384
             const bufferThreshold = 2500;  // Trigger selection when buffer reaches this size
             const k_a = t._k;  // Top-K to keep (e.g., 100)
-            const PREFETCH_QUEUE_SIZE = 3;  // Number of batches to prefetch ahead
+
+            // Adaptive prefetch queue size based on device
+            const PREFETCH_QUEUE_SIZE = _CONFIG.PREFETCH;
+            const YIELD_INTERVAL = _CONFIG.YIELD_INTERVAL;
+
+            // Pre-allocate reusable buffer for preprocessing (avoids GC pressure)
+            let preprocessBuffer = null;
 
             // Helper: read a batch of patches
             async function readBatchPatches(coords) {
@@ -1490,6 +1628,7 @@
             }
 
             // Helper: run batch inference with LiteFM_pre
+            // OPTIMIZED: Uses buffer pool for preprocessing
             async function runBatchInference(patches) {
                 if (patches.length === 0) return [];
                 const actualBatchSize = patches.length;
@@ -1503,7 +1642,10 @@
                     }
                 }
 
-                const batchData = preprocessBatch(paddedPatches, inputSize);
+                // Use buffer pool for preprocessing (reuse buffer across calls)
+                const batchData = preprocessBatch(paddedPatches, inputSize, preprocessBuffer);
+                preprocessBuffer = batchData;  // Save for reuse
+
                 const inputTensor = new ort.Tensor('float32', batchData, [INFERENCE_BATCH_SIZE, 3, inputSize, inputSize]);
                 const results = await liteFMPreSession.run({ input: inputTensor });
 
@@ -1516,9 +1658,10 @@
                     outputData = outputTensor.data;
                 }
 
+                // Extract embeddings (still need individual Float32Arrays for buffer management)
                 const embeddings = [];
                 for (let i = 0; i < actualBatchSize; i++) {
-                    const emb = new Float32Array(embSize);
+                    const emb = bufferPool.get(embSize);
                     for (let j = 0; j < embSize; j++) {
                         emb[j] = outputData[i * embSize + j];
                     }
@@ -1596,6 +1739,12 @@
                     const pct = Math.round(batchIdx / totalBatches * 100);
                     step3Log.update(`Step 3: Feature extraction... ${pct}%`);
                     updateProgress('Feature extraction', pct, 100);
+
+                    // MOBILE OPTIMIZATION: Yield to main thread to prevent watchdog kills
+                    // and allow UI updates. On desktop (YIELD_INTERVAL=0), this is skipped.
+                    if (YIELD_INTERVAL > 0 && batchIdx % YIELD_INTERVAL === 0) {
+                        await yieldToMain();
+                    }
 
                     // Get patches from prefetch queue
                     const patches = await prefetchQueue.shift();
@@ -1689,6 +1838,11 @@
                     step3Log.update(`Step 3: Feature extraction... ${pct}%`);
                     updateProgress('Feature extraction', pct, 100);
 
+                    // MOBILE OPTIMIZATION: Yield to main thread
+                    if (YIELD_INTERVAL > 0 && batchIdx % YIELD_INTERVAL === 0) {
+                        await yieldToMain();
+                    }
+
                     const patches = await prefetchQueue.shift();
 
                     // Refill prefetch queue
@@ -1709,6 +1863,7 @@
             // ================================================================
             // Step 4: LiteFM_post (compute final features)
             // Optimized with batch inference
+            // MOBILE OPTIMIZATIONS: Buffer reuse, main thread yield
             // ================================================================
             const step5Log = logUpdatable("Step 4: Computing features... 0%");
 
@@ -1716,7 +1871,16 @@
             const postBatchSize = INFERENCE_BATCH_SIZE;  // Use global constant for Graph Capture compatibility
             const totalPostBatches = Math.ceil(selectedEmbeddings.length / postBatchSize);
 
+            // Pre-allocate buffer for embedding concatenation (reuse across batches)
+            const embSizePost = numTokens * embeddingDim;
+            let postBatchBuffer = bufferPool.get(INFERENCE_BATCH_SIZE * embSizePost);
+
             for (let batchIdx = 0; batchIdx < totalPostBatches; batchIdx++) {
+                // MOBILE OPTIMIZATION: Yield to main thread
+                if (YIELD_INTERVAL > 0 && batchIdx % YIELD_INTERVAL === 0) {
+                    await yieldToMain();
+                }
+
                 const i = batchIdx * postBatchSize;
                 const batchEnd = Math.min(i + postBatchSize, selectedEmbeddings.length);
                 const batchEmbeddings = selectedEmbeddings.slice(i, batchEnd);
@@ -1733,13 +1897,12 @@
                 }
 
                 // Concatenate embeddings into batch tensor [INFERENCE_BATCH_SIZE, 197, 384]
-                const embSize = numTokens * embeddingDim;
-                const batchData = new Float32Array(INFERENCE_BATCH_SIZE * embSize);
+                // OPTIMIZED: Reuse pre-allocated buffer
                 for (let b = 0; b < INFERENCE_BATCH_SIZE; b++) {
-                    batchData.set(paddedEmbeddings[b], b * embSize);
+                    postBatchBuffer.set(paddedEmbeddings[b], b * embSizePost);
                 }
 
-                const embTensor = new ort.Tensor('float32', batchData, [INFERENCE_BATCH_SIZE, numTokens, embeddingDim]);
+                const embTensor = new ort.Tensor('float32', postBatchBuffer, [INFERENCE_BATCH_SIZE, numTokens, embeddingDim]);
                 const postResults = await liteFMPostSession.run({ embedding: embTensor });
 
                 // IO Binding: output may be GPU tensor, need to use getData()
@@ -1753,8 +1916,9 @@
                 }
 
                 // Split batch output into individual features (only take actualBatchSize)
+                // OPTIMIZED: Use buffer pool
                 for (let b = 0; b < actualBatchSize; b++) {
-                    const feat = new Float32Array(featureDim);
+                    const feat = bufferPool.get(featureDim);
                     for (let j = 0; j < featureDim; j++) {
                         feat[j] = outputData[b * featureDim + j];
                     }
@@ -1765,6 +1929,9 @@
                 step5Log.update(`Step 4: Computing features... ${pct}%`);
                 updateProgress('Computing features', pct, 100);
             }
+
+            // Return buffer to pool for reuse
+            bufferPool.release(postBatchBuffer);
             step5Log.update("Step 4: Computing features... Done");
 
             // ================================================================
