@@ -6,5 +6,5 @@ image: /static/img/members/chenyu.jpg
 position: Alumni
 scholar: gBkkDukAAAAJ
 email: cyzhao (at) connect.ust.hk
-destination: Staff at Huawei
+destination: Research Engineer at Huawei
 ---
