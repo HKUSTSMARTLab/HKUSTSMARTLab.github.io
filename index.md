@@ -1,11 +1,14 @@
 ---
-title: HKUST Smart Lab
+title: SmartX Lab
 layout: home
 group: home
 ---
 
-Welcome to Smart Lab!
-{: .display-4}
+SmartX Lab
+{: .display-4 .hero-title}
 
-Smart Lab, led by Prof. Hao Chen, is committed to pushing the boundaries of trustworthy AI technologies for healthcare and science. Our research directions include **large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics**, etc. Our ultimate goal is to spearhead a transformative revolution in medical practices and scientific discoveries, paving the way for a brighter and healthier future.
-{: .welcomefont}
+Advancing trustworthy intelligence across AI and biomedicine.
+{: .hero-subtitle}
+
+SmartX Lab, led by Prof. Hao Chen at HKUST, explores the intersection of artificial intelligence and biomedicine. The X stands for cross-disciplinary research, exploration of emerging frontiers, and the unknown questions that drive discovery. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics.
+{: .welcomefont .hero-copy}

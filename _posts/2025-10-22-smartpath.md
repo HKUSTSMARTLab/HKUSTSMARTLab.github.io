@@ -23,11 +23,11 @@ SmartPath is powered by two integrated large AI models:
 
 - **Generalizable Pathology Foundation Model (GPFM)**  
   A unified framework for accurate tumor identification, subtyping, and biomarker quantification across diverse tissues. GPFM supports survival outcome prediction and treatment response assessment, forming a data-driven foundation for personalized therapy.  
-  Sources: arXiv (Towards a generalizable pathology foundation model via unified knowledge distillation, 2024), HKUST Smart Lab publications.
+  Sources: arXiv (Towards a generalizable pathology foundation model via unified knowledge distillation, 2024), SmartX Lab publications.
 
 - **Multimodal Knowledge-enhanced Whole-slide Pathology Foundation Model (mSTAR)**  
   Fuses whole-slide pathology images with contextual data (pathology reports and transcriptomics) to enable minute-level automated report generation and powerful visual question-answering on slide regions.  
-  Sources: arXiv (A multimodal knowledge-enhanced whole-slide pathology foundation model, 2024), Smart Lab technical page.
+  Sources: arXiv (A multimodal knowledge-enhanced whole-slide pathology foundation model, 2024), SmartX Lab technical page.
 
 Engineered for seamless clinical integration, SmartPath streamlines the cancer care cycle—from rapid slide analysis and proactive risk alerts to AI-assisted reporting—reducing diagnostic bottlenecks and enabling pathologists to focus on complex decisions.
 
@@ -66,9 +66,9 @@ SmartPath is being deployed with **over a dozen leading hospitals** across Hong 
 
 ---
 
-### About Smart Lab
+### About SmartX Lab
 
-**Smart Lab**, led by Prof. Hao Chen at HKUST, is dedicated to advancing trustworthy AI technologies for healthcare and science. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics. Our mission is to drive a transformative revolution in medical practice and scientific discovery, shaping a healthier future.
+**SmartX Lab**, led by Prof. Hao Chen at HKUST, is dedicated to advancing trustworthy AI technologies for healthcare and science. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics. Our mission is to drive a transformative revolution in medical practice and scientific discovery, shaping a healthier future.
 
 ### About The Hong Kong University of Science and Technology
 

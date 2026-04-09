@@ -1,9 +1,9 @@
-<h2>Recent News</h2>
+<h2 class="sidebar-heading">Recent News</h2>
 
 {% assign postsList = site.posts | sort: "last_updated" | reverse %}
 
 {% for post in postsList limit: 5 %}
-  <div class="card mb-3">
+  <div class="card mb-3 news-sidebar-card">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="{{ post.cover }}" class="w-100">
@@ -24,19 +24,17 @@
     </div>
   </div>
 {% endfor %}
-<h4>
+<h4 class="sidebar-link-block">
   <a href="/news">See all posts ></a>
 </h4>
 
-<p>
-  <h3>
-    <font color="red">We want you!</font>
-  </h3>
+<div class="sidebar-recruitment-callout">
+  <h3>Join SmartX Lab</h3>
   We are always looking for <b>self-motivated and determined talents</b>.
   Open positions are available at our
     <a href="/recruitment">Recruitment</a>
     page.
-</p>
+</div>
 <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=t&d=WfyXtjj2gqxYh_g3S_eTXHs6GwIduF9m-ZpyqPBCpNw'></script>
 <br>
 

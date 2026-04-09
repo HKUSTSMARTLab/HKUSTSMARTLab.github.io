@@ -14,14 +14,14 @@ last_updated: 2025/07/29
 <img src="/static/img/news/2025_hkust_smartcare_cover.png" alt="SmartCare AI Platform Banner" style="width: 100%;"/>
 </div>
 
-**Smart Lab** at the **Hong Kong University of Science and Technology (HKUST)**, led by Assistant Professor Hao Chen, has officially launched the **SmartCare AI Medical Platform** at the HKUST campus clinic. This milestone marks a new era in patient-centered healthcare, harnessing the power of artificial intelligence to transform the entire patient journey—from triage to treatment—while streamlining clinical workflows for healthcare professionals.
+**SmartX Lab** at the **Hong Kong University of Science and Technology (HKUST)**, led by Assistant Professor Hao Chen, has officially launched the **SmartCare AI Medical Platform** at the HKUST campus clinic. This milestone marks a new era in patient-centered healthcare, harnessing the power of artificial intelligence to transform the entire patient journey—from triage to treatment—while streamlining clinical workflows for healthcare professionals.
 
 ### Pilot Program: Real-World Impact at HKUST Clinic
 
-A six-month pilot study of SmartCare is currently underway at the HKUST Clinic, inviting over 15,000 students, faculty, and staff to participate and provide feedback. The pilot epitomizes Smart Lab’s commitment to translating cutting-edge AI research into practical solutions that directly benefit both patients and clinicians.
+A six-month pilot study of SmartCare is currently underway at the HKUST Clinic, inviting over 15,000 students, faculty, and staff to participate and provide feedback. The pilot epitomizes SmartX Lab’s commitment to translating cutting-edge AI research into practical solutions that directly benefit both patients and clinicians.
 
 <div align="center">
-<img src="/static/img/news/2025_hkust_smartcare_trial.png" alt="Smart Lab SmartCare Team at HKUST Clinic" style="width: 100%; max-width: 800px;"/>
+<img src="/static/img/news/2025_hkust_smartcare_trial.png" alt="SmartX Lab SmartCare Team at HKUST Clinic" style="width: 100%; max-width: 800px;"/>
 </div>
 
 ### Core Features and Innovation
@@ -41,24 +41,24 @@ Key features include:
 
 ### Built on World-Class Team Research: MedDr2 and GSCo
 
-SmartCare is **powered by MedDr2**—the world’s largest open-source, generalist multimodal foundation model for medicine—**developed by the Smart Lab team based on the innovative [GSCo](https://arxiv.org/html/2404.15127v2) framework**. This foundational work was led by [Sunan He](https://sunanhe.github.io/) and [Yuxiang Nie](https://jerrrynie.github.io/), supervised by Prof. Hao Chen, with a team of outstanding collaborators, and sets a new paradigm for trustworthy AI in healthcare.
+SmartCare is **powered by MedDr2**—the world’s largest open-source, generalist multimodal foundation model for medicine—**developed by the SmartX Lab team based on the innovative [GSCo](https://arxiv.org/html/2404.15127v2) framework**. This foundational work was led by [Sunan He](https://sunanhe.github.io/) and [Yuxiang Nie](https://jerrrynie.github.io/), supervised by Prof. Hao Chen, with a team of outstanding collaborators, and sets a new paradigm for trustworthy AI in healthcare.
 
 <div align="center">
-<img src="/static/img/news/2025_hkust_smartcare_meddr.png" alt="Smart Lab SmartCare Introduction" style="width: 100%; max-width: 800px;"/>
+<img src="/static/img/news/2025_hkust_smartcare_meddr.png" alt="SmartX Lab SmartCare Introduction" style="width: 100%; max-width: 800px;"/>
 </div>
 
 **MedDr2** is built upon the **GSCo framework**, which enables seamless integration of both **generalist foundation models (GFMs)** and **specialist models**. This collaborative approach allows MedDr2 to deliver robust, precise, and scalable medical image analysis, demonstrating exceptional instruction-following, in-context learning, and generalization across diverse medical domains. GSCo introduces advanced collaborative mechanisms—including **Mixture-of-Expert Diagnosis (MoED)** and **Retrieval-Augmented Diagnosis (RAD)**—empowering MedDr2 to incorporate specialist knowledge for accurate diagnosis, even in out-of-domain or complex scenarios. This **team-driven innovation** is the scientific foundation of SmartCare’s advanced capabilities in clinical workflow optimization, intelligent triage, and automated documentation, ensuring the platform is both cutting-edge and clinically impactful.
 
 ### Leadership Voices
 
-Prof. Hao Chen, Director of Smart Lab and Assistant Professor at HKUST, remarked:  
-> “SmartCare is the culmination of Smart Lab’s mission to develop trustworthy, real-world AI for healthcare. Leveraging our MedDr foundation model, SmartCare excels at complex medical queries, medical image interpretation, and seamless clinical integration. Following our campus pilot, we are exploring collaborations with Gleneagles Hospital Hong Kong and CUHK Medical Centre for further real-world validation and broader impact. HKUST’s AI innovation ecosystem empowers SmartCare to redefine clinical efficiency and patient outcomes.”
+Prof. Hao Chen, Director of SmartX Lab and Assistant Professor at HKUST, remarked:  
+> “SmartCare is the culmination of SmartX Lab’s mission to develop trustworthy, real-world AI for healthcare. Leveraging our MedDr foundation model, SmartCare excels at complex medical queries, medical image interpretation, and seamless clinical integration. Following our campus pilot, we are exploring collaborations with Gleneagles Hospital Hong Kong and CUHK Medical Centre for further real-world validation and broader impact. HKUST’s AI innovation ecosystem empowers SmartCare to redefine clinical efficiency and patient outcomes.”
 
 Dr. Justin Cheng, SmartCare’s CEO, Co-Founder, and Registered Medical Practitioner at HKUST Clinic, added:  
 > “SmartCare fundamentally shifts the clinical paradigm. By automating administrative tasks and documentation, SmartCare allows doctors to focus on the human connection at the heart of medicine, delivering truly personalized and high-quality care. As both a clinician and researcher, I am excited by the transformative impact SmartCare brings to daily practice.”
 
 Prof. Samuel Yu Chung-Toi, Director of the Health, Safety, and Environment Office at HKUST, commented:  
-> “The SmartCare pilot at our campus clinic exemplifies HKUST’s commitment to impactful, cross-disciplinary innovation. By providing Smart Lab with resources and an environment for real-world testing, we ensure our solutions address the needs of both healthcare providers and patients.”
+> “The SmartCare pilot at our campus clinic exemplifies HKUST’s commitment to impactful, cross-disciplinary innovation. By providing SmartX Lab with resources and an environment for real-world testing, we ensure our solutions address the needs of both healthcare providers and patients.”
 
 <div align="center">
 <img src="/static/img/news/2025_hkust_smartcare_speech.png" alt="SmartCare Launch at HKUST Clinic" style="width: 100%; max-width: 800px;"/>
@@ -66,17 +66,17 @@ Prof. Samuel Yu Chung-Toi, Director of the Health, Safety, and Environment Offic
 
 ### Foundation and Partnership
 
-SmartCare’s development is rooted in Smart Lab’s research excellence and HKUST’s vibrant AI innovation ecosystem. In May 2025, Smart Lab facilitated a tripartite partnership to integrate SmartCare’s platform with PanopticAI’s camera-based vital sign monitoring—another HKUST-nurtured innovation—at a new ambulatory care center in Admiralty, further enhancing operational efficiency and service quality.
+SmartCare’s development is rooted in SmartX Lab’s research excellence and HKUST’s vibrant AI innovation ecosystem. In May 2025, SmartX Lab facilitated a tripartite partnership to integrate SmartCare’s platform with PanopticAI’s camera-based vital sign monitoring—another HKUST-nurtured innovation—at a new ambulatory care center in Admiralty, further enhancing operational efficiency and service quality.
 
 ### Leadership and Research Excellence
 
-The SmartCare project is led by Prof. Hao Chen (Director, Smart Lab; Assistant Professor, Computer Science & Engineering, HKUST), Dr. Justin Cheng (CEO & Co-Founder, SmartCare; Registered Medical Practitioner, HKUST Clinic), and Prof. Samuel Yu Chung-Toi (Director, Health, Safety, and Environment Office, HKUST). The team is dedicated to advancing AI medical foundation models and next-generation clinical technologies, translating scientific breakthroughs into tangible healthcare benefits.
+The SmartCare project is led by Prof. Hao Chen (Director, SmartX Lab; Assistant Professor, Computer Science & Engineering, HKUST), Dr. Justin Cheng (CEO & Co-Founder, SmartCare; Registered Medical Practitioner, HKUST Clinic), and Prof. Samuel Yu Chung-Toi (Director, Health, Safety, and Environment Office, HKUST). The team is dedicated to advancing AI medical foundation models and next-generation clinical technologies, translating scientific breakthroughs into tangible healthcare benefits.
 
 ---
 
-### About Smart Lab
+### About SmartX Lab
 
-**Smart Lab**, led by Prof. Hao Chen at HKUST, is dedicated to advancing trustworthy AI technologies for healthcare and science. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics. Our mission is to drive a transformative revolution in medical practice and scientific discovery, shaping a healthier future.
+**SmartX Lab**, led by Prof. Hao Chen at HKUST, is dedicated to advancing trustworthy AI technologies for healthcare and science. Our research spans large-scale models for healthcare, computer-assisted intervention, AI for science, and bioinformatics. Our mission is to drive a transformative revolution in medical practice and scientific discovery, shaping a healthier future.
 
 ### About The Hong Kong University of Science and Technology
 
