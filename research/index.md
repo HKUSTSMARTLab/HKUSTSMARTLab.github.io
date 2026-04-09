@@ -14,12 +14,12 @@ At Smart Lab, we are dedicated to pioneering AI technologies in medicine to enha
 Explore our groundbreaking AI innovations in healthcare on our [Demo Galley](/showcase/demo_gallery) page, featuring interactive demos and research previews.
 </div>
 
-### Large Models for Advancing Healthcare
+### AI for Computational Pathology
 
-<img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
+<img class="rounded mx-auto d-block" src="/static/img/research/computational_pathology.png" alt="ai4cpath" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">
-Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
+Computational pathology revolutionizes cancer diagnosis by analyzing large-scale whole-slide images (WSI) with advanced AI. Our work facilitates pathologists in clinical diagnosis, structural profiling, biomarker discovery, and personalized treatment, significantly improving diagnostic precision.
 </div>
 
 ### AI for Precision Oncology
@@ -30,22 +30,10 @@ Our lab harnesses the power of large AI models to revolutionize healthcare. By l
 Breast cancer, the most diagnosed malignancy globally, demands early detection and personalized treatment. Our deep learning-assisted system for breast cancer screening, diagnosis, and treatment response prediction aims to enhance diagnostic efficiency and patient quality of life through personalized care.
 </div>
 
-### AI for Computational Pathology
+### Large Models and Agentic AI for Advancing Healthcare
 
-<img class="rounded mx-auto d-block" src="/static/img/research/computational_pathology.png" alt="ai4cpath" style="width: 75%; height: auto;">
-
-<div style="font-size: 1.25em;">
-Computational pathology revolutionizes cancer diagnosis by analyzing large-scale whole-slide images (WSI) with advanced AI. Our work facilitates pathologists in clinical diagnosis, structural profiling, biomarker discovery, and personalized treatment, significantly improving diagnostic precision.
-</div>
-
-<!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/showcase/computational_pathology) page. -->
-
-### AI for Computational Cytology
-
-<img class="rounded mx-auto d-block" src="/static/img/research/computational_cytology.png" alt="ai4ccyto" style="width: 75%; height: auto;">
+<img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">
-Our deep learning-assisted cytology system aids in early cancer detection, such as cervical cancer screening, by reducing cytologists' workload. We focus on data standardization, advanced algorithms for cell-level analysis, and integrated systems for imaging and human-machine collaboration.
+Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
 </div>
-
-<!-- You can learn more about our research in computational cytology by visiting the [Computational Cytology](/showcase/computational_cytology) page. -->

@@ -1,5 +1,5 @@
 ---
-name: Hao-xuan Che
+name: Dr. Hao-xuan Che
 startdate: [2021-09-01]
 enddate: [2025-09-01]
 image: /static/img/members/haoxuan.jpg

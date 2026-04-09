@@ -1,5 +1,5 @@
 ---
-name: Hai-bo Jin
+name: Dr. Hai-bo Jin
 startdate: [2021-09-01]
 enddate: [2025-09-01]
 image: /static/img/members/haibo.jpg
