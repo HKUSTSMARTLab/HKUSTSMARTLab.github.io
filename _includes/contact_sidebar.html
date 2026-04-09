@@ -2,42 +2,35 @@
 
 {% assign postsList = site.posts | sort: "last_updated" | reverse %}
 
+<div class="sidebar-recent-news">
 {% for post in postsList limit: 5 %}
-  <div class="card mb-3 news-sidebar-card">
+  <article class="card mb-3 news-sidebar-card">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="{{ post.cover }}" class="w-100">
+        <img src="{{ post.cover }}" alt="{{ post.title }}" class="news-sidebar-card__image w-100">
       </div>
       <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="{{ post.url }}">
-              <b>{{ post.title }}</b>
-            </a>
-          </h5>
-          <p class="card-text">{{ post.oneline_description }}</p>
-          <p class="card-text">
-            <small class="text-muted">Last updated on {{ post.last_updated }}</small>
-          </p>
+        <div class="card-body news-sidebar-card__body">
+          <h5 class="card-title news-sidebar-card__title"><a href="{{ post.url }}"><b>{{ post.title }}</b></a></h5>
+          <p class="card-text news-sidebar-card__excerpt">{{ post.oneline_description }}</p>
+          <p class="card-text news-sidebar-card__meta"><small class="text-muted">Last updated on {{ post.last_updated }}</small></p>
         </div>
       </div>
     </div>
-  </div>
+  </article>
 {% endfor %}
-<h4 class="sidebar-link-block">
-  <a href="/news">See all posts ></a>
-</h4>
+  <h4 class="sidebar-link-block"><a href="/news">See all posts &rsaquo;</a></h4>
+</div>
 
-<div class="sidebar-recruitment-callout">
+<div class="sidebar-recruitment-callout sidebar-recruitment-callout--featured">
   <h3>Join SmartX Lab</h3>
   We are always looking for <b>self-motivated and determined talents</b>.
   Open positions are available at our
-    <a href="/recruitment">Recruitment</a>
-    page.
+  <a href="/recruitment">Recruitment</a>
+  page.
 </div>
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=t&d=WfyXtjj2gqxYh_g3S_eTXHs6GwIduF9m-ZpyqPBCpNw'></script>
-<br>
 
-<div style="text-align: center;">
-<i> Last Update: {{'now' | date: "%h %d, %Y"}} </i>
+<div class="sidebar-endcap">
+  <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=200&t=t&d=WfyXtjj2gqxYh_g3S_eTXHs6GwIduF9m-ZpyqPBCpNw'></script>
+  <div class="sidebar-last-update"><i>Last Update: {{'now' | date: "%h %d, %Y"}}</i></div>
 </div>
