@@ -4,6 +4,20 @@
     }
 }
 
+@font-face {
+    font-family: 'SiteArial';
+    src: url('/static/fonts/ARIAL.TTF') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SiteArial';
+    src: url('/static/fonts/ARIALBD.TTF') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -50,15 +64,81 @@
     object-fit: contain;
 }
 
+.carousel-item--healthcare-ai {
+    position: relative;
+}
+
+.carousel-item--healthcare-ai a {
+    position: relative;
+}
+
+.carousel-item--healthcare-ai a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 18, 33, 0.42);
+    z-index: 1;
+}
+
+.carousel-story-mark {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 1.9rem 2.5rem 2.6rem;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'SiteArial', Arial, Helvetica, sans-serif;
+    pointer-events: none;
+}
+
+.carousel-story-mark__title {
+    max-width: 56rem;
+    margin: 0 0 0.9rem;
+    font-family: 'SiteArial', Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: clamp(1.55rem, 2.5vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.14;
+    text-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+}
+
+.carousel-story-mark__subtitle {
+    max-width: 42rem;
+    margin: 0;
+    font-family: 'SiteArial', Arial, Helvetica, sans-serif;
+    color: #f4f8fc;
+    font-size: clamp(0.82rem, 1.05vw, 1.05rem);
+    font-weight: 400;
+    line-height: 1.45;
+    text-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
 /* Responsive carousel height */
 @media (max-width: 768px) {
     .carousel-item { height: 250px; }
     .carousel-item img { width: 100%; height: auto; max-height: 100%; }
+
+    .carousel-story-mark {
+        padding: 1.25rem 1rem 1.55rem;
+    }
+
+    .carousel-story-mark__title {
+        max-width: 28rem;
+        margin-bottom: 0.55rem;
+    }
+
+    .carousel-story-mark__subtitle {
+        max-width: 24rem;
+    }
 }
 
 @media (max-width: 480px) {
     .carousel-item { height: 200px; }
     .carousel-item img { width: 100%; height: auto; max-height: 100%; }
+
+    .carousel-story-mark {
+        padding: 1.1rem 0.85rem;
+    }
 }
 
 .display-4 {
