@@ -161,6 +161,35 @@ group: showcase
     animation: shine 4s infinite linear;
 }
 
+.benchmark-row {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.benchmark-row .card {
+    border-radius: 22px;
+}
+
+.pathbench-card {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.pathbench-banner {
+    width: 100%;
+    max-width: 780px;
+    max-height: 240px;
+    object-fit: contain;
+}
+
+.pathbench-card .font-weight-bold a {
+    font-size: 1.5rem !important;
+}
+
+.pathbench-card .text-muted.small {
+    font-size: 1.08rem !important;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -280,7 +309,7 @@ group: showcase
   <!-- Model Checkpoints Section -->
   <div class="mb-4">
     <h3 class="text-center mb-3">Model Checkpoints</h3>
-    <div class="row">
+    <div class="row benchmark-row">
       <!-- GPFM -->
       <div class="col-12 col-sm-6 col-lg-3 mb-4">
         <div class="card h-100 text-center">
@@ -343,16 +372,16 @@ group: showcase
     <!-- Pathology Benchmark Section -->
   <div class="mb-4">
     <h3 class="text-center mb-3">Standardized Benchmarks</h3>
-    <div class="row justify-content-center">
-      <div class="col-lg-10 col-sm-6 mb-4">
-        <div class="card h-100 text-center">
+    <div class="row justify-content-center benchmark-row">
+      <div class="col-12 mb-4">
+        <div class="card h-100 text-center pathbench-card">
           <div class="card-body d-flex flex-column align-items-center">
             <img src="/static/img/logo/pathbench-banner.svg" alt="PathBench Banner" class="pathbench-banner">  
             <div class="mt-2 font-weight-bold">
               <br/>
-              <a href="javascript:void(0);" style="font-size: 1.75rem" onclick="currentDemoUrl='/showcase/PathBench'; showTerm();">PathBench</a>
+              <a href="javascript:void(0);" onclick="currentDemoUrl='/showcase/PathBench'; showTerm();">PathBench</a>
             </div>
-            <div class="text-muted small" style="font-size: 1.25rem">The <strong>First Open Benchmark</strong> for Pathology Foundation Models</div>  
+            <div class="text-muted small">The <strong>First Open Benchmark</strong> for Pathology Foundation Models</div>  
           </div>
         </div>
       </div>

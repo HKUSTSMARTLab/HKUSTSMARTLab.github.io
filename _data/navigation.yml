@@ -10,6 +10,10 @@
   link: '/research'
   group: research
 
+- name: Demo
+  link: '/showcase/demo_gallery'
+  group: showcase
+
 - name: Publications
   link: '/publications'
   group: publications
