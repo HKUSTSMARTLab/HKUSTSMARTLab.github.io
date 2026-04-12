@@ -1,5 +1,5 @@
 ---
-title: 'Large-scale generative tumor synthesis in computed tomography images for improving tumor recognition'
+title: 'Large-scale Generative Tumor Synthesis in Computed Tomography Images for Improving Tumor Recognition'
 authors: 'Linshan Wu, Jiaxin Zhuang, Yanning Zhou, Sunan He, Jiabo Ma, Luyang Luo, Xi Wang, Xuefeng Ni, Xiaoling Zhong, Mingxiang Wu, Yinghua Zhao, Xiaohui Duan, Varut Vardhanabhuti, Pranav Rajpurkar, Hao Chen#'
 pub_date: '2025-12-11'
 image: '/static/img/pub/2025_freetumor.png'
