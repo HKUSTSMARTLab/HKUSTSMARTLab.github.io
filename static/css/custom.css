@@ -378,14 +378,14 @@
 .welcomefont {
     font-size: 1.2rem;
     line-height: 1.75;
-    font-family: 'Atkinson Hyperlegible', 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 .nav-link {
     font-size: 1.05rem;
     display: block;
     padding: 0.5rem 1rem;
-    font-family: 'Atkinson Hyperlegible', 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 .navbar-brand {
@@ -1248,7 +1248,7 @@
 body {
     background: #f7fbff;
     color: #4b6478;
-    font-family: 'Atkinson Hyperlegible', 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 h1,
@@ -1289,7 +1289,7 @@ a:hover {
 
 .site-navbar .nav-link {
     font-size: 1.05rem;
-    font-family: 'Atkinson Hyperlegible', 'Noto Sans', sans-serif;
+    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
 }
 
 .site-navbar .nav-item.active .nav-link,
