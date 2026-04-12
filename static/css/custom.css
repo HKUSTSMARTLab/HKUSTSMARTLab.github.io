@@ -108,7 +108,10 @@
 }
 
 .member-card__media-wrap--pi {
-    padding-right: 0;
+    float: left;
+    width: 250px;
+    margin: 0 1rem 0.75rem 0;
+    padding: 0;
 }
 
 .member-card__media {
@@ -117,7 +120,7 @@
 
 .member-card__media--pi {
     width: 100%;
-    max-width: 280px;
+    max-width: 250px;
     border: 1px solid #ddeaf5;
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
 }
@@ -125,10 +128,23 @@
 .member-card__media--regular {
     width: 150px;
     height: 200px;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .member-card__body {
     padding: 1.25rem 1.25rem 1.2rem 1rem;
+}
+
+.member-card__body--pi {
+    padding: 1rem 1.25rem 1.1rem;
+}
+
+.member-card__pi-flow::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 .member-card__pi-layout {
@@ -143,10 +159,13 @@
 }
 
 .member-card__pi-side {
+    float: right;
+    width: 210px;
     background: rgba(238, 247, 253, 0.9);
     border: 1px solid #d8e8f3;
     border-radius: 18px;
     padding: 1rem 1rem 1.05rem;
+    margin: 0 0 0.9rem 1rem;
 }
 
 .member-card__pi-side-title {
@@ -179,6 +198,10 @@
     color: #4a6078;
     line-height: 1.75;
     font-size: 1rem;
+}
+
+.member-card__description--pi {
+    display: block;
 }
 
 .member-card__description--compact {
@@ -1416,6 +1439,10 @@ a:hover {
         padding: 0.9rem 1rem 1rem;
     }
 
+    .member-card__body--pi {
+        padding: 0.95rem 1rem 1rem;
+    }
+
     .member-card__pi-layout {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -1424,6 +1451,21 @@ a:hover {
     .member-card__media-wrap,
     .member-card__media-wrap--pi {
         padding: 1rem 1rem 0;
+    }
+
+    .member-card__media-wrap--pi,
+    .member-card__pi-side {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    .member-card__media-wrap--pi {
+        padding: 0 0 1rem;
+    }
+
+    .member-card__pi-side {
+        margin-bottom: 1rem;
     }
 
     .member-card__media--pi {

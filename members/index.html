@@ -20,46 +20,40 @@ group: members
 
   <h2 class="members-section__title">{{ member.position }}</h2>
   <div class="member-card member-card--pi mb-3" id="{{ member.name }}">
-    <div class="row no-gutters">
-      <div class="col-md-3 member-card__media-wrap member-card__media-wrap--pi">
-        <img class="img-fluid member-card__media member-card__media--pi" src="{{ member.image }}"
-          alt="{{ member.name }}'s Photo">
-      </div>
-      <div class="col-md-9">
-        <div class="member-card__body">
-          <div class="member-card__pi-layout">
-            <div class="member-card__pi-main">
-              <div class="member-card__name">Prof. {{ member.name }}</div>
-              {% if member.description %}
-              <div class="member-card__description">{{ member.description }}</div>
-              {% endif %}
-            </div>
-            <aside class="member-card__pi-side">
-              <div class="member-card__pi-side-title">Contact & Profiles</div>
-              <div class="member-card__links member-card__links--pi">
-                {% if member.email %}<div class="member-link member-link--muted"><em>{{ member.email }}</em></div>{%
-                endif %}
-                {% if member.website %}<div class="member-link"><a style="overflow-wrap: break-word"
-                    href="{{ member.website }}">{{ member.website }}</a></div>{% endif %}
-                {% if member.orcid %}<div class="member-link"><i class="fa-brands fa-orcid"></i> <a
-                    href="http://orcid.org/{{ member.orcid }}">{{ member.orcid }}</a></div>{% endif %}
-                {% if member.linkedin %}<div class="member-link"><i class="fa-brands fa-linkedin"></i> <a
-                    href="http://www.linkedin.com/in/{{ member.linkedin }}">{{ member.linkedin }}</a></div>{% endif %}
-                {% if member.HKUST %}<div class="member-link"><a href="http://www.hkust.edu.hk"><img
-                      class="inline-block mem-icon" src="/static/img/logo/hkust_logo.png"></a> <a
-                    href="https://facultyprofiles.hkust.edu.hk/profiles.php?profile={{ member.HKUST }}">Profile</a>
-                </div>{% endif %}
-                {% if member.scholar %}<div class="member-link"><i class="fa-brands fa-google-scholar"></i> <a
-                    href="http://scholar.google.com/citations?user={{ member.scholar }}">Google Scholar</a></div>{%
-                endif %}
-                {% if member.twitter %}<div class="member-link"><i class="fa-brands fa-twitter"></i> <a
-                    href="http://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a></div>{% endif %}
-                {% if member.github %}<div class="member-link"><i class="fa-brands fa-github"></i> <a
-                    href="http://github.com/{{ member.github }}">{{ member.github }}</a></div>{% endif %}
-              </div>
-            </aside>
-          </div>
+    <div class="member-card__body member-card__body--pi">
+      <div class="member-card__pi-flow">
+        <div class="member-card__media-wrap member-card__media-wrap--pi">
+          <img class="img-fluid member-card__media member-card__media--pi" src="{{ member.image }}"
+            alt="{{ member.name }}'s Photo">
         </div>
+        <aside class="member-card__pi-side">
+          <div class="member-card__pi-side-title">Contact & Profiles</div>
+          <div class="member-card__links member-card__links--pi">
+            {% if member.email %}<div class="member-link member-link--muted"><em>{{ member.email }}</em></div>{%
+            endif %}
+            {% if member.website %}<div class="member-link"><a style="overflow-wrap: break-word"
+                href="{{ member.website }}">{{ member.website }}</a></div>{% endif %}
+            {% if member.orcid %}<div class="member-link"><i class="fa-brands fa-orcid"></i> <a
+                href="http://orcid.org/{{ member.orcid }}">{{ member.orcid }}</a></div>{% endif %}
+            {% if member.linkedin %}<div class="member-link"><i class="fa-brands fa-linkedin"></i> <a
+                href="http://www.linkedin.com/in/{{ member.linkedin }}">{{ member.linkedin }}</a></div>{% endif %}
+            {% if member.HKUST %}<div class="member-link"><a href="http://www.hkust.edu.hk"><img
+                  class="inline-block mem-icon" src="/static/img/logo/hkust_logo.png"></a> <a
+                href="https://facultyprofiles.hkust.edu.hk/profiles.php?profile={{ member.HKUST }}">Profile</a>
+            </div>{% endif %}
+            {% if member.scholar %}<div class="member-link"><i class="fa-brands fa-google-scholar"></i> <a
+                href="http://scholar.google.com/citations?user={{ member.scholar }}">Google Scholar</a></div>{%
+            endif %}
+            {% if member.twitter %}<div class="member-link"><i class="fa-brands fa-twitter"></i> <a
+                href="http://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a></div>{% endif %}
+            {% if member.github %}<div class="member-link"><i class="fa-brands fa-github"></i> <a
+                href="http://github.com/{{ member.github }}">{{ member.github }}</a></div>{% endif %}
+          </div>
+        </aside>
+        <div class="member-card__name">Prof. {{ member.name }}</div>
+        {% if member.description %}
+        <div class="member-card__description member-card__description--pi">{{ member.description }}</div>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -88,7 +82,7 @@ Student,Research Assistant,Alumni" %}
         <div class="row no-gutters">
           <div class="col-sm-4 member-card__media-wrap">
             <div class="d-flex flex-column justify-content-center">
-              <img class="img-thumbnail member-photo member-card__media member-card__media--regular"
+              <img class="member-photo member-card__media member-card__media--regular"
                 src="{{ member.image }}" alt="{{ member.name }}'s Photo" style="object-fit: cover">
             </div>
           </div>
