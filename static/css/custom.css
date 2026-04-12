@@ -114,6 +114,11 @@
     padding: 0;
 }
 
+.member-card__media-wrap--regular {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .member-card__media {
     border-radius: 18px;
 }
@@ -131,6 +136,7 @@
     border: 0;
     background: transparent;
     box-shadow: none;
+    margin-left: 1.1rem;
 }
 
 .member-card__body {
