@@ -19,7 +19,7 @@ Explore our groundbreaking AI innovations in healthcare on our [Demo Galley](/sh
 <img class="rounded mx-auto d-block" src="/static/img/research/computational_pathology.png" alt="ai4cpath" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">
-Computational pathology revolutionizes cancer diagnosis by analyzing large-scale whole-slide images (WSI) with advanced AI. Our work facilitates pathologists in clinical diagnosis, structural profiling, biomarker discovery, and personalized treatment, significantly improving diagnostic precision.
+Computational pathology revolutionizes cancer diagnosis and treatment by analyzing large-scale whole-slide images (WSI). Our work facilitates pathologists in clinical diagnosis, structural profiling, biomarker discovery, and personalized treatment, significantly improving diagnostic precision and treatment efficacy.
 </div>
 
 ### AI for Precision Oncology
@@ -27,7 +27,7 @@ Computational pathology revolutionizes cancer diagnosis by analyzing large-scale
 <img class="rounded mx-auto d-block" src="/static/img/research/breast_cancer.png" alt="ai4bc" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">
-Breast cancer, the most diagnosed malignancy globally, demands early detection and personalized treatment. Our deep learning-assisted system for breast cancer screening, diagnosis, and treatment response prediction aims to enhance diagnostic efficiency and patient quality of life through personalized care.
+Breast cancer, the most diagnosed malignancy globally, demands early detection, accurate diagnosis and personalized treatment. Our deep learning-assisted multimodal integration and analytical system for breast cancer screening, diagnosis, and treatment response prediction aims to enhance diagnostic efficiency and patient quality of life through personalized care.
 </div>
 
 ### Large Models and Agentic AI for Advancing Healthcare
@@ -35,5 +35,5 @@ Breast cancer, the most diagnosed malignancy globally, demands early detection a
 <img class="rounded mx-auto d-block" src="/static/img/research/lm_for_healthcare.png" alt="ai4health" style="width: 75%; height: auto;">
 
 <div style="font-size: 1.25em;">
-Our lab harnesses the power of large AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
+Our lab harnesses the power of large and agentic AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
 </div>
