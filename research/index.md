@@ -37,3 +37,11 @@ Breast cancer, the most diagnosed malignancy globally, demands early detection, 
 <div style="font-size: 1.25em;">
 Our lab harnesses the power of large and agentic AI models to revolutionize healthcare. By leveraging vast datasets and advanced algorithms, we aim to significantly improve diagnostic accuracy, treatment personalization, and patient outcomes, driving the future of medical innovation.
 </div>
+
+### Multimodal Large Language Model for Medical Education
+
+<img class="rounded mx-auto d-block" src="/static/img/research/ai_for_medical_edu.png" alt="ai4cpath" style="width: 75%; height: auto;">
+
+<div style="font-size: 1.25em;">
+Medical education is essential for preparing future clinicians, yet current training is often costly, capacity-limited, and difficult to scale. Our lab aims to revolutionize it via multimodal large language models to enable authentic practice, reliable feedback, and scalable training.
+</div>
