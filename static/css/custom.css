@@ -186,7 +186,7 @@
 .member-photo {
     width: 150px;
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .members-section {
@@ -242,6 +242,8 @@
     width: 150px;
     height: 200px;
     border: 0;
+    object-fit: contain;
+    object-position: center;
     background: transparent;
     box-shadow: none;
     margin-left: 1.1rem;
@@ -1676,7 +1678,8 @@ a:hover {
     .member-card__media--regular {
         width: 100%;
         height: auto;
-        max-height: 240px;
+        max-height: none;
+        object-fit: contain;
     }
 
     .news-card__body {
