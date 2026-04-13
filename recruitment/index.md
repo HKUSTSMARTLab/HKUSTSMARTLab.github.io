@@ -5,7 +5,13 @@ group: join
 ---
 # Join SmartX Lab
 
-<img src="/static/img/logo/group_photo.png" alt="lab_group_photo" style="width: 100%;"/>
+<div class="recruitment-photo">
+  <img
+    src="/static/img/logo/group_photo.png"
+    alt="SmartX Lab group photo"
+    class="recruitment-photo__image"
+  />
+</div>
 
 The [SmartX Lab at HKUST](/contact), led by Dr. Hao Chen, is actively recruiting **PhD/MPhil students, postdoctoral fellows, research assistants, visiting interns** and **software engineers**. The lab is committed to advancing cutting-edge research at the intersection of artificial intelligence and biomedicine, with strong academic and translational support for group members.
 

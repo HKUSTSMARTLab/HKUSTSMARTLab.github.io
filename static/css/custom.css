@@ -189,6 +189,26 @@
     object-fit: contain;
 }
 
+.recruitment-photo {
+    width: min(100%, 980px);
+    margin: 1.5rem auto 2rem;
+    padding: 0.25rem 0 0.5rem;
+}
+
+.recruitment-photo__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .recruitment-photo {
+        margin: 1rem auto 1.5rem;
+        padding: 0;
+    }
+}
+
 .members-section {
     margin-bottom: 2.25rem;
 }
