@@ -7,7 +7,7 @@ group: join
 
 <div class="recruitment-photo">
   <img
-    src="/static/img/logo/group_photo.png"
+    src="/static/img/logo/recruitment_banner.png"
     alt="SmartX Lab group photo"
     class="recruitment-photo__image"
   />

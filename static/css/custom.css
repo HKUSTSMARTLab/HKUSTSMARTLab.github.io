@@ -1480,9 +1480,6 @@ a:hover {
 .sidebar-endcap {
     margin-top: 0.75rem;
     padding: 1rem 0.9rem 0.25rem;
-    background: #f7fbff;
-    border: 1px solid #d6e6f2;
-    border-radius: 16px;
     text-align: center;
     overflow: hidden;
 }
