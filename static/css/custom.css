@@ -45,7 +45,7 @@
 
 .carousel-item {
     text-align: center;
-    height: 400px;
+    height: 520px;
 }
 
 .carousel-item a {
@@ -142,7 +142,7 @@
 
 /* Responsive carousel height */
 @media (max-width: 768px) {
-    .carousel-item { height: 250px; }
+    .carousel-item { height: 360px; }
     .carousel-item img { width: 100%; height: auto; max-height: 100%; }
 
     .carousel-story-mark {
@@ -161,7 +161,7 @@
 }
 
 @media (max-width: 480px) {
-    .carousel-item { height: 200px; }
+    .carousel-item { height: 290px; }
     .carousel-item img { width: 100%; height: auto; max-height: 100%; }
 
     .carousel-story-mark {
@@ -1353,6 +1353,20 @@ a:hover {
         linear-gradient(180deg, #fbfdff 0%, #edf6fc 100%);
 }
 
+.smartx-mark--logo {
+    height: 100%;
+    min-height: 0;
+    padding: 1rem 1rem 4.75rem;
+}
+
+.smartx-mark__logo {
+    display: block;
+    width: min(100%, 760px);
+    max-height: 380px;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 34px rgba(111, 175, 214, 0.18));
+}
+
 .smartx-mark__eyebrow {
     color: #6a879c;
     font-size: 0.85rem;
@@ -1632,6 +1646,16 @@ a:hover {
         padding: 2rem 1.25rem;
     }
 
+    .smartx-mark--logo {
+        min-height: 360px;
+        padding: 0.75rem 0.75rem 3.5rem;
+    }
+
+    .smartx-mark__logo {
+        width: min(100%, 560px);
+        max-height: 250px;
+    }
+
     .home-hero-panel .container {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -1736,6 +1760,16 @@ a:hover {
     .smartx-mark {
         min-height: 200px;
         padding: 1.5rem 1rem;
+    }
+
+    .smartx-mark--logo {
+        min-height: 290px;
+        padding: 0.5rem 0.5rem 2.9rem;
+    }
+
+    .smartx-mark__logo {
+        width: min(100%, 430px);
+        max-height: 205px;
     }
 
     .sidebar-endcap {
