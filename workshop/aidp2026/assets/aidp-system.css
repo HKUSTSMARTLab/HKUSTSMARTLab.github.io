@@ -1191,27 +1191,40 @@ a:hover {
   }
 
   .site-logos__smartlab img {
-    height: 54px;
+    height: 40px;
   }
 
   .header-desktop__menu {
     flex: 1 1 auto;
+    min-width: 0;
     width: auto;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     background: transparent;
     box-shadow: none;
+    overflow: visible;
   }
 
   .header-desktop__menu ul {
-    width: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     justify-content: flex-end;
-    gap: 8px 18px;
+    gap: 0 4px;
     padding: 0;
     border: 0;
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+  }
+
+  .header-desktop__menu > ul > li > a {
+    display: inline-block;
+    font-size: 13.5px;
+    padding: 8px 9px;
+    line-height: 1.4;
+    white-space: nowrap;
   }
 }
 
@@ -1347,5 +1360,147 @@ a:hover {
 
   .app-label {
     width: 100%;
+  }
+}
+
+/* ──────────────────────────────────────────
+   Mobile header: suppress hamburger drawer,
+   show logos + horizontal scrollable nav
+   ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .header-desktop__trigger {
+    display: none !important;
+  }
+
+  .header-menu-overlay {
+    display: none !important;
+  }
+
+  .header-desktop {
+    overflow: visible !important;
+  }
+
+  .header-desktop .wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding-top: 12px !important;
+    padding-bottom: 0 !important;
+    overflow: visible !important;
+  }
+
+  .site-logos {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-align: left !important;
+  }
+
+  .site-logos a {
+    display: inline-flex !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .site-logos img {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  .site-logos__hkust img {
+    height: 36px !important;
+    width: auto !important;
+  }
+
+  .site-logos__smartlab img {
+    height: 30px !important;
+    width: auto !important;
+  }
+
+  .header-desktop__menu {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    z-index: auto !important;
+    display: block !important;
+    margin: 0 !important;
+  }
+
+  .header-desktop__menu > ul {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0 !important;
+    padding: 6px 0 10px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    text-align: left !important;
+    list-style: none !important;
+  }
+
+  .header-desktop__menu > ul::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .header-desktop li,
+  .header-desktop__menu > ul > li {
+    display: inline-flex !important;
+    flex-shrink: 0 !important;
+    align-items: center !important;
+  }
+
+  .header-desktop a,
+  .header-desktop__menu > ul > li > a {
+    display: inline-block !important;
+    font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    padding: 4px 10px !important;
+    white-space: nowrap !important;
+    color: var(--aidp-muted) !important;
+  }
+
+  .header-desktop__menu > ul > li > a:hover,
+  .header-desktop__menu > ul > li > a.active {
+    color: var(--aidp-blue) !important;
+    text-decoration: none !important;
+  }
+
+  .header-desktop__menu .slash {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .aidp-title {
+    font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
   }
 }
