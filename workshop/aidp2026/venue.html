@@ -13,147 +13,7 @@
   <link rel="stylesheet" href="./assets/select2.min.css">
   <link rel="stylesheet" href="./assets/main.css">
   <link rel="stylesheet" href="./assets/hotfix.css">
-  <style>
-    :root {
-      --aidp-blue: #0b4f7a;
-      --aidp-accent: #0e79b2;
-      --aidp-light: #f5f9fc;
-      --aidp-border: #d6e2ec;
-      --aidp-text: #23313f;
-      --aidp-muted: #5d6d7e;
-    }
-
-    .aidp-hero {
-      padding: 42px 0 26px;
-      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
-    }
-
-    .aidp-hero__card,
-    .aidp-card,
-    .aidp-visual {
-      background: #fff;
-      border: 1px solid var(--aidp-border);
-      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
-    }
-
-    .aidp-hero__card {
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
-    }
-
-    .aidp-kicker {
-      margin-bottom: 12px;
-      color: var(--aidp-accent);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .aidp-title {
-      margin: 0 0 10px;
-      color: var(--aidp-blue);
-      font-size: 36px;
-    }
-
-    .aidp-subtitle {
-      margin: 0;
-      color: var(--aidp-muted);
-      font-size: 18px;
-      line-height: 1.7;
-    }
-
-    .aidp-section {
-      padding-bottom: 30px;
-    }
-
-    .aidp-section .info-cards__card {
-      border: 1px solid var(--aidp-border);
-      border-radius: 18px;
-      box-shadow: 0 10px 28px rgba(11, 79, 122, 0.06);
-    }
-
-    .aidp-section .info-cards__title {
-      color: var(--aidp-blue);
-      font-size: 24px;
-    }
-
-    .aidp-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .aidp-card {
-      padding: 20px;
-      border-radius: 16px;
-    }
-
-    .aidp-card h3,
-    .aidp-card h4 {
-      margin-top: 0;
-      color: var(--aidp-blue);
-    }
-
-    .aidp-card p,
-    .aidp-card li {
-      color: var(--aidp-text);
-      line-height: 1.75;
-    }
-
-    .aidp-note {
-      margin-top: 20px;
-      padding: 18px 20px;
-      border-left: 4px solid var(--aidp-accent);
-      border-radius: 0 12px 12px 0;
-      background: var(--aidp-light);
-      color: var(--aidp-text);
-      line-height: 1.75;
-    }
-
-    .aidp-image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    .aidp-visual {
-      overflow: hidden;
-      border-radius: 16px;
-    }
-
-    .aidp-visual img {
-      display: block;
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .aidp-visual__body {
-      padding: 16px 18px;
-    }
-
-    .aidp-visual__body h4 {
-      margin-top: 0;
-      color: var(--aidp-blue);
-    }
-
-    .aidp-visual__body p {
-      color: var(--aidp-text);
-      line-height: 1.7;
-    }
-
-    @media (max-width: 768px) {
-      .aidp-hero__card {
-        padding: 24px;
-      }
-
-      .aidp-title {
-        font-size: 30px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./assets/aidp-system.css">
 </head>
 
 <body class="page-venue">
@@ -168,11 +28,10 @@
           </div>
           <div class="site-logos">
             <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
-              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+              <img src="assets/ust_logo.svg" alt="The Hong Kong University of Science and Technology">
             </a>
-            &nbsp;&nbsp;
             <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
-              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab">
             </a>
           </div>
           <nav class="header-desktop__menu">
@@ -183,15 +42,12 @@
               <li><a class="active" href="venue.html"><i class="fa fa-map-marker"></i> Venue</a><span class="slash"></span></li>
               <li><a href="registration.html"><i class="fa fa-edit"></i> Registration</a><span class="slash"></span></li>
               <li><a href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a></li>
-              <li class="is-tablet-mobile"><a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a></li>
             </ul>
           </nav>
-          <div class="register-now">
-            <a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a>
-          </div>
         </div>
       </div>
       <div class="header-menu-overlay"></div>
+      <div class="go-links" hidden aria-hidden="true"></div>
     </header>
 
     <div id="body" class="l-body">
@@ -309,8 +165,8 @@
       </style>
       <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
       <script>
-        window.onload = function() {
-          setTimeout(function() {
+        window.onload = () => {
+          setTimeout(() => {
             document.getElementById("BackToTop").className = "show";
           }, 500);
         };

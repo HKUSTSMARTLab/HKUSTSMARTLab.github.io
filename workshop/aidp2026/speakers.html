@@ -13,178 +13,7 @@
   <link rel="stylesheet" href="./assets/select2.min.css">
   <link rel="stylesheet" href="./assets/main.css">
   <link rel="stylesheet" href="./assets/hotfix.css">
-  <style>
-    :root {
-      --aidp-blue: #0b4f7a;
-      --aidp-accent: #0e79b2;
-      --aidp-light: #f5f9fc;
-      --aidp-border: #d6e2ec;
-      --aidp-text: #23313f;
-      --aidp-muted: #5d6d7e;
-    }
-
-    .aidp-hero {
-      padding: 42px 0 26px;
-      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
-    }
-
-    .aidp-hero__card {
-      background: #fff;
-      border: 1px solid var(--aidp-border);
-      border-radius: 18px;
-      padding: 32px;
-      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
-    }
-
-    .aidp-kicker {
-      margin-bottom: 12px;
-      color: var(--aidp-accent);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .aidp-title {
-      margin: 0 0 10px;
-      color: var(--aidp-blue);
-      font-size: 36px;
-      line-height: 1.15;
-    }
-
-    .aidp-subtitle {
-      margin: 0;
-      color: var(--aidp-muted);
-      font-size: 18px;
-    }
-
-    .aidp-section {
-      padding-bottom: 30px;
-    }
-
-    .aidp-section .info-cards__card {
-      border: 1px solid var(--aidp-border);
-      border-radius: 18px;
-      box-shadow: 0 10px 28px rgba(11, 79, 122, 0.06);
-    }
-
-    .aidp-section .info-cards__title {
-      color: var(--aidp-blue);
-      font-size: 24px;
-    }
-
-    .aidp-body p,
-    .aidp-body li {
-      color: var(--aidp-text);
-      line-height: 1.75;
-    }
-
-    .speaker-list {
-      display: grid;
-      gap: 24px;
-    }
-
-    .speaker-card {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-      padding: 22px;
-      border: 1px solid var(--aidp-border);
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
-    }
-
-    .speaker-photo {
-      width: 120px;
-      height: 120px;
-      flex-shrink: 0;
-      overflow: hidden;
-      border: 1px solid var(--aidp-border);
-      border-radius: 18px;
-      background: #f7fafc;
-    }
-
-    .speaker-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .speaker-name {
-      margin: 0 0 6px;
-      color: var(--aidp-blue);
-      font-size: 26px;
-      font-weight: 700;
-    }
-
-    .speaker-affiliation {
-      margin-bottom: 8px;
-      color: var(--aidp-muted);
-      font-weight: 600;
-    }
-
-    .speaker-status {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 6px 12px;
-      border: 1px solid #bfd7eb;
-      border-radius: 999px;
-      background: #f0f7ff;
-      color: var(--aidp-blue);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .committee-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .committee-card {
-      padding: 20px;
-      border: 1px solid var(--aidp-border);
-      border-radius: 16px;
-      background: #fff;
-      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
-    }
-
-    .committee-card h3 {
-      margin-top: 0;
-      color: var(--aidp-blue);
-    }
-
-    .committee-card ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    .committee-card li {
-      margin-bottom: 8px;
-      color: var(--aidp-text);
-      line-height: 1.65;
-    }
-
-    @media (max-width: 768px) {
-      .aidp-hero__card {
-        padding: 24px;
-      }
-
-      .aidp-title {
-        font-size: 30px;
-      }
-
-      .speaker-card {
-        flex-direction: column;
-      }
-
-      .speaker-photo {
-        width: 140px;
-        height: 140px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="./assets/aidp-system.css">
 </head>
 
 <body class="page-speakers">
@@ -199,11 +28,10 @@
           </div>
           <div class="site-logos">
             <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
-              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+              <img src="assets/ust_logo.svg" alt="The Hong Kong University of Science and Technology">
             </a>
-            &nbsp;&nbsp;
             <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
-              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab">
             </a>
           </div>
           <nav class="header-desktop__menu">
@@ -214,15 +42,12 @@
               <li><a href="venue.html"><i class="fa fa-map-marker"></i> Venue</a><span class="slash"></span></li>
               <li><a href="registration.html"><i class="fa fa-edit"></i> Registration</a><span class="slash"></span></li>
               <li><a href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a></li>
-              <li class="is-tablet-mobile"><a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a></li>
             </ul>
           </nav>
-          <div class="register-now">
-            <a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a>
-          </div>
         </div>
       </div>
       <div class="header-menu-overlay"></div>
+      <div class="go-links" hidden aria-hidden="true"></div>
     </header>
 
     <div id="body" class="l-body">
@@ -237,7 +62,7 @@
           </div>
         </section>
 
-        <section class="eefact_intro aidp-section">
+        <section class="eefact_intro aidp-section aidp-speakers-leadership">
           <div class="wrapper">
             <div class="section-content">
               <div class="info-cards__card goals">
@@ -310,49 +135,6 @@
           </div>
         </section>
 
-        <section class="eefact_intro aidp-section">
-          <div class="wrapper">
-            <div class="section-content">
-              <div class="info-cards__card goals">
-                <div class="info-cards__title">Conference Leadership</div>
-                <div class="info-cards__content aidp-body">
-                  <div class="committee-grid">
-                    <div class="committee-card">
-                      <h3>Advisory Committee</h3>
-                      <ul>
-                        <li>Prof. Xiu-Wu Bian (Southwest Hospital of the Army Medical University)</li>
-                        <li>Prof. Zhe Wang (Xijing Hospital)</li>
-                        <li>Prof. Zhang Jing (The First Affiliated Hospital of Zhejiang University)</li>
-                        <li>Prof. George J. Netto (UPenn)</li>
-                        <li>Prof. Gary Tse</li>
-                        <li>Prof. Annie Cheung (TBC)</li>
-                        <li>Dr. Wai KONG CHEUNG (TBC)</li>
-                      </ul>
-                    </div>
-                    <div class="committee-card">
-                      <h3>General Chairs</h3>
-                      <ul>
-                        <li>Prof. Hao Chen (HKUST)</li>
-                        <li>Prof. Li Liang (NFH)</li>
-                      </ul>
-                    </div>
-                    <div class="committee-card">
-                      <h3>Organizing Committee</h3>
-                      <ul>
-                        <li>Prof. Zhi Huang (UPenn)</li>
-                        <li>Dr. Ronald Chan (CUHK)</li>
-                        <li>Prof. Jiguang Wang (HKUST)</li>
-                        <li>Prof. Terence Tsz Wai WONG (HKUST)</li>
-                        <li>Prof. Albert Chung (HKUST)</li>
-                        <li>Prof. Kun-Hsing Yu (Harvard University, TBD)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
 
@@ -395,8 +177,8 @@
       </style>
       <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
       <script>
-        window.onload = function() {
-          setTimeout(function() {
+        window.onload = () => {
+          setTimeout(() => {
             document.getElementById("BackToTop").className = "show";
           }, 500);
         };
