@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>AIDP 2026</title>
+  <meta name="description" content="International Conference on Artificial Intelligence and Digital Pathology (AIDP 2026)">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/reset.css">
+  <link rel="stylesheet" href="./assets/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/sweetalert.css">
+  <link rel="stylesheet" href="./assets/css">
+  <link rel="stylesheet" href="./assets/select2.min.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <link rel="stylesheet" href="./assets/hotfix.css">
+  <style>
+    :root {
+      --aidp-blue: #0b4f7a;
+      --aidp-accent: #0e79b2;
+      --aidp-light: #f5f9fc;
+      --aidp-border: #d6e2ec;
+      --aidp-text: #23313f;
+      --aidp-muted: #5d6d7e;
+    }
+
+    .aidp-hero {
+      padding: 42px 0 26px;
+      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
+    }
+
+    .aidp-hero__card {
+      background: #fff;
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
+    }
+
+    .aidp-kicker {
+      margin-bottom: 12px;
+      color: var(--aidp-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .aidp-title {
+      margin: 0 0 10px;
+      color: var(--aidp-blue);
+      font-size: 38px;
+      line-height: 1.15;
+    }
+
+    .aidp-subtitle {
+      margin: 0 0 16px;
+      color: var(--aidp-muted);
+      font-size: 18px;
+    }
+
+    .aidp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .aidp-pill {
+      padding: 8px 14px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 999px;
+      background: var(--aidp-light);
+      color: var(--aidp-blue);
+      font-weight: 600;
+    }
+
+    .aidp-section {
+      padding-bottom: 30px;
+    }
+
+    .aidp-section .info-cards__card {
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(11, 79, 122, 0.06);
+    }
+
+    .aidp-section .info-cards__title {
+      color: var(--aidp-blue);
+      font-size: 24px;
+    }
+
+    .aidp-body p,
+    .aidp-body li {
+      color: var(--aidp-text);
+      line-height: 1.75;
+    }
+
+    .aidp-body ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .aidp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .aidp-card {
+      padding: 20px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .aidp-card h3,
+    .aidp-card h4 {
+      margin-top: 0;
+      color: var(--aidp-blue);
+    }
+
+    .aidp-note {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--aidp-accent);
+      border-radius: 0 12px 12px 0;
+      background: var(--aidp-light);
+    }
+
+    .aidp-note strong {
+      color: var(--aidp-blue);
+    }
+
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .committee-card {
+      padding: 20px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
+    }
+
+    .committee-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .committee-card li {
+      margin-bottom: 8px;
+      color: var(--aidp-text);
+      line-height: 1.65;
+    }
+
+    .speaker-preview li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .aidp-hero__card {
+        padding: 24px;
+      }
+
+      .aidp-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-home">
+  <div id="page-content" class="page-content">
+    <header>
+      <div class="header-desktop">
+        <div class="wrapper">
+          <div class="header-desktop__trigger is-tablet-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="site-logos">
+            <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
+              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+            </a>
+            &nbsp;&nbsp;
+            <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+            </a>
+          </div>
+          <nav class="header-desktop__menu">
+            <ul>
+              <li><a class="active" href="index.html"><i class="fa fa-home"></i> Home</a><span class="slash"></span></li>
+              <li><a href="speakers.html"><i class="fa fa-users"></i> Speakers</a><span class="slash"></span></li>
+              <li><a href="schedule.html"><i class="fa fa-calendar"></i> Schedule</a><span class="slash"></span></li>
+              <li><a href="venue.html"><i class="fa fa-map-marker"></i> Venue</a><span class="slash"></span></li>
+              <li><a href="registration.html"><i class="fa fa-edit"></i> Registration</a><span class="slash"></span></li>
+              <li><a href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a></li>
+              <li class="is-tablet-mobile"><a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a></li>
+            </ul>
+          </nav>
+          <div class="register-now">
+            <a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="header-menu-overlay"></div>
+    </header>
+
+    <div id="body" class="l-body">
+      <main>
+        <section class="aidp-hero">
+          <div class="wrapper">
+            <div class="aidp-hero__card">
+              <div class="aidp-kicker">AIDP 2026</div>
+              <h1 class="aidp-title">International Conference on Artificial Intelligence and Digital Pathology</h1>
+              <p class="aidp-body">AIDP 2026 brings together leading researchers, clinicians, and industry experts to explore the latest developments and critical challenges in AI-powered digital pathology.</p>
+              <div class="aidp-meta">
+                <div class="aidp-pill">November 13-15, 2026</div>
+                <div class="aidp-pill">HKUST</div>
+                <div class="aidp-pill">Venue details in progress</div>
+                <div class="aidp-pill">Registration: TBD</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Introduction</div>
+                <div class="info-cards__content aidp-body">
+                  <p>Recent advances in large-scale foundation models have fundamentally reshaped the landscape of artificial intelligence in digital pathology. By leveraging massive whole-slide image datasets and multimodal learning paradigms, these models have unlocked unprecedented capabilities in representation learning, cross-modal reasoning, and clinical decision support.</p>
+                  <p>Building upon this paradigm shift, emerging directions including multi-omics integration, agent-based AI systems, and human-in-the-loop learning are further expanding the scope of computational pathology. These advances are accelerating the transition from proof-of-concept research toward scalable, real-world clinical deployment.</p>
+                  <p>In this context, AIDP 2026 aims to foster interdisciplinary collaboration and drive the next generation of AI-powered pathology systems toward meaningful clinical impact.</p>
+                  <div class="aidp-note"><strong>Current status:</strong> the detailed program, registration workflow, and visitor logistics are still being finalized and will be updated on this site as information is confirmed.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Conference Focus</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="aidp-grid">
+                    <div class="aidp-card"><h3>Foundation models</h3><p>Foundation models for digital pathology.</p></div>
+                    <div class="aidp-card"><h3>Multimodal learning</h3><p>Multimodal learning and vision-language models.</p></div>
+                    <div class="aidp-card"><h3>Precision medicine</h3><p>Multi-omics integration for precision medicine.</p></div>
+                    <div class="aidp-card"><h3>Pathology automation</h3><p>AI agents and automated pathology workflows.</p></div>
+                    <div class="aidp-card"><h3>Translation</h3><p>Clinical deployment and translational challenges.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Key Information</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="aidp-grid">
+                    <div class="aidp-card">
+                      <h3>Date</h3>
+                      <p>November 13-15, 2026</p>
+                    </div>
+                    <div class="aidp-card">
+                      <h3>Venue</h3>
+                      <p>Kaisa Group Lecture Theater (IAS LT), HKUST</p>
+                      <p class="aidp-muted">Additional access details: TBC.</p>
+                    </div>
+                    <div class="aidp-card">
+                      <h3>Registration</h3>
+                      <p>Registration arrangements will be announced here.</p>
+                      <p class="aidp-muted">Current status: TBD.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Organizing Units</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="aidp-grid">
+                    <div class="aidp-card">
+                      <h4>Department of Computer Science and Engineering, HKUST</h4>
+                    </div>
+                    <div class="aidp-card">
+                      <h4>Department of Chemical and Biological Engineering, HKUST</h4>
+                    </div>
+                    <div class="aidp-card">
+                      <h4>Division of Life Science, HKUST</h4>
+                    </div>
+                    <div class="aidp-card">
+                      <h4>Collaboration Center of Medical and Engineering Innovation</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Conference Leadership</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="committee-grid">
+                    <div class="committee-card">
+                      <h3>Advisory Committee</h3>
+                      <ul>
+                        <li>Prof. Xiu-Wu Bian (Southwest Hospital of the Army Medical University)</li>
+                        <li>Prof. Zhe Wang (Xijing Hospital)</li>
+                        <li>Prof. Zhang Jing (The First Affiliated Hospital of Zhejiang University)</li>
+                        <li>Prof. George J. Netto (UPenn)</li>
+                        <li>Prof. Gary Tse</li>
+                        <li>Prof. Annie Cheung (TBC)</li>
+                        <li>Dr. Wai KONG CHEUNG (TBC)</li>
+                      </ul>
+                    </div>
+                    <div class="committee-card">
+                      <h3>General Chairs</h3>
+                      <ul>
+                        <li>Prof. Hao Chen (HKUST)</li>
+                        <li>Prof. Li Liang (NFH)</li>
+                      </ul>
+                      <h3 style="margin-top: 22px;">Organizing Committee</h3>
+                      <ul>
+                        <li>Prof. Zhi Huang (UPenn)</li>
+                        <li>Dr. Ronald Chan (CUHK)</li>
+                        <li>Prof. Jiguang Wang (HKUST)</li>
+                        <li>Prof. Terence Tsz Wai WONG (HKUST)</li>
+                        <li>Prof. Albert Chung (HKUST)</li>
+                        <li>Prof. Kun-Hsing Yu (Harvard University, TBD)</li>
+                      </ul>
+                    </div>
+                    <div class="committee-card speaker-preview">
+                      <h3>Confirmed Presenters</h3>
+                      <ul>
+                        <li>Prof. Xiu-Wu Bian</li>
+                        <li>Prof. Zhe Wang</li>
+                        <li>Prof. Zhi Huang</li>
+                        <li>Prof. Hoifung Poon</li>
+                        <li>Prof. Ronald Chan</li>
+                        <li>Prof. Gary Tse</li>
+                      </ul>
+                      <p><a href="speakers.html">View presenter biographies and profiles</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer__content">
+        <div class="wrapper">
+          <nav class="footer-menu">
+            <ul>
+              <li><i class="fa fa-envelope"></i> Contact us: <a href="mailto:cjinag@connect.ust.hk">cjinag@connect.ust.hk</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="wrapper">
+          <span>Copyright &copy; 2026</span>
+          <span>The Hong Kong University of Science and Technology</span>
+          <span>All rights reserved.</span>
+        </div>
+      </div>
+      <style>
+        #BackToTop {
+          position: fixed;
+          right: -100px;
+          bottom: 20px;
+          z-index: 99;
+          padding: 10px 15px;
+          border-radius: 3px;
+          background-color: #eb984e;
+          color: #fff;
+        }
+
+        #BackToTop:hover {
+          background-color: #333;
+        }
+
+        #BackToTop.show {
+          right: 30px;
+        }
+      </style>
+      <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            document.getElementById("BackToTop").className = "show";
+          }, 500);
+        };
+      </script>
+    </footer>
+  </div>
+
+  <script src="./assets/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/jquery-3.3.0.min.js"></script>
+  <script src="./assets/ofi-3.2.3.min.js"></script>
+  <script src="./assets/webfontloader.min.js"></script>
+  <script src="./assets/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/select2.min.js"></script>
+  <script src="./assets/sweetalert.min.js"></script>
+  <script src="./assets/slick.min.js"></script>
+  <script src="./assets/plugins.min.js"></script>
+  <script src="./assets/main.min.js"></script>
+</body>
+</html>

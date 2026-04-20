@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Venue - AIDP 2026</title>
+  <meta name="description" content="Venue information for AIDP 2026.">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/reset.css">
+  <link rel="stylesheet" href="./assets/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css">
+  <link rel="stylesheet" href="./assets/select2.min.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <link rel="stylesheet" href="./assets/hotfix.css">
+  <style>
+    :root {
+      --aidp-blue: #0b4f7a;
+      --aidp-accent: #0e79b2;
+      --aidp-light: #f5f9fc;
+      --aidp-border: #d6e2ec;
+      --aidp-text: #23313f;
+      --aidp-muted: #5d6d7e;
+    }
+
+    .aidp-hero {
+      padding: 42px 0 26px;
+      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
+    }
+
+    .aidp-hero__card,
+    .aidp-card,
+    .aidp-visual {
+      background: #fff;
+      border: 1px solid var(--aidp-border);
+      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
+    }
+
+    .aidp-hero__card {
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
+    }
+
+    .aidp-kicker {
+      margin-bottom: 12px;
+      color: var(--aidp-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .aidp-title {
+      margin: 0 0 10px;
+      color: var(--aidp-blue);
+      font-size: 36px;
+    }
+
+    .aidp-subtitle {
+      margin: 0;
+      color: var(--aidp-muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .aidp-section {
+      padding-bottom: 30px;
+    }
+
+    .aidp-section .info-cards__card {
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(11, 79, 122, 0.06);
+    }
+
+    .aidp-section .info-cards__title {
+      color: var(--aidp-blue);
+      font-size: 24px;
+    }
+
+    .aidp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .aidp-card {
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .aidp-card h3,
+    .aidp-card h4 {
+      margin-top: 0;
+      color: var(--aidp-blue);
+    }
+
+    .aidp-card p,
+    .aidp-card li {
+      color: var(--aidp-text);
+      line-height: 1.75;
+    }
+
+    .aidp-note {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--aidp-accent);
+      border-radius: 0 12px 12px 0;
+      background: var(--aidp-light);
+      color: var(--aidp-text);
+      line-height: 1.75;
+    }
+
+    .aidp-image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .aidp-visual {
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .aidp-visual img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .aidp-visual__body {
+      padding: 16px 18px;
+    }
+
+    .aidp-visual__body h4 {
+      margin-top: 0;
+      color: var(--aidp-blue);
+    }
+
+    .aidp-visual__body p {
+      color: var(--aidp-text);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .aidp-hero__card {
+        padding: 24px;
+      }
+
+      .aidp-title {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-venue">
+  <div id="page-content" class="page-content">
+    <header>
+      <div class="header-desktop">
+        <div class="wrapper">
+          <div class="header-desktop__trigger is-tablet-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="site-logos">
+            <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
+              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+            </a>
+            &nbsp;&nbsp;
+            <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+            </a>
+          </div>
+          <nav class="header-desktop__menu">
+            <ul>
+              <li><a href="index.html"><i class="fa fa-home"></i> Home</a><span class="slash"></span></li>
+              <li><a href="speakers.html"><i class="fa fa-users"></i> Speakers</a><span class="slash"></span></li>
+              <li><a href="schedule.html"><i class="fa fa-calendar"></i> Schedule</a><span class="slash"></span></li>
+              <li><a class="active" href="venue.html"><i class="fa fa-map-marker"></i> Venue</a><span class="slash"></span></li>
+              <li><a href="registration.html"><i class="fa fa-edit"></i> Registration</a><span class="slash"></span></li>
+              <li><a href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a></li>
+              <li class="is-tablet-mobile"><a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a></li>
+            </ul>
+          </nav>
+          <div class="register-now">
+            <a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="header-menu-overlay"></div>
+    </header>
+
+    <div id="body" class="l-body">
+      <main>
+        <section class="aidp-hero">
+          <div class="wrapper">
+            <div class="aidp-hero__card">
+              <div class="aidp-kicker">AIDP 2026</div>
+              <h1 class="aidp-title">Venue</h1>
+              <p class="aidp-subtitle">The current conference document confirms the venue as Kaisa Group Lecture Theater (IAS LT), HKUST. Additional routing and room access details will be posted once finalized.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Venue Summary</div>
+                <div class="info-cards__content">
+                  <div class="aidp-grid">
+                    <div class="aidp-card">
+                      <h3>Confirmed location</h3>
+                      <p><strong>Kaisa Group Lecture Theater (IAS LT)</strong><br>Hong Kong University of Science and Technology</p>
+                    </div>
+                    <div class="aidp-card">
+                      <h3>Conference dates</h3>
+                      <p>November 13-15, 2026</p>
+                    </div>
+                    <div class="aidp-card">
+                      <h3>Access information</h3>
+                      <p>Detailed building access, arrival routing, and on-site check-in instructions are TBC.</p>
+                    </div>
+                  </div>
+                  <div class="aidp-note"><strong>Venue details beyond the confirmed location are currently TBC.</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Campus Visuals</div>
+                <div class="info-cards__content">
+                  <div class="aidp-image-grid">
+                    <div class="aidp-visual">
+                      <a href="images/ias_photo_2019.jpg" target="_blank"><img src="images/ias_photo_2019.jpg" alt="HKUST Institute for Advanced Study building"></a>
+                      <div class="aidp-visual__body">
+                        <h4>HKUST IAS Area</h4>
+                        <p>Reference campus visual. Final arrival instructions remain TBC.</p>
+                      </div>
+                    </div>
+                    <div class="aidp-visual">
+                      <a href="images/location_map_202209.png" target="_blank"><img src="images/location_map_202209.png" alt="Hong Kong location map"></a>
+                      <div class="aidp-visual__body">
+                        <h4>Hong Kong Location Map</h4>
+                        <p>General orientation image. Transport guidance is TBC.</p>
+                      </div>
+                    </div>
+                    <div class="aidp-visual">
+                      <a href="images/ias_map_thumb_v202404.png" target="_blank"><img src="images/ias_map_thumb_v202404.png" alt="HKUST campus map thumbnail"></a>
+                      <div class="aidp-visual__body">
+                        <h4>Campus Map Reference</h4>
+                        <p>Campus map reference. Specific wayfinding details are TBC.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer__content">
+        <div class="wrapper">
+          <nav class="footer-menu">
+            <ul>
+              <li><i class="fa fa-envelope"></i> Contact us: <a href="mailto:cjinag@connect.ust.hk">cjinag@connect.ust.hk</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="wrapper">
+          <span>Copyright &copy; 2026</span>
+          <span>The Hong Kong University of Science and Technology</span>
+          <span>All rights reserved.</span>
+        </div>
+      </div>
+      <style>
+        #BackToTop {
+          position: fixed;
+          right: -100px;
+          bottom: 20px;
+          z-index: 99;
+          padding: 10px 15px;
+          border-radius: 3px;
+          background-color: #eb984e;
+          color: #fff;
+        }
+
+        #BackToTop:hover {
+          background-color: #333;
+        }
+
+        #BackToTop.show {
+          right: 30px;
+        }
+      </style>
+      <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            document.getElementById("BackToTop").className = "show";
+          }, 500);
+        };
+      </script>
+    </footer>
+  </div>
+
+  <script src="./assets/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/jquery-3.3.0.min.js"></script>
+  <script src="./assets/ofi-3.2.3.min.js"></script>
+  <script src="./assets/webfontloader.min.js"></script>
+  <script src="./assets/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/select2.min.js"></script>
+  <script src="./assets/sweetalert.min.js"></script>
+  <script src="./assets/slick.min.js"></script>
+  <script src="./assets/plugins.min.js"></script>
+  <script src="./assets/main.min.js"></script>
+</body>
+</html>

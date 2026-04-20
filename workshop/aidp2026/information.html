@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Pre-arrival Information - AIDP 2026</title>
+  <meta name="description" content="Pre-arrival information for AIDP 2026.">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
+  
+  <link rel="stylesheet" href="./assets/reset.css">
+  <link rel="stylesheet" href="./assets/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css">
+  <link rel="stylesheet" href="./assets/select2.min.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <link rel="stylesheet" href="./assets/hotfix.css">
+
+  <style>
+    :root {
+      --aidp-blue: #0b4f7a;
+      --aidp-accent: #0e79b2;
+      --aidp-light: #f5f9fc;
+      --aidp-border: #d6e2ec;
+      --aidp-text: #23313f;
+      --aidp-muted: #5d6d7e;
+    }
+
+    .aidp-hero {
+      padding: 42px 0 26px;
+      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
+    }
+
+    .aidp-hero__card {
+      background: #fff;
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
+    }
+
+    .aidp-kicker {
+      margin-bottom: 12px;
+      color: var(--aidp-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .aidp-title {
+      margin: 0 0 10px;
+      color: var(--aidp-blue);
+      font-size: 38px;
+      line-height: 1.15;
+    }
+
+    .aidp-subtitle {
+      margin: 0 0 16px;
+      color: var(--aidp-muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .aidp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .aidp-pill {
+      padding: 8px 14px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 999px;
+      background: var(--aidp-light);
+      color: var(--aidp-blue);
+      font-weight: 600;
+    }
+
+    .aidp-intro-copy {
+      color: var(--aidp-text);
+      line-height: 1.75;
+    }
+
+    .info-navigation {
+      margin-top: 20px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .nav-card {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background: #fff;
+      border: 2px solid #e6e7e8;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #231f20;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-card:hover {
+      border-color: #006CBF;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,107,191,0.15);
+      text-decoration: none;
+      color: #006CBF;
+    }
+
+    .nav-icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #006CBF, #1ab9ac);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-icon i {
+      color: white;
+      font-size: 20px;
+    }
+
+    .nav-card:hover .nav-icon {
+      transform: scale(1.1);
+    }
+
+    .nav-content h4 {
+      margin: 0 0 5px 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .nav-content p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.4;
+    }
+
+    .nav-card:hover .nav-content p {
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .aidp-title {
+        font-size: 30px;
+      }
+
+      .aidp-hero__card {
+        padding: 24px;
+      }
+
+      .nav-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .nav-card {
+        padding: 15px;
+      }
+
+      .nav-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+      }
+
+      .nav-icon i {
+        font-size: 18px;
+      }
+    }
+
+    /* Visa Categories Styling */
+    .visa-categories {
+      margin-top: 20px;
+    }
+
+    .visa-category {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .visa-category:hover {
+      border-color: #006CBF;
+      box-shadow: 0 2px 8px rgba(0,107,191,0.1);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .category-number {
+      background: linear-gradient(135deg, #006CBF, #1ab9ac);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 15px;
+      font-size: 14px;
+    }
+
+    .category-header h4 {
+      margin: 0;
+      color: #231f20;
+      font-size: 18px;
+    }
+
+    .visa-category p {
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .visa-link {
+      display: inline-flex;
+      align-items: center;
+      color: #006CBF;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .visa-link:hover {
+      color: #004a8a;
+      text-decoration: none;
+    }
+
+    .visa-link i {
+      margin-right: 8px;
+      font-size: 14px;
+    }
+
+    /* Weather Information Styling */
+    .weather-info {
+      margin-top: 20px;
+    }
+
+    .weather-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .weather-section h4 {
+      margin: 0 0 15px 0;
+      color: #231f20;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .weather-details {
+      margin-top: 15px;
+    }
+
+    .weather-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .weather-item:last-child {
+      border-bottom: none;
+    }
+
+    .weather-label {
+      font-weight: 600;
+      color: #555;
+      flex: 1;
+    }
+
+    .weather-value {
+      color: #231f20;
+      font-weight: 500;
+      text-align: right;
+      flex: 1;
+    }
+
+    .weather-forecast-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .forecast-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #006CBF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: 1px solid #006CBF;
+    }
+
+    .forecast-btn:hover {
+      background: #004a8a;
+      border-color: #004a8a;
+      text-decoration: none;
+      color: white;
+    }
+
+    .forecast-btn i {
+      margin-right: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .weather-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .weather-value {
+        text-align: left;
+        margin-top: 4px;
+      }
+    }
+
+    /* Currency Information Styling */
+    .currency-info {
+      margin-top: 20px;
+    }
+
+    .currency-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .currency-section h4 {
+      margin: 0 0 15px 0;
+      color: #231f20;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .currency-section h5 {
+      margin: 0 0 8px 0;
+      color: #006CBF;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .currency-details {
+      margin-top: 15px;
+    }
+
+    .currency-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .currency-item:last-child {
+      border-bottom: none;
+    }
+
+    .currency-label {
+      font-weight: 600;
+      color: #555;
+      flex: 1;
+    }
+
+    .currency-value {
+      color: #231f20;
+      font-weight: 500;
+      text-align: right;
+      flex: 1;
+    }
+
+    .payment-methods {
+      margin-top: 15px;
+    }
+
+    .payment-category {
+      background: #f8f9fa;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .payment-category:last-child {
+      margin-bottom: 0;
+    }
+
+    .payment-category p {
+      margin: 8px 0 0 0;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .currency-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .currency-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #006CBF;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: 1px solid #006CBF;
+    }
+
+    .currency-btn:hover {
+      background: #004a8a;
+      border-color: #004a8a;
+      text-decoration: none;
+      color: white;
+    }
+
+    .currency-btn i {
+      margin-right: 6px;
+    }
+
+    .inline-link {
+      color: #006CBF;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .inline-link:hover {
+      color: #004a8a;
+      text-decoration: underline;
+    }
+
+    .octopus-link {
+      display: inline-flex;
+      align-items: center;
+      color: #006CBF;
+      text-decoration: none;
+      font-weight: 500;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    .octopus-link:hover {
+      color: #004a8a;
+      text-decoration: none;
+    }
+
+    .octopus-link i {
+      margin-right: 6px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .currency-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .currency-value {
+        text-align: left;
+        margin-top: 4px;
+      }
+    }
+
+    /* Time Zone Information Styling */
+    .time-info {
+      margin-top: 20px;
+    }
+
+    .time-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .timezone-card {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 20px;
+    }
+
+    .timezone-card h4 {
+      margin: 10px 0;
+      color: #231f20;
+      font-size: 20px;
+    }
+
+    .timezone-value {
+      font-size: 36px;
+      font-weight: bold;
+      color: #006CBF;
+      margin: 15px 0;
+      font-family: 'Jockey One', sans-serif;
+    }
+
+    .timezone-card p {
+      margin: 10px 0 0 0;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .time-converter {
+      text-align: center;
+    }
+
+    .time-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #006CBF;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: 1px solid #006CBF;
+    }
+
+    .time-btn:hover {
+      background: #004a8a;
+      border-color: #004a8a;
+      text-decoration: none;
+      color: white;
+    }
+
+    .time-btn i {
+      margin-right: 6px;
+    }
+
+    /* Electricity Information Styling */
+    .electricity-info {
+      margin-top: 20px;
+    }
+
+    .electricity-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .electricity-section h4 {
+      margin: 0 0 15px 0;
+      color: #231f20;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .electricity-details {
+      margin-top: 15px;
+    }
+
+    .electricity-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .electricity-item:last-child {
+      border-bottom: none;
+    }
+
+    .electricity-label {
+      font-weight: 600;
+      color: #555;
+      flex: 1;
+    }
+
+    .electricity-value {
+      color: #231f20;
+      font-weight: 500;
+      text-align: right;
+      flex: 1;
+    }
+
+    .electricity-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .electricity-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #006CBF;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      border: 1px solid #006CBF;
+    }
+
+    .electricity-btn:hover {
+      background: #004a8a;
+      border-color: #004a8a;
+      text-decoration: none;
+      color: white;
+    }
+
+    .electricity-btn i {
+      margin-right: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .electricity-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .electricity-value {
+        text-align: left;
+        margin-top: 4px;
+      }
+
+      .timezone-value {
+        font-size: 28px;
+      }
+    }
+
+    /* Internet Information Styling */
+    .internet-info {
+      margin-top: 20px;
+    }
+
+    .internet-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .internet-section h4 {
+      margin: 0 0 15px 0;
+      color: #231f20;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .internet-section h5 {
+      margin: 20px 0 15px 0;
+      color: #006CBF;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .wifi-card {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .wifi-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #006CBF;
+      margin-bottom: 10px;
+      font-family: 'Jockey One', sans-serif;
+    }
+
+    .wifi-card p {
+      margin: 10px 0 15px 0;
+      color: #666;
+    }
+
+    .wifi-link {
+      display: inline-flex;
+      align-items: center;
+      color: #006CBF;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .wifi-link:hover {
+      color: #004a8a;
+      text-decoration: none;
+    }
+
+    .wifi-link i {
+      margin-right: 6px;
+    }
+
+    .wifi-description p {
+      margin: 0 0 15px 0;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .location-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .location-item i {
+      margin-right: 8px;
+      color: #006CBF;
+      width: 16px;
+    }
+
+    .app-section {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .app-downloads {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .app-store-btn {
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .app-store-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .app-store-btn img {
+      height: 40px;
+      width: auto;
+    }
+
+    .qr-section {
+      text-align: center;
+      padding-top: 15px;
+      border-top: 1px solid #dee2e6;
+    }
+
+    .qr-code {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .qr-section p {
+      margin: 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Compact Wi-Fi App Section */
+    .wifi-app-inline {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 15px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      flex-wrap: wrap;
+    }
+
+    .app-label {
+      color: #006CBF;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .app-badge {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .app-badge:hover {
+      transform: scale(1.05);
+    }
+
+    .app-badge img {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
+
+    .qr-badge {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-downloads {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .app-store-btn img {
+        height: 35px;
+      }
+
+      .wifi-app-inline {
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .app-label {
+        font-size: 13px;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .app-badge img,
+      .qr-badge {
+        height: 22px;
+        width: 22px;
+      }
+    }
+
+    /* Emergency Contacts Styling */
+    .emergency-info {
+      margin-top: 20px;
+    }
+
+    .emergency-section {
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .emergency-section h4 {
+      margin: 0 0 15px 0;
+      color: #231f20;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+
+    .emergency-priority {
+      border-left: 4px solid #e74c3c;
+      background: linear-gradient(135deg, #fff5f5, #ffeaea);
+    }
+
+    .emergency-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #e6e7e8;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .emergency-item:hover {
+      border-color: #006CBF;
+      box-shadow: 0 2px 4px rgba(0,107,191,0.1);
+    }
+
+    .emergency-item.priority {
+      border-color: #e74c3c;
+      background: linear-gradient(135deg, #fff, #fef9f9);
+    }
+
+    .emergency-item.priority:hover {
+      border-color: #c0392b;
+      box-shadow: 0 2px 4px rgba(231,76,60,0.2);
+    }
+
+    .emergency-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: #f8f9fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .emergency-item.priority .emergency-icon {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .emergency-icon i {
+      font-size: 16px;
+      color: #006CBF;
+    }
+
+    .emergency-item.priority .emergency-icon i {
+      color: white;
+    }
+
+    .emergency-details {
+      flex: 1;
+    }
+
+    .emergency-service {
+      font-weight: 600;
+      color: #231f20;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    .emergency-desc {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .emergency-number {
+      font-weight: bold;
+      color: #006CBF;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .emergency-item.priority .emergency-number {
+      color: #e74c3c;
+      font-size: 20px;
+    }
+
+    .emergency-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    .emergency-source {
+      text-align: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+
+    .emergency-source p {
+      margin: 0;
+    }
+
+    .emergency-source a {
+      color: #006CBF;
+      text-decoration: none;
+    }
+
+    .emergency-source a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .emergency-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .emergency-item {
+        padding: 10px;
+      }
+
+      .emergency-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 12px;
+      }
+
+      .emergency-icon i {
+        font-size: 14px;
+      }
+
+      .emergency-service {
+        font-size: 15px;
+      }
+
+      .emergency-number {
+        font-size: 14px;
+      }
+
+      .emergency-item.priority .emergency-number {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-information">
+  <div id="page-content" class="page-content">
+    <header>
+      <div class="header-desktop">
+        <div class="wrapper">
+          <div class="header-desktop__trigger is-tablet-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="site-logos">
+            <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
+              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+            </a>
+			&nbsp;&nbsp;
+            <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+            </a>
+          </div>
+          <nav class="header-desktop__menu">
+            <ul>
+              <li>
+                <a class="" href="index.html"><i class="fa fa-home"></i> Home</a>
+                <span class="slash"></span>
+              </li>
+              <li>
+                <a class="" href="speakers.html"><i class="fa fa-users"></i> Speakers</a>
+                <span class="slash"></span>
+              </li>
+              <li>
+                <a class="" href="schedule.html"><i class="fa fa-calendar"></i> Schedule</a>
+                <span class="slash"></span>
+              </li>
+              <li>
+                <a class="" href="venue.html"><i class="fa fa-map-marker"></i> Venue</a>
+                <span class="slash"></span>
+              </li>
+              <li>
+                <a class="" href="registration.html"><i class="fa fa-edit"></i> Registration</a>
+                <span class="slash"></span>
+              </li>
+
+              <li>
+                <a class="active" href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a>
+              </li>
+              <li class="is-tablet-mobile">
+                <a class="btn register" href="schedule.html"><font style="font-size: 110%">Schedule</font></a> 
+              </li>
+            </ul>
+          </nav>
+          <div class="register-now">
+            <a class="btn register" href="schedule.html"><font style="font-size: 110%">Schedule</font></a> 
+          </div>
+        </div>
+      </div>
+      <div class="header-menu-overlay"></div>
+    </header>
+
+    <div id="body" class="l-body">
+      <main>
+        <section class="aidp-hero">
+          <div class="wrapper">
+            <div class="aidp-hero__card">
+              <div class="aidp-kicker">AIDP 2026</div>
+              <h1 class="aidp-title">Pre-arrival Information</h1>
+              <p class="aidp-subtitle">Travel guidance, visitor logistics, and practical information for conference participants.</p>
+              <div class="aidp-meta">
+                <div class="aidp-pill">November 13-15, 2026</div>
+                <div class="aidp-pill">HKUST</div>
+                <div class="aidp-pill">Pre-arrival guidance</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Pre-arrival Information</div>
+                <div class="info-cards__content aidp-intro-copy">
+                  <p style="text-align: justify; margin-bottom: 30px;">
+                    Welcome to Hong Kong! To help you prepare for your visit to AIDP 2026, we have compiled essential information about visa requirements, local customs, and practical tips for your stay. Please review the following sections carefully to ensure a smooth and enjoyable experience.
+                  </p>
+
+                  <div class="info-navigation">
+                    <div class="nav-grid">
+                      <a href="#visa" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-file-text"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>VISA Requirements</h4>
+                          <p>Entry requirements and visa information</p>
+                        </div>
+                      </a>
+
+                      <a href="#weather" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-cloud"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Weather</h4>
+                          <p>Climate and weather forecast</p>
+                        </div>
+                      </a>
+
+                      <a href="#currency" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-credit-card"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Currency & Payment</h4>
+                          <p>Money exchange and payment methods</p>
+                        </div>
+                      </a>
+
+                      <a href="#time-diff" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-clock-o"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Time Zone</h4>
+                          <p>Local time and time differences</p>
+                        </div>
+                      </a>
+
+                      <a href="#electric" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-plug"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Electricity</h4>
+                          <p>Voltage and plug types</p>
+                        </div>
+                      </a>
+
+                      <a href="#internet" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-wifi"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Internet Access</h4>
+                          <p>Wi-Fi and connectivity options</p>
+                        </div>
+                      </a>
+
+                      <a href="#numbers" class="nav-card">
+                        <div class="nav-icon">
+                          <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="nav-content">
+                          <h4>Emergency Contacts</h4>
+                          <p>Important phone numbers</p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="visa">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-file-text" style="color: #006CBF; margin-right: 10px;"></i>
+                  VISA Requirements
+                </div>
+                <div class="info-cards__content">
+                  <div style="background-color: #f8f9fa; border-left: 4px solid #006CBF; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
+                    <p style="margin: 0; line-height: 1.6;">
+                      <strong>Important:</strong> You are strongly recommended to check visa requirements from the Hong Kong Immigration Department website before planning your visit. Holders of passports from most developed countries normally do not require a visa to enter Hong Kong. Please allow sufficient time for visa applications prior to your travel.
+                    </p>
+                  </div>
+
+                  <div class="visa-categories">
+                    <div class="visa-category">
+                      <div class="category-header">
+                        <span class="category-number">1</span>
+                        <h4>Foreign Passport Holders</h4>
+                      </div>
+                      <p>Participants who are holders of foreign passports (except holders of People's Republic of China (PRC) passports and Chinese residents of Taiwan).</p>
+                      <a class="visa-link" target="_blank" href="http://www.immd.gov.hk/eng/services/visas/visit-transit/visit-visa-entry-permit.html">
+                        <i class="fa fa-external-link"></i> Visit Transit & Entry Permit Information
+                      </a>
+                    </div>
+
+                    <div class="visa-category">
+                      <div class="category-header">
+                        <span class="category-number">2</span>
+                        <h4>PRC Passport Holders (Mainland China Residents)</h4>
+                      </div>
+                      <p>Participants who are holders of People's Republic of China (PRC) passports and reside in Mainland China.</p>
+                      <a class="visa-link" target="_blank" href="http://www.immd.gov.hk/eng/services/visas/overseas-chinese-entry-arrangement.html#a">
+                        <i class="fa fa-external-link"></i> Overseas Chinese Entry Arrangement
+                      </a>
+                    </div>
+
+                    <div class="visa-category">
+                      <div class="category-header">
+                        <span class="category-number">3</span>
+                        <h4>PRC Passport Holders (Overseas) & Taiwan Residents</h4>
+                      </div>
+                      <p>Participants who are holders of People's Republic of China (PRC) passports and reside overseas, or who are Chinese residents of Taiwan.</p>
+                      <a class="visa-link" target="_blank" href="http://www.immd.gov.hk/eng/services/visas/overseas-chinese-entry-arrangement.html#c">
+                        <i class="fa fa-external-link"></i> Overseas Chinese Entry Arrangement
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="weather">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-cloud" style="color: #006CBF; margin-right: 10px;"></i>
+                  Weather
+                </div>
+                <div class="info-cards__content">
+                  <div style="background-color: #f8f9fa; border-left: 4px solid #006CBF; padding: 20px; margin-bottom: 25px; border-radius: 0 8px 8px 0;">
+                    <p style="margin: 0; line-height: 1.6;">
+                      Hong Kong has a sub-tropical climate with distinct seasons. Typhoon season begins in May and ends in November. When a typhoon is approaching, warnings are broadcast on television and radio.
+                    </p>
+                  </div>
+
+                  <div class="weather-info">
+                    <div class="weather-section">
+                      <h4><i class="fa fa-thermometer-half" style="color: #e74c3c; margin-right: 8px;"></i>November Weather</h4>
+                      <div class="weather-details">
+                        <div class="weather-item">
+                          <span class="weather-label">Temperature (Day):</span>
+                          <span class="weather-value">Usually around 24°C</span>
+                        </div>
+                        <div class="weather-item">
+                          <span class="weather-label">Temperature (Night):</span>
+                          <span class="weather-value">Usually around 19°C</span>
+                        </div>
+                        <div class="weather-item">
+                          <span class="weather-label">Humidity:</span>
+                          <span class="weather-value">Moderate</span>
+                        </div>
+                        <div class="weather-item">
+                          <span class="weather-label">Conditions:</span>
+                          <span class="weather-value">Mild and generally pleasant, with cooler evenings and occasional rain</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="weather-section">
+                      <h4><i class="fa fa-exclamation-triangle" style="color: #f39c12; margin-right: 8px;"></i>Typhoon Information</h4>
+                      <p>When typhoon <strong>signal no. 8</strong> is in place, most businesses and shops close down and flights may be cancelled. There is a separate warning system for heavy rain.</p>
+                    </div>
+
+                    <div class="weather-forecast-link">
+                      <a class="forecast-btn" target="_blank" href="http://visithk.weather.gov.hk/index_e.htm">
+                        <i class="fa fa-external-link"></i> Check Current Weather Forecast
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="currency">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-credit-card" style="color: #006CBF; margin-right: 10px;"></i>
+                  Currency & e-payment
+                </div>
+                <div class="info-cards__content">
+                  <div class="currency-info">
+                    <div class="currency-section">
+                      <h4><i class="fa fa-money" style="color: #27ae60; margin-right: 8px;"></i>Hong Kong Dollar (HKD)</h4>
+                      <div class="currency-details">
+                        <div class="currency-item">
+                          <span class="currency-label">Exchange Rate:</span>
+                          <span class="currency-value">≈ 7.80 HKD to 1 USD</span>
+                        </div>
+                        <div class="currency-item">
+                          <span class="currency-label">Status:</span>
+                          <span class="currency-value">Pegged to US Dollar</span>
+                        </div>
+                      </div>
+                      <div class="currency-link">
+                        <a class="currency-btn" target="_blank" href="https://www.xe.com/currencyconverter/">
+                          <i class="fa fa-calculator"></i> Currency Converter
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="currency-section">
+                      <h4><i class="fa fa-credit-card" style="color: #3498db; margin-right: 8px;"></i>Payment Methods</h4>
+                      <div class="payment-methods">
+                        <div class="payment-category">
+                          <h5>Credit Cards</h5>
+                          <p>American Express, VISA, and MasterCard are widely accepted at hotels, shops, and restaurants.</p>
+                        </div>
+                        <div class="payment-category">
+                          <h5>Mobile Payments</h5>
+                          <p>Apple Pay, Google Pay, Alipay, and WeChat Pay are accepted at many stores. Look for payment signs at entrances.</p>
+                        </div>
+                        <div class="payment-category">
+                          <h5>Octopus Card</h5>
+                          <p>Essential for public transport and many shops. You can purchase a physical card or <a href="https://apps.apple.com/us/app/octopus-for-tourists/id1505492952" target="_blank" class="inline-link">download the tourist app</a>.</p>
+                          <a class="octopus-link" target="_blank" href="https://www.octopus.com.hk/en/consumer/octopus-cards/products/sold-tourist/index.html">
+                            <i class="fa fa-external-link"></i> Learn more about Octopus
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="currency-section">
+                      <h4><i class="fa fa-university" style="color: #e74c3c; margin-right: 8px;"></i>ATM Services</h4>
+                      <p>ATMs are widely available throughout Hong Kong. Many accept international cards, and HSBC machines provide 24-hour cash withdrawal services for Visa and MasterCard holders. Some ATMs also offer foreign currency withdrawal.</p>
+                      <div class="currency-link">
+                        <a class="currency-btn" target="_blank" href="https://www.hsbc.com.hk/ways-to-bank/branch/express-banking/foreign-currency-atm">
+                          <i class="fa fa-external-link"></i> HSBC ATM Services
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="time-diff">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-clock-o" style="color: #006CBF; margin-right: 10px;"></i>
+                  Time Differences
+                </div>
+                <div class="info-cards__content">
+                  <div class="time-info">
+                    <div class="time-section">
+                      <div class="time-display">
+                        <div class="timezone-card">
+                          <i class="fa fa-globe" style="color: #006CBF; font-size: 24px; margin-bottom: 10px;"></i>
+                          <h4>Hong Kong Time Zone</h4>
+                          <div class="timezone-value">UTC+8</div>
+                          <p>Hong Kong Standard Time (HKT)</p>
+                        </div>
+                      </div>
+                      <div class="time-converter">
+                        <a class="time-btn" href="https://www.worldtimeserver.com/convert_time_in_HK.aspx" target="_blank">
+                          <i class="fa fa-clock-o"></i> Time Zone Converter
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="electric">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-plug" style="color: #006CBF; margin-right: 10px;"></i>
+                  Electricity & Voltage
+                </div>
+                <div class="info-cards__content">
+                  <div class="electricity-info">
+                    <div class="electricity-section">
+                      <h4><i class="fa fa-bolt" style="color: #f39c12; margin-right: 8px;"></i>Electrical Specifications</h4>
+                      <div class="electricity-details">
+                        <div class="electricity-item">
+                          <span class="electricity-label">Voltage:</span>
+                          <span class="electricity-value">220 volts AC, 50Hz</span>
+                        </div>
+                        <div class="electricity-item">
+                          <span class="electricity-label">Plug Type:</span>
+                          <span class="electricity-value">Three-pronged UK-style (Type G)</span>
+                        </div>
+                        <div class="electricity-item">
+                          <span class="electricity-label">Hotel Bathrooms:</span>
+                          <span class="electricity-value">Most have 100V outlets available</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="electricity-section">
+                      <h4><i class="fa fa-shopping-cart" style="color: #27ae60; margin-right: 8px;"></i>Where to Buy Adaptors</h4>
+                      <p>You can purchase inexpensive adaptors, portable chargers, and power packs at most convenience stores throughout Hong Kong.</p>
+                      <div class="electricity-link">
+                        <a class="electricity-btn" target="_blank" href="http://www.discoverhongkong.com/eng/plan-your-trip/traveller-info/good-to-know/electricity-and-voltage.jsp">
+                          <i class="fa fa-external-link"></i> More Details
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="internet">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-wifi" style="color: #006CBF; margin-right: 10px;"></i>
+                  Internet Access
+                </div>
+                <div class="info-cards__content">
+                  <div class="internet-info">
+                    <div class="internet-section">
+                      <h4><i class="fa fa-university" style="color: #006CBF; margin-right: 8px;"></i>HKUST Campus Wi-Fi</h4>
+                      <div class="wifi-card">
+                        <div class="wifi-name">eduroam</div>
+                        <p>Available throughout HKUST campus for academic visitors</p>
+                        <a class="wifi-link" href="http://itsc.ust.hk/services/general-it-services/wifi/wi-fi-services/#eduroam" target="_blank">
+                          <i class="fa fa-external-link"></i> HKUST Wi-Fi Services
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="internet-section">
+                      <h4><i class="fa fa-wifi" style="color: #27ae60; margin-right: 8px;"></i>Free Public Wi-Fi</h4>
+                      <div class="wifi-description">
+                        <p>Wi-Fi.HK hotspots are widely available at tourist attractions, shopping malls, parks, museums, ferry terminals, and government buildings.</p>
+
+                        <div class="wifi-app-inline">
+                          <span class="app-label">Download Wi-Fi.HK App:</span>
+                          <a class="app-badge" target="_blank" href="https://play.google.com/store/apps/details?id=org.wtia.wifihk">
+                            <img alt="Google Play" src="./images/google-play.png">
+                          </a>
+                          <a class="app-badge" target="_blank" href="https://itunes.apple.com/hk/app/wi-fi.hk/id899066359?mt=8">
+                            <img alt="App Store" src="./images/app-store.png">
+                          </a>
+                          <img class="qr-badge" src="./images/qr-code.png" alt="QR Code" title="Scan to download">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro" id="numbers">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">
+                  <i class="fa fa-phone" style="color: #006CBF; margin-right: 10px;"></i>
+                  Emergency Contacts & Useful Numbers
+                </div>
+                <div class="info-cards__content">
+                  <div class="emergency-info">
+                    <div class="emergency-section emergency-priority">
+                      <h4><i class="fa fa-exclamation-triangle" style="color: #e74c3c; margin-right: 8px;"></i>Emergency Services</h4>
+                      <div class="emergency-item priority">
+                        <div class="emergency-icon">
+                          <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="emergency-details">
+                          <div class="emergency-service">Emergency Services</div>
+                          <div class="emergency-desc">Police, Fire, Ambulance</div>
+                        </div>
+                        <div class="emergency-number">999</div>
+                      </div>
+                    </div>
+
+                    <div class="emergency-section">
+                      <h4><i class="fa fa-info-circle" style="color: #006CBF; margin-right: 8px;"></i>Important Contacts</h4>
+                      <div class="emergency-grid">
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-shield"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">Police Hotline</div>
+                            <div class="emergency-number">+852 2527 7177</div>
+                          </div>
+                        </div>
+
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-plane"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">HK Airport</div>
+                            <div class="emergency-number">+852 2181 8888</div>
+                          </div>
+                        </div>
+
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-building"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">Immigration Dept</div>
+                            <div class="emergency-number">+852 2824 6111</div>
+                          </div>
+                        </div>
+
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-info"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">Tourism Board</div>
+                            <div class="emergency-number">+852 2508 1234</div>
+                          </div>
+                        </div>
+
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-cloud"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">Weather Info</div>
+                            <div class="emergency-number">+852 1878 200</div>
+                          </div>
+                        </div>
+
+                        <div class="emergency-item">
+                          <div class="emergency-icon">
+                            <i class="fa fa-search"></i>
+                          </div>
+                          <div class="emergency-details">
+                            <div class="emergency-service">Directory</div>
+                            <div class="emergency-number">1081</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="emergency-source">
+                      <p><small>Source: <a href="http://www.discoverhongkong.com/" target="_blank">Hong Kong Tourism Board</a>, <a href="http://www.hko.gov.hk/" target="_blank">Hong Kong Observatory</a></small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer__content">
+        <div class="wrapper">
+          <nav class="footer-menu">
+            <ul>
+              <li>
+                <i class="fa fa-envelope"></i> Contact us: <a href="mailto:cjinag@connect.ust.hk">cjinag@connect.ust.hk</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="wrapper">
+          <span>Copyright © 2025  </span>
+          <span>The Hong Kong University of Science and Technology</span>
+          <span>All rights reserved.</span>      
+        </div>
+      </div>
+
+      <style>
+        #BackToTop{
+          position: fixed;
+          bottom: 20px;
+          right: -100px;
+          z-index: 99;
+          color: #FFF;
+          background-color: #EB984E;
+          padding: 10px 15px;
+          border-radius: 3px;
+        }
+        #BackToTop:hover{
+          background-color: #333;
+        }
+        #BackToTop.show{
+          right: 30px;
+        }
+      </style>
+      <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
+      <script>
+        window.onload = function(){
+          setTimeout(function(){
+            document.getElementById("BackToTop").className = "show";
+          }, 500);
+        }
+      </script>
+    </footer>
+  </div>
+
+  <script src="./assets/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/jquery-3.3.0.min.js"></script>
+  <script src="./assets/ofi-3.2.3.min.js"></script>
+  <script src="./assets/webfontloader.min.js"></script>
+  <script src="./assets/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/select2.min.js"></script>
+  <script src="./assets/sweetalert.min.js"></script>
+  <script src="./assets/slick.min.js"></script>
+  <script src="./assets/plugins.min.js"></script>
+  <script src="./assets/main.min.js"></script>
+</body>
+</html>

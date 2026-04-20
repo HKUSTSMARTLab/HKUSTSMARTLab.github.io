@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Speakers - AIDP 2026</title>
+  <meta name="description" content="Confirmed presenters and conference leadership for AIDP 2026.">
+  <meta name="viewport" content="width=device-width, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/reset.css">
+  <link rel="stylesheet" href="./assets/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css">
+  <link rel="stylesheet" href="./assets/select2.min.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <link rel="stylesheet" href="./assets/hotfix.css">
+  <style>
+    :root {
+      --aidp-blue: #0b4f7a;
+      --aidp-accent: #0e79b2;
+      --aidp-light: #f5f9fc;
+      --aidp-border: #d6e2ec;
+      --aidp-text: #23313f;
+      --aidp-muted: #5d6d7e;
+    }
+
+    .aidp-hero {
+      padding: 42px 0 26px;
+      background: linear-gradient(135deg, #eff6fb 0%, #ffffff 52%, #eef4f9 100%);
+    }
+
+    .aidp-hero__card {
+      background: #fff;
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 18px 40px rgba(11, 79, 122, 0.08);
+    }
+
+    .aidp-kicker {
+      margin-bottom: 12px;
+      color: var(--aidp-accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .aidp-title {
+      margin: 0 0 10px;
+      color: var(--aidp-blue);
+      font-size: 36px;
+      line-height: 1.15;
+    }
+
+    .aidp-subtitle {
+      margin: 0;
+      color: var(--aidp-muted);
+      font-size: 18px;
+    }
+
+    .aidp-section {
+      padding-bottom: 30px;
+    }
+
+    .aidp-section .info-cards__card {
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(11, 79, 122, 0.06);
+    }
+
+    .aidp-section .info-cards__title {
+      color: var(--aidp-blue);
+      font-size: 24px;
+    }
+
+    .aidp-body p,
+    .aidp-body li {
+      color: var(--aidp-text);
+      line-height: 1.75;
+    }
+
+    .speaker-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .speaker-card {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 22px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
+    }
+
+    .speaker-photo {
+      width: 120px;
+      height: 120px;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 1px solid var(--aidp-border);
+      border-radius: 18px;
+      background: #f7fafc;
+    }
+
+    .speaker-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .speaker-name {
+      margin: 0 0 6px;
+      color: var(--aidp-blue);
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .speaker-affiliation {
+      margin-bottom: 8px;
+      color: var(--aidp-muted);
+      font-weight: 600;
+    }
+
+    .speaker-status {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border: 1px solid #bfd7eb;
+      border-radius: 999px;
+      background: #f0f7ff;
+      color: var(--aidp-blue);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .committee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .committee-card {
+      padding: 20px;
+      border: 1px solid var(--aidp-border);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(11, 79, 122, 0.06);
+    }
+
+    .committee-card h3 {
+      margin-top: 0;
+      color: var(--aidp-blue);
+    }
+
+    .committee-card ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .committee-card li {
+      margin-bottom: 8px;
+      color: var(--aidp-text);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 768px) {
+      .aidp-hero__card {
+        padding: 24px;
+      }
+
+      .aidp-title {
+        font-size: 30px;
+      }
+
+      .speaker-card {
+        flex-direction: column;
+      }
+
+      .speaker-photo {
+        width: 140px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-speakers">
+  <div id="page-content" class="page-content">
+    <header>
+      <div class="header-desktop">
+        <div class="wrapper">
+          <div class="header-desktop__trigger is-tablet-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="site-logos">
+            <a class="site-logos__hkust" href="http://www.ust.hk/" target="_blank">
+              <img src="../../showcase/PathBench/images/ust_logo.svg" alt="The Hong Kong University of Science and Technology" style="height: 40px;">
+            </a>
+            &nbsp;&nbsp;
+            <a class="site-logos__smartlab" href="https://smartx.cse.ust.hk/" target="_blank">
+              <img src="assets/smartlab_logo.png" alt="SmartX Lab" style="height: 50px;">
+            </a>
+          </div>
+          <nav class="header-desktop__menu">
+            <ul>
+              <li><a href="index.html"><i class="fa fa-home"></i> Home</a><span class="slash"></span></li>
+              <li><a class="active" href="speakers.html"><i class="fa fa-users"></i> Speakers</a><span class="slash"></span></li>
+              <li><a href="schedule.html"><i class="fa fa-calendar"></i> Schedule</a><span class="slash"></span></li>
+              <li><a href="venue.html"><i class="fa fa-map-marker"></i> Venue</a><span class="slash"></span></li>
+              <li><a href="registration.html"><i class="fa fa-edit"></i> Registration</a><span class="slash"></span></li>
+              <li><a href="information.html"><i class="fa fa-info-circle"></i> Pre-arrival Information</a></li>
+              <li class="is-tablet-mobile"><a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a></li>
+            </ul>
+          </nav>
+          <div class="register-now">
+            <a class="btn register" href="schedule.html"><span style="font-size: 110%">Schedule</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="header-menu-overlay"></div>
+    </header>
+
+    <div id="body" class="l-body">
+      <main>
+        <section class="aidp-hero">
+          <div class="wrapper">
+            <div class="aidp-hero__card">
+              <div class="aidp-kicker">AIDP 2026</div>
+              <h1 class="aidp-title">Confirmed Presenters</h1>
+              <p class="aidp-subtitle">Presenter information below follows the current conference document and replaces the previous workshop roster.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Presenter Profiles</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="speaker-list">
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image1.jpeg" alt="Prof. Xiu-Wu Bian"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Xiu-Wu Bian</h2>
+                        <div class="speaker-affiliation">Army Medical University (Third Military Medical University) &amp; Jinfeng Laboratory</div>
+                        <div class="speaker-status">Online &amp; Advisory</div>
+                        <p>Academician Xiu-Wu Bian, MD, PhD, is a world-renowned pathologist and a member of the Chinese Academy of Sciences. He serves as the Director of the Institute of Pathology and the Southwest Cancer Center at the Army Medical University. Prof. Bian is a pioneer in the study of cancer stem cells and the tumor microenvironment, particularly in gliomas. His work has significantly advanced the understanding of tumor angiogenesis and invasion. In recent years, he has spearheaded the integration of digital pathology and AI for precision diagnosis, leading the Jinfeng Pathology Precision Diagnosis Center. He has published over 250 papers in prestigious journals such as Nature, Cell, and Science, with an h-index exceeding 60.</p>
+                      </div>
+                    </div>
+
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image2.jpeg" alt="Prof. Zhe Wang"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Zhe Wang</h2>
+                        <div class="speaker-affiliation">Xijing Hospital, Air Force Medical University (FMMU)</div>
+                        <div class="speaker-status">Online &amp; Advisory</div>
+                        <p>Zhe Wang, MD, PhD, is a Professor and Director of the Department of Pathology at Xijing Hospital, Air Force Medical University. He also serves as a key researcher at the State Key Laboratory of Cancer Biology. Prof. Wang's research focuses on computational pathology and the development of AI foundation models for clinical-grade diagnostics. Notably, his team developed PathOrchestra, a comprehensive foundation model for multi-task histopathology analysis. His work bridges the gap between traditional pathology and AI-driven precision medicine, with numerous publications in journals like Nature Medicine and Nature Communications. He is a leading figure in the clinical translation of AI tools for cancer diagnosis in China.</p>
+                      </div>
+                    </div>
+
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image3.jpeg" alt="Prof. Zhi Huang"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Zhi Huang</h2>
+                        <div class="speaker-affiliation">Perelman School of Medicine, University of Pennsylvania</div>
+                        <div class="speaker-status">Offline &amp; Advisory Committee</div>
+                        <p>Zhi Huang, PhD, is a tenure-track Assistant Professor at the University of Pennsylvania. He previously completed a postdoctoral fellowship at Stanford University under Professors James Zou and Thomas Montine and earned his PhD from Purdue University. Dr. Huang is a rising star in vision-language models for pathology. He is the lead author of the landmark Nature Medicine (2023) cover article on PLIP (Pathology Language-Image Pretraining), which utilized medical social media data to train AI. His research focuses on human-AI collaboration and the development of foundation models that enhance diagnostic accuracy and knowledge sharing in digital pathology.</p>
+                      </div>
+                    </div>
+
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image4.jpeg" alt="Prof. Hoifung Poon"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Hoifung Poon</h2>
+                        <div class="speaker-affiliation">Microsoft Research &amp; University of Washington</div>
+                        <div class="speaker-status">Online</div>
+                        <p>Hoifung Poon, PhD, is the General Manager at Microsoft Research Health Futures, where he leads the real-world evidence and precision health initiatives. He is also an affiliated faculty member at the University of Washington Medical School. Dr. Poon is a leader in biomedical natural language processing and multimodal AI. His team developed influential models such as PubMedBERT and BioGPT. His recent work focuses on whole-slide foundation models, including a significant 2024 publication in Nature regarding digital pathology from real-world data. He has received multiple Best Paper Awards at top AI conferences like NAACL and EMNLP for his contributions to machine reading and precision medicine.</p>
+                      </div>
+                    </div>
+
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image5.jpeg" alt="Prof. Ronald Chan"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Ronald Chan</h2>
+                        <div class="speaker-affiliation">CUHK &amp; Hong Kong Hospital Authority</div>
+                        <div class="speaker-status">Offline &amp; Organization Committee</div>
+                        <p>Dr. Cheong Kin Ronald Chan is a Consultant at the Hospital Authority, NTEC (Pathology), and Lab Director of North District Hospital, as well as an Honorary Clinical Associate Professor at the Department of Anatomical and Cellular Pathology, The Chinese University of Hong Kong. He leads the Pathology Artificial Intelligence Development and Assessment Laboratory. Dr. Chan has published numerous papers in reputable journals and conferences, contributing significantly to the fields of digital pathology and artificial intelligence. His work includes over 30 publications, with notable journals such as Diagnostic Cytopathology, The Oncologist, and Advanced Science. He has received several awards, including the Teachers of the Year Awards from the Faculty of Medicine, CUHK in 2021 and 2023. Dr. Chan has also been involved in multiple grants related to digital pathology and AI, serving as Principal Investigator on several key projects.</p>
+                      </div>
+                    </div>
+
+                    <div class="speaker-card">
+                      <div class="speaker-photo"><img src="images/aidp2026-docx/image6.png" alt="Prof. Gary Tse"></div>
+                      <div>
+                        <h2 class="speaker-name">Prof. Gary Tse</h2>
+                        <div class="speaker-affiliation">CUHK and Hong Kong Hospital Authority</div>
+                        <div class="speaker-status">Offline &amp; Advisory</div>
+                        <p>Prof. Tse is the Chairman and Professor in the Department of Anatomical and Cellular Pathology. He is also the Honorary Chief of Service of the Departments of Pathology of Alice Ho Miu Ling Nethersole Hospital and North District Hospital. A pathologist by training, he has active interests in breast histologic, cytologic and molecular pathology. His research focuses on the evaluation of prognostic factors in breast cancers, molecular classification of breast disease, understanding molecular basis in morphological features and their application for clinical decision in routine management. He is widely engaged in local and overseas professional bodies, including ICCR dataset in breast pathology, the TCGA breast group external pathology committee, and WHO breast tumor classification. He is active in organizing educational activities and serves in multiple international pathology and cytology leadership roles.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="eefact_intro aidp-section">
+          <div class="wrapper">
+            <div class="section-content">
+              <div class="info-cards__card goals">
+                <div class="info-cards__title">Conference Leadership</div>
+                <div class="info-cards__content aidp-body">
+                  <div class="committee-grid">
+                    <div class="committee-card">
+                      <h3>Advisory Committee</h3>
+                      <ul>
+                        <li>Prof. Xiu-Wu Bian (Southwest Hospital of the Army Medical University)</li>
+                        <li>Prof. Zhe Wang (Xijing Hospital)</li>
+                        <li>Prof. Zhang Jing (The First Affiliated Hospital of Zhejiang University)</li>
+                        <li>Prof. George J. Netto (UPenn)</li>
+                        <li>Prof. Gary Tse</li>
+                        <li>Prof. Annie Cheung (TBC)</li>
+                        <li>Dr. Wai KONG CHEUNG (TBC)</li>
+                      </ul>
+                    </div>
+                    <div class="committee-card">
+                      <h3>General Chairs</h3>
+                      <ul>
+                        <li>Prof. Hao Chen (HKUST)</li>
+                        <li>Prof. Li Liang (NFH)</li>
+                      </ul>
+                    </div>
+                    <div class="committee-card">
+                      <h3>Organizing Committee</h3>
+                      <ul>
+                        <li>Prof. Zhi Huang (UPenn)</li>
+                        <li>Dr. Ronald Chan (CUHK)</li>
+                        <li>Prof. Jiguang Wang (HKUST)</li>
+                        <li>Prof. Terence Tsz Wai WONG (HKUST)</li>
+                        <li>Prof. Albert Chung (HKUST)</li>
+                        <li>Prof. Kun-Hsing Yu (Harvard University, TBD)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <div class="footer__content">
+        <div class="wrapper">
+          <nav class="footer-menu">
+            <ul>
+              <li><i class="fa fa-envelope"></i> Contact us: <a href="mailto:cjinag@connect.ust.hk">cjinag@connect.ust.hk</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="copyright">
+        <div class="wrapper">
+          <span>Copyright &copy; 2026</span>
+          <span>The Hong Kong University of Science and Technology</span>
+          <span>All rights reserved.</span>
+        </div>
+      </div>
+      <style>
+        #BackToTop {
+          position: fixed;
+          right: -100px;
+          bottom: 20px;
+          z-index: 99;
+          padding: 10px 15px;
+          border-radius: 3px;
+          background-color: #eb984e;
+          color: #fff;
+        }
+
+        #BackToTop:hover {
+          background-color: #333;
+        }
+
+        #BackToTop.show {
+          right: 30px;
+        }
+      </style>
+      <a id="BackToTop" href="javascript:window.scrollTo(0,0)" title="Go to top" class="show">Top</a>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            document.getElementById("BackToTop").className = "show";
+          }, 500);
+        };
+      </script>
+    </footer>
+  </div>
+
+  <script src="./assets/modernizr-3.5.0.min.js"></script>
+  <script src="./assets/jquery-3.3.0.min.js"></script>
+  <script src="./assets/ofi-3.2.3.min.js"></script>
+  <script src="./assets/webfontloader.min.js"></script>
+  <script src="./assets/imagesloaded.pkgd.min.js"></script>
+  <script src="./assets/select2.min.js"></script>
+  <script src="./assets/sweetalert.min.js"></script>
+  <script src="./assets/slick.min.js"></script>
+  <script src="./assets/plugins.min.js"></script>
+  <script src="./assets/main.min.js"></script>
+</body>
+</html>
