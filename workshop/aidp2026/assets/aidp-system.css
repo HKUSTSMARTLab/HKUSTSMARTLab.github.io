@@ -194,15 +194,6 @@ a:hover {
   margin-top: 22px;
 }
 
-.page-home .aidp-hero .aidp-body,
-.page-home .aidp-subtitle,
-.page-home .aidp-status-line,
-.page-home .aidp-note,
-.page-home .aidp-body > p,
-.page-home .aidp-intro-copy > p {
-  max-width: 1320px;
-}
-
 .aidp-pill,
 .aidp-badge,
 .speaker-status {
@@ -396,6 +387,15 @@ a:hover {
   margin-top: 14px;
   color: var(--aidp-muted);
   font-weight: 700;
+}
+
+.page-home .aidp-hero .aidp-body,
+.page-home .aidp-subtitle,
+.page-home .aidp-status-line,
+.page-home .aidp-note,
+.page-home .aidp-body > p,
+.page-home .aidp-intro-copy > p {
+  max-width: 1320px;
 }
 
 .speaker-list {
@@ -681,10 +681,6 @@ a:hover {
   margin-top: 14px;
 }
 
-.page-information .wifi-app-inline {
-  background: #fbfaf6;
-}
-
 .timezone-card {
   background: linear-gradient(180deg, rgba(233, 240, 246, 0.8) 0%, rgba(255, 253, 249, 0.9) 100%);
   text-align: center;
@@ -737,6 +733,10 @@ a:hover {
   border: 1px solid var(--aidp-border);
   border-radius: 14px;
   background: var(--aidp-surface-muted);
+}
+
+.page-information .wifi-app-inline {
+  background: #fbfaf6;
 }
 
 .app-label {
@@ -1105,7 +1105,7 @@ a:hover {
   box-shadow: none;
 }
 
-.aidp-home-leadership-grid > * + * {
+.aidp-home-leadership-col--split {
   margin-left: 24px;
   padding-left: 24px;
   border-left: 1px solid rgba(188, 201, 213, 0.45);
@@ -1256,13 +1256,12 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .page-speakers .aidp-speakers-leadership .committee-grid {
-    grid-template-columns: 1fr;
+  .aidp-home-leadership-grid {
     gap: 18px;
     border-top: 0;
   }
 
-  .page-speakers .aidp-speakers-leadership .committee-grid > * + * {
+  .aidp-home-leadership-col--split {
     margin-left: 0;
     padding-left: 0;
     border-left: 0;
@@ -1270,12 +1269,13 @@ a:hover {
     padding-top: 18px;
   }
 
-  .aidp-home-leadership-grid {
+  .page-speakers .aidp-speakers-leadership .committee-grid {
+    grid-template-columns: 1fr;
     gap: 18px;
     border-top: 0;
   }
 
-  .aidp-home-leadership-grid > * + * {
+  .page-speakers .aidp-speakers-leadership .committee-grid > * + * {
     margin-left: 0;
     padding-left: 0;
     border-left: 0;
