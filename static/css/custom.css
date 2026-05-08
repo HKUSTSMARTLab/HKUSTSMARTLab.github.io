@@ -1567,7 +1567,7 @@ a:hover {
 
 .news-page-shell {
     width: 100%;
-    max-width: 100%;
+    max-width: 1280px;
     margin: 0 auto;
     padding: 0 0 1.5rem;
 }
@@ -1578,7 +1578,54 @@ a:hover {
 
 .post-content-shell {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem 2.25rem;
+}
+
+.post-content-shell .page.header {
+    margin-bottom: 1rem;
+}
+
+.post-content-shell h1 {
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: clamp(2rem, 3vw, 2.65rem);
+    line-height: 1.16;
+    letter-spacing: -0.006em;
+}
+
+.post-content-shell h2 {
+    margin-top: 1.9rem;
+    margin-bottom: 0.7rem;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: clamp(1.35rem, 2vw, 1.7rem);
+    line-height: 1.24;
+}
+
+.post-content-shell p {
+    color: #314a63;
+    font-size: 1rem;
+    line-height: 1.68;
+}
+
+.post-content-shell li {
+    color: #314a63;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.post-content-shell ul,
+.post-content-shell ol {
+    padding-left: 1.35rem;
+    margin-bottom: 1.15rem;
+}
+
+.post-content-shell img:not(.navb-icon):not(.mem-icon) {
+    display: block;
+    width: 100%;
     max-width: 100%;
+    height: auto;
+    margin: 1rem auto 1.5rem;
 }
 
 .news-feed {
@@ -1675,8 +1722,20 @@ a:hover {
 
 @media (max-width: 767.98px) {
     .post-content-shell {
-        padding-left: 15px !important;
-        padding-right: 15px !important;
+        max-width: 100%;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .post-content-shell h1 {
+        font-size: clamp(1.65rem, 6.8vw, 2rem);
+        line-height: 1.18;
+    }
+
+    .post-content-shell p,
+    .post-content-shell li {
+        font-size: 1rem;
+        line-height: 1.72;
     }
 
     .home-contact-column--sidebar {
