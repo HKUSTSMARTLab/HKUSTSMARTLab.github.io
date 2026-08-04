@@ -4,6 +4,16 @@
  */
 const citationsData = [
     {
+        id: 'ma2026democratizing',
+        title: 'Ma, Jin et al. (2026) - Agentic AI in Pathology',
+        bibtex: `@article{ma2026democratizing,
+  title={Democratizing and accelerating AI-driven pathology research through agentic intelligence},
+  author={Ma, Jiabo and Jin, Cheng and Wang, Yihui and Jiang, Hao and Liang, Ling and Xu, Yingxue and Hou, Junlin and Guo, Zhengrui and Zhang, Zhengyu and Xia, Yifei and others},
+  journal={arXiv preprint arXiv:2606.20677},
+  year={2026}
+}`,
+    },
+    {
         id: 'ma2025pathbench',
         title: 'Ma, Xu et al. (2025) - Pathology Foundation Model Benchmark',
         bibtex: `@article{ma2025pathbench,
@@ -24,33 +34,43 @@ const citationsData = [
   }`,
     },
     {
-        id: 'he2024towards',
-        title: 'He and Nie et al. (2024) - GSCo: Towards Generalizable AI in Medicine',
-        bibtex: `@article{he2024towards,
-    title = {GSCo: Towards Generalizable AI in Medicine via Generalist-Specialist Collaboration},
-    author = {He, Sunan and Nie, Yuxiang and Wang, Hongmei and Yang, Shu and Wang, Yihui and Cai, Zhiyuan and Chen, Zhixuan and Xu, Yingxue and Luo, Luyang and Xiang, Huiling and Lin, Xi and Wu, Mingxiang and Peng, Yifan and Shih, George and Xu, Ziyang and Wu, Xian and Wang, Qiong and Chan, Ronald Cheong Kin and Vardhanabhuti, Varut and Chu, Winnie Chiu Wing and Zheng, Yefeng and Rajpurkar, Pranav and Zhang, Kang and Chen, Hao},
-    journal = {arXiv preprint arXiv:2404.15127},
-    year = {2024}
-  }`,
+        id: 'he2026towards',
+        title: 'He and Nie et al. (2026) - GSCo: Towards Generalizable AI in Medicine',
+        bibtex: `@article{he2026towards,
+  title={Towards generalizable AI in medicine via Generalist--Specialist Collaboration},
+  author={He, Sunan and Nie, Yuxiang and Wang, Hongmei and Yang, Shu and Wang, Yihui and Cai, Zhiyuan and Chen, Zhixuan and Xu, Yingxue and Wu, Linshan and Cheng, Ngai Shing and others},
+  journal={Nature Biomedical Engineering},
+  pages={1--15},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
+}`,
     },
     {
-        id: 'ma2024gpfm',
-        title: 'Ma and Guo et al. (2024) - GPFM: Generalizable Pathology Foundation Model',
-        bibtex: `@article{ma2024gpfm,
-    title = {Towards A Generalizable Pathology Foundation Model via Unified Knowledge Distillation},
-    author = {Ma, Jiabo and Guo, Zhengrui and Zhou, Fengtao and Wang, Yihui and Xu, Yingxue and Li, Jinbang and Yan, Fang and Cai, Yu and Zhu, Zhengjie and Jin, Cheng and Lin, Yi and Jiang, Xinrui and Han, Anjia and Li, Zhenhui and Chan, Ronald Cheong Kin and Wang, Jiguang and Fei, Peng and Cheng, Kwang-Ting and Zhang, Shaoting and Liang, Li and Chen, Hao},
-    journal = {arXiv preprint arXiv:2407.18449},
-    year = {2024}
-  }`,
+        id: 'ma2026gpfm',
+        title: 'Ma and Guo et al. (2026) - GPFM: Generalizable Pathology Foundation Model',
+        bibtex: `@article{ma2026generalizable,
+  title={A generalizable pathology foundation model using a unified knowledge distillation pretraining framework},
+  author={Ma, Jiabo and Guo, Zhengrui and Zhou, Fengtao and Wang, Yihui and Xu, Yingxue and Li, Jinbang and Yan, Fang and Cai, Yu and Zhu, Zhengjie and Jin, Cheng and others},
+  journal={Nature Biomedical Engineering},
+  volume={10},
+  number={3},
+  pages={545--564},
+  year={2026},
+  publisher={Nature Publishing Group UK London}
+}`,
     },
     {
-        id: 'xu2024mstar',
-        title: 'Xu, Wang et al. (2024) - mSTAR: Multimodal Knowledge-enhanced Foundation Model',
-        bibtex: `@article{xu2024mstar,
-    title = {A Multimodal Knowledge-enhanced Whole-slide Pathology Foundation Model},
-    author = {Xu, Yingxue and Wang, Yihui and Zhou, Fengtao and Ma, Jiabo and Jin, Cheng and Yang, Shu and Li, Jinbang and Zhang, Zhengyu and Zhao, Chenglong and Zhou, Huajun and Li, Zhenhui and Lin, Huangjing and Wang, Xin and Wang, Jiguang and Han, Anjia and Chan, Ronald Cheong Kin and Liang, Li and Zhang, Xiuming and Chen, Hao},
-    journal = {arXiv preprint arXiv:2407.18449},
-    year = {2024}
-  }`,
+        id: 'xu2025mstar',
+        title: 'Xu, Wang et al. (2025) - mSTAR: Multimodal Knowledge-enhanced Foundation Model',
+        bibtex: `@article{xu2025multimodal,
+  title={A multimodal knowledge-enhanced whole-slide pathology foundation model},
+  author={Xu, Yingxue and Wang, Yihui and Zhou, Fengtao and Ma, Jiabo and Jin, Cheng and Yang, Shu and Li, Jinbang and Zhang, Zhengyu and Zhao, Chenglong and Zhou, Huajun and others},
+  journal={Nature communications},
+  volume={16},
+  number={1},
+  pages={11406},
+  year={2025},
+  publisher={Nature Publishing Group UK London}
+}`,
     },
 ];
