@@ -1,6 +1,6 @@
 ---
 name: Run-sheng Liu
-startdate: [2024-09-01]
+startdate: [2026-09-01]
 enddate: []
 image: /static/img/members/runsheng.jpg
 position: PhD Student
