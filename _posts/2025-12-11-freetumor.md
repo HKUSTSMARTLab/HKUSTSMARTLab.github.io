@@ -52,5 +52,13 @@ Moving forward, we will extend the application of FreeTumor to encompass other t
 
 For more details, please see our paper [Large-scale generative tumor synthesis in computed tomography images for improving tumor recognition](https://www.nature.com/articles/s41467-025-66071-6) via Nature Communications.
 
+**Code \|** [https://github.com/Luffy03/FreeTumor](https://github.com/Luffy03/FreeTumor)
+
+**Model weights \|** [https://huggingface.co/Luffy503/FreeTumor](https://huggingface.co/Luffy503/FreeTumor)
+
+**Processed organ and tumour labels \|** [https://huggingface.co/datasets/Luffy503/FreeTumor](https://huggingface.co/datasets/Luffy503/FreeTumor)
+
+**Public downstream datasets \|** [https://huggingface.co/datasets/Luffy503/VoCo_Downstream](https://huggingface.co/datasets/Luffy503/VoCo_Downstream)
+
 **Citation**:  
 L. Wu, et al, "Large-scale generative tumor synthesis in computed tomography images for improving tumor recognition," in Nature Communications, doi: https://doi.org/10.1038/s41467-025-66071-6.

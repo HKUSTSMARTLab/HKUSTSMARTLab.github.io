@@ -91,3 +91,5 @@ Looking ahead, SurgVISTA provides a general foundation model for next-generation
 For more details, please see our paper [Large-scale self-supervised video foundation model for intelligent surgery](https://doi.org/10.1038/s41746-026-02403-0) in npj Digital Medicine.
 
 Code is available at [https://github.com/isyangshu/SurgVISTA](https://github.com/isyangshu/SurgVISTA).
+
+The preprint is available at [https://arxiv.org/abs/2506.02692](https://arxiv.org/abs/2506.02692). The project pages for SurgVISTA weights and data remain placeholders, so they are not listed here as released resources.
