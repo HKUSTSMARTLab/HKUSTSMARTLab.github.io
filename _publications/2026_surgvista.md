@@ -8,4 +8,7 @@ journal:
       url: 'https://www.nature.com/articles/s41746-026-02403-0'
 github:
     - url: 'isyangshu/SurgVISTA'
+links:
+    - name: 'Preprint'
+      url: 'https://arxiv.org/abs/2506.02692'
 ---

@@ -8,4 +8,11 @@ journal:
       url: 'https://www.nature.com/articles/s41467-025-66220-x'
 github:
     - url: 'Innse/mSTAR'
+links:
+    - name: 'Model Weights (Access on Request)'
+      url: 'https://huggingface.co/Wangyh/mSTAR'
+    - name: 'Archived Code'
+      url: 'https://doi.org/10.5281/zenodo.17273573'
+    - name: 'Preprint'
+      url: 'https://arxiv.org/abs/2407.15362'
 ---

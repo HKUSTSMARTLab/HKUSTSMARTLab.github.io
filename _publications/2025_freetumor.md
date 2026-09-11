@@ -8,4 +8,11 @@ journal:
       url: 'https://www.nature.com/articles/s41467-025-66071-6'
 github:
     - url: 'Luffy03/FreeTumor'
+links:
+    - name: 'Model Weights'
+      url: 'https://huggingface.co/Luffy503/FreeTumor'
+    - name: 'Processed Organ and Tumor Labels'
+      url: 'https://huggingface.co/datasets/Luffy503/FreeTumor'
+    - name: 'Public Downstream Datasets'
+      url: 'https://huggingface.co/datasets/Luffy503/VoCo_Downstream'
 ---
