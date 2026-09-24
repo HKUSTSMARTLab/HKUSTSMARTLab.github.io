@@ -1,6 +1,6 @@
 ---
 name: Zheng-rui Guo
-position: PhD Student
+position: Postdoctoral Fellow
 startdate: [2022-09-01]
 enddate: []
 image: /static/img/members/zhengrui.jpg
