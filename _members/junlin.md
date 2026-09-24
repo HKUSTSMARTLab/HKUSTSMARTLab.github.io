@@ -1,5 +1,5 @@
 ---
-name: Jun-lin Hou
+name: Dr. Jun-lin Hou
 startdate: [2023-08-01]
 enddate: [2026-08-31]
 email: csejlhou (at) ust.hk

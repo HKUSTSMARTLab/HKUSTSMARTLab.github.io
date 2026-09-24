@@ -1,5 +1,5 @@
 ---
-name: Hao Jiang
+name: Dr. Hao Jiang
 startdate: [2022-09-01]
 enddate: [2026-08-31]
 image: /static/img/members/hao jiang.jpg
