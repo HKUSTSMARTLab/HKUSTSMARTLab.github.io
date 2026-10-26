@@ -15,6 +15,15 @@ function unlinkIfPresent(path) {
   }
 }
 
+export async function discardRequestBody(request, maxBytes) {
+  let size = 0;
+  for await (const chunk of request) {
+    size += chunk.length;
+    if (size > maxBytes) throw new HttpError(413, "BODY_TOO_LARGE", "The request body is too large.");
+  }
+  return size;
+}
+
 export class PosterFileStorage {
   constructor(dataDirectory) {
     this.directory = join(dataDirectory, "uploads");
@@ -39,6 +48,7 @@ export class PosterFileStorage {
     const temporaryPath = join(this.directory, `${id}.${randomUUID()}.tmp`);
     const finalPath = this.pathFor(id);
     const output = createWriteStream(temporaryPath, { flags: "wx", mode: 0o600 });
+    const finished = once(output, "finish");
     const hash = createHash("sha256");
     const header = [];
     let headerLength = 0;
@@ -60,7 +70,7 @@ export class PosterFileStorage {
         if (!output.write(chunk)) await once(output, "drain");
       }
       output.end();
-      await once(output, "finish");
+      await finished;
       if (streamError) throw streamError;
 
       if (size !== expectedSize) throw new HttpError(400, "PDF_SIZE_MISMATCH", "The selected file changed before upload. Select it again.");

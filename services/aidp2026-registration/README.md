@@ -19,6 +19,17 @@ npm start
 
 Open <http://127.0.0.1:8787/registration.html>. The service also serves the pages under `/conference/aidp2026/` for consistency with the repository layout.
 
+For a project-local production start, keep `.env` for development and create `.env.production` beside it:
+
+```bash
+cp .env .env.production
+chmod 0600 .env.production
+# edit .env.production, then run:
+NODE_ENV=production npm start
+```
+
+With `NODE_ENV=production`, the server reads `.env.production`; otherwise it reads `.env`. The data directory remains `services/aidp2026-registration/data/` unless `DATA_DIR` is set. The production systemd unit follows the same project-local layout and does not copy code to another directory.
+
 The default `.env.example` uses Cloudflare's documented always-pass development keys. For automated tests of failure paths, use the failure keys from the official Turnstile documentation instead. Never use development keys in production.
 
 Run the tests:
@@ -56,6 +67,7 @@ Never put `TURNSTILE_SECRET_KEY`, Tencent `AppSecretKey`, CAM credentials, or `A
 | POST | `/api/aidp2026/posters/{id}/pdf` | Raw PDF upload with `X-Upload-Token`; maximum 5 MiB |
 | GET | `/api/aidp2026/admin/submissions?kind=conference&limit=100&offset=0` | Paginated records; Bearer token required |
 | GET | `/api/aidp2026/admin/submissions/{id}/pdf` | Private PDF download; Bearer token required |
+| DELETE | `/api/aidp2026/admin/submissions/{id}` | Delete one record and its poster file; Bearer token required |
 | GET | `/api/aidp2026/admin/export.csv?kind=poster` | CSV export; Bearer token required |
 | GET | `/api/aidp2026/admin/debug` | Non-secret runtime diagnostics; Bearer token and debug switch required |
 
@@ -140,6 +152,10 @@ curl -H "Authorization: Bearer $ADMIN_API_TOKEN" \
 curl -H "Authorization: Bearer $ADMIN_API_TOKEN" \
   -o aidp2026-posters.csv \
   'http://127.0.0.1:8787/api/aidp2026/admin/export.csv?kind=poster'
+
+curl -X DELETE \
+  -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  http://127.0.0.1:8787/api/aidp2026/admin/submissions/AIDP26-P-000000000000
 ```
 
 CSV exports prefix spreadsheet-formula-leading cells to reduce CSV injection risk. Exports contain personal data: store them encrypted, restrict access, and delete them according to the organizers' retention policy.

@@ -233,6 +233,20 @@ export class RegistrationStore {
     return this.db.prepare("SELECT id FROM submissions WHERE created_at < ?").all(cutoff).map((row) => row.id);
   }
 
+  deleteSubmission(id) {
+    this.db.exec("BEGIN IMMEDIATE");
+    try {
+      this.db.prepare("DELETE FROM idempotency_keys WHERE submission_id = ?").run(id);
+      this.db.prepare("DELETE FROM upload_sessions WHERE submission_id = ?").run(id);
+      const deleted = this.db.prepare("DELETE FROM submissions WHERE id = ?").run(id).changes;
+      this.db.exec("COMMIT");
+      return deleted > 0;
+    } catch (error) {
+      this.db.exec("ROLLBACK");
+      throw error;
+    }
+  }
+
   list({ kind, limit = 100, offset = 0 } = {}) {
     const where = kind ? "WHERE kind = ?" : "";
     const params = kind ? [kind] : [];

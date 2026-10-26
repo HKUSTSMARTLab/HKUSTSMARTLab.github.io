@@ -4,7 +4,8 @@ import { loadConfig, loadEnvFile } from "./src/config.js";
 import { createRegistrationService } from "./src/app.js";
 
 const serviceDirectory = dirname(fileURLToPath(import.meta.url));
-loadEnvFile(resolve(serviceDirectory, ".env"));
+const defaultEnvironmentFile = process.env.NODE_ENV === "production" ? ".env.production" : ".env";
+loadEnvFile(resolve(serviceDirectory, process.env.ENV_FILE || defaultEnvironmentFile));
 const config = loadConfig();
 const dataDirectory = resolve(process.env.DATA_DIR || resolve(serviceDirectory, "data"));
 const staticDirectory = resolve(serviceDirectory, "../../conference/aidp2026");

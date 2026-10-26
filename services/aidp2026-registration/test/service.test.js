@@ -197,6 +197,40 @@ test("poster PDF upload stores metadata and supports private admin download", as
   assert.deepEqual(Buffer.from(await download.arrayBuffer()), TEST_PDF);
 });
 
+test("administrators can delete records and their poster files", async (t) => {
+  const { base, files } = await fixture(t);
+  await submit(base, "registrations", conference());
+  const poster = await submitPoster(base);
+
+  const unauthorized = await fetch(`${base}/api/aidp2026/admin/submissions/${poster.result.reference}`, { method: "DELETE" });
+  assert.equal(unauthorized.status, 401);
+
+  const deletedPoster = await fetch(`${base}/api/aidp2026/admin/submissions/${poster.result.reference}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${ADMIN_TOKEN}` },
+  });
+  assert.equal(deletedPoster.status, 200);
+  assert.throws(() => files.get(poster.result.reference));
+
+  const records = await fetch(`${base}/api/aidp2026/admin/submissions`, {
+    headers: { Authorization: `Bearer ${ADMIN_TOKEN}` },
+  }).then((response) => response.json());
+  assert.equal(records.total, 1);
+  assert.equal(records.items[0].kind, "conference");
+
+  const conferenceId = records.items[0].id;
+  const deletedConference = await fetch(`${base}/api/aidp2026/admin/submissions/${conferenceId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${ADMIN_TOKEN}` },
+  });
+  assert.equal(deletedConference.status, 200);
+  const missing = await fetch(`${base}/api/aidp2026/admin/submissions/${conferenceId}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${ADMIN_TOKEN}` },
+  });
+  assert.equal(missing.status, 404);
+});
+
 test("poster upload rejects bad tokens and invalid PDFs without consuming the session", async (t) => {
   const { base } = await fixture(t);
   const response = await submit(base, "posters", poster());

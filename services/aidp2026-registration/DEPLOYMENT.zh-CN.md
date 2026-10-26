@@ -15,7 +15,7 @@
                          ↓
               127.0.0.1:8787 Node 服务
                          ↓
-             /var/lib/aidp2026-registration
+             /home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration/data
 ```
 
 - 静态页继续使用仓库现有发布流程。`main` 分支的 GitHub Action 会在 Lab Server 上执行 `git pull` 和 `bundle exec jekyll build`。
@@ -35,29 +35,34 @@
 
 Cloudflare 使用 `CF-IPCountry`，EdgeOne 使用 `EO-Client-IPCountry`。Node 只接受 `TRUST_PROXY_IPS` 指定的直接代理节点所传递的地区头。地区信息只用于本次 `/config` 响应，不写入数据库。IP 地理位置是估计值，因此保留下拉框手动切换。
 
-## 3. 准备服务器
+## 3. 准备项目内运行目录
 
-1. 安装 Node 24 LTS、Nginx 和 HTTPS 证书工具。
-2. 在仓库中先验证：
+这个服务规模很小，不需要把代码、配置和数据拆到 `/opt`、`/etc`、`/var/lib`。全部保留在当前项目中：
 
-   ```bash
-   cd services/aidp2026-registration
-   node --version
-   npm test
-   ```
+- 代码：`services/aidp2026-registration/`
+- 正式配置：`services/aidp2026-registration/.env.production`
+- SQLite 和 PDF：`services/aidp2026-registration/data/`
+- 日志：systemd journal
 
-3. 创建服务账号和目录（已存在时跳过账号创建）：
+先验证测试：
 
-   ```bash
-   sudo useradd --system --home /nonexistent --shell /usr/sbin/nologin aidp2026
-   sudo mkdir -p /opt/hkust-smartlab/services/aidp2026-registration
-   sudo mkdir -p /etc/aidp2026 /var/lib/aidp2026-registration
-   sudo cp -a package.json server.js src /opt/hkust-smartlab/services/aidp2026-registration/
-   sudo chown -R aidp2026:aidp2026 /opt/hkust-smartlab/services/aidp2026-registration /var/lib/aidp2026-registration
-   sudo chmod 0700 /var/lib/aidp2026-registration /etc/aidp2026
-   ```
+```bash
+cd /home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
+node --version
+npm test
+```
 
-生产环境使用 systemd 的 `EnvironmentFile`，无需复制开发用的 `.env`，更不要复制测试数据库。
+创建项目内数据目录，并从当前本机配置复制一份正式配置模板：
+
+```bash
+cd /home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
+mkdir -p data
+chmod 0700 data
+cp .env .env.production
+chmod 0600 .env.production
+```
+
+`.env` 继续用于开发；`.env.production` 用于正式运行。二者均已由 `.gitignore` 排除。
 
 ## 4. 配置生产环境变量
 
@@ -67,14 +72,14 @@ Cloudflare 使用 `CF-IPCountry`，EdgeOne 使用 `EO-Client-IPCountry`。Node �
 openssl rand -hex 32
 ```
 
-编辑 `/etc/aidp2026/registration.env`，仅 root 可读写。下面是一个完整模板；替换域名和密钥，不能保留空值上线：
+编辑项目内的 `.env.production`，仅当前运行用户可读。下面是一个完整模板；替换域名和密钥，不能保留空值上线：
 
 ```dotenv
 NODE_ENV=production
 HOST=127.0.0.1
 PORT=8787
 SERVE_STATIC=false
-DATA_DIR=/var/lib/aidp2026-registration
+DATA_DIR=/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration/data
 
 REGISTRATION_OPEN=true
 POSTER_DEADLINE=2026-11-13T23:59:59+08:00
@@ -127,13 +132,21 @@ DEBUG_ALLOW_CAPTCHA_BYPASS=false
 保护配置文件：
 
 ```bash
-sudo chown root:root /etc/aidp2026/registration.env
-sudo chmod 0600 /etc/aidp2026/registration.env
+chmod 0600 .env.production
+chmod 0700 data
 ```
+
+设置 `NODE_ENV=production` 后，服务会自动读取 `.env.production`；开发模式仍读取 `.env`。
 
 ## 5. 启动 Node 常驻服务
 
-安装并启动示例 systemd 单元：
+项目内单元文件直接以当前仓库路径运行，不复制代码。先确认单元中的 `User=` 与项目目录所有者一致；当前这台机器可使用：
+
+```bash
+stat -c '%U' /home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
+```
+
+安装并启动 systemd 单元：
 
 ```bash
 sudo cp deploy/aidp2026-registration.service.example /etc/systemd/system/aidp2026-registration.service
@@ -155,7 +168,7 @@ curl http://127.0.0.1:8787/api/aidp2026/config
 journalctl -u aidp2026-registration -n 100 --no-pager
 ```
 
-现有 GitHub Action **不会**更新 `/opt` 中的 API 代码，也不会重启此服务。以后修改 `services/aidp2026-registration` 后，需要同步 `package.json`、`server.js`、`src/` 到 `/opt`，然后执行：
+systemd 直接运行当前仓库内的 `server.js` 和 `src/`。以后修改 `services/aidp2026-registration` 后，GitHub Action 拉取代码，再执行：
 
 ```bash
 sudo systemctl restart aidp2026-registration
@@ -248,7 +261,70 @@ curl -H 'CF-IPCountry: HK' http://127.0.0.1:8787/api/aidp2026/config
 
 腾讯滑块在无头浏览器中可能触发 403 风控，因此不能把自动化加载成功当作真实票据验收；必须用正式域名和真实浏览器完成一次。
 
-## 10. 腾讯 EdgeOne 替代方案
+## 10. 收集和清理报名数据
+
+以下命令在服务器本机执行，令牌从受保护的 `.env` 读取，不要把它写进命令历史或脚本输出。
+
+```bash
+cd /home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
+export ADMIN_API_TOKEN="$(sed -n 's/^ADMIN_API_TOKEN=//p' .env)"
+```
+
+核查全部记录：
+
+```bash
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  'http://127.0.0.1:8787/api/aidp2026/admin/submissions?limit=200'
+```
+
+只核查会议注册或 Poster：
+
+```bash
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  'http://127.0.0.1:8787/api/aidp2026/admin/submissions?kind=conference'
+
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  'http://127.0.0.1:8787/api/aidp2026/admin/submissions?kind=poster'
+```
+
+导出 CSV：
+
+```bash
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  -o aidp2026-conference.csv \
+  'http://127.0.0.1:8787/api/aidp2026/admin/export.csv?kind=conference'
+
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  -o aidp2026-posters.csv \
+  'http://127.0.0.1:8787/api/aidp2026/admin/export.csv?kind=poster'
+```
+
+下载某个 Poster PDF，把编号替换成真实 `AIDP26-P-...`：
+
+```bash
+curl -sS -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  -o poster.pdf \
+  'http://127.0.0.1:8787/api/aidp2026/admin/submissions/AIDP26-P-000000000000/pdf'
+```
+
+删除某条记录。会议记录会删除报名数据；Poster 记录会同时删除元数据和 PDF 文件：
+
+```bash
+curl -sS -X DELETE \
+  -H "Authorization: Bearer $ADMIN_API_TOKEN" \
+  'http://127.0.0.1:8787/api/aidp2026/admin/submissions/AIDP26-P-000000000000'
+```
+
+原始数据库和 PDF 分别位于：
+
+```text
+services/aidp2026-registration/data/registrations.sqlite
+services/aidp2026-registration/data/uploads/
+```
+
+正式使用时不要直接手工编辑 SQLite。先通过管理员 API 导出或删除；需要备份时使用 SQLite 感知的一致备份方式。
+
+## 11. 腾讯 EdgeOne 替代方案
 
 若主要用户在中国大陆，也可把自有静态域名和 API 域名接入 EdgeOne：
 
@@ -265,9 +341,9 @@ curl -H 'CF-IPCountry: HK' http://127.0.0.1:8787/api/aidp2026/config
 5. EdgeOne 文档目前说明国家解析暂不支持 IPv6；未获得地区时使用回退并允许手动切换。
 6. 中国大陆加速可能涉及 ICP 备案，需在上线前确认。
 
-## 11. 运维要求
+## 12. 运维要求
 
-- 备份 `/var/lib/aidp2026-registration/registrations.sqlite`、WAL 和 `/var/lib/aidp2026-registration/uploads/` 中的 PDF，并定期做恢复演练；优先使用 SQLite 感知的备份方式。
+- 备份 `/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration/data/registrations.sqlite`、WAL 和 `/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration/data/uploads/` 中的 PDF，并定期做恢复演练；优先使用 SQLite 感知的备份方式。
 - 主机磁盘和备份都应加密。默认 180 天只清理在线数据库，管理员导出和历史备份需按同一隐私政策另行清理。
 - 管理员导出包含个人数据，下载后限制访问并按期删除。
 - 更新 API 代码后运行 `npm test` 和 `systemctl restart`；更新静态页后检查浏览器缓存中的 `registration-config.js` 是否为最新版本。

@@ -5,13 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-User=aidp2026
-Group=aidp2026
-WorkingDirectory=/opt/hkust-smartlab/services/aidp2026-registration
+User=cjinag
+WorkingDirectory=/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
 Environment=NODE_ENV=production
-Environment=DATA_DIR=/var/lib/aidp2026-registration
-EnvironmentFile=/etc/aidp2026/registration.env
-ExecStart=/usr/bin/node server.js
+ExecStart=/usr/local/bin/node server.js
 Restart=on-failure
 RestartSec=5
 
@@ -19,12 +16,12 @@ NoNewPrivileges=true
 PrivateTmp=true
 PrivateDevices=true
 ProtectSystem=strict
-ProtectHome=true
+ProtectHome=false
 ProtectKernelTunables=true
 ProtectKernelModules=true
 ProtectControlGroups=true
 RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
-ReadWritePaths=/var/lib/aidp2026-registration
+ReadWritePaths=/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration
 MemoryMax=512M
 TasksMax=64
 LimitNOFILE=4096

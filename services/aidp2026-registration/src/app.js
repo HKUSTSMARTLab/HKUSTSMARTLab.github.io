@@ -3,7 +3,7 @@ import { createReadStream, lstatSync, realpathSync, statSync } from "node:fs";
 import { extname, resolve, sep } from "node:path";
 import { createHash, randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
 import { RegistrationStore } from "./database.js";
-import { PosterFileStorage } from "./files.js";
+import { discardRequestBody, PosterFileStorage } from "./files.js";
 import { createCaptchaVerifier } from "./captcha.js";
 import { HttpError, validateSubmission } from "./validation.js";
 import { clientIp, edgeCountry, isAdmin, isLoopback, RateLimiter, requireAdmin } from "./security.js";
@@ -365,7 +365,6 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
       const uploadMatch = url.pathname.match(/^\/api\/aidp2026\/posters\/(AIDP26-P-[0-9A-F]{12})\/pdf$/u);
       if (uploadMatch && request.method === "POST") {
         const id = uploadMatch[1];
-        if (!isOpen(config, "poster")) throw new HttpError(410, "SUBMISSIONS_CLOSED", "This submission channel is closed.");
         limiter.check(`${ip}:submit`, {
           limit: config.rateLimit.submitPerWindow,
           windowMs: config.rateLimit.submitWindowMs,
@@ -375,8 +374,20 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
         if (!uploadTokenMatches(request.headers["x-upload-token"], session.token_hash)) {
           throw new HttpError(401, "INVALID_UPLOAD_TOKEN", "The upload token is invalid. Restart the poster submission to receive a new one.");
         }
+        const uploadContentType = String(request.headers["content-type"] || "").split(";", 1)[0].trim().toLowerCase();
+        if (uploadContentType !== "application/pdf") {
+          throw new HttpError(415, "PDF_REQUIRED", "Upload one PDF file.");
+        }
+        const declaredLength = Number(request.headers["content-length"] || 0);
+        if (declaredLength > config.pdfMaxBytes) throw new HttpError(413, "PDF_TOO_LARGE", "The PDF exceeds the 5 MB limit.");
+        if (session.details.expectedFile && declaredLength > 0 && declaredLength !== session.details.expectedFile.size) {
+          throw new HttpError(400, "PDF_SIZE_MISMATCH", "The selected file changed before upload. Select it again.");
+        }
+        if (Date.parse(session.expires_at) <= Date.now()) {
+          throw new HttpError(410, "UPLOAD_SESSION_EXPIRED", "The upload link expired. Resubmit the poster details to receive a new one.");
+        }
         if (session.details.pdf) {
-          request.resume();
+          await discardRequestBody(request, config.pdfMaxBytes);
           sendJson(request, response, 200, {
             ok: true,
             kind: "poster",
@@ -386,9 +397,6 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
             message: "Poster PDF received for review.",
           });
           return;
-        }
-        if (Date.parse(session.expires_at) <= Date.now()) {
-          throw new HttpError(410, "UPLOAD_SESSION_EXPIRED", "The upload link expired. Resubmit the poster details to receive a new link.");
         }
         if (activeUploads.has(id)) throw new HttpError(429, "UPLOAD_IN_PROGRESS", "This PDF is already being uploaded.");
         if (!session.details.expectedFile) throw new HttpError(400, "UPLOAD_NOT_REQUIRED", "This submission does not accept a PDF.");
@@ -453,6 +461,20 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
             },
             debugCaptchaBypassAvailable: config.debugCaptchaBypass && !config.production && config.trustProxy === 0 && isLoopback(request),
           });
+          return;
+        }
+        const deleteMatch = url.pathname.match(/^\/api\/aidp2026\/admin\/submissions\/(AIDP26-[CP]-[0-9A-F]{12})$/u);
+        if (deleteMatch && request.method === "DELETE") {
+          const id = deleteMatch[1];
+          if (!store.deleteSubmission(id)) throw new HttpError(404, "NOT_FOUND", "Submission not found.");
+          if (id.startsWith("AIDP26-P-")) {
+            try {
+              files.remove(id);
+            } catch (error) {
+              console.error(`Could not remove poster file ${id}:`, error.message);
+            }
+          }
+          sendJson(request, response, 200, { ok: true, deleted: id });
           return;
         }
         const downloadMatch = url.pathname.match(/^\/api\/aidp2026\/admin\/submissions\/(AIDP26-P-[0-9A-F]{12})\/pdf$/u);

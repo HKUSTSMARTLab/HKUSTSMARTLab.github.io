@@ -1659,6 +1659,10 @@ button {
   width: min(100%, 360px);
 }
 
+.captcha-box__header .form-field[hidden] {
+  display: none;
+}
+
 .captcha-mount {
   margin-top: 14px;
 }

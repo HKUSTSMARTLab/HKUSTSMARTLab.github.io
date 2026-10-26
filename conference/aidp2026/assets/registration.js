@@ -175,11 +175,13 @@
       this.providerSelect.add(new Option(provider.label, provider.value));
     }, this);
     this.providerSelect.disabled = false;
+    this.providerSelect.closest(".form-field").hidden =
+      config.captcha.preferredProvider === "auto" || providers.length === 1;
 
     var preferred = config.captcha.preferredProvider;
     if (preferred === "auto") {
-      // No trusted edge-country answer (common in local development). Language
-      // is only a fallback; the visitor can always override this selection.
+      // Auto mode chooses without asking the visitor to manage providers. Language
+      // is only a fallback when no trusted edge-country answer is available.
       var mainlandLanguage = String(navigator.language || "").toLowerCase() === "zh-cn";
       preferred = mainlandLanguage && config.captcha.tencent ? "tencent" : "turnstile";
     }
@@ -514,19 +516,13 @@
     controllers.forEach(function (controller) {
       controller.configure(config);
     });
-    var openChannels = [];
-    if (config.registration.open) openChannels.push("conference registration");
-    if (config.posters.open) openChannels.push("poster submission");
-    serviceStatus.textContent = openChannels.length
-      ? "Secure service connected. Open: " + openChannels.join(" and ") + ". Verification tickets expire after 5 minutes."
-      : "Online submissions are currently closed. Please check the announced dates or contact the organizers.";
-    serviceStatus.classList.remove("is-error");
-    serviceStatus.classList.add("is-ready");
+    serviceStatus.hidden = true;
   }).catch(function () {
     controllers.forEach(function (controller) {
       controller.unavailable();
     });
-    serviceStatus.textContent = "The secure registration service is currently unavailable. Please reload and try again later, or email aidp2026hk@outlook.com for assistance.";
+    serviceStatus.hidden = false;
+    serviceStatus.textContent = "Online registration is temporarily unavailable. Please try again later or contact the organizers at aidp2026hk@outlook.com.";
     serviceStatus.classList.remove("is-ready");
     serviceStatus.classList.add("is-error");
   });
