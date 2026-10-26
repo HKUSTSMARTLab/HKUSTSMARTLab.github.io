@@ -1,0 +1,15 @@
+{
+  "name": "aidp2026-registration-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Minimal registration and poster submission service for AIDP 2026",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test --test-concurrency=1"
+  }
+}

@@ -1,0 +1,94 @@
+% AIDP 2026 | A0 portrait academic poster template
+% Compile: xelatex -interaction=nonstopmode AIDP2026_Poster_Template.tex
+% Run twice after updating cross-references. Output is exactly 841 x 1189 mm.
+% Print at 100% / Actual size on A0; disable printer Fit/Shrink options.
+% Requires standard TeX Live packages only. No external images are required.
+% Replace bracketed prompts and illustrative values before publication.
+\documentclass{article}
+\usepackage[paperwidth=841mm,paperheight=1189mm,margin=30mm]{geometry}
+\usepackage{fontspec}
+\setsansfont{TeX Gyre Heros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{graphicx}
+\definecolor{navy}{HTML}{0B3053}
+\definecolor{gold}{HTML}{9C7C41}
+\definecolor{pale}{HTML}{F2F5F7}
+\definecolor{ink}{HTML}{263746}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7mm}
+\setlength{\fboxsep}{8mm}
+\newcommand{\sectionhead}[2]{\par\vspace{9mm}{\color{gold}\fontsize{22}{27}\selectfont #1\quad}{\color{navy}\bfseries\fontsize{36}{42}\selectfont #2}\par\vspace{-4mm}{\color{gold}\rule{\linewidth}{1mm}}\par}
+\newcommand{\prompt}[1]{{\color{ink}#1}\par}
+\newcommand{\figurebox}[2]{\par\begingroup\setlength{\fboxsep}{6mm}\colorbox{pale}{\parbox[c][#1][c]{\dimexpr\linewidth-12mm\relax}{\centering\color{navy}\bfseries #2\par\normalfont\fontsize{23}{30}\selectfont Replace with a vector figure or\par high-resolution image.}}\endgroup\par}
+\begin{document}
+\fontsize{28}{36}\selectfont\color{ink}
+\noindent\colorbox{navy}{\begin{minipage}{\dimexpr\textwidth-16mm\relax}
+\color{white}\vspace{6mm}
+{\fontsize{28}{34}\selectfont\bfseries AIDP 2026\hfill RESEARCH POSTER}\par\vspace{8mm}
+{\fontsize{68}{76}\selectfont\bfseries [A clear, informative research title]\par [Optional second line of the title]}\par\vspace{5mm}
+{\fontsize{34}{42}\selectfont [First Author]\textsuperscript{1}, [Second Author]\textsuperscript{2}, [Presenting Author]\textsuperscript{1,*}}\par
+{\fontsize{25}{32}\selectfont\textsuperscript{1}[Department, Institution, Country]\quad\textsuperscript{2}[Institution, Country]}\par\vspace{5mm}
+\end{minipage}}
+\par\vspace{-4mm}{\color{gold}\rule{\textwidth}{2mm}}
+\par\vspace{2mm}
+{\color{navy}\bfseries KEY MESSAGE\quad}\textit{[State the principal finding and why it matters in one concise sentence.]}
+\par\vspace{5mm}
+\noindent\begin{minipage}[t]{0.315\textwidth}\vspace{0pt}
+\sectionhead{01}{Background}
+\prompt{[Introduce the scientific or practical problem and its significance.]}
+\prompt{[Summarise current knowledge with one or two citations. Identify the specific unresolved gap.]}
+\sectionhead{02}{Objectives}
+\prompt{\textbf{Research question}\par [What precisely does this study investigate?]}
+\prompt{\textbf{Primary objective}\par [Define the principal outcome or hypothesis.]}
+\prompt{\textbf{Secondary objective}\par [State a complementary question, if relevant.]}
+\sectionhead{03}{Methods}
+\prompt{\textbf{Design and data}\par [Study design, setting, sample size, eligibility criteria and data source.]}
+\figurebox{115mm}{INPUT $\longrightarrow$ ANALYSIS\par $\longrightarrow$ EVALUATION}
+{\fontsize{23}{30}\selectfont\textbf{Figure 1.} [Workflow. Define inputs, processing steps and evaluation procedure.]\par}
+\prompt{\textbf{Analysis}\par [Describe the model or intervention, comparators, validation, statistical tests and uncertainty estimates.]}
+\prompt{\textbf{Reproducibility}\par [Report software versions, data/code access and ethics approval where applicable.]}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.315\textwidth}\vspace{0pt}
+\sectionhead{04}{Results}
+\prompt{\textbf{Principal finding}\par [Report the main effect with units, sample size and an appropriate uncertainty interval.]}
+\figurebox{180mm}{PRIMARY RESULT\par [Plot / image / diagram]}
+{\fontsize{23}{30}\selectfont\textbf{Figure 2.} [Describe the comparison, axes, units, sample sizes and meaning of error bars. Avoid relying on colour alone.]\par}
+\prompt{\textbf{Quantitative comparison}\par [Explain the most important pattern in Table 1.]}
+{\fontsize{23}{29}\selectfont\textbf{Table 1.} Illustrative values only; replace all entries.\par
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrr@{}}
+\rowcolor{navy}\color{white}\textbf{Group}&\color{white}\textbf{N}&\color{white}\textbf{Metric}\tabularnewline
+\rowcolor{pale} Reference & 100 & 0.72\tabularnewline
+Proposed & 100 & 0.84\tabularnewline
+\rowcolor{pale} Difference & --- & +0.12\tabularnewline
+\end{tabular*}\par
+[Specify metric, units, summary statistic and uncertainty.]\par}
+\figurebox{100mm}{SECONDARY RESULT\par [Robustness / subgroup analysis]}
+{\fontsize{23}{30}\selectfont\textbf{Figure 3.} [Secondary evidence supporting the principal finding.]\par}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.315\textwidth}\vspace{0pt}
+\sectionhead{05}{Discussion}
+\prompt{\textbf{Interpretation}\par [Explain what the results mean and how they relate to prior work.]}
+\prompt{\textbf{Strengths and limitations}\par [Describe uncertainty, potential bias and the boundaries of generalisability.]}
+\prompt{\textbf{Implications}\par [State the scientific or practical implications without exceeding the evidence.]}
+\sectionhead{06}{Conclusions}
+\prompt{\textbf{1.} [State the main evidence-supported conclusion.]}
+\prompt{\textbf{2.} [State the key contribution or application.]}
+\prompt{\textbf{3.} [Identify the next research step.]}
+\sectionhead{07}{References}
+{\fontsize{23}{30}\selectfont
+[1] Author AA, Author BB. Article title. \textit{Journal}. Year;volume:pages. DOI.\par
+[2] Author AA, et al. Article title. \textit{Journal}. Year;volume:pages. DOI.\par
+[3] Author AA. Dataset or software title. Repository; year. DOI / URL.\par}
+\sectionhead{08}{Acknowledgements}
+{\fontsize{23}{30}\selectfont [Funding organisation and grant number; collaborators; relevant disclosures.]\par}
+\sectionhead{}{Contact}
+{\fontsize{25}{33}\selectfont\textbf{[Presenting author]}\par [email@institution.edu]\par [Short project / data / code URL]\par}
+\end{minipage}
+\vfill
+{\color{gold}\rule{\textwidth}{1mm}}\par\vspace{-4mm}
+{\fontsize{21}{26}\selectfont\color{navy} AIDP 2026\hfill [Poster ID / session]\hfill [Institution / research group]}
+\end{document}

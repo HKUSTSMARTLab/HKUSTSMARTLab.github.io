@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registration — AIDP 2026</title>
-  <meta name="description" content="Registration status for AIDP 2026.">
+  <meta name="description" content="Register for AIDP 2026 or submit a poster PDF for review.">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <link rel="stylesheet" href="./assets/conference.css?v=29">
+  <link rel="stylesheet" href="./assets/conference.css?v=32">
   <script src="./assets/conference.js?v=10" defer></script>
+  <script src="./assets/registration-config.js?v=1" defer></script>
+  <script src="./assets/registration.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -40,70 +42,239 @@
   <main id="main">
     <section class="page-hero">
       <div class="container">
-        <p class="page-hero__eyebrow">AIDP 2026</p>
+        <p class="page-hero__eyebrow">AIDP 2026 · 27–29 November · HKUST</p>
         <h1 class="page-hero__title">Registration</h1>
-        <p class="page-hero__lede">Registration is not open yet. The registration channel and timeline will be announced on this page.</p>
+        <p class="page-hero__lede page-hero__lede--wide">Registration is open for AIDP 2026 at HKUST. Poster PDFs are welcome until 13 November.</p>
       </div>
     </section>
 
-    <div class="container layout layout--single">
-      <div>
-        <section class="section">
-          <h2 class="section__title">Current status</h2>
-          <p class="note"><strong>Registration: to be announced.</strong> The official registration workflow, deadline, and attendance instructions will be published here after they are confirmed by the conference organizers. For questions, contact <a href="mailto:aidp2026hk@outlook.com">aidp2026hk@outlook.com</a>.</p>
-        </section>
+    <div class="container registration-page">
+      <nav class="registration-jump" aria-label="Registration options">
+        <a class="registration-choice" href="#attendance">
+          <span class="registration-choice__label">Conference</span>
+          <strong>Conference registration</strong>
+          <span>27–29 November 2026 · LT-B, HKUST</span>
+        </a>
+        <a class="registration-choice" href="#posters">
+          <span class="registration-choice__label">Poster</span>
+          <strong>Poster submission</strong>
+          <span>Submit by 13 November 2026 · Notification on 16 November</span>
+        </a>
+      </nav>
 
-        <section class="section" id="abstracts">
-          <h2 class="section__title">Abstracts and posters</h2>
-          <p class="section__intro">Poster abstracts are invited. The submission channel and guidelines will be published here.</p>
-          <div class="table-wrap">
-            <table class="table">
-              <thead>
-                <tr><th scope="col">Milestone</th><th scope="col">Date</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Poster abstract deadline</td><td>13 November 2026</td></tr>
-                <tr><td>Acceptance notifications</td><td>16 November 2026</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
+      <p class="registration-service-note" id="registration-service-status" role="status">Connecting to the secure registration service…</p>
+      <details class="privacy-details" open>
+        <summary>Privacy notice and consent</summary>
+        <div class="privacy-details__content">
+          <p><strong>Data user.</strong> The AIDP 2026 Organizing Committee and its HKUST-hosted conference team handle personal data under Hong Kong's Personal Data (Privacy) Ordinance and HKUST's data privacy policy.</p>
+          <p><strong>What we collect.</strong> We collect the information entered in these forms and, for posters, one PDF file. Required fields are needed to identify you, communicate with you, administer attendance, or review the submission.</p>
+          <p><strong>Use and disclosure.</strong> We use the information for conference administration, academic review, event communications, aggregate statistics, service security, and legal compliance. We do not sell personal data or share it for unrelated marketing. Cloudflare or Tencent may process limited security signals when you complete verification.</p>
+          <p><strong>Retention and rights.</strong> Live submission records and poster files are deleted after <strong data-retention-days>180</strong> days unless a longer period is legally required. You may request access, correction, or deletion by contacting <a href="mailto:aidp2026hk@outlook.com">the organizers</a>.</p>
+          <p>Read the full <a href="privacy.html">Privacy Notice and Consent</a> before submitting. Do not include patient-identifiable, confidential clinical, or otherwise restricted material.</p>
+        </div>
+      </details>
+      <noscript><p class="note">JavaScript is required for secure verification and online submission. Please enable JavaScript or contact <a href="mailto:aidp2026hk@outlook.com">aidp2026hk@outlook.com</a>.</p></noscript>
 
-        <section class="section">
-          <h2 class="section__title">Confirmed information</h2>
-          <div class="info-grid">
-            <div class="info-item">
-              <h3>Conference dates</h3>
-              <p>27–29 November 2026</p>
+      <section class="section registration-section" id="attendance" aria-labelledby="attendance-title">
+        <h2 class="section__title" id="attendance-title">Conference registration</h2>
+        <p class="section__intro">Submit your attendance details to the AIDP 2026 organizers. Use a current email address that the organizers can contact about your registration.</p>
+        <div class="submission-grid">
+          <form class="registration-form" method="post" data-registration-form data-kind="conference" data-endpoint="registrations">
+            <div class="submission-success" data-success hidden tabindex="-1">
+              <h3>Registration received</h3>
+              <p>Your reference is <strong data-reference></strong>. Save it for any enquiries.</p>
+              <p><a href="#posters">Presenting your work? Continue to poster submission.</a></p>
             </div>
-            <div class="info-item">
-              <h3>Venue</h3>
-              <p>Lecture Theater B (LT-B), Academic Building, HKUST</p>
+            <p class="form-required-note">Fields marked <span aria-hidden="true">*</span> are required.</p>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="conference-name">Full name <span aria-hidden="true">*</span></label>
+                <input id="conference-name" name="fullName" type="text" autocomplete="name" maxlength="120" required>
+              </div>
+              <div class="form-field">
+                <label for="conference-email">Email address <span aria-hidden="true">*</span></label>
+                <input id="conference-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+              </div>
+              <div class="form-field">
+                <label for="conference-affiliation">Affiliation <span aria-hidden="true">*</span></label>
+                <input id="conference-affiliation" name="affiliation" type="text" autocomplete="organization" minlength="2" maxlength="200" required>
+              </div>
+              <div class="form-field">
+                <label for="conference-role">Your role <span aria-hidden="true">*</span></label>
+                <select id="conference-role" name="role" required>
+                  <option value="" selected disabled>Select your role</option>
+                  <option value="student">Student</option>
+                  <option value="academic">Faculty or academic staff</option>
+                  <option value="researcher">Researcher</option>
+                  <option value="clinical">Clinical professional</option>
+                  <option value="industry">Industry professional</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <fieldset class="form-field form-field--full date-fieldset">
+                <legend>Which days do you plan to attend? <span aria-hidden="true">*</span></legend>
+                <p class="field-help" id="conference-dates-help">Select at least one day. This helps the organizers estimate attendance and is not a session booking.</p>
+                <div class="date-options" aria-describedby="conference-dates-help">
+                  <label class="check-option"><input type="checkbox" name="dates" value="2026-11-27"><span><strong>Friday</strong><br>27 November</span></label>
+                  <label class="check-option"><input type="checkbox" name="dates" value="2026-11-28"><span><strong>Saturday</strong><br>28 November</span></label>
+                  <label class="check-option"><input type="checkbox" name="dates" value="2026-11-29"><span><strong>Sunday</strong><br>29 November</span></label>
+                </div>
+              </fieldset>
+              <div class="form-field form-field--full">
+                <label class="consent-option" for="conference-consent">
+                  <input id="conference-consent" name="consent" type="checkbox" required>
+                  <span>I have read the <a href="privacy.html">Privacy Notice and Consent</a> and agree that the organizers may use these details to administer my AIDP 2026 registration and contact me about this event. <span aria-hidden="true">*</span></span>
+                </label>
+              </div>
             </div>
-            <div class="info-item">
-              <h3>Updates</h3>
-              <p>Registration details will be posted on this page and on the home page.</p>
-            </div>
-          </div>
-        </section>
 
-        <section class="section">
-          <h2 class="section__title">Items pending confirmation</h2>
-          <div class="table-wrap">
-            <table class="table">
-              <thead>
-                <tr><th scope="col">Item</th><th scope="col">Status</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Registration opening date</td><td>To be announced</td></tr>
-                <tr><td>Participation arrangement</td><td>To be announced</td></tr>
-                <tr><td>Attendance confirmation process</td><td>To be announced</td></tr>
-                <tr><td>Fee information</td><td>To be announced</td></tr>
-              </tbody>
-            </table>
+            <div class="hp-field" aria-hidden="true">
+              <label for="conference-website">Leave this field empty</label>
+              <input id="conference-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="captcha-box" data-captcha>
+              <div class="captcha-box__header">
+                <div class="form-field">
+                  <label for="conference-captcha-provider">Security verification</label>
+                  <select id="conference-captcha-provider" data-captcha-provider disabled>
+                    <option>Loading verification…</option>
+                  </select>
+                </div>
+                <button class="text-button" type="button" data-captcha-retry hidden>Retry</button>
+              </div>
+              <div class="captcha-mount" data-captcha-mount></div>
+              <p class="captcha-status" data-captcha-status aria-live="polite">Loading security verification…</p>
+            </div>
+
+            <div class="form-actions">
+              <button class="button" type="submit" data-submit disabled>Submit registration</button>
+              <span class="form-actions__note">Duplicate entries are flagged for organizer review.</span>
+            </div>
+            <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="registration-aside" aria-label="Conference registration notes">
+            <h3>Before you submit</h3>
+            <ul>
+              <li>Select every day you plan to attend; you do not need to book individual talks.</li>
+              <li>Save the reference shown after a successful submission. This service does not send confirmation emails.</li>
+              <li>Need to correct a registration? Email <a href="mailto:aidp2026hk@outlook.com">the organizers</a> with your reference.</li>
+              <li>Submitting a poster is optional and requires the <a href="#posters">separate poster form</a>.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section registration-section" id="posters" aria-labelledby="posters-title">
+        <h2 class="section__title" id="posters-title">Poster submission</h2>
+        <p class="section__intro">Share a completed study or work in progress. Upload one PDF (up to 5 MB) for review. A submission reference is not an acceptance.</p>
+        <div class="registration-milestones" aria-label="Poster milestones">
+          <div><span>Poster submission deadline</span><strong>13 November 2026</strong></div>
+          <div><span>Acceptance notification</span><strong>16 November 2026</strong></div>
+        </div>
+        <div class="poster-templates" aria-label="Poster templates">
+          <span class="poster-templates__label">Poster Templates</span>
+          <div class="poster-templates__links">
+            <a href="./docs/AIDP2026_Poster_Template.tex" download>LaTeX Template</a>
+            <a href="./docs/AIDP2026_Poster_Template.docx" download>Word Template</a>
           </div>
-        </section>
-      </div>
+        </div>
+        <div class="submission-grid">
+          <form class="registration-form" method="post" data-registration-form data-kind="poster" data-endpoint="posters">
+            <div class="submission-success" data-success hidden tabindex="-1">
+              <h3>Poster PDF received</h3>
+              <p>Your reference is <strong data-reference></strong>. Save it for review-related enquiries. Acceptance notifications are scheduled for 16 November.</p>
+              <p><a href="#attendance">Coming to the conference? Complete your registration here.</a></p>
+            </div>
+            <p class="form-required-note">Fields marked <span aria-hidden="true">*</span> are required.</p>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="poster-name">Presenting author <span aria-hidden="true">*</span></label>
+                <input id="poster-name" name="fullName" type="text" autocomplete="name" maxlength="120" required>
+              </div>
+              <div class="form-field">
+                <label for="poster-email">Contact email <span aria-hidden="true">*</span></label>
+                <input id="poster-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="poster-affiliation">Presenting author’s affiliation <span aria-hidden="true">*</span></label>
+                <input id="poster-affiliation" name="affiliation" type="text" autocomplete="organization" minlength="2" maxlength="200" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="poster-title">Poster title <span aria-hidden="true">*</span></label>
+                <input id="poster-title" name="title" type="text" minlength="5" maxlength="300" required>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="poster-authors">Complete author list <span aria-hidden="true">*</span></label>
+                <textarea id="poster-authors" name="authors" rows="3" minlength="2" maxlength="1000" aria-describedby="poster-authors-help" required></textarea>
+                <p class="field-help" id="poster-authors-help">List all authors in presentation order. You may separate names with commas or new lines.</p>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="poster-topic">Primary topic <span aria-hidden="true">*</span></label>
+                <select id="poster-topic" name="topic" required>
+                  <option value="" selected disabled>Select the closest topic</option>
+                  <option value="foundation-models">Foundation models for digital pathology</option>
+                  <option value="multimodal-learning">Multimodal learning and vision–language models</option>
+                  <option value="multi-omics">Multi-omics integration for precision medicine</option>
+                  <option value="ai-agents">AI agents and automated pathology workflows</option>
+                  <option value="clinical-translation">Clinical translation, validation, and deployment</option>
+                  <option value="other">Other related topic</option>
+                </select>
+              </div>
+              <div class="form-field form-field--full">
+                <label for="poster-pdf">Poster PDF <span aria-hidden="true">*</span></label>
+                <input id="poster-pdf" name="posterPdf" type="file" accept=".pdf,application/pdf" aria-describedby="poster-pdf-help poster-file-info" required>
+                <div class="field-help field-help--split" id="poster-pdf-help">
+                  <span>One PDF, maximum 5 MB. Check the final page size, figures, and fonts before uploading.</span>
+                  <span class="file-selection" data-file-info="poster-pdf" id="poster-file-info">No file selected</span>
+                </div>
+              </div>
+              <div class="form-field form-field--full">
+                <label class="consent-option" for="poster-consent">
+                  <input id="poster-consent" name="consent" type="checkbox" required>
+                  <span>I have read the <a href="privacy.html">Privacy Notice and Consent</a>, confirm that I am authorized to submit this poster PDF, and agree to the use of these details and the file for review and conference administration. <span aria-hidden="true">*</span></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="hp-field" aria-hidden="true">
+              <label for="poster-website">Leave this field empty</label>
+              <input id="poster-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <div class="captcha-box" data-captcha>
+              <div class="captcha-box__header">
+                <div class="form-field">
+                  <label for="poster-captcha-provider">Security verification</label>
+                  <select id="poster-captcha-provider" data-captcha-provider disabled>
+                    <option>Loading verification…</option>
+                  </select>
+                </div>
+                <button class="text-button" type="button" data-captcha-retry hidden>Retry</button>
+              </div>
+              <div class="captcha-mount" data-captcha-mount></div>
+              <p class="captcha-status" data-captcha-status aria-live="polite">Loading security verification…</p>
+            </div>
+
+            <div class="form-actions">
+              <button class="button" type="submit" data-submit disabled>Submit poster PDF</button>
+              <span class="form-actions__note">One PDF, up to 5 MB.</span>
+            </div>
+            <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+          </form>
+
+          <aside class="registration-aside" aria-label="Poster submission notes">
+            <h3>Submission notes</h3>
+            <ul>
+              <li>Do not include patient-identifiable information, confidential clinical data, or protected credentials in the PDF.</li>
+              <li>Files are stored privately and are available only to authorized organizers. Repeat submissions with the same contact email and poster title are flagged for review.</li>
+              <li>Poster submission does not register you for the conference. Please also complete the <a href="#attendance">attendance form</a>.</li>
+              <li>For corrections or withdrawal, email <a href="mailto:aidp2026hk@outlook.com">the organizers</a> with your reference.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
     </div>
   </main>
 

@@ -27,6 +27,7 @@ exclude:
     - vendor/bundle/
     - vendor/cache/
     - vendor/gems/
+    - services/
     - vendor/ruby/
 
 collections:
