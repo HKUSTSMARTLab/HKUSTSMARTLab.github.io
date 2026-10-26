@@ -437,6 +437,69 @@ button {
 }
 
 /* ------------------------------------------------------------------ */
+/* Updates band (homepage)                                             */
+/* ------------------------------------------------------------------ */
+
+.updates {
+  background: #f6f1e5;
+  border-bottom: 1px solid var(--line);
+}
+
+.updates .container {
+  padding-top: 40px;
+  padding-bottom: 44px;
+}
+
+.updates__list {
+  max-width: 880px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.updates__list li {
+  padding: 14px 0;
+  border-top: 1px solid rgba(156, 124, 65, 0.28);
+}
+
+.updates__list li:first-child {
+  padding-top: 2px;
+  border-top: 0;
+}
+
+.updates__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0 0 5px;
+}
+
+.updates__meta time {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.updates__tag {
+  flex: 0 0 auto;
+  padding: 2px 9px;
+  border: 1px solid rgba(156, 124, 65, 0.5);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--gold);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.updates__list p {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ------------------------------------------------------------------ */
 /* Page layout and sections                                            */
 /* ------------------------------------------------------------------ */
 
@@ -1016,6 +1079,10 @@ button {
 .table td:last-child,
 .table th:last-child {
   padding-right: 0;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .table--numbers td:last-child {
