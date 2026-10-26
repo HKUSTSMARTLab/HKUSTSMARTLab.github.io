@@ -82,11 +82,11 @@
     object-fit: contain;
 }
 
-.carousel-item--healthcare-ai {
+.carousel-item--story {
     position: relative;
 }
 
-.carousel-item--healthcare-ai a {
+.carousel-item--story a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,18 +97,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     height: 100%;
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
 }
 
-.carousel-item--healthcare-ai img {
-    width: auto;
+.carousel-item--story img {
+    width: 100%;
     max-width: 100%;
     height: 100%;
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
 }
 
 .carousel-story-frame::after {
@@ -158,6 +160,65 @@
     text-wrap: pretty;
 }
 
+.carousel-story-mark__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.6rem;
+    padding: 0.5rem 1.35rem;
+    border: 0;
+    border-radius: 999px;
+    background: #0d3a5c;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: clamp(0.7rem, 0.82vw, 0.88rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    box-shadow: 0 6px 16px rgba(13, 58, 92, 0.18);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-item--story a:hover .carousel-story-mark__cta,
+.carousel-item--story a:focus-visible .carousel-story-mark__cta {
+    background: #082c47;
+    transform: translateY(-1px);
+}
+
+/* AIDP slide: keep the shared story style, but center the copy over the lower area */
+.carousel-story-frame--aidp::after {
+    background: linear-gradient(
+        180deg,
+        rgba(247, 251, 255, 0) 38%,
+        rgba(247, 251, 255, 0.68) 60%,
+        rgba(247, 251, 255, 0.94) 80%,
+        #f7fbff 100%
+    );
+}
+
+.carousel-story-mark--aidp {
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 3.1rem;
+    text-align: center;
+    color: #0d2b45;
+}
+
+.carousel-story-mark--aidp .carousel-story-mark__title {
+    max-width: min(92%, 56rem);
+    color: #08243c;
+    font-size: clamp(1.05rem, 1.5vw, 1.7rem);
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.carousel-story-mark--aidp .carousel-story-mark__subtitle {
+    max-width: min(88%, 48rem);
+    color: #234b6b;
+    font-size: clamp(0.7rem, 0.82vw, 0.9rem);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
 /* Responsive carousel height */
 @media (max-width: 768px) {
     .carousel-item { height: 360px; }
@@ -173,6 +234,24 @@
 
     .carousel-story-mark {
         padding: 0.62rem 0.68rem 0.74rem;
+    }
+
+    .carousel-story-mark--aidp {
+        padding-bottom: 2.8rem;
+    }
+
+    .carousel-story-frame--aidp::after {
+        background: linear-gradient(
+            180deg,
+            rgba(247, 251, 255, 0) 28%,
+            rgba(247, 251, 255, 0.72) 52%,
+            rgba(247, 251, 255, 0.96) 72%,
+            #f7fbff 100%
+        );
+    }
+
+    .carousel-story-mark--aidp .carousel-story-mark__title {
+        font-size: clamp(0.92rem, 2.6vw, 1.1rem);
     }
 
     .carousel-story-mark__title {
@@ -195,6 +274,10 @@
 
     .carousel-story-mark {
         padding: 0.8rem 0.7rem 0.9rem;
+    }
+
+    .carousel-story-mark--aidp {
+        padding-bottom: 2.5rem;
     }
 }
 

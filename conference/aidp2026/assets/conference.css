@@ -474,6 +474,7 @@ button {
 .section__title + .note,
 .section__title + .prose,
 .section__title + .info-grid,
+.section__title + .venue-facts,
 .section__title + .topics,
 .section__title + .people,
 .section__title + .committees,
@@ -725,28 +726,64 @@ button {
 /* Venue route                                                         */
 /* ------------------------------------------------------------------ */
 
+.venue-facts {
+  border-top: 1px solid var(--line);
+}
+
+.venue-facts__row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 8px 28px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.venue-facts dt {
+  padding-top: 2px;
+  color: var(--navy);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.venue-facts dd {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+
 .split {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
   gap: 32px;
-  align-items: start;
+  align-items: center;
 }
 
 .split--photo {
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: start;
+}
+
+.split__text h4 {
+  color: var(--navy);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.split__text h4 + p {
+  margin-top: 5px;
+}
+
+.split__text h4 + p + h4 {
+  margin-top: 18px;
 }
 
 .split__text p {
   font-size: 0.93rem;
   line-height: 1.7;
-}
-
-.split__text p + p {
-  margin-top: 10px;
-}
-
-.split__text strong {
-  color: var(--ink);
 }
 
 .split__figure img,
@@ -769,6 +806,7 @@ button {
 .route-maps__figure figcaption a {
   color: var(--blue);
   text-decoration: underline;
+  white-space: nowrap;
 }
 
 .route-maps {
@@ -819,8 +857,8 @@ button {
   line-height: 1.6;
 }
 
-.route__note {
-  max-width: 900px;
+.subsection .route__note {
+  max-width: none;
   margin-top: 22px;
   color: var(--muted);
   font-size: 0.87rem;
@@ -1134,6 +1172,17 @@ button {
   }
 }
 
+@media (max-width: 1200px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .split__figure {
+    max-width: 800px;
+  }
+}
+
 @media (max-width: 1100px) {
   .site-header__inner {
     gap: 18px;
@@ -1150,6 +1199,10 @@ button {
   .layout {
     grid-template-columns: minmax(0, 1fr) 280px;
     gap: 40px;
+  }
+
+  .layout--single {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1228,12 +1281,6 @@ button {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .split,
-  .route-maps {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 26px;
-  }
-
   .sidebar {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: start;
@@ -1243,6 +1290,25 @@ button {
 @media (max-width: 760px) {
   .container {
     width: min(calc(100% - 32px), var(--container));
+  }
+
+  .venue-facts__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    padding: 12px 0;
+  }
+
+  .venue-facts dt {
+    padding-top: 0;
+  }
+
+  .route-maps {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .route-maps__figure {
+    max-width: 640px;
   }
 
   .brand {
