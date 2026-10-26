@@ -312,15 +312,8 @@ button {
   line-height: 0.98;
 }
 
-.home-hero__name {
-  max-width: 680px;
-  margin-top: 16px;
-  font-size: clamp(1.35rem, 2.3vw, 1.75rem);
-  line-height: 1.25;
-}
-
 .home-hero__lede {
-  margin-top: 18px;
+  margin-top: 22px;
   color: var(--muted);
   font-size: 0.98rem;
 }
@@ -423,7 +416,7 @@ button {
 
 .facts__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .facts__item {
@@ -587,6 +580,25 @@ button {
   color: var(--ink);
   font-weight: 600;
   line-height: 1.5;
+}
+
+.kv--stacked {
+  display: block;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.kv--stacked > div {
+  display: block;
+}
+
+.kv--stacked > div + div {
+  margin-top: 12px;
+}
+
+.kv--stacked dt {
+  margin-bottom: 3px;
 }
 
 .link-list li + li {
@@ -1526,6 +1538,28 @@ button {
   .site-footer__grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 22px;
+  }
+}
+
+@media (min-width: 761px) and (max-width: 940px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions .button {
+    width: 100%;
   }
 }
 
