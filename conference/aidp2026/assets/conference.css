@@ -786,6 +786,10 @@ button {
   line-height: 1.7;
 }
 
+.split__text strong {
+  color: var(--ink);
+}
+
 .split__figure img,
 .route-maps__figure img {
   display: block;
