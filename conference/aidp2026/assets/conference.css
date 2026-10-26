@@ -36,6 +36,7 @@
 }
 
 html {
+  font-size: 112.5%;
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 24px;
 }
@@ -45,7 +46,7 @@ body {
   background: var(--paper);
   color: var(--text);
   font-family: var(--sans);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
@@ -163,6 +164,13 @@ button {
 
 .prose {
   max-width: 740px;
+}
+
+#about .prose,
+#speakers .prose,
+#program .prose {
+  width: 100%;
+  max-width: none;
 }
 
 .prose p + p {
@@ -587,7 +595,7 @@ button {
   max-width: none;
 }
 
-@media (min-width: 761px) {
+@media (min-width: 1101px) {
   .page-hero__lede--wide {
     white-space: nowrap;
   }
@@ -1956,7 +1964,7 @@ button {
 
 @media (min-width: 1400px) {
   body {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 }
 
