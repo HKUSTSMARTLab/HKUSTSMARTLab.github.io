@@ -11,6 +11,7 @@
   var apiBase = String(browserConfig.apiBase || "").replace(/\/+$/u, "");
   var localFallback = !apiBase && isLocal && window.location.port !== "8787" ? "http://127.0.0.1:8787" : "";
   var scriptPromises = {};
+  var aliyunOwner = null;
   var DEFAULT_MAX_PDF_BYTES = 5 * 1024 * 1024;
 
   function apiUrl(path) {
@@ -109,7 +110,7 @@
     this.captcha = null;
     this.provider = null;
     this.widgetId = null;
-    this.tencentInstance = null;
+    this.aliyunInstance = null;
     this.challengeGeneration = 0;
     this.idempotencyKey = randomUuid();
     this.startedAt = Date.now();
@@ -124,6 +125,12 @@
     }.bind(this));
     this.retryButton.addEventListener("click", function () {
       if (this.provider) this.setProvider(this.provider);
+    }.bind(this));
+    this.captchaMount.addEventListener("click", function (event) {
+      if (this.provider !== "aliyun") return;
+      var button = event.target.closest("button");
+      if (!button || button.disabled) return;
+      this.startAliyunVerification();
     }.bind(this));
     this.form.addEventListener("submit", this.submit.bind(this));
 
@@ -164,7 +171,7 @@
 
     var providers = [];
     if (config.captcha.turnstile) providers.push({ value: "turnstile", label: "Cloudflare Turnstile" });
-    if (config.captcha.tencent) providers.push({ value: "tencent", label: "Tencent Captcha (China Mainland)" });
+    if (config.captcha.aliyun) providers.push({ value: "aliyun", label: "Aliyun Captcha (China Mainland)" });
     if (!providers.length) {
       setMessage(this.captchaStatus, "No verification provider is configured. Please contact the organizers.", "error");
       return;
@@ -175,15 +182,12 @@
       this.providerSelect.add(new Option(provider.label, provider.value));
     }, this);
     this.providerSelect.disabled = false;
-    this.providerSelect.closest(".form-field").hidden =
-      config.captcha.preferredProvider === "auto" || providers.length === 1;
+    this.providerSelect.closest(".form-field").hidden = true;
 
     var preferred = config.captcha.preferredProvider;
     if (preferred === "auto") {
-      // Auto mode chooses without asking the visitor to manage providers. Language
-      // is only a fallback when no trusted edge-country answer is available.
-      var mainlandLanguage = String(navigator.language || "").toLowerCase() === "zh-cn";
-      preferred = mainlandLanguage && config.captcha.tencent ? "tencent" : "turnstile";
+      // Unknown locations use the available mainland-compatible provider.
+      preferred = config.captcha.aliyun ? "aliyun" : "turnstile";
     }
     if (!providers.some(function (provider) { return provider.value === preferred; })) {
       preferred = providers[0].value;
@@ -217,15 +221,16 @@
         // The mount is also cleared below; removal is best-effort.
       }
     }
-    if (this.tencentInstance) {
+    if (this.aliyunInstance) {
       try {
-        this.tencentInstance.destroy();
+        if (typeof this.aliyunInstance.hide === "function") this.aliyunInstance.hide();
+        else if (typeof this.aliyunInstance.destroy === "function") this.aliyunInstance.destroy();
       } catch (_error) {
-        // Older provider versions may not implement destroy consistently.
+        // Provider cleanup is best-effort because the mount is cleared below.
       }
     }
     this.widgetId = null;
-    this.tencentInstance = null;
+    this.aliyunInstance = null;
     this.captchaMount.replaceChildren();
   };
 
@@ -244,8 +249,8 @@
     try {
       if (provider === "turnstile") {
         await this.setupTurnstile(generation);
-      } else if (provider === "tencent") {
-        await this.setupTencent(generation);
+      } else if (provider === "aliyun") {
+        await this.setupAliyun(generation);
       } else {
         throw new Error("Unknown verification provider.");
       }
@@ -303,50 +308,141 @@
     if (!this.captcha) setMessage(this.captchaStatus, "Complete the Cloudflare security check to enable submission.");
   };
 
-  RegistrationForm.prototype.setupTencent = async function (generation) {
-    await loadScript("tencent", "https://turing.captcha.qcloud.com/TJCaptcha.js", "TencentCaptcha");
-    if (!this.isCurrentChallenge(generation)) return;
-    var self = this;
-    this.tencentInstance = new window.TencentCaptcha(
-      String(this.config.captcha.tencent.appId),
-      function (result) {
-        self.onTencentResult(result, generation);
-      },
-      { userLanguage: navigator.language || "en" }
-    );
-    var button = document.createElement("button");
-    button.type = "button";
-    button.className = "button button--outline";
-    button.textContent = "Verify with Tencent Captcha";
-    button.addEventListener("click", function () {
-      self.captcha = null;
-      self.updateSubmit();
-      setMessage(self.captchaStatus, "Complete the Tencent security check in the dialog.");
-      try {
-        self.tencentInstance.show();
-      } catch (_error) {
-        setMessage(self.captchaStatus, "The verification dialog could not open. Please retry.", "error");
-        self.retryButton.hidden = false;
+  RegistrationForm.prototype.startAliyunVerification = function () {
+    if (aliyunOwner && aliyunOwner !== this) {
+      setMessage(this.captchaStatus, "Finish the current verification first, then try again.", "error");
+      return;
+    }
+    if (!this.aliyunInstance) {
+      this.initializeAliyun();
+      return;
+    }
+    this.captcha = null;
+    this.updateSubmit();
+    try {
+      if (this.aliyunInstance && typeof this.aliyunInstance.startTracelessVerification === "function") {
+        setMessage(this.captchaStatus, "Verifying in the background…");
+        this.aliyunInstance.startTracelessVerification();
+      } else if (this.aliyunInstance && typeof this.aliyunInstance.show === "function") {
+        setMessage(this.captchaStatus, "Complete the Aliyun security check in the dialog.");
+        this.aliyunInstance.show();
       }
-    });
-    this.captchaMount.replaceChildren(button);
-    setMessage(this.captchaStatus, "Select “Verify with Tencent Captcha”, then return here to submit.");
+    } catch (_error) {
+      setMessage(this.captchaStatus, "The verification dialog could not open. Please retry.", "error");
+      this.retryButton.hidden = false;
+    }
   };
 
-  RegistrationForm.prototype.onTencentResult = function (result, generation) {
+  RegistrationForm.prototype.setupAliyun = async function (generation) {
+    window.AliyunCaptchaConfig = {
+      region: this.config.captcha.aliyun.region,
+      prefix: this.config.captcha.aliyun.prefix,
+    };
+    await loadScript("aliyun", "https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js", "initAliyunCaptcha");
     if (!this.isCurrentChallenge(generation)) return;
-    var valid = result && result.ret === 0 && result.ticket && result.randstr
-      && !result.errorCode && String(result.ticket).indexOf("trerror_") !== 0;
-    if (valid) {
-      this.captcha = { provider: "tencent", token: result.ticket, randstr: result.randstr };
+    var self = this;
+    var elementId = "aliyun-captcha-element-" + this.kind + "-" + randomUuid();
+    var triggerId = elementId + "-sdk-trigger";
+    var buttonId = elementId + "-button";
+    var holder = document.createElement("div");
+    holder.id = elementId;
+    // Aliyun appends its popup iframe to this element. It must not be hidden.
+    var trigger = document.createElement("button");
+    trigger.type = "button";
+    trigger.id = triggerId;
+    trigger.style.display = "none";
+    var button = document.createElement("button");
+    button.type = "button";
+    button.id = buttonId;
+    button.className = "button button--outline";
+    button.textContent = "Verify with Aliyun Captcha";
+    button.disabled = false;
+    this.captchaMount.replaceChildren(holder, trigger, button);
+    this.initializeAliyun = function () {
+      if (aliyunOwner) return;
+      aliyunOwner = self;
+      button.disabled = true;
+      setMessage(self.captchaStatus, "Preparing security verification…");
+      var timer = window.setTimeout(function () {
+        if (aliyunOwner !== self) return;
+        aliyunOwner = null;
+        button.disabled = false;
+        setMessage(self.captchaStatus, "Verification could not start. Please retry or contact aidp2026hk@outlook.com.", "error");
+        self.retryButton.hidden = false;
+      }, 20000);
+      var initialized = window.initAliyunCaptcha({
+      SceneId: String(this.config.captcha.aliyun.sceneId),
+      mode: "popup",
+      element: "#" + elementId,
+      button: "#" + triggerId,
+      language: "en",
+      slideStyle: { width: 360, height: 40 },
+      success: function (captchaVerifyParam) {
+        window.clearTimeout(timer);
+        aliyunOwner = null;
+        self.aliyunInstance = null;
+        button.disabled = false;
+        self.onAliyunResult({ captchaVerifyParam: captchaVerifyParam }, generation);
+      },
+      fail: function (result) {
+        window.clearTimeout(timer);
+        aliyunOwner = null;
+        button.disabled = false;
+        self.aliyunInstance = null;
+        self.onAliyunResult({ failed: true, result: result }, generation);
+      },
+      onError: function () {
+        window.clearTimeout(timer);
+        aliyunOwner = null;
+        button.disabled = false;
+        self.aliyunInstance = null;
+        self.retryButton.hidden = false;
+        setMessage(self.captchaStatus, "Verification is unavailable. Please retry or contact aidp2026hk@outlook.com.", "error");
+      },
+      onClose: function (reason) {
+        if (reason === "userDismiss") {
+          window.clearTimeout(timer);
+          aliyunOwner = null;
+          button.disabled = false;
+        }
+      },
+      getInstance: function (instance) {
+        if (!self.isCurrentChallenge(generation) || aliyunOwner !== self) return;
+        self.aliyunInstance = instance;
+        window.setTimeout(function () {
+          if (self.isCurrentChallenge(generation) && aliyunOwner === self) self.startAliyunVerification();
+        }, 2100);
+      },
+    });
+      if (initialized && typeof initialized.catch === "function") initialized.catch(function () {
+        window.clearTimeout(timer);
+        aliyunOwner = null;
+        button.disabled = false;
+        self.retryButton.hidden = false;
+        setMessage(self.captchaStatus, "Verification could not start. Please retry.", "error");
+      });
+    };
+    setMessage(this.captchaStatus, "Select Verify to complete the security check.");
+  };
+
+  RegistrationForm.prototype.onAliyunResult = function (result, generation) {
+    if (!this.isCurrentChallenge(generation)) return;
+    if (result && result.captchaVerifyParam) {
+      this.captcha = { provider: "aliyun", token: result.captchaVerifyParam };
       setMessage(this.captchaStatus, "Verification completed. You can submit the form.", "verified");
       this.retryButton.hidden = true;
+      var self = this;
+      window.setTimeout(function () {
+        if (!self.isCurrentChallenge(generation)) return;
+        self.captcha = null;
+        self.aliyunInstance = null;
+        self.updateSubmit();
+        self.retryButton.hidden = false;
+        setMessage(self.captchaStatus, "Verification expired. Please verify again.", "error");
+      }, 85000);
     } else {
       this.captcha = null;
-      var message = result && result.ret === 2
-        ? "Verification was cancelled. Select the verification button to try again."
-        : "Verification did not complete. Please try again; disaster-recovery tickets are not accepted.";
-      setMessage(this.captchaStatus, message, "error");
+      setMessage(this.captchaStatus, "Verification did not complete. Please try again.", "error");
     }
     this.updateSubmit();
   };

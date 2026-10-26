@@ -12,6 +12,15 @@ import { createRegistrationService } from "../src/app.js";
 import { createCaptchaVerifier } from "../src/captcha.js";
 import { HttpError } from "../src/validation.js";
 import { clientIp } from "../src/security.js";
+import { allocatedCountry } from "../src/country.js";
+
+test("local APNIC routing recognizes mainland IPv4 and IPv6 without browser language", () => {
+  assert.equal(allocatedCountry("223.5.5.5"), "CN");
+  assert.equal(allocatedCountry("114.114.114.114"), "CN");
+  assert.equal(allocatedCountry("2400:3200::1"), "CN");
+  assert.equal(allocatedCountry("1.1.1.1"), null);
+  assert.equal(allocatedCountry("127.0.0.1"), null);
+});
 
 const ADMIN_TOKEN = "test-admin-token-that-is-long-and-random-1234567890";
 const TEST_PDF = Buffer.from("%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n");
@@ -24,7 +33,7 @@ function configuration(overrides = {}) {
     TURNSTILE_SITE_KEY: "1x00000000000000000000AA",
     TURNSTILE_SECRET_KEY: "1x0000000000000000000000000000000AA",
     TURNSTILE_EXPECTED_HOSTNAMES: "localhost",
-    TENCENT_CAPTCHA_ENABLED: "false",
+    ALIYUN_CAPTCHA_ENABLED: "false",
     ADMIN_API_TOKEN: ADMIN_TOKEN,
     DEBUG_ADMIN_ENABLED: "true",
     ...overrides,
@@ -415,12 +424,12 @@ test("local static serving links the conference homepage", async (t) => {
   assert.match(await response.text(), /AIDP 2026/u);
   const missing = await fetch(`${base}/services/aidp2026-registration/.env`);
   assert.equal(missing.status, 404);
-  const latex = await fetch(`${base}/docs/AIDP2026_Poster_Template.tex`, { method: "HEAD" });
+  const latex = await fetch(`${base}/docs/AIDP2026_Poster_Template_LaTeX.zip`, { method: "HEAD" });
   assert.equal(latex.status, 200);
-  assert.match(latex.headers.get("content-type"), /application\/x-tex/u);
-  const word = await fetch(`${base}/docs/AIDP2026_Poster_Template.docx`, { method: "HEAD" });
-  assert.equal(word.status, 200);
-  assert.match(word.headers.get("content-type"), /wordprocessingml/u);
+  assert.match(latex.headers.get("content-type"), /application\/zip/u);
+  const powerpoint = await fetch(`${base}/docs/AIDP2026_Poster_Template_PowerPoint.zip`, { method: "HEAD" });
+  assert.equal(powerpoint.status, 200);
+  assert.equal(powerpoint.headers.get("content-type"), "application/zip");
   const privacy = await fetch(`${base}/privacy.html`);
   assert.equal(privacy.status, 200);
   assert.match(await privacy.text(), /Privacy Notice and Consent/u);
@@ -446,76 +455,47 @@ test("Cloudflare Siteverify checks action and hostname", async () => {
   );
 });
 
-test("Tencent TC3 request matches a fixed signature vector and rejects malicious risk", async (t) => {
-  const originalNow = Date.now;
-  Date.now = () => 1700000000000;
-  t.after(() => { Date.now = originalNow; });
-  const requests = [];
-  let evilLevel = 0;
-  const fetchMock = async (url, options) => {
-    requests.push({ url, options });
-    return new Response(JSON.stringify({ Response: { CaptchaCode: 1, EvilLevel: evilLevel } }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
-  };
-  const config = configuration({
-    TENCENT_CAPTCHA_ENABLED: "true",
-    TENCENT_CAPTCHA_APP_ID: "189949311",
-    TENCENT_CAPTCHA_SECRET_KEY: "app-secret",
-    TENCENT_CAPTCHA_VERIFY_MODE: "tc3",
-    TENCENT_SECRET_ID: "AKIDTEST",
-    TENCENT_SECRET_KEY: "cam-secret",
-  });
-  const verify = createCaptchaVerifier(config, fetchMock);
-  const input = { provider: "tencent", token: "ticket", randstr: "@test" };
-  await verify(input, "127.0.0.1", "aidp2026-poster");
-  assert.equal(
-    requests[0].options.headers.Authorization,
-    "TC3-HMAC-SHA256 Credential=AKIDTEST/2023-11-14/captcha/tc3_request, SignedHeaders=content-type;host, Signature=5e0c99b342c7fee5bb32338be11bfbcd2f406c088374c69f54a2de463c4b1f2f",
-  );
-  assert.equal(requests[0].options.headers["X-TC-Action"], "DescribeCaptchaResult");
-  assert.equal(JSON.parse(requests[0].options.body).CaptchaType, 9);
-
-  evilLevel = 100;
-  await assert.rejects(verify(input, "127.0.0.1", "aidp2026-poster"), (error) => error.code === "CAPTCHA_FAILED");
-});
-
-test("Tencent compatibility mode uses app key without exposing it to the browser", async () => {
+test("Aliyun Captcha uses an ACS3-signed VerifyIntelligentCaptcha request", async () => {
+  let verifyResult = true;
   let captured;
   const fetchMock = async (url, options) => {
     captured = { url, options };
-    return new Response(JSON.stringify({ response: "1", evil_level: "0" }), { status: 200 });
+    return new Response(JSON.stringify({
+      Success: true,
+      Result: { VerifyResult: verifyResult, VerifyCode: verifyResult ? "T001" : "F001" },
+    }), { status: 200, headers: { "Content-Type": "application/json" } });
   };
   const config = configuration({
-    TENCENT_CAPTCHA_ENABLED: "true",
-    TENCENT_CAPTCHA_APP_ID: "189949311",
-    TENCENT_CAPTCHA_SECRET_KEY: "app-secret",
-    TENCENT_CAPTCHA_VERIFY_MODE: "legacy",
+    ALIYUN_CAPTCHA_ENABLED: "true",
+    ALIYUN_CAPTCHA_REGION: "cn",
+    ALIYUN_CAPTCHA_PREFIX: "prefix123",
+    ALIYUN_CAPTCHA_SCENE_ID: "scene123",
+    ALIYUN_ACCESS_KEY_ID: "YourAccessKeyId",
+    ALIYUN_ACCESS_KEY_SECRET: "YourAccessKeySecret",
   });
   const verify = createCaptchaVerifier(config, fetchMock);
-  await verify({ provider: "tencent", token: "ticket", randstr: "@test" }, "127.0.0.1", "aidp2026-poster");
-  assert.equal(captured.url, "https://ssl.captcha.qq.com/ticket/verify");
-  assert.match(captured.options.body.toString(), /AppSecretKey=app-secret/u);
-  await assert.rejects(
-    verify({ provider: "tencent", token: "trerror_1001_189949311_1", randstr: "@test" }, "127.0.0.1", "aidp2026-poster"),
-    (error) => error.code === "CAPTCHA_FAILED",
-  );
+  const input = { provider: "aliyun", token: "captcha-verify-param" };
+  await verify(input, "127.0.0.1", "aidp2026-poster");
+  assert.equal(captured.url, "https://captcha.cn-shanghai.aliyuncs.com/");
+  assert.equal(captured.options.headers["x-acs-action"], "VerifyIntelligentCaptcha");
+  assert.equal(captured.options.headers["x-acs-version"], "2023-03-05");
+  assert.match(captured.options.headers.Authorization, /^ACS3-HMAC-SHA256 Credential=YourAccessKeyId,SignedHeaders=content-type;host;x-acs-action;x-acs-content-sha256;x-acs-date;x-acs-signature-nonce;x-acs-version,Signature=[0-9a-f]{64}$/u);
+  const body = new URLSearchParams(captured.options.body);
+  assert.equal(body.get("CaptchaVerifyParam"), "captcha-verify-param");
+  assert.equal(body.get("SceneId"), "scene123");
+
+  verifyResult = false;
+  await assert.rejects(verify(input, "127.0.0.1", "aidp2026-poster"), (error) => error.code === "CAPTCHA_FAILED");
 });
 
 test("production rejects public example credentials and ambiguous environments", () => {
   assert.throws(() => configuration({ NODE_ENV: "production" }), /refuses Cloudflare Turnstile test keys/u);
   assert.throws(() => configuration({ NODE_ENV: "Production" }), /NODE_ENV must be/u);
-  assert.throws(() => configuration({ TENCENT_CAPTCHA_ENABLED: "true", TENCENT_CAPTCHA_APP_ID: "1", TENCENT_CAPTCHA_SECRET_KEY: "x", TENCENT_SECRET_ID: "only-one" }), /configured together/u);
   assert.throws(() => configuration({
-    NODE_ENV: "production",
-    TURNSTILE_SITE_KEY: "0x4AAAAAA-production-site-key",
-    TURNSTILE_SECRET_KEY: "0x4AAAAAA-production-secret-key",
-    TURNSTILE_EXPECTED_HOSTNAMES: "hkustsmartlab.github.io",
-    TENCENT_CAPTCHA_ENABLED: "true",
-    TENCENT_CAPTCHA_APP_ID: "1",
-    TENCENT_CAPTCHA_SECRET_KEY: "x",
-  }), /explicit TENCENT_CAPTCHA_VERIFY_MODE/u);
+    ALIYUN_CAPTCHA_ENABLED: "true",
+    ALIYUN_CAPTCHA_PREFIX: "prefix",
+    ALIYUN_CAPTCHA_SCENE_ID: "scene",
+  }), /RAM AccessKey/u);
 });
 
 test("production Turnstile validation requires an exact action", async () => {
@@ -640,14 +620,16 @@ test("version 1 database migration preserves records and removes hard uniqueness
   assert.equal(store.db.prepare("PRAGMA foreign_key_check").all().length, 0);
 });
 
-test("Cloudflare edge country selects Tencent only for mainland China", async (t) => {
+test("Cloudflare edge country selects Aliyun only for mainland China", async (t) => {
   const { base } = await fixture(t, {
     env: {
       TRUST_PROXY: "1",
       GEO_PROVIDER: "cloudflare",
-      TENCENT_CAPTCHA_ENABLED: "true",
-      TENCENT_CAPTCHA_APP_ID: "189949311",
-      TENCENT_CAPTCHA_SECRET_KEY: "app-secret",
+      ALIYUN_CAPTCHA_ENABLED: "true",
+      ALIYUN_CAPTCHA_PREFIX: "prefix123",
+      ALIYUN_CAPTCHA_SCENE_ID: "scene123",
+      ALIYUN_ACCESS_KEY_ID: "YourAccessKeyId",
+      ALIYUN_ACCESS_KEY_SECRET: "YourAccessKeySecret",
     },
   });
   async function preferred(country) {
@@ -655,8 +637,8 @@ test("Cloudflare edge country selects Tencent only for mainland China", async (t
     assert.equal(response.status, 200);
     return (await response.json()).captcha.preferredProvider;
   }
-  assert.equal(await preferred("CN"), "tencent");
-  assert.equal(await preferred("cn"), "tencent");
+  assert.equal(await preferred("CN"), "aliyun");
+  assert.equal(await preferred("cn"), "aliyun");
   assert.equal(await preferred("HK"), "turnstile");
   assert.equal(await preferred("MO"), "turnstile");
   assert.equal(await preferred("TW"), "turnstile");
@@ -671,22 +653,26 @@ test("EdgeOne country header is supported and direct geo headers are untrusted",
     env: {
       TRUST_PROXY: "1",
       GEO_PROVIDER: "edgeone",
-      TENCENT_CAPTCHA_ENABLED: "true",
-      TENCENT_CAPTCHA_APP_ID: "189949311",
-      TENCENT_CAPTCHA_SECRET_KEY: "app-secret",
+      ALIYUN_CAPTCHA_ENABLED: "true",
+      ALIYUN_CAPTCHA_PREFIX: "prefix123",
+      ALIYUN_CAPTCHA_SCENE_ID: "scene123",
+      ALIYUN_ACCESS_KEY_ID: "YourAccessKeyId",
+      ALIYUN_ACCESS_KEY_SECRET: "YourAccessKeySecret",
     },
   });
   const cn = await fetch(`${edge.base}/api/aidp2026/config`, { headers: { "EO-Client-IPCountry": "CN" } });
-  assert.equal((await cn.json()).captcha.preferredProvider, "tencent");
+  assert.equal((await cn.json()).captcha.preferredProvider, "aliyun");
   const outside = await fetch(`${edge.base}/api/aidp2026/config`, { headers: { "EO-Client-IPCountry": "GB" } });
   assert.equal((await outside.json()).captcha.preferredProvider, "turnstile");
 
   const direct = await fixture(t, {
     env: {
       GEO_PROVIDER: "cloudflare",
-      TENCENT_CAPTCHA_ENABLED: "true",
-      TENCENT_CAPTCHA_APP_ID: "189949311",
-      TENCENT_CAPTCHA_SECRET_KEY: "app-secret",
+      ALIYUN_CAPTCHA_ENABLED: "true",
+      ALIYUN_CAPTCHA_PREFIX: "prefix123",
+      ALIYUN_CAPTCHA_SCENE_ID: "scene123",
+      ALIYUN_ACCESS_KEY_ID: "YourAccessKeyId",
+      ALIYUN_ACCESS_KEY_SECRET: "YourAccessKeySecret",
     },
   });
   const spoofed = await fetch(`${direct.base}/api/aidp2026/config`, { headers: { "CF-IPCountry": "CN" } });

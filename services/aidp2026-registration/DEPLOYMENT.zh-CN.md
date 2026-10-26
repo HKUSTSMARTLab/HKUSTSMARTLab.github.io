@@ -29,7 +29,7 @@
 
 | 访客地区（边缘 IP 地理信息） | 默认验证码 |
 |---|---|
-| `CN` 中国大陆 | Tencent Captcha |
+| `CN` 中国大陆 | Aliyun Captcha |
 | `HK`、`MO`、`TW` 及其他已知国家/地区 | Cloudflare Turnstile |
 | `XX`、`T1`、未知或边缘不支持 | 回退选择，用户可手动切换 |
 
@@ -103,18 +103,16 @@ TURNSTILE_SECRET_KEY=替换为正式secret-key
 # 这里填写展示表单的网站 hostname，不是 API 子域名。
 TURNSTILE_EXPECTED_HOSTNAMES=hkustsmartlab.github.io
 
-TENCENT_CAPTCHA_ENABLED=true
-TENCENT_CAPTCHA_APP_ID=替换为CaptchaAppId
-TENCENT_CAPTCHA_SECRET_KEY=替换为CaptchaAppSecretKey
+ALIYUN_CAPTCHA_ENABLED=true
+ALIYUN_CAPTCHA_REGION=cn
+# 验证码2.0控制台“概览”页的身份标，不是16位账号ID。
+ALIYUN_CAPTCHA_PREFIX=替换为身份标prefix
+# 验证码2.0控制台“场景管理”中 Web/H5 场景的场景ID。
+ALIYUN_CAPTCHA_SCENE_ID=替换为SceneId
 
-# 临时兼容模式：仅使用现有 AppID/AppSecretKey 时选此项。
-TENCENT_CAPTCHA_VERIFY_MODE=legacy
-TENCENT_ALLOW_LEGACY=true
-
-# 推荐生产模式：有最小权限 CAM 子账号后改用下面三项，并删除 legacy 两项。
-# TENCENT_CAPTCHA_VERIFY_MODE=tc3
-# TENCENT_SECRET_ID=最小权限子账号SecretId
-# TENCENT_SECRET_KEY=最小权限子账号SecretKey
+# 服务端验签使用最小权限 RAM 子账号，不要使用主账号 AccessKey。
+ALIYUN_ACCESS_KEY_ID=替换为RAMAccessKeyId
+ALIYUN_ACCESS_KEY_SECRET=替换为RAMAccessKeySecret
 
 ADMIN_API_TOKEN=
 DEBUG_ADMIN_ENABLED=true
@@ -125,7 +123,7 @@ DEBUG_ALLOW_CAPTCHA_BYPASS=false
 
 - 生产环境会拒绝公开的 Turnstile 测试密钥和示例管理员令牌。
 - 如果静态站还使用自定义域名，把它加入 `ALLOWED_ORIGINS` 和 `TURNSTILE_EXPECTED_HOSTNAMES`，同时加入 Turnstile 控制台 Hostname Management。
-- 腾讯 CAM `SecretId/SecretKey` 与验证码 `CaptchaAppId/AppSecretKey` 不是同一组凭据。CAM 子账号只授予所需验证码权限。
+- `1312782179161021` 这类 16 位纯数字是阿里云账号 ID/UID，不是 `prefix`，也不是 `SceneId`。客户端接入使用概览页的 `prefix` 和场景管理页的 `SceneId`；服务端验签另外使用 RAM 子账号 AccessKey。
 - 临时密钥若在聊天、日志或截图中出现过，上线前应轮换。
 - `DEBUG_ADMIN_ENABLED=true` 只开启管理员诊断接口，仍需 Bearer token；生产环境不能绕过验证码。
 
@@ -240,7 +238,7 @@ Node 只信任配置代理；以下在本机执行可验证规则：
 
 ```bash
 curl -H 'CF-IPCountry: CN' http://127.0.0.1:8787/api/aidp2026/config
-# preferredProvider 应为 tencent
+# preferredProvider 应为 aliyun
 
 curl -H 'CF-IPCountry: HK' http://127.0.0.1:8787/api/aidp2026/config
 # preferredProvider 应为 turnstile

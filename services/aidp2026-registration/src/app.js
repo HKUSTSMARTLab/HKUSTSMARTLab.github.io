@@ -3,6 +3,7 @@ import { createReadStream, lstatSync, realpathSync, statSync } from "node:fs";
 import { extname, resolve, sep } from "node:path";
 import { createHash, randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
 import { RegistrationStore } from "./database.js";
+import { allocatedCountry } from "./country.js";
 import { discardRequestBody, PosterFileStorage } from "./files.js";
 import { createCaptchaVerifier } from "./captcha.js";
 import { HttpError, validateSubmission } from "./validation.js";
@@ -22,6 +23,7 @@ const MIME_TYPES = {
   ".pdf": "application/pdf",
   ".tex": "application/x-tex; charset=utf-8",
   ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ".zip": "application/zip",
   ".woff": "font/woff",
   ".woff2": "font/woff2",
   ".ttf": "font/ttf",
@@ -124,9 +126,9 @@ function publicConfig(config, country) {
   const posterOpen = !config.posterDeadline || now <= config.posterDeadline.timestamp;
   let preferredProvider = config.captchaProvider;
   if (preferredProvider === "auto" && country) {
-    if (country === "CN" && config.tencent.enabled) preferredProvider = "tencent";
+    if (country === "CN" && config.aliyun.enabled) preferredProvider = "aliyun";
     else if (config.turnstile.enabled) preferredProvider = "turnstile";
-    else if (config.tencent.enabled) preferredProvider = "tencent";
+    else if (config.aliyun.enabled) preferredProvider = "aliyun";
   }
   return {
     service: "aidp2026",
@@ -144,7 +146,11 @@ function publicConfig(config, country) {
     captcha: {
       preferredProvider,
       turnstile: config.turnstile.enabled ? { siteKey: config.turnstile.siteKey } : null,
-      tencent: config.tencent.enabled ? { appId: config.tencent.appId } : null,
+      aliyun: config.aliyun.enabled ? {
+        region: config.aliyun.region,
+        prefix: config.aliyun.prefix,
+        sceneId: config.aliyun.sceneId,
+      } : null,
     },
   };
 }
@@ -298,7 +304,8 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
       }
       if (url.pathname === "/api/aidp2026/config" && ["GET", "HEAD"].includes(request.method)) {
         response.setHeader("Vary", "Origin, CF-IPCountry, EO-Client-IPCountry");
-        sendJson(request, response, 200, publicConfig(config, edgeCountry(request, config)));
+        const country = config.geo.provider === "apnic" ? (allocatedCountry(ip) || "ZZ") : edgeCountry(request, config);
+        sendJson(request, response, 200, publicConfig(config, country));
         return;
       }
 
@@ -456,8 +463,8 @@ export function createRegistrationService({ config, dataDirectory, staticDirecto
               preferredProvider: config.captchaProvider,
               geoProvider: config.geo.provider,
               turnstileEnabled: config.turnstile.enabled,
-              tencentEnabled: config.tencent.enabled,
-              tencentVerifyMode: config.tencent.verifyMode,
+              aliyunEnabled: config.aliyun.enabled,
+              aliyunRegion: config.aliyun.region,
             },
             debugCaptchaBypassAvailable: config.debugCaptchaBypass && !config.production && config.trustProxy === 0 && isLoopback(request),
           });

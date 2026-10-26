@@ -1,4 +1,4 @@
-import { createHash, createHmac } from "node:crypto";
+import { createHash, createHmac, randomUUID } from "node:crypto";
 import { HttpError } from "./validation.js";
 
 function sha256(value, encoding = "hex") {
@@ -60,91 +60,55 @@ async function verifyTurnstile(config, input, remoteIp, action, fetchImpl) {
   }
 }
 
-function tencentCloudAuthorization(config, payload, timestamp) {
-  const service = "captcha";
-  const host = "captcha.tencentcloudapi.com";
-  const date = new Date(timestamp * 1000).toISOString().slice(0, 10);
-  const algorithm = "TC3-HMAC-SHA256";
-  const contentType = "application/json; charset=utf-8";
-  const signedHeaders = "content-type;host";
+function aliyunAuthorization(config, body) {
+  const algorithm = "ACS3-HMAC-SHA256";
+  const headers = {
+    "content-type": "application/x-www-form-urlencoded",
+    host: config.aliyun.endpoint,
+    "x-acs-action": "VerifyIntelligentCaptcha",
+    "x-acs-version": "2023-03-05",
+    "x-acs-date": new Date().toISOString().replace(/\.\d{3}Z$/u, "Z"),
+    "x-acs-signature-nonce": randomUUID(),
+    "x-acs-content-sha256": sha256(body),
+  };
+  if (config.aliyun.securityToken) headers["x-acs-security-token"] = config.aliyun.securityToken;
+
+  const sorted = Object.entries(headers).sort(([left], [right]) => left.localeCompare(right));
+  const canonicalHeaders = sorted.map(([key, value]) => `${key}:${String(value).trim()}\n`).join("");
+  const signedHeaders = sorted.map(([key]) => key).join(";");
   const canonicalRequest = [
     "POST",
     "/",
     "",
-    `content-type:${contentType}\nhost:${host}\n`,
+    canonicalHeaders,
     signedHeaders,
-    sha256(payload),
+    headers["x-acs-content-sha256"],
   ].join("\n");
-  const credentialScope = `${date}/${service}/tc3_request`;
-  const stringToSign = [algorithm, timestamp, credentialScope, sha256(canonicalRequest)].join("\n");
-  const secretDate = hmac(`TC3${config.tencent.secretKey}`, date);
-  const secretService = hmac(secretDate, service);
-  const secretSigning = hmac(secretService, "tc3_request");
-  const signature = hmac(secretSigning, stringToSign, "hex");
-  return `${algorithm} Credential=${config.tencent.secretId}/${credentialScope}, SignedHeaders=${signedHeaders}, Signature=${signature}`;
-}
-
-async function verifyTencentCurrent(config, input, remoteIp, fetchImpl) {
-  const payload = JSON.stringify({
-    CaptchaType: 9,
-    Ticket: input.token,
-    UserIp: remoteIp,
-    Randstr: input.randstr,
-    CaptchaAppId: Number(config.tencent.appId),
-    AppSecretKey: config.tencent.appSecretKey,
-  });
-  const timestamp = Math.floor(Date.now() / 1000);
-  const headers = {
-    "Content-Type": "application/json; charset=utf-8",
-    "X-TC-Action": "DescribeCaptchaResult",
-    "X-TC-Timestamp": String(timestamp),
-    "X-TC-Version": "2019-07-22",
-    Authorization: tencentCloudAuthorization(config, payload, timestamp),
+  const stringToSign = `${algorithm}\n${sha256(canonicalRequest)}`;
+  const signature = hmac(config.aliyun.accessKeySecret, stringToSign, "hex");
+  return {
+    ...headers,
+    Authorization: `${algorithm} Credential=${config.aliyun.accessKeyId},SignedHeaders=${signedHeaders},Signature=${signature}`,
   };
-  if (config.tencent.securityToken) headers["X-TC-Token"] = config.tencent.securityToken;
-  const response = await fetchImpl("https://captcha.tencentcloudapi.com/", {
-    method: "POST",
-    headers,
-    body: payload,
-    signal: AbortSignal.timeout(config.captchaTimeoutMs),
-  });
-  const result = await responseJson(response);
-  const ticketResult = result.Response;
-  if (!ticketResult || ticketResult.Error) throw captchaUnavailable();
-  if (ticketResult.CaptchaCode !== 1 || Number(ticketResult.EvilLevel || 0) === 100) throw captchaFailure();
 }
 
-async function verifyTencentLegacy(config, input, remoteIp, fetchImpl) {
-  // Compatibility for accounts that only have a Captcha AppSecretKey. Prefer TC3
-  // with least-privilege CAM credentials for new production deployments.
-  const response = await fetchImpl("https://ssl.captcha.qq.com/ticket/verify", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      aid: config.tencent.appId,
-      AppSecretKey: config.tencent.appSecretKey,
-      Ticket: input.token,
-      Randstr: input.randstr,
-      UserIP: remoteIp,
-    }),
-    signal: AbortSignal.timeout(config.captchaTimeoutMs),
-  });
-  const result = await responseJson(response);
-  if (String(result.response) !== "1" || Number(result.evil_level || 0) === 100) throw captchaFailure();
-}
-
-async function verifyTencent(config, input, remoteIp, fetchImpl) {
-  if (typeof input.token !== "string" || input.token.length < 1 || input.token.length > 4096 || input.token.startsWith("trerror_")) {
+async function verifyAliyun(config, input, fetchImpl) {
+  if (typeof input.token !== "string" || input.token.length < 1 || input.token.length > 8192) {
     throw captchaFailure();
   }
-  if (typeof input.randstr !== "string" || input.randstr.length < 1 || input.randstr.length > 256) throw captchaFailure();
-  if (!remoteIp || remoteIp === "unknown") throw captchaUnavailable();
+  const body = new URLSearchParams({
+    CaptchaVerifyParam: input.token,
+    SceneId: config.aliyun.sceneId,
+  }).toString();
   try {
-    if (config.tencent.verifyMode === "tc3") {
-      await verifyTencentCurrent(config, input, remoteIp, fetchImpl);
-    } else {
-      await verifyTencentLegacy(config, input, remoteIp, fetchImpl);
-    }
+    const response = await fetchImpl(`https://${config.aliyun.endpoint}/`, {
+      method: "POST",
+      headers: aliyunAuthorization(config, body),
+      body,
+      signal: AbortSignal.timeout(config.captchaTimeoutMs),
+    });
+    const result = await responseJson(response);
+    if (result.Success !== true || result.Result?.VerifyResult !== true) throw captchaFailure();
   } catch (error) {
     if (error instanceof HttpError) throw error;
     throw captchaUnavailable();
@@ -154,10 +118,10 @@ async function verifyTencent(config, input, remoteIp, fetchImpl) {
 export function createCaptchaVerifier(config, fetchImpl = fetch) {
   let active = 0;
   return async function verifyCaptcha(input, remoteIp, action) {
-    if (!input || typeof input !== "object" || !["turnstile", "tencent"].includes(input.provider)) {
+    if (!input || typeof input !== "object" || !["turnstile", "aliyun"].includes(input.provider)) {
       throw captchaFailure("Choose a security verification provider and complete verification.");
     }
-    if ((input.provider === "turnstile" && !config.turnstile.enabled) || (input.provider === "tencent" && !config.tencent.enabled)) {
+    if ((input.provider === "turnstile" && !config.turnstile.enabled) || (input.provider === "aliyun" && !config.aliyun.enabled)) {
       throw captchaFailure();
     }
     if (active >= config.captchaConcurrency) {
@@ -168,7 +132,7 @@ export function createCaptchaVerifier(config, fetchImpl = fetch) {
       if (input.provider === "turnstile") {
         await verifyTurnstile(config, input, remoteIp, action, fetchImpl);
       } else {
-        await verifyTencent(config, input, remoteIp, fetchImpl);
+        await verifyAliyun(config, input, fetchImpl);
       }
     } finally {
       active -= 1;

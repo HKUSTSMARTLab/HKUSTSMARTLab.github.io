@@ -1,0 +1,242 @@
+- generic [active] [ref=f51e1]:
+  - link "Skip to content" [ref=f51e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f51e3]:
+    - generic [ref=f51e4]:
+      - generic [ref=f51e5]:
+        - link [ref=f51e6] [cursor=pointer]:
+          - /url: http://www.ust.hk/
+          - img "The Hong Kong University of Science and Technology" [ref=f51e7]
+        - link [ref=f51e8] [cursor=pointer]:
+          - /url: https://smartx.cse.ust.hk/
+          - img "SmartX Lab" [ref=f51e9]
+        - link "AIDP 2026" [ref=f51e10] [cursor=pointer]:
+          - /url: index.html
+      - navigation "Main navigation" [ref=f51e11]:
+        - link "Home" [ref=f51e12] [cursor=pointer]:
+          - /url: index.html
+        - link "Speakers" [ref=f51e13] [cursor=pointer]:
+          - /url: speakers.html
+        - link "Schedule" [ref=f51e14] [cursor=pointer]:
+          - /url: schedule.html
+        - link "Venue" [ref=f51e15] [cursor=pointer]:
+          - /url: venue.html
+        - link "Registration" [ref=f51e16] [cursor=pointer]:
+          - /url: registration.html
+        - link "Pre-arrival Information" [ref=f51e17] [cursor=pointer]:
+          - /url: information.html
+  - main [ref=f51e18]:
+    - generic [ref=f51e20]:
+      - paragraph [ref=f51e21]: AIDP 2026 · 27–29 November · HKUST
+      - heading "Registration" [level=1] [ref=f51e22]
+      - paragraph [ref=f51e23]: Registration is open for AIDP 2026 at HKUST. Poster PDFs are welcome until 13 November.
+    - generic [ref=f51e24]:
+      - navigation "Registration options" [ref=f51e25]:
+        - link "Conference Conference registration 27–29 November 2026 · LT-B, HKUST" [ref=f51e26] [cursor=pointer]:
+          - /url: "#attendance"
+          - generic [ref=f51e27]: Conference
+          - strong [ref=f51e28]: Conference registration
+          - generic [ref=f51e29]: 27–29 November 2026 · LT-B, HKUST
+        - link "Poster Poster submission Submit by 13 November 2026 · Notification on 16 November" [ref=f51e30] [cursor=pointer]:
+          - /url: "#posters"
+          - generic [ref=f51e31]: Poster
+          - strong [ref=f51e32]: Poster submission
+          - generic [ref=f51e33]: Submit by 13 November 2026 · Notification on 16 November
+      - group [ref=f51e34]:
+        - generic "Privacy notice and consent" [ref=f51e35] [cursor=pointer]
+        - generic [ref=f51e36]:
+          - paragraph [ref=f51e37]:
+            - strong [ref=f51e38]: Data user.
+            - text: The AIDP 2026 Organizing Committee and its HKUST-hosted conference team handle personal data under Hong Kong's Personal Data (Privacy) Ordinance and HKUST's data privacy policy.
+          - paragraph [ref=f51e39]:
+            - strong [ref=f51e40]: What we collect.
+            - text: We collect the information entered in these forms and, for posters, one PDF file. Required fields are needed to identify you, communicate with you, administer attendance, or review the submission.
+          - paragraph [ref=f51e41]:
+            - strong [ref=f51e42]: Use and disclosure.
+            - text: We use the information for conference administration, academic review, event communications, aggregate statistics, service security, and legal compliance. We do not sell personal data or share it for unrelated marketing. Cloudflare or Alibaba Cloud may process limited security signals when you complete verification.
+          - paragraph [ref=f51e43]:
+            - strong [ref=f51e44]: Retention and rights.
+            - text: Live submission records and poster files are deleted after
+            - strong [ref=f51e45]: "180"
+            - text: days unless a longer period is legally required. You may request access, correction, or deletion by contacting
+            - link "the organizers" [ref=f51e46] [cursor=pointer]:
+              - /url: mailto:aidp2026hk@outlook.com
+            - text: .
+          - paragraph [ref=f51e47]:
+            - text: Read the full
+            - link "Privacy Notice and Consent" [ref=f51e48] [cursor=pointer]:
+              - /url: privacy.html
+            - text: before submitting. Do not include patient-identifiable, confidential clinical, or otherwise restricted material.
+      - region [ref=f51e49]:
+        - heading "Conference registration" [level=2] [ref=f51e50]
+        - paragraph [ref=f51e51]:
+          - text: Submit your attendance details to the AIDP 2026 organizers. Use a current email address that the organizers can contact about your registration.
+          - strong [ref=f51e52]: Conference registration and poster submission are separate processes. Complete both if you plan to attend and present a poster.
+        - generic [ref=f51e53]:
+          - generic [ref=f51e54]:
+            - paragraph [ref=f51e55]: Fields marked * are required.
+            - generic [ref=f51e56]:
+              - generic [ref=f51e57]:
+                - generic [ref=f51e58]: Full name *
+                - textbox "Full name" [ref=f51e59]
+              - generic [ref=f51e60]:
+                - generic [ref=f51e61]: Email address *
+                - textbox "Email address" [ref=f51e62]
+              - generic [ref=f51e63]:
+                - generic [ref=f51e64]: Affiliation *
+                - textbox "Affiliation" [ref=f51e65]
+              - generic [ref=f51e66]:
+                - generic [ref=f51e67]: Your role *
+                - combobox "Your role" [ref=f51e68]:
+                  - option "Select your role" [disabled] [selected]
+                  - option "Student"
+                  - option "Faculty or academic staff"
+                  - option "Researcher"
+                  - option "Clinical professional"
+                  - option "Industry professional"
+                  - option "Other"
+              - group "Which days do you plan to attend?" [ref=f51e69]:
+                - generic [ref=f51e70]: Which days do you plan to attend? *
+                - paragraph [ref=f51e71]: Select at least one day. This helps the organizers estimate attendance and is not a session booking.
+                - generic [ref=f51e72]:
+                  - generic [ref=f51e73] [cursor=pointer]:
+                    - checkbox "Friday 27 November" [ref=f51e74]
+                    - generic [ref=f51e75]:
+                      - strong [ref=f51e76]: Friday
+                      - text: 27 November
+                  - generic [ref=f51e77] [cursor=pointer]:
+                    - checkbox "Saturday 28 November" [ref=f51e78]
+                    - generic [ref=f51e79]:
+                      - strong [ref=f51e80]: Saturday
+                      - text: 28 November
+                  - generic [ref=f51e81] [cursor=pointer]:
+                    - checkbox "Sunday 29 November" [ref=f51e82]
+                    - generic [ref=f51e83]:
+                      - strong [ref=f51e84]: Sunday
+                      - text: 29 November
+              - generic [ref=f51e86] [cursor=pointer]:
+                - checkbox "I have read the Privacy Notice and Consent and agree that the organizers may use these details to administer my AIDP 2026 registration and contact me about this event." [ref=f51e87]
+                - generic [ref=f51e88]:
+                  - text: I have read the
+                  - link "Privacy Notice and Consent" [ref=f51e89]:
+                    - /url: privacy.html
+                  - text: and agree that the organizers may use these details to administer my AIDP 2026 registration and contact me about this event. *
+            - generic [aria-hidden] [ref=f51e90]:
+              - text: Leave this field empty
+              - textbox [ref=f51e91]
+            - paragraph [ref=f51e93]: Loading security verification…
+            - generic [ref=f51e94]:
+              - button "Submit registration" [disabled] [ref=f51e95]
+              - generic [ref=f51e96]: Duplicate entries are flagged for organizer review.
+            - status [ref=f51e97]
+          - complementary "Conference registration notes" [ref=f51e98]:
+            - heading "Before you submit" [level=3] [ref=f51e99]
+            - list [ref=f51e100]:
+              - listitem [ref=f51e101]: Select every day you plan to attend; you do not need to book individual talks.
+              - listitem [ref=f51e102]: Save the reference shown after a successful submission. This service does not send confirmation emails.
+              - listitem [ref=f51e103]:
+                - text: Need to correct a registration? Email
+                - link "the organizers" [ref=f51e104] [cursor=pointer]:
+                  - /url: mailto:aidp2026hk@outlook.com
+                - text: with your reference.
+              - listitem [ref=f51e105]:
+                - text: Submitting a poster is optional and requires the
+                - link "separate poster form" [ref=f51e106] [cursor=pointer]:
+                  - /url: "#posters"
+                - text: .
+      - region [ref=f51e107]:
+        - heading "Poster submission" [level=2] [ref=f51e108]
+        - paragraph [ref=f51e109]:
+          - text: Share a completed study or work in progress. Upload one PDF (up to 5 MB) for review. A submission reference is not an acceptance.
+          - strong [ref=f51e110]: Submitting a poster does not register you for the conference. Please complete conference registration separately.
+        - generic "Poster milestones" [ref=f51e111]:
+          - generic [ref=f51e112]:
+            - generic [ref=f51e113]: Poster submission deadline
+            - strong [ref=f51e114]: 13 November 2026
+          - generic [ref=f51e115]:
+            - generic [ref=f51e116]: Acceptance notification
+            - strong [ref=f51e117]: 16 November 2026
+        - generic "Poster templates" [ref=f51e118]:
+          - generic [ref=f51e119]: Poster Templates
+          - generic [ref=f51e120]:
+            - link "LaTeX Template" [ref=f51e121] [cursor=pointer]:
+              - /url: ./docs/AIDP2026_Poster_Template_LaTeX.zip
+            - link "PowerPoint Template" [ref=f51e122] [cursor=pointer]:
+              - /url: ./docs/AIDP2026_Poster_Template_PowerPoint.zip
+        - generic [ref=f51e123]:
+          - generic [ref=f51e124]:
+            - paragraph [ref=f51e125]: Fields marked * are required.
+            - generic [ref=f51e126]:
+              - generic [ref=f51e127]:
+                - generic [ref=f51e128]: Presenting author *
+                - textbox "Presenting author" [ref=f51e129]
+              - generic [ref=f51e130]:
+                - generic [ref=f51e131]: Contact email *
+                - textbox "Contact email" [ref=f51e132]
+              - generic [ref=f51e133]:
+                - generic [ref=f51e134]: Presenting author’s affiliation *
+                - textbox "Presenting author’s affiliation" [ref=f51e135]
+              - generic [ref=f51e136]:
+                - generic [ref=f51e137]: Poster title *
+                - textbox "Poster title" [ref=f51e138]
+              - generic [ref=f51e139]:
+                - generic [ref=f51e140]: Complete author list *
+                - textbox "Complete author list" [ref=f51e141]
+                - paragraph [ref=f51e142]: List all authors in presentation order. You may separate names with commas or new lines.
+              - generic [ref=f51e143]:
+                - generic [ref=f51e144]: Primary topic *
+                - combobox "Primary topic" [ref=f51e145]:
+                  - option "Select the closest topic" [disabled] [selected]
+                  - option "Foundation models for digital pathology"
+                  - option "Multimodal learning and vision–language models"
+                  - option "Multi-omics integration for precision medicine"
+                  - option "AI agents and automated pathology workflows"
+                  - option "Clinical translation, validation, and deployment"
+                  - option "Other related topic"
+              - generic [ref=f51e146]:
+                - generic [ref=f51e147]: Poster PDF *
+                - button "Poster PDF" [ref=f51e148]
+                - generic [ref=f51e149]:
+                  - generic [ref=f51e150]: One PDF, maximum 5 MB. Check the final page size, figures, and fonts before uploading.
+                  - generic [ref=f51e151]: No file selected
+              - generic [ref=f51e153] [cursor=pointer]:
+                - checkbox "I have read the Privacy Notice and Consent, confirm that I am authorized to submit this poster PDF, and agree to the use of these details and the file for review and conference administration." [ref=f51e154]
+                - generic [ref=f51e155]:
+                  - text: I have read the
+                  - link "Privacy Notice and Consent" [ref=f51e156]:
+                    - /url: privacy.html
+                  - text: ", confirm that I am authorized to submit this poster PDF, and agree to the use of these details and the file for review and conference administration. *"
+            - generic [aria-hidden] [ref=f51e157]:
+              - text: Leave this field empty
+              - textbox [ref=f51e158]
+            - paragraph [ref=f51e160]: Loading security verification…
+            - generic [ref=f51e161]:
+              - button "Submit poster PDF" [disabled] [ref=f51e162]
+              - generic [ref=f51e163]: One PDF, up to 5 MB.
+            - status [ref=f51e164]
+          - complementary "Poster submission notes" [ref=f51e165]:
+            - heading "Submission notes" [level=3] [ref=f51e166]
+            - list [ref=f51e167]:
+              - listitem [ref=f51e168]: Do not include patient-identifiable information, confidential clinical data, or protected credentials in the PDF.
+              - listitem [ref=f51e169]: Files are stored privately and are available only to authorized organizers. Repeat submissions with the same contact email and poster title are flagged for review.
+              - listitem [ref=f51e170]:
+                - text: Poster submission does not register you for the conference. Please also complete the
+                - link "attendance form" [ref=f51e171] [cursor=pointer]:
+                  - /url: "#attendance"
+                - text: .
+              - listitem [ref=f51e172]:
+                - text: For corrections or withdrawal, email
+                - link "the organizers" [ref=f51e173] [cursor=pointer]:
+                  - /url: mailto:aidp2026hk@outlook.com
+                - text: with your reference.
+  - contentinfo [ref=f51e174]:
+    - generic [ref=f51e175]:
+      - generic [ref=f51e176]:
+        - paragraph [ref=f51e177]: AIDP 2026
+        - paragraph [ref=f51e178]: 2026 Conference on Artificial Intelligence and Digital Pathology27–29 November 2026 · HKUST, Hong Kong
+      - generic [ref=f51e179]:
+        - paragraph [ref=f51e180]: Contact
+        - paragraph [ref=f51e181]:
+          - link "aidp2026hk@outlook.com" [ref=f51e182] [cursor=pointer]:
+            - /url: mailto:aidp2026hk@outlook.com
+    - generic [ref=f51e183]: Copyright © 2026 The Hong Kong University of Science and Technology. All rights reserved.

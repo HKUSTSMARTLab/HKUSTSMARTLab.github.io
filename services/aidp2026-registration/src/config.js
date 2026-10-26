@@ -74,48 +74,41 @@ export function loadConfig(env = process.env) {
   }
   const production = nodeEnv === "production";
   const turnstileEnabled = parseBoolean(env.TURNSTILE_ENABLED, true);
-  const tencentEnabled = parseBoolean(env.TENCENT_CAPTCHA_ENABLED, false);
+  const aliyunEnabled = parseBoolean(env.ALIYUN_CAPTCHA_ENABLED, false);
   const captchaProvider = env.CAPTCHA_PROVIDER || "auto";
 
-  if (!["auto", "turnstile", "tencent"].includes(captchaProvider)) {
-    throw new Error("CAPTCHA_PROVIDER must be auto, turnstile, or tencent");
+  if (!["auto", "turnstile", "aliyun"].includes(captchaProvider)) {
+    throw new Error("CAPTCHA_PROVIDER must be auto, turnstile, or aliyun");
   }
-  if (!turnstileEnabled && !tencentEnabled) {
+  if (!turnstileEnabled && !aliyunEnabled) {
     throw new Error("At least one CAPTCHA provider must be enabled");
   }
   if (captchaProvider === "turnstile" && !turnstileEnabled) {
     throw new Error("CAPTCHA_PROVIDER=turnstile requires TURNSTILE_ENABLED=true");
   }
-  if (captchaProvider === "tencent" && !tencentEnabled) {
-    throw new Error("CAPTCHA_PROVIDER=tencent requires TENCENT_CAPTCHA_ENABLED=true");
+  if (captchaProvider === "aliyun" && !aliyunEnabled) {
+    throw new Error("CAPTCHA_PROVIDER=aliyun requires ALIYUN_CAPTCHA_ENABLED=true");
   }
   if (turnstileEnabled && (!env.TURNSTILE_SITE_KEY || !env.TURNSTILE_SECRET_KEY)) {
     throw new Error("Turnstile requires both TURNSTILE_SITE_KEY and TURNSTILE_SECRET_KEY");
   }
-  if (tencentEnabled && (!env.TENCENT_CAPTCHA_APP_ID || !env.TENCENT_CAPTCHA_SECRET_KEY)) {
-    throw new Error("Tencent Captcha requires its app ID and app secret key");
+  const aliyunRegion = env.ALIYUN_CAPTCHA_REGION || "cn";
+  if (!["cn", "sgp"].includes(aliyunRegion)) {
+    throw new Error("ALIYUN_CAPTCHA_REGION must be cn or sgp");
   }
-
-  const tencentVerifyMode = env.TENCENT_CAPTCHA_VERIFY_MODE || "auto";
-  if (!["auto", "tc3", "legacy"].includes(tencentVerifyMode)) {
-    throw new Error("TENCENT_CAPTCHA_VERIFY_MODE must be auto, tc3, or legacy");
+  const defaultAliyunEndpoint = aliyunRegion === "cn"
+    ? "captcha.cn-shanghai.aliyuncs.com"
+    : "captcha.ap-southeast-1.aliyuncs.com";
+  const aliyunEndpoint = (env.ALIYUN_CAPTCHA_ENDPOINT || defaultAliyunEndpoint).toLowerCase();
+  if (!/^[a-z0-9.-]+\.aliyuncs\.com$/u.test(aliyunEndpoint)) {
+    throw new Error("ALIYUN_CAPTCHA_ENDPOINT must be an Alibaba Cloud captcha endpoint hostname");
   }
-  if (Boolean(env.TENCENT_SECRET_ID) !== Boolean(env.TENCENT_SECRET_KEY)) {
-    throw new Error("TENCENT_SECRET_ID and TENCENT_SECRET_KEY must be configured together");
+  if (aliyunEnabled && (!env.ALIYUN_CAPTCHA_PREFIX || !env.ALIYUN_CAPTCHA_SCENE_ID)) {
+    throw new Error("Aliyun Captcha requires ALIYUN_CAPTCHA_PREFIX and ALIYUN_CAPTCHA_SCENE_ID");
   }
-  const hasTencentCloudCredentials = Boolean(env.TENCENT_SECRET_ID && env.TENCENT_SECRET_KEY);
-  if (tencentEnabled && tencentVerifyMode === "tc3" && !hasTencentCloudCredentials) {
-    throw new Error("Tencent TC3 verification requires TENCENT_SECRET_ID and TENCENT_SECRET_KEY");
+  if (aliyunEnabled && (!env.ALIYUN_ACCESS_KEY_ID || !env.ALIYUN_ACCESS_KEY_SECRET)) {
+    throw new Error("Aliyun Captcha requires RAM AccessKey credentials");
   }
-  if (production && tencentEnabled && tencentVerifyMode === "auto") {
-    throw new Error("Production requires an explicit TENCENT_CAPTCHA_VERIFY_MODE (tc3 recommended)");
-  }
-  if (production && tencentEnabled && tencentVerifyMode === "legacy" && env.TENCENT_ALLOW_LEGACY !== "true") {
-    throw new Error("Production legacy CAPTCHA mode requires explicit TENCENT_ALLOW_LEGACY=true; tc3 is recommended");
-  }
-  const resolvedTencentVerifyMode = tencentVerifyMode === "auto"
-    ? (hasTencentCloudCredentials ? "tc3" : "legacy")
-    : tencentVerifyMode;
 
   const turnstileTestKeys = TURNSTILE_TEST_KEYS.has(env.TURNSTILE_SITE_KEY) || TURNSTILE_TEST_KEYS.has(env.TURNSTILE_SECRET_KEY);
   if (production && turnstileEnabled && turnstileTestKeys) {
@@ -146,8 +139,8 @@ export function loadConfig(env = process.env) {
     throw new Error("TRUST_PROXY_IPS must contain exact IP addresses, not hostnames or CIDRs");
   }
   const geoProvider = env.GEO_PROVIDER || "none";
-  if (!["none", "cloudflare", "edgeone"].includes(geoProvider)) {
-    throw new Error("GEO_PROVIDER must be none, cloudflare, or edgeone");
+  if (!["none", "cloudflare", "edgeone", "apnic"].includes(geoProvider)) {
+    throw new Error("GEO_PROVIDER must be none, cloudflare, edgeone, or apnic");
   }
   const defaultCountryHeader = geoProvider === "cloudflare" ? "cf-ipcountry" : "eo-client-ipcountry";
   const countryHeader = (env.GEO_COUNTRY_HEADER || defaultCountryHeader).toLowerCase();
@@ -184,14 +177,15 @@ export function loadConfig(env = process.env) {
       expectedHostnames: turnstileHostnames,
       testMode: !production && turnstileTestKeys,
     },
-    tencent: {
-      enabled: tencentEnabled,
-      appId: env.TENCENT_CAPTCHA_APP_ID || "",
-      appSecretKey: env.TENCENT_CAPTCHA_SECRET_KEY || "",
-      secretId: env.TENCENT_SECRET_ID || "",
-      secretKey: env.TENCENT_SECRET_KEY || "",
-      securityToken: env.TENCENT_SECURITY_TOKEN || "",
-      verifyMode: resolvedTencentVerifyMode,
+    aliyun: {
+      enabled: aliyunEnabled,
+      region: aliyunRegion,
+      prefix: env.ALIYUN_CAPTCHA_PREFIX || "",
+      sceneId: env.ALIYUN_CAPTCHA_SCENE_ID || "",
+      accessKeyId: env.ALIYUN_ACCESS_KEY_ID || "",
+      accessKeySecret: env.ALIYUN_ACCESS_KEY_SECRET || "",
+      securityToken: env.ALIYUN_SECURITY_TOKEN || "",
+      endpoint: aliyunEndpoint,
     },
     adminToken,
     debugAdminEnabled: parseBoolean(env.DEBUG_ADMIN_ENABLED, !production),

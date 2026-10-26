@@ -1431,7 +1431,13 @@ button {
 }
 
 .registration-section {
+  width: 100%;
   scroll-margin-top: 24px;
+}
+
+.registration-section .section__intro {
+  max-width: none;
+  width: 100%;
 }
 
 .registration-section:first-of-type {
@@ -1848,10 +1854,13 @@ button {
 .poster-templates__links a {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   min-width: 140px;
   min-height: 52px;
-  padding: 7px 12px;
+  padding: 7px 20px;
+  text-align: center;
+  white-space: nowrap;
   border: 1px solid var(--navy);
   color: var(--navy);
   font-size: 0.82rem;

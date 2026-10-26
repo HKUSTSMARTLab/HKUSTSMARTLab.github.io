@@ -54,7 +54,7 @@ window.AIDP_REGISTRATION_CONFIG = {
 - **GitHub Pages:** set the full HTTPS API origin. Add `https://hkustsmartlab.github.io` (and any custom site origin) to `ALLOWED_ORIGINS`.
 - **Local static server:** when the page runs on another localhost port, the browser automatically tries `http://127.0.0.1:8787`.
 
-Never put `TURNSTILE_SECRET_KEY`, Tencent `AppSecretKey`, CAM credentials, or `ADMIN_API_TOKEN` in browser JavaScript. Turnstile's **site key** and Tencent's **CaptchaAppId** are public identifiers and are safe to return from `/api/aidp2026/config`.
+Never put `TURNSTILE_SECRET_KEY`, Aliyun RAM credentials, or `ADMIN_API_TOKEN` in browser JavaScript. Turnstile's **site key** and Aliyun's public `prefix`/`SceneId` are safe to return from `/api/aidp2026/config`.
 
 ## 3. API
 
@@ -106,31 +106,26 @@ TURNSTILE_EXPECTED_HOSTNAMES=hkustsmartlab.github.io
 
 Also configure the same hostname in the Turnstile dashboard. Use separate documented test keys for localhost testing rather than adding localhost to a production widget.
 
-### Tencent Captcha
+### Aliyun Captcha
 
-The browser dynamically loads the official `TJCaptcha.js`. `trerror_…` disaster-recovery tickets are rejected rather than bypassing verification. The backend requires a valid ticket and `randstr`, and rejects a malicious risk result.
+The browser dynamically loads the official Aliyun Captcha V3 script. The client receives only the public `region`, `prefix`, and `SceneId`. After a visitor completes verification, the browser sends the opaque `CaptchaVerifyParam` to this backend; the backend signs and calls Alibaba Cloud `VerifyIntelligentCaptcha` with RAM credentials. Never modify the `CaptchaVerifyParam` in transit.
 
-There are two different kinds of Tencent secret:
-
-1. `TENCENT_CAPTCHA_SECRET_KEY`: the CAPTCHA application's **AppSecretKey**;
-2. `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`: CAM API credentials used to sign the current `DescribeCaptchaResult` TC3 request.
+Create an Alibaba Cloud RAM user with only `AliyunYundunAFSFullAccess`; do not use a root-account AccessKey. `ALIYUN_SECURITY_TOKEN` is supported for temporary STS credentials.
 
 Recommended production configuration:
 
 ```dotenv
-TENCENT_CAPTCHA_ENABLED=true
-TENCENT_CAPTCHA_APP_ID=your-app-id
-TENCENT_CAPTCHA_SECRET_KEY=your-app-secret-key
-TENCENT_CAPTCHA_VERIFY_MODE=tc3
-TENCENT_SECRET_ID=least-privilege-subaccount-secret-id
-TENCENT_SECRET_KEY=least-privilege-subaccount-secret-key
+ALIYUN_CAPTCHA_ENABLED=true
+ALIYUN_CAPTCHA_REGION=cn
+ALIYUN_CAPTCHA_PREFIX=overview-page-prefix
+ALIYUN_CAPTCHA_SCENE_ID=scene-id-from-scene-management
+ALIYUN_ACCESS_KEY_ID=least-privilege-ram-access-key-id
+ALIYUN_ACCESS_KEY_SECRET=least-privilege-ram-access-key-secret
 ```
 
-Create a CAM subaccount with only the required CAPTCHA permission; do not use a root-account key. `TENCENT_SECURITY_TOKEN` is also supported for temporary CAM credentials.
+`ALIYUN_CAPTCHA_ENDPOINT` defaults to the Shanghai endpoint for `cn` and the Singapore endpoint for `sgp`; override it only for a documented dual-stack or VPC endpoint.
 
-For a temporary account that has only CaptchaAppId/AppSecretKey, `TENCENT_CAPTCHA_VERIFY_MODE=legacy` uses the app-key compatibility ticket endpoint. In non-production, `auto` chooses TC3 when CAM credentials exist and legacy mode otherwise. Production rejects `auto`: choose `tc3`, or temporarily set both `legacy` and `TENCENT_ALLOW_LEGACY=true` while migrating. Partial CAM credentials are a startup error. Migrate to TC3 for production.
-
-`CAPTCHA_PROVIDER=auto` lets the browser offer both enabled providers. At a trusted edge, the API recommends Tencent only when the country code is `CN` (mainland China), and Turnstile for `HK`, `MO`, `TW`, and all other known countries. Set `GEO_PROVIDER=cloudflare` to read `CF-IPCountry`, or `GEO_PROVIDER=edgeone` to read `EO-Client-IPCountry`; `GEO_COUNTRY_HEADER` can override the header name. Headers are accepted only from an exact `TRUST_PROXY_IPS` peer. Unknown/unavailable geography returns `auto`, where `zh-CN` is only a browser-language fallback. Visitors can always switch manually, and country information is not stored. Set `CAPTCHA_PROVIDER=turnstile` or `tencent` to pin the initial provider while retaining the other as a fallback.
+`CAPTCHA_PROVIDER=auto` lets the browser offer both enabled providers. At a trusted edge, the API recommends Aliyun only when the country code is `CN` (mainland China), and Turnstile for `HK`, `MO`, `TW`, and all other known countries. Set `GEO_PROVIDER=cloudflare` to read `CF-IPCountry`, or `GEO_PROVIDER=edgeone` to read `EO-Client-IPCountry`; `GEO_COUNTRY_HEADER` can override the header name. Headers are accepted only from an exact `TRUST_PROXY_IPS` peer. Unknown/unavailable geography returns `auto`, where `zh-CN` is only a browser-language fallback. Provider selection is hidden in `auto` mode, and country information is not stored. Set `CAPTCHA_PROVIDER=turnstile` or `aliyun` to pin the initial provider while retaining the other as a fallback.
 
 ## 5. Administrator usage and safe debugging
 
@@ -193,18 +188,18 @@ These controls reduce abuse but **cannot stop a volumetric or distributed DDoS a
 ### Cloudflare edge (recommended for the existing GitHub Pages site)
 
 1. Deploy the API behind an HTTPS hostname and set that hostname's DNS record to **Proxied** (orange cloud). Turnstile alone does not enable DDoS protection.
-2. Keep Cloudflare's automatic DDoS protection and WAF enabled. Add a rate-limiting rule for the API POST paths, starting conservatively (for example 10 requests per 10 seconds per IP with a temporary block) and tune for legitimate shared/NAT networks. Enable **Network → IP Geolocation** (available on all plans) and set `GEO_PROVIDER=cloudflare` so `/config` can recommend Tencent for `CN` and Turnstile elsewhere.
+2. Keep Cloudflare's automatic DDoS protection and WAF enabled. Add a rate-limiting rule for the API POST paths, starting conservatively (for example 10 requests per 10 seconds per IP with a temporary block) and tune for legitimate shared/NAT networks. Enable **Network → IP Geolocation** (available on all plans) and set `GEO_PROVIDER=cloudflare` so `/config` can recommend Aliyun for `CN` and Turnstile elsewhere.
 3. Cache static assets at the edge, but bypass cache for every `/api/aidp2026/*` route, especially admin/config/responses.
 4. Restrict the origin firewall/security group to Cloudflare IP ranges and HTTPS from the reverse proxy. Do not leave a direct public origin path that bypasses the edge.
 5. Install `deploy/nginx-cloudflare-real-ip.conf.example` as the Nginx real-IP configuration and refresh its official Cloudflare CIDRs periodically. The example Nginx configuration trusts only those ranges for `CF-Connecting-IP`, then overwrites `X-Forwarded-For` with the sanitized `$remote_addr` instead of appending an attacker-controlled chain. This also makes Nginx rate limits use the visitor IP rather than a Cloudflare edge IP.
 6. With exactly one trusted Nginx hop, set `TRUST_PROXY=1`. `TRUST_PROXY_IPS` must contain the exact direct proxy peer IPs (loopback is the safe default); forwarded headers from every other peer are ignored. Do not increase the hop count to compensate for an unsanitized chain.
 7. Monitor Security Events, origin 429/5xx rates, CAPTCHA failures, duplicate flags, and submission counts. During an attack, tighten edge rules or temporarily challenge/block the API rather than disabling server-side verification.
 
-### Tencent EdgeOne alternative
+### EdgeOne alternative
 
 For a China Mainland-oriented deployment, onboard the API hostname to EdgeOne with a CNAME, configure HTTPS origin pull, enable the available L3/L4 and HTTP DDoS protection, and add WAF/rate-limit rules for the two POST endpoints. Enable the **Client IP location Header** with the name `EO-Client-IPCountry` and set `GEO_PROVIDER=edgeone`. EdgeOne currently documents that country lookup does not support IPv6, so some visitors may use the fallback selection. Mainland acceleration can require ICP filing. Subscribe to higher DDoS protection only if the event's risk and traffic require it. Apply the same origin-firewall and monitoring rules as above.
 
-The CAPTCHA keys in `.env` do not authorize changes to either provider's DDoS settings. Those changes require access to the relevant Cloudflare zone or Tencent EdgeOne console.
+The CAPTCHA keys in `.env` do not authorize changes to either provider's DDoS settings. Those changes require access to the relevant Cloudflare zone, Aliyun console, or EdgeOne console.
 
 ## 7. Production checklist
 
@@ -225,9 +220,8 @@ The CAPTCHA keys in `.env` do not authorize changes to either provider's DDoS se
 - Cloudflare Turnstile test keys: <https://developers.cloudflare.com/turnstile/troubleshooting/testing/>
 - Cloudflare DDoS protection: <https://developers.cloudflare.com/ddos-protection/>
 - Cloudflare IP geolocation: <https://developers.cloudflare.com/network/ip-geolocation/>
-- Tencent Web client integration: <https://cloud.tencent.com/document/product/1110/36841>
-- Tencent `DescribeCaptchaResult`: <https://cloud.tencent.com/document/product/1110/36926>
-- Tencent CAPTCHA result handling: <https://cloud.tencent.com/document/product/1110/84005>
-- Tencent EdgeOne DDoS configuration: <https://cloud.tencent.com/document/product/1552/95994>
-- Tencent EdgeOne client country header: <https://cloud.tencent.com/document/product/1552/80978>
+- Aliyun Captcha V3 Web/H5 integration: <https://help.aliyun.com/zh/captcha/captcha2-0/user-guide/new-architecture-for-web-and-h5-client-access>
+- Aliyun Captcha scene management: <https://help.aliyun.com/zh/captcha/captcha2-0/user-guide/scene-management>
+- Aliyun `VerifyIntelligentCaptcha` server integration: <https://help.aliyun.com/zh/captcha/captcha2-0/user-guide/server-access>
+- Alibaba Cloud V3 request signing: <https://help.aliyun.com/zh/sdk/product-overview/v3-request-structure-and-signature>
 - Step-by-step Chinese deployment guide: `DEPLOYMENT.zh-CN.md`
