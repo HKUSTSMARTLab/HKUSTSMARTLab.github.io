@@ -22,7 +22,7 @@
   --gold: #9c7c41;
   --serif: "Crimson Pro", Georgia, "Times New Roman", serif;
   --sans: "Noto Sans", Arial, sans-serif;
-  --container: clamp(1160px, 88vw, 1680px);
+  --container: clamp(1080px, 84vw, 1480px);
 }
 
 /* ------------------------------------------------------------------ */
