@@ -1224,8 +1224,8 @@ button {
 
 .speaker {
   display: grid;
-  grid-template-columns: 104px minmax(0, 1fr);
-  gap: 26px;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 28px;
   padding: 26px 0;
   border-top: 1px solid var(--line);
 }
@@ -1236,8 +1236,8 @@ button {
 }
 
 .speaker__photo img {
-  width: 104px;
-  height: 104px;
+  width: 160px;
+  height: 160px;
   border: 1px solid var(--line);
   object-fit: cover;
 }
@@ -1254,10 +1254,32 @@ button {
 }
 
 .speaker__bio {
-  max-width: 820px;
+  width: 100%;
+  max-width: none;
   margin-top: 12px;
   font-size: 0.93rem;
   line-height: 1.75;
+}
+
+/* Speaker page: one-step larger type for the detailed presenter roster. */
+.page-speakers .page-hero__lede {
+  font-size: 1.08rem;
+}
+
+.page-speakers .section__title {
+  font-size: 1.8rem;
+}
+
+.page-speakers .speaker__name {
+  font-size: 1.65rem;
+}
+
+.page-speakers .speaker__affiliation {
+  font-size: 0.95rem;
+}
+
+.page-speakers .speaker__bio {
+  font-size: 1rem;
 }
 
 /* ------------------------------------------------------------------ */
@@ -2232,13 +2254,13 @@ button {
   }
 
   .speaker {
-    grid-template-columns: 84px minmax(0, 1fr);
+    grid-template-columns: 120px minmax(0, 1fr);
     gap: 18px;
   }
 
   .speaker__photo img {
-    width: 84px;
-    height: 84px;
+    width: 120px;
+    height: 120px;
   }
 
   .speaker__bio {
