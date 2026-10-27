@@ -36,7 +36,7 @@
 }
 
 html {
-  font-size: 112.5%;
+  font-size: 100%;
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 24px;
 }
@@ -253,7 +253,7 @@ button {
   padding: 6px 0;
   border-bottom: 2px solid transparent;
   color: #4a5865;
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
@@ -302,14 +302,14 @@ button {
 }
 
 .home-hero__text {
-  padding: 62px 52px 54px 0;
+  padding: 52px 40px 44px 0;
 }
 
 .home-hero__eyebrow {
   color: var(--gold);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -323,7 +323,7 @@ button {
 .home-hero__lede {
   margin-top: 22px;
   color: var(--muted);
-  font-size: 0.98rem;
+  font-size: 1.1rem;
 }
 
 .home-hero__media {
@@ -355,16 +355,16 @@ button {
   display: grid;
   grid-template-columns: 104px minmax(0, 1fr);
   gap: 8px 16px;
-  margin-top: 28px;
+  margin-top: 24px;
   padding-top: 18px;
   border-top: 1px solid var(--line);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .meta-list dt {
   padding-top: 2px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -380,20 +380,20 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 26px;
+  margin-top: 24px;
 }
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: 0 20px;
+  min-height: 46px;
+  padding: 0 22px;
   border: 1px solid var(--navy);
   border-radius: 2px;
   background: var(--navy);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -439,9 +439,15 @@ button {
 .facts__value {
   margin-top: 3px;
   color: var(--ink);
-  font-size: 0.88rem;
+  font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.45;
+}
+
+.facts__item .label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
 }
 
 /* ------------------------------------------------------------------ */
@@ -1247,15 +1253,6 @@ button {
   font-weight: 600;
 }
 
-.speaker__status {
-  margin-top: 8px;
-  color: var(--navy);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-}
-
 .speaker__bio {
   max-width: 820px;
   margin-top: 12px;
@@ -1964,7 +1961,7 @@ button {
 
 @media (min-width: 1400px) {
   body {
-    font-size: 1.0625rem;
+    font-size: 1rem;
   }
 }
 
@@ -1989,7 +1986,7 @@ button {
   }
 
   .site-nav a {
-    font-size: 0.78rem;
+    font-size: 0.86rem;
   }
 
   .layout {
@@ -2146,6 +2143,10 @@ button {
 
   .facts__item {
     padding: 14px 16px 14px 0;
+  }
+
+  .facts__value {
+    font-size: 0.98rem;
   }
 
   .facts__item + .facts__item {
