@@ -18,6 +18,7 @@ include:
     - 'showcase/PathBench/_next/**/*'
 
 exclude:
+    - downloads/
     - .sass-cache/
     - .jekyll-cache/
     - gemfiles/

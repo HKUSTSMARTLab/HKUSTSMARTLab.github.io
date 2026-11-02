@@ -16,3 +16,6 @@ static/media/SmartPath.mp4
 !.env.example
 services/**/data/
 services/**/*.log
+
+# Large desktop release artifacts, served directly by Nginx.
+/downloads/pathlab/
