@@ -817,7 +817,7 @@ button {
 
 .units {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   margin: 0;
   padding: 0;
   list-style: none;
@@ -2018,6 +2018,29 @@ button {
 
   .layout--single {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .units {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .unit {
+    padding: 18px 16px 18px 0;
+  }
+
+  .unit + .unit {
+    padding-left: 16px;
+  }
+
+  .unit:nth-child(3n + 1) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .unit:nth-child(n + 4) {
+    border-top: 1px solid var(--line);
   }
 }
 
