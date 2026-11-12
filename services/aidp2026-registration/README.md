@@ -209,7 +209,7 @@ The CAPTCHA keys in `.env` do not authorize changes to either provider's DDoS se
 - Use HTTPS end-to-end and a supported Node LTS release.
 - Put `DATA_DIR` on persistent storage owned by the service account with mode `0700`; the database file is set to `0600`.
 - Back up SQLite and `DATA_DIR/uploads` safely and test restores. Do not place either below the static web root. Encrypt the host volume and backups.
-- Set `REGISTRATION_OPEN` and `CONFERENCE_DEADLINE` explicitly. The poster deadline defaults to the announced 13 November 2026 date and is enforced by the server.
+- Set `REGISTRATION_OPEN` and `CONFERENCE_DEADLINE` explicitly. The poster deadline defaults to the announced 18 November 2026 date and is enforced by the server.
 - Keep the static `services/` directory excluded from Jekyll. The repository `_config.yml` already does this; `.env` and `data/` are also git-ignored.
 - Do not collect patient-identifiable data in poster PDFs. Agree on a privacy contact, correction/deletion workflow, and the default 180-day `RETENTION_DAYS` policy before launch; apply retention to exports and backups too.
 - Use the example Nginx and systemd units in `deploy/` as starting points, then adapt hostnames, paths, certificates, and firewall policy.

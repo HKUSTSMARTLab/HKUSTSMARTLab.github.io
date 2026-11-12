@@ -168,7 +168,7 @@ export function loadConfig(env = process.env) {
     requestTimeoutMs: parseInteger(env.REQUEST_TIMEOUT_MS, 120000, { min: 15000, max: 180000 }),
     registrationOpen: parseBoolean(env.REGISTRATION_OPEN, true),
     conferenceDeadline: parseDate(env.CONFERENCE_DEADLINE || "2026-11-20T23:59:59+08:00", "CONFERENCE_DEADLINE"),
-    posterDeadline: parseDate(env.POSTER_DEADLINE || "2026-11-13T23:59:59+08:00", "POSTER_DEADLINE"),
+    posterDeadline: parseDate(env.POSTER_DEADLINE || "2026-11-18T23:59:59+08:00", "POSTER_DEADLINE"),
     captchaProvider,
     turnstile: {
       enabled: turnstileEnabled,

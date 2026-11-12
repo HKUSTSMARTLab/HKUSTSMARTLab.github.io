@@ -140,7 +140,7 @@ function publicConfig(config, country) {
     posters: {
       open: posterOpen,
       deadline: config.posterDeadline?.iso || null,
-      acceptanceNotification: "2026-11-16",
+      acceptanceNotification: "2026-11-20",
       maxPdfBytes: config.pdfMaxBytes,
     },
     captcha: {
