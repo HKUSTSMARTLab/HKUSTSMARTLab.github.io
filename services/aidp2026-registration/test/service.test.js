@@ -130,7 +130,7 @@ test("public config exposes only public CAPTCHA identifiers", async (t) => {
   assert.equal(response.status, 200);
   const body = await response.json();
   assert.equal(body.registration.open, true);
-  assert.equal(body.registration.deadline, "2026-11-20T15:59:59.000Z");
+  assert.equal(body.registration.deadline, "2026-11-22T15:59:59.000Z");
   assert.equal(body.posters.open, true);
   assert.equal(body.posters.maxPdfBytes, 5 * 1024 * 1024);
   assert.equal(body.retentionDays, 180);
