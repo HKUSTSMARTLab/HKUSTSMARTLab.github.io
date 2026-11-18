@@ -411,11 +411,50 @@ test("CORS allowlist and preflight headers are enforced", async (t) => {
   assert.equal(adminCors.headers.get("access-control-allow-origin"), null);
 });
 
-test("closed poster deadline fails before reading a submission", async (t) => {
-  const { base, calls } = await fixture(t, { env: { POSTER_DEADLINE: "2020-01-01T00:00:00Z" } });
-  const response = await submit(base, "posters", poster());
-  assert.equal(response.status, 410);
-  assert.equal(calls.length, 0);
+test("manual conference closure rejects registration while posters remain open", async (t) => {
+  const { base, calls } = await fixture(t, { env: { REGISTRATION_OPEN: "false" } });
+  const config = await (await fetch(`${base}/api/aidp2026/config`)).json();
+  assert.equal(config.registration.open, false);
+  assert.equal(config.posters.open, true);
+
+  const closed = await submit(base, "registrations", conference());
+  assert.equal(closed.status, 410);
+  const accepted = await submit(base, "posters", poster());
+  assert.equal(accepted.status, 202);
+  assert.equal(calls.length, 1);
+});
+
+test("manual poster closure rejects posters while registration remains open", async (t) => {
+  const { base, calls } = await fixture(t, { env: { POSTER_OPEN: "false" } });
+  const config = await (await fetch(`${base}/api/aidp2026/config`)).json();
+  assert.equal(config.registration.open, true);
+  assert.equal(config.posters.open, false);
+
+  const closed = await submit(base, "posters", poster());
+  assert.equal(closed.status, 410);
+  const accepted = await submit(base, "registrations", conference());
+  assert.equal(accepted.status, 201);
+  assert.equal(calls.length, 1);
+});
+
+test("past display deadlines do not auto-close either submission channel", async (t) => {
+  const { base, calls } = await fixture(t, {
+    env: {
+      CONFERENCE_DEADLINE: "2020-01-01T00:00:00Z",
+      POSTER_DEADLINE: "2020-01-01T00:00:00Z",
+    },
+  });
+  const config = await (await fetch(`${base}/api/aidp2026/config`)).json();
+  assert.equal(config.registration.open, true);
+  assert.equal(config.posters.open, true);
+  assert.equal(config.registration.deadline, "2020-01-01T00:00:00.000Z");
+  assert.equal(config.posters.deadline, "2020-01-01T00:00:00.000Z");
+
+  const conferenceResponse = await submit(base, "registrations", conference());
+  assert.equal(conferenceResponse.status, 201);
+  const posterResponse = await submit(base, "posters", poster());
+  assert.equal(posterResponse.status, 202);
+  assert.equal(calls.length, 2);
 });
 
 test("local static serving links the conference homepage", async (t) => {

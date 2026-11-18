@@ -121,9 +121,8 @@ function uploadTokenMatches(token, storedHash) {
 }
 
 function publicConfig(config, country) {
-  const now = Date.now();
-  const conferenceOpen = config.registrationOpen && (!config.conferenceDeadline || now <= config.conferenceDeadline.timestamp);
-  const posterOpen = !config.posterDeadline || now <= config.posterDeadline.timestamp;
+  const conferenceOpen = config.registrationOpen;
+  const posterOpen = config.posterOpen;
   let preferredProvider = config.captchaProvider;
   if (preferredProvider === "auto" && country) {
     if (country === "CN" && config.aliyun.enabled) preferredProvider = "aliyun";
@@ -156,11 +155,7 @@ function publicConfig(config, country) {
 }
 
 function isOpen(config, kind) {
-  const now = Date.now();
-  if (kind === "conference") {
-    return config.registrationOpen && (!config.conferenceDeadline || now <= config.conferenceDeadline.timestamp);
-  }
-  return !config.posterDeadline || now <= config.posterDeadline.timestamp;
+  return kind === "conference" ? config.registrationOpen : config.posterOpen;
 }
 
 function parseKind(value) {
