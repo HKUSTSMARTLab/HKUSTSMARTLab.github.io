@@ -16,6 +16,8 @@ static/media/SmartPath.mp4
 !.env.example
 services/**/data/
 services/**/*.log
+# Exported registration exports contain personal data; keep them out of Git.
+aidp2026-registrations-*.csv
 
 # Large desktop release artifacts, served directly by Nginx.
 /downloads/pathlab/
