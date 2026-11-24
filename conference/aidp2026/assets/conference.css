@@ -1108,6 +1108,46 @@ button {
   border-bottom: 0;
 }
 
+.talk-title {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 0.86em;
+  font-style: normal;
+  line-height: 1.55;
+}
+
+.session--break td {
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.session--featured td {
+  background: #faf8f2;
+}
+
+.session--featured td:first-child {
+  border-left: 2px solid var(--gold);
+  padding-left: 10px;
+}
+
+.fireside-details {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(156, 124, 65, 0.28);
+  font-size: 0.86em;
+  line-height: 1.6;
+}
+
+.fireside-details li + li {
+  margin-top: 8px;
+}
+
+.fireside-details strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .table--numbers td:last-child {
   color: var(--ink);
   font-weight: 600;
