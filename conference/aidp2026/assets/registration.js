@@ -164,10 +164,23 @@
     this.closed = this.kind === "conference" ? !config.registration.open : !config.posters.open;
     if (this.closed) {
       this.providerSelect.disabled = true;
+      this.destroyChallenge();
+      var submissionGrid = this.form.closest(".submission-grid");
+      if (submissionGrid) submissionGrid.hidden = true;
+      var closedNote = document.querySelector('[data-closed-for="' + this.kind + '"]');
+      if (closedNote) closedNote.hidden = false;
+      this.updateChoiceState();
       setMessage(this.captchaStatus, this.kind === "conference" ? "Conference registration is currently closed." : "Poster submissions are currently closed.", "error");
       this.updateSubmit();
       return;
     }
+
+    var openGrid = this.form.closest(".submission-grid");
+    if (openGrid) openGrid.hidden = false;
+    var openNote = document.querySelector('[data-closed-for="' + this.kind + '"]');
+    if (openNote) openNote.hidden = true;
+
+    this.updateChoiceState();
 
     var providers = [];
     if (config.captcha.turnstile) providers.push({ value: "turnstile", label: "Cloudflare Turnstile" });
@@ -194,6 +207,20 @@
     }
     this.providerSelect.value = preferred;
     this.setProvider(preferred);
+  };
+
+  RegistrationForm.prototype.updateChoiceState = function () {
+    if (!this.closed) return;
+    var choice = document.querySelector('[data-choice="' + this.kind + '"]');
+    if (!choice) return;
+    choice.classList.add("registration-choice--closed");
+    choice.removeAttribute("href");
+    choice.setAttribute("aria-disabled", "true");
+    choice.setAttribute("tabindex", "-1");
+    var status = choice.querySelector("[data-choice-status]");
+    if (status) {
+      status.textContent = this.kind === "poster" ? "Closed · 18 November 2026" : "Closed";
+    }
   };
 
   RegistrationForm.prototype.unavailable = function () {

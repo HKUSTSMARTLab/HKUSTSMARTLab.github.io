@@ -1339,6 +1339,30 @@ button {
   line-height: 1.5;
 }
 
+.registration-choice--closed {
+  border-top-color: var(--line-strong);
+  cursor: default;
+}
+
+.registration-choice--closed:hover {
+  border-color: var(--line);
+  background: var(--paper);
+}
+
+.registration-closed {
+  margin-top: 22px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--soft);
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.submission-grid[hidden] {
+  display: none;
+}
+
 .registration-service-note {
   margin-top: 22px;
   padding: 10px 14px;
