@@ -1253,6 +1253,48 @@ button {
   font-weight: 600;
 }
 
+.booklet-page {
+  padding: 36px 0 64px;
+}
+
+.booklet-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.booklet-toolbar .section__title {
+  margin-bottom: 4px;
+}
+
+.booklet-toolbar__meta {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.booklet-toolbar .actions {
+  margin-top: 0;
+}
+
+.booklet-viewer {
+  display: block;
+  width: 100%;
+  height: 78vh;
+  min-height: 620px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.booklet-help {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .table--numbers td:last-child {
   color: var(--ink);
   font-weight: 600;
@@ -2440,6 +2482,23 @@ button {
     padding-left: 0;
     border-top: 1px solid var(--line);
     border-left: 0;
+  }
+
+  .booklet-page {
+    padding: 28px 0 48px;
+  }
+
+  .booklet-toolbar {
+    align-items: flex-start;
+  }
+
+  .booklet-toolbar .actions {
+    width: 100%;
+  }
+
+  .booklet-viewer {
+    height: 70vh;
+    min-height: 460px;
   }
 
   .organization > div {
