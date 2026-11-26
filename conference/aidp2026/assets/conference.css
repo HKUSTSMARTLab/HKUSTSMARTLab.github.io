@@ -1239,6 +1239,20 @@ button {
   line-height: 1.6;
 }
 
+.online-access__policy {
+  grid-column: 1 / -1;
+  padding-left: 12px;
+  border-left: 2px solid var(--line-strong);
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.online-access__policy strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .table--numbers td:last-child {
   color: var(--ink);
   font-weight: 600;
