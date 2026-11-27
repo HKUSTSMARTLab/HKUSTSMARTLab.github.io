@@ -512,21 +512,6 @@ button {
   line-height: 1.6;
 }
 
-.updates__item--online > p:last-child {
-  color: var(--ink);
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.updates__item--online a {
-  font-weight: 600;
-}
-
-.updates__item--online .updates__tag {
-  border-color: var(--navy);
-  color: var(--navy);
-}
-
 /* ------------------------------------------------------------------ */
 /* Page layout and sections                                            */
 /* ------------------------------------------------------------------ */
