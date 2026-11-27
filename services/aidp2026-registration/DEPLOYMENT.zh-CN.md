@@ -82,7 +82,7 @@ SERVE_STATIC=false
 DATA_DIR=/home/amax/Public/HKUSTSMARTLab.github.io/services/aidp2026-registration/data
 
 # 管理员手动开关；日期仅用于展示，不会自动关闭提交。修改开关后重启服务。
-REGISTRATION_OPEN=true
+REGISTRATION_OPEN=false
 POSTER_OPEN=true
 POSTER_DEADLINE=2026-11-18T23:59:59+08:00
 RETENTION_DAYS=180
