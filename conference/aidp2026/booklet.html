@@ -6,8 +6,10 @@
   <title>Programme Booklet — AIDP 2026</title>
   <meta name="description" content="Read or download the AIDP 2026 Programme and Speaker Booklet, including the conference schedule, talk titles, and speaker profiles.">
   <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-  <link rel="stylesheet" href="./assets/conference.css?v=54">
+  <link rel="stylesheet" href="./assets/conference.css?v=55">
   <script src="./assets/conference.js?v=10" defer></script>
+  <script src="./assets/pdfjs/pdf.min.js" defer></script>
+  <script src="./assets/booklet.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -60,10 +62,28 @@
           </div>
         </div>
 
-        <object class="booklet-viewer" data="./docs/AIDP2026_Programme_and_Speaker_Booklet.pdf#page=1&amp;view=Fit" type="application/pdf" aria-label="AIDP 2026 Programme and Speaker Booklet PDF reader">
-          <p>Your browser does not support embedded PDF viewing. <a href="./docs/AIDP2026_Programme_and_Speaker_Booklet.pdf" target="_blank" rel="noopener">Open the booklet in a new tab</a> or <a href="./docs/AIDP2026_Programme_and_Speaker_Booklet.pdf" download>download the PDF</a>.</p>
-        </object>
-        <p class="booklet-help">Use the PDF viewer controls to move between pages or zoom. On mobile devices, opening the PDF in a new tab may provide the best reading experience.</p>
+        <div class="booklet-reader" data-booklet-reader data-pdf="./docs/AIDP2026_Programme_and_Speaker_Booklet.pdf" data-worker="./assets/pdfjs/pdf.worker.min.js">
+          <div class="booklet-reader__controls" aria-label="PDF reader controls">
+            <div class="booklet-reader__page">
+              <button type="button" data-page-previous aria-label="Previous page">Previous</button>
+              <label>Page <input type="number" data-page-number value="1" min="1" max="20" inputmode="numeric" aria-label="Page number"></label>
+              <span>/ <span data-page-count>20</span></span>
+              <button type="button" data-page-next aria-label="Next page">Next</button>
+            </div>
+            <div class="booklet-reader__zoom">
+              <button type="button" data-zoom-out aria-label="Zoom out">−</button>
+              <span data-zoom-label>100%</span>
+              <button type="button" data-zoom-in aria-label="Zoom in">+</button>
+              <button type="button" data-fit-width>Fit width</button>
+            </div>
+          </div>
+          <div class="booklet-reader__viewport">
+            <canvas data-pdf-canvas role="img" aria-label="Booklet page"></canvas>
+          </div>
+          <p class="booklet-reader__status" data-booklet-status role="status">Loading booklet…</p>
+          <noscript><p class="booklet-help">JavaScript is required for the embedded reader. Use Open in new tab or Download PDF above.</p></noscript>
+        </div>
+        <p class="booklet-help">Use Previous and Next to move between pages, or adjust the zoom. Open in new tab or Download PDF if your browser cannot display the embedded reader.</p>
       </section>
     </div>
   </main>

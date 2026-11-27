@@ -1264,13 +1264,101 @@ button {
   margin-top: 0;
 }
 
-.booklet-viewer {
-  display: block;
-  width: 100%;
-  height: 78vh;
-  min-height: 620px;
+.booklet-reader__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 16px;
+  padding: 10px 12px;
   border: 1px solid var(--line);
   background: var(--soft);
+}
+
+.booklet-reader__page,
+.booklet-reader__zoom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.booklet-reader__page label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-size: 0.84rem;
+}
+
+.booklet-reader__page input {
+  width: 58px;
+  min-height: 36px;
+  padding: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  text-align: center;
+}
+
+.booklet-reader__controls button {
+  min-height: 36px;
+  padding: 6px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--paper);
+  color: var(--text);
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.booklet-reader__controls button:hover:not(:disabled) {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.booklet-reader__controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.booklet-reader__zoom {
+  margin-left: auto;
+}
+
+.booklet-reader__zoom [data-zoom-label] {
+  min-width: 44px;
+  color: var(--text);
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.booklet-reader__viewport {
+  max-height: 76vh;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-top: 0;
+  background: #e8ecef;
+  text-align: center;
+}
+
+.booklet-reader__viewport canvas {
+  display: block;
+  max-width: none;
+  margin: 0 auto;
+  background: #fff;
+}
+
+.booklet-reader__status {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.booklet-reader__status.is-error {
+  color: #8a2f35;
 }
 
 .booklet-help {
@@ -2481,9 +2569,16 @@ button {
     width: 100%;
   }
 
-  .booklet-viewer {
-    height: 70vh;
-    min-height: 460px;
+  .booklet-reader__controls {
+    padding: 8px;
+  }
+
+  .booklet-reader__zoom {
+    margin-left: 0;
+  }
+
+  .booklet-reader__viewport {
+    max-height: 70vh;
   }
 
   .organization > div {
